@@ -22,6 +22,8 @@ export const blogState = [
         None would seriously suggest that persons with schizophrenia are possessed by Satan but the association is enough to suggest a diagnosis of such makes one inherently dangerous. Even the setting of the film is tiresome in this sense. Sister Ann very literally works in an institution designed to establish whether its patients are unwell or just plain demonic. They’re all locked behind a double sealed door regardless.
 
         If we are to pray for another devil, let such laziness be exorcised.
+        <br />
+        Source: <a href="https://thefilm.blog/2022/11/02/pray-for-the-devil-review/"><i>The Film Blog<i/></a>
         `,
         authorName: 'THEFILM.BLOG',
         createdAt: 'November 2, 2022',

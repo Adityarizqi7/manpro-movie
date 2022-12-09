@@ -1,10 +1,10 @@
 import React from "react";
 
 import "../styles/_home.scss";
-import Healthcare from "../layouts/Healthcare";
+import Netray from "../layouts/Netray";
 
 export default function Home() {
-    <Healthcare
+    <Netray
         title="Netray Official — Bluray Film"
         kw="netray home, netray beranda, netray id home, netray beranda indonesia"
         desc="'Netray Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan"
@@ -17,5 +17,5 @@ export default function Home() {
         <main className="home-component">
 
         </main>
-    </Healthcare>
+    </Netray>
 }
