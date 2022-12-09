@@ -23,7 +23,7 @@ export const blogState = [
 
         If we are to pray for another devil, let such laziness be exorcised.
         `,
-        authorName: 'Halodoc Team',
-        createdAt: 'August 10, 2022',
+        authorName: 'THEFILM.BLOG',
+        createdAt: 'November 2, 2022',
     },
 ]
