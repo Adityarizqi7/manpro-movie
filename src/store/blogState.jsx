@@ -1,11 +1,11 @@
 export const blogState = [
     {
         id: 1,
-        title: "PRAY FOR THE DEVIL | REVIEW",
-        slug: "pray-for-the-devil-review",
-        image: "/assets/image/article/pray-for-devil.webp",
-        category: "Horror",
-        slugCategory: "horror",
+        title: 'PRAY FOR THE DEVIL | REVIEW',
+        slug: 'pray-for-the-devil-review',
+        image: '/assets/image/article/pray-for-devil.webp',
+        category: 'Horror',
+        slugCategory: 'horror',
         readTime: 5,
         description: `Through all the terrors of the past two years, it’s hard to believe that the horror film  has proven the most enduring genre at the post pandemic box office. Marvel have had more disappointments in the past two years than in the preceding twelve combined. All the while, the likes of Candyman, Old and Smile have proven consistent and bankable hits. Pray for the Devil is exactly of their ilk. It is, put simply, a creaky and unholy preposterous, Exorcist lite pretender. One that boasts box ticking attributes. Attractive young leads, psychological plot notes and an appealingly frugal runtime. It’s all there. To boot, the ending begs for the birth of a franchise.
 
@@ -23,7 +23,7 @@ export const blogState = [
 
         If we are to pray for another devil, let such laziness be exorcised.
         <br />
-        Source: <a href="https://thefilm.blog/2022/11/02/pray-for-the-devil-review/"><i>The Film Blog<i/></a>
+        Source: <a href='https://thefilm.blog/2022/11/02/pray-for-the-devil-review/'><i>The Film Blog<i/></a>
         `,
         authorName: 'THEFILM.BLOG',
         createdAt: 'November 2, 2022',

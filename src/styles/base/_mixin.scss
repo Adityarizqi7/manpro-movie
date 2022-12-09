@@ -1,0 +1,24 @@
+@mixin text-head($color, $size, $weight) {
+    color: $color;
+    font-size: $size;
+    font-weight: $weight;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+}
+
+@mixin transition($property: all, $duration: 300) {
+    -webkit-transition: $property $duration ease-in-out;
+    -o-transition: $property $duration ease-in-out;
+    -ms-transition: $property $duration ease-in-out;
+    -moz-transition: $property $duration ease-in-out;
+    transition: $property $duration ease-in-out;
+}
+
+@mixin active-visit($color, $bg, $fw: 500) {
+    color: $color;
+    font-weight: $fw;
+    background-color: $bg;
+}
