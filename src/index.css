@@ -70,21 +70,7 @@ code {
 .shadow-own {
     box-shadow: 0px 2px 5px 2px rgb(0 0 0 / 10%);
 }
-.collapse-css-transition {
-    transition: height 280ms cubic-bezier(0.4, 0, 0.2, 1);
-}
 *::selection {
     color: #ffff;
     background-color: #4154be;
-}
-*::-webkit-scrollbar {
-    width: 8px;
-    background-color: transparent;
-}
-*::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-*::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-    background-color: #929090;
 }

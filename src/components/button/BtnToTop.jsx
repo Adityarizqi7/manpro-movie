@@ -8,7 +8,7 @@ export default function BtnTopTop() {
     const [buttontotop, setButtontotop] = React.useState(false)
 
     const changePosition = () => {
-        window.scrollY > 0 ? setButtontotop(true) : setButtontotop(buttontotop)
+        window.scrollY > 0 ? setButtontotop(true) : setButtontotop(false)
     }
 
     React.useEffect(() => {
@@ -24,7 +24,7 @@ export default function BtnTopTop() {
             id='button_scroll_top'
             className={classes(
                 buttontotop ? 'right-8' : '-right-20',
-                'reltive text-blue-base hover:bg-blue-base fixed bottom-4 z-20 w-[1.75rem] cursor-pointer hover:rounded-full hover:p-1 hover:text-neutral-200 sm:w-10'
+                'fixed bottom-4 z-20 w-[1.75rem] cursor-pointer text-blue-600 hover:rounded-full hover:bg-blue-600 hover:p-1 hover:text-neutral-200 sm:w-10'
             )}
             onClick={() => {
                 window.scroll({
