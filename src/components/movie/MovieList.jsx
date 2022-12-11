@@ -1,55 +1,19 @@
 import React from 'react'
 import tmdb from '../../api/tmbd'
-import Slick from 'react-slick/dist/react-slick.min.js'
+import { Navigation, Lazy } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import '@/assets/lib/slick/slick.min.scss'
-import '@/assets/lib/slick/slick-theme.min.scss'
+import 'swiper/scss';
+import 'swiper/scss/lazy';
+import "swiper/scss/navigation";
+import {MovieCard, MovieCard2, MovieCard3} from './MovieCard'
 
-import {MovieCard, MovieCard2} from './MovieCard'
-
-function TrendMV({ urlAPI }) {
+function TrendMV() {
     const [trendMV, setTrendMV] = React.useState([])
-
-    const settings = {
-        speed: 500,
-        dots: false,
-        infinite: true,
-        lazyLoad: true,
-        slidesToShow: 6,
-        initialSlide: 0,
-        centerMode: true,
-        slidesToScroll: 1,
-        swipeToSlide: true,
-        className: 'center',
-        centerPadding: '2rem',
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    }
 
     React.useEffect(() => {
         const getDataTrend = async () => {
-            const { data } = await tmdb.get(urlAPI)
+            const { data } = await tmdb.get('/trending/movie/week')
             setTrendMV(data.results)
         }
 
@@ -57,57 +21,206 @@ function TrendMV({ urlAPI }) {
     }, [])
 
     return (
-        <Slick {...settings}>
-            {trendMV &&
-                trendMV.map((item, index) => {
-                    return <MovieCard key={index} {...item} />
+        <Swiper
+            modules={[Navigation, Lazy]}
+            style={{
+                "--swiper-navigation-color": "#fff",
+            }}
+            spaceBetween={15}
+            slidesPerView={2}
+            navigation
+            centeredSlides
+            centeredSlidesBounds
+            onSwiper={ swiper => {
+                swiper.allowTouchMove = false
+            }}
+            breakpoints={{
+                640: {
+                    slidesPerView: 3,
+                },
+                768: {
+                    slidesPerView: 4,
+                },
+                1024: {
+                    slidesPerView: 6,
+                },
+            }}
+        >
+                {
+                    trendMV &&
+                    trendMV.map((item, index) => {
+                        return (
+                            <SwiperSlide key={index}>
+                                <MovieCard {...item} />
+                            </SwiperSlide>
+                        )
                 })}
-        </Slick>
+        </Swiper>
     )
 }
-function TrendTV({ urlAPI }) {
-    const [trendTV, setTrendTV] = React.useState([])
 
-    const settings = {
-        speed: 500,
-        dots: false,
-        infinite: true,
-        lazyLoad: true,
-        slidesToShow: 6,
-        initialSlide: 0,
-        centerMode: true,
-        slidesToScroll: 1,
-        swipeToSlide: true,
-        className: 'center',
-        centerPadding: '2rem',
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
+function UpcomingMV() {
+    const [upcomingMV, setUpcomingMV] = React.useState([])
+
+    React.useEffect(() => {
+        const getDataUpcomingMV = async () => {
+            const { data } = await tmdb.get('/movie/upcoming', {
+                params: {
+                    region: 'ID'
+                }
+            })
+            setUpcomingMV(data.results)
+        }
+
+        getDataUpcomingMV()
+    }, [])
+
+    return (
+        <Swiper
+            modules={[Navigation, Lazy]}
+            style={{
+                "--swiper-navigation-color": "#fff",
+            }}
+            spaceBetween={15}
+            slidesPerView={2}
+            centeredSlides
+            centeredSlidesBounds
+            onSwiper={ swiper => {
+                swiper.allowTouchMove = true
+            }}
+            breakpoints={{
+                640: {
+                    slidesPerView: 3,
                 },
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
+                768: {
+                    slidesPerView: 4,
                 },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
+                1024: {
+                    slidesPerView: 4,
                 },
-            },
-        ],
-    }
+            }}
+        >
+            {
+                upcomingMV &&
+                upcomingMV.map((item, index) => {
+                    return (
+                        <SwiperSlide key={index}>
+                            <MovieCard3 {...item} classOverlay='hidden' />
+                        </SwiperSlide>
+                    )
+            })}
+        </Swiper>
+    )
+}
+
+function NowPlayMV() {
+    const [nowPlayMV, setNowPlayMV] = React.useState([])
+
+    React.useEffect(() => {
+        const getDataNowPlayMV = async () => {
+            const { data } = await tmdb.get('/movie/now_playing', {
+                params: {
+                    region: 'ID'
+                }
+            })
+            setNowPlayMV(data.results)
+        }
+
+        getDataNowPlayMV()
+    }, [])
+
+    return (
+        <Swiper
+            modules={[Navigation, Lazy]}
+            style={{
+                "--swiper-navigation-color": "#fff",
+            }}
+            spaceBetween={15}
+            slidesPerView={2}
+            navigation
+            onSwiper={ swiper => {
+                swiper.allowTouchMove = true
+            }}
+            breakpoints={{
+                640: {
+                    slidesPerView: 3,
+                },
+                768: {
+                    slidesPerView: 4,
+                },
+                1024: {
+                    slidesPerView: 6,
+                },
+            }}
+        >
+                {
+                    nowPlayMV &&
+                    nowPlayMV.slice(0, 10).map((item, index) => {
+                        return (
+                            <SwiperSlide>
+                                <MovieCard3 key={index} {...item} />
+                            </SwiperSlide>
+                        )
+                })}
+        </Swiper>
+    )
+}
+
+function PopularMV() {
+    const [popularMV, setPopularMV] = React.useState([])
+
+    React.useEffect(() => {
+        const getDataPopularMV = async () => {
+            const { data } = await tmdb.get('/movie/popular')
+            setPopularMV(data.results)
+        }
+
+        getDataPopularMV()
+    }, [])
+
+    return (
+        <Swiper
+                        modules={[Navigation, Lazy]}
+            style={{
+                "--swiper-navigation-color": "#fff",
+            }}
+            spaceBetween={15}
+            slidesPerView={2}
+            navigation
+            onSwiper={ swiper => {
+                swiper.allowTouchMove = false
+            }}
+            breakpoints={{
+                640: {
+                    slidesPerView: 3,
+                },
+                768: {
+                    slidesPerView: 4,
+                },
+                1024: {
+                    slidesPerView: 6,
+                },
+            }}
+        >
+                {
+                    popularMV &&
+                    popularMV.slice(0, 10).map((item, index) => {
+                        return (
+                            <SwiperSlide>
+                                <MovieCard3 key={index} {...item} />
+                            </SwiperSlide>
+                        ) 
+                })}
+        </Swiper>
+    )
+}
+
+function TrendTV() {
+    const [trendTV, setTrendTV] = React.useState([])
 
     React.useEffect(() => {
         const getDataTrend = async () => {
-            const { data } = await tmdb.get(urlAPI)
+            const { data } = await tmdb.get('/trending/tv/week')
             setTrendTV(data.results)
         }
 
@@ -115,29 +228,51 @@ function TrendTV({ urlAPI }) {
     }, [])
 
     return (
-        <Slick {...settings}>
-            {trendTV &&
-                trendTV.map((item, index) => {
-                    return <MovieCard key={index} {...item} />
+        <Swiper
+            modules={[Navigation, Lazy]}
+            style={{
+                "--swiper-navigation-color": "#fff",
+            }}
+            spaceBetween={15}
+            slidesPerView={2}
+            navigation
+            centeredSlides
+            centeredSlidesBounds
+            onSwiper={ swiper => {
+                swiper.allowTouchMove = false
+            }}
+            breakpoints={{
+                640: {
+                    slidesPerView: 3,
+                },
+                768: {
+                    slidesPerView: 4,
+                },
+                1024: {
+                    slidesPerView: 6,
+                },
+            }}
+        >
+                {
+                    trendTV &&
+                    trendTV.map((item, index) => {
+                        return (
+                            <SwiperSlide key={index}>
+                                <MovieCard {...item} />
+                            </SwiperSlide>
+                        )
                 })}
-        </Slick>
+        </Swiper>
     )
 }
-function PopularTV({ urlAPI }) {
+
+function PopularTV() {
     const [PopularTV, setPopularTV] = React.useState([])
     const [trailerSeries, setTrailerSeries] = React.useState([])
 
-    const settings = {
-        dots: false,
-        infinite: false,
-        vertical: true,
-        slidesToShow: 1,
-        verticalSwiping: false,
-    }
-
     React.useEffect(() => {
         const getDataTrend = async () => {
-            const { data } = await tmdb.get(urlAPI, {
+            const { data } = await tmdb.get('/tv/popular', {
                 params: {
                     append_to_response: 'videos'
                 }
@@ -164,15 +299,10 @@ function PopularTV({ urlAPI }) {
         getDataTrailerSeries()
     }, [])
     
-
     return (
-        <Slick {...settings}>
-            {
-                PopularTV &&
-                <MovieCard2 {...PopularTV} key_trailer={trailerSeries.key}/>
-            }
-        </Slick>
+        PopularTV &&
+        <MovieCard2 {...PopularTV} key_trailer={trailerSeries.key}/>
     )
 }
 
-export {TrendMV, TrendTV, PopularTV}
+export {TrendMV, UpcomingMV, NowPlayMV, PopularMV, TrendTV, PopularTV}
