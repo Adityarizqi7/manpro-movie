@@ -23,13 +23,10 @@ export default function Home() {
                     <article id='trending_movie'
                         className='movie-container space-y-8 mb-6'
                     >
-                        <div className='heading-card flex flex-wrap gap-4 w-full items-center justify-between'>
+                        <div className='heading-card w-full'>
                             <h1 className='montserrat border-l-4 border-blue-600 pl-3 font-semibold'>
                                 Trending Movies
                             </h1>
-                            <button className='inter rounded-[5px] 5xs:w-full bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:outline-none'>
-                                Lihat Semua
-                            </button>
                         </div>
                         <div className='container-list-card'>
                             <TrendMV />
@@ -38,13 +35,10 @@ export default function Home() {
                     <article id='trending_tv'
                         className='movie-container space-y-8 mb-14'
                     >
-                        <div className='heading-card flex flex-wrap gap-4 w-full items-center justify-between'>
+                        <div className='heading-card w-full'>
                             <h1 className='montserrat border-l-4 border-blue-600 pl-3 font-semibold'>
                                 Trending Series
                             </h1>
-                            <button className='inter rounded-[5px] 5xs:w-full bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:outline-none'>
-                                Lihat Semua
-                            </button>
                         </div>
                         <div className='container-list-card'>
                             <TrendTV />

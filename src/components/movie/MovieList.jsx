@@ -134,6 +134,7 @@ function NowPlayMV() {
             modules={[Navigation, Lazy]}
             style={{
                 "--swiper-navigation-color": "#fff",
+                "--swiper-navigation-size": "1.75rem",
             }}
             spaceBetween={15}
             slidesPerView={2}
@@ -157,8 +158,8 @@ function NowPlayMV() {
                     nowPlayMV &&
                     nowPlayMV.slice(0, 10).map((item, index) => {
                         return (
-                            <SwiperSlide>
-                                <MovieCard3 key={index} {...item} />
+                            <SwiperSlide key={index}>
+                                <MovieCard3 {...item} />
                             </SwiperSlide>
                         )
                 })}
@@ -183,6 +184,7 @@ function PopularMV() {
                         modules={[Navigation, Lazy]}
             style={{
                 "--swiper-navigation-color": "#fff",
+                "--swiper-navigation-size": "1.75rem",
             }}
             spaceBetween={15}
             slidesPerView={2}
@@ -206,8 +208,8 @@ function PopularMV() {
                     popularMV &&
                     popularMV.slice(0, 10).map((item, index) => {
                         return (
-                            <SwiperSlide>
-                                <MovieCard3 key={index} {...item} />
+                            <SwiperSlide key={index}>
+                                <MovieCard3 {...item} />
                             </SwiperSlide>
                         ) 
                 })}

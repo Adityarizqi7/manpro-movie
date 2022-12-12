@@ -1,0 +1,8 @@
+header {
+    > div {
+        padding: 0 2.5rem;
+        @media only screen and (max-width: 639px) {
+            padding: 0 1.5rem;
+        }
+    }
+}

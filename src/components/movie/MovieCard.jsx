@@ -105,7 +105,7 @@ function MovieCard3({
                 />
                 <div className={`${classOverlay} overlay absolute top-0 h-full w-full rounded-[0.5rem] transition-colors group-hover:bg-black/60`}>
                     <div className='flex h-full flex-col items-center'>
-                        <PlayIcon className='icon-play my-auto mx-auto w-[3.5rem] scale-0 rounded-full bg-blue-600 p-2 text-white transition-transform group-hover:scale-100' />
+                        <PlayIcon className='icon-play my-auto mx-auto w-[2.5rem] scale-0 rounded-full bg-blue-600 p-2 text-white transition-transform group-hover:scale-100' />
                     </div>
                 </div>
             </div>
