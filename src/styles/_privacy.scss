@@ -1,0 +1,57 @@
+@use '../styles/base/' as *;
+
+.priv {
+    a {text-decoration: none;}
+    a:hover {text-decoration: underline;}
+    ol {
+        counter-reset: item;
+        padding-left: 1em;
+        li {
+            a {margin-left: 0.2em;}
+            ol {margin-left: 0.2em;}
+        }
+    }
+    li {display: block;}
+    li:before {
+        content: counters(item, ".") ". ";
+        counter-increment: item;
+    }
+}
+
+
+  ///
+
+  .privacy a {
+    text-decoration: none;
+  }
+  
+  .privacy a:hover {
+    text-decoration: underline;
+  }
+  
+  .privacy ol {
+    counter-reset: item;
+    padding-left: 1em;
+  }
+  
+  .privacy li {
+    display: block;
+  }
+  
+  .privacy li:before {
+    content: counters(item, ".") ". ";
+    counter-increment: item;
+    padding-right: 0.6em;
+  }
+  
+  .privacy ol li h4 {
+    margin-left: 1em;
+  }
+
+  .privacy ol li p {
+    margin-left: 1em;
+  }
+  
+  .privacy ol li ol {
+    margin-left: 1em;
+  }

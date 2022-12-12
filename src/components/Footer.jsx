@@ -24,10 +24,10 @@ export default function Footer() {
                     <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h3>
                         <ul>
                             <li className="mb-4">
-                                <a href="/" target="_blank" className="text-gray-600 hover:underline dark:text-gray-400">Privacy Policy</a>
+                                <a href="/privacy-policy" target="_blank" className="text-gray-600 hover:underline dark:text-gray-400">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="/" target="_blank" rel="nofollow" className="text-gray-600 hover:underline dark:text-gray-400">Terms & Condition</a>
+                                <a href="/privacy" target="_blank" rel="nofollow" className="text-gray-600 hover:underline dark:text-gray-400">Terms & Condition</a>
                             </li>
                         </ul>
                     </div>
