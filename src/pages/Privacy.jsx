@@ -95,19 +95,19 @@ export default function Privacy() {
                         <a id="1._Contact_information"></a><a id="_bookmark0"></a>CONTACT INFORMATION
                         </h4>
                         <p>
-                        The Walt Disney Company (Southeast Asia) Pte. Limited, a company registered
-                        under the laws of Singapore, with its principal office at Singapore
+                        The Netray Company (Southeast Asia) Pte. Limited, a company registered
+                        under the laws of Indonesia, with its principal office at Indonesia
                         ("<strong>we</strong>", "<strong>us</strong>", "<strong>our</strong>",
-                        "<strong>Disney</strong>") provides, directly or through its distributors or
+                        "<strong>Netray</strong>") provides, directly or through its distributors or
                         service providers, a subscription service in Indonesia, which may be available
                         through an online website
                         <a href="https://www.hotstar.com/">https://www.hotstar.com </a>and/or
                         applications (“<strong>Platform</strong>” or the
-                        <strong>“Disney+ Hotstar Service</strong>”, which includes all the features
+                        <strong>“Netray Service</strong>”, which includes all the features
                         available on such Platform).
                         </p>
                         <p>
-                        Disney values the trust placed by users of Disney+ Hotstar Service
+                        Netray values the trust placed by users of Netray Service
                         ("<strong>you</strong>", "<strong>your</strong>", "<strong>user</strong>",
                         "<strong>subscriber</strong>") and therefore, we follow appropriate standards
                         to protect your Personal Information (defined below).
@@ -117,7 +117,7 @@ export default function Privacy() {
                         processing of your Personal Information (defined below) or this Privacy Policy
                         or if you require any general information or clarification or inquiry
                         regarding the Platform please email us at
-                        <a href="mailto:disneyplus.id@hotstar.com">disneyplus.id@hotstar.com</a><a id="."></a>.
+                        <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com</a><a id="."></a>.
                         </p>
                     </li>
                     <li class="decimal-li">
@@ -127,7 +127,7 @@ export default function Privacy() {
                         <p>
                         This Privacy Policy ("<strong>Privacy Policy</strong>") explains how we use,
                         process and protect Personal Information of the users or subscribers of the
-                        Disney+ Hotstar Service in Indonesia.
+                        Netray Service in Indonesia.
                         </p>
                         <p>
                         This Privacy Policy describes the usage of information and / or Personal
@@ -149,7 +149,7 @@ export default function Privacy() {
                         </p>
                         <p>
                         We encourage you to read the applicable Terms of Use to understand the terms
-                        related to the use of the Disney+ Hotstar Service in general.
+                        related to the use of the Netray Service in general.
                         </p>
                     </li>
                     <li class="decimal-li">
@@ -180,7 +180,7 @@ export default function Privacy() {
                             <p>
                             We may ask for and you may choose to provide the below information, which may
                             include Personal Information, <em>inter alia </em>when you use or register for
-                            the Disney+ Hotstar Service and create a subscription account, update your
+                            the Netray Service and create a subscription account, update your
                             account, upload content to or via the Platform, use any of the features or
                             services available on the Platform (such as game play), participate on any
                             activities on the Platform or contact us directly:
@@ -197,7 +197,7 @@ export default function Privacy() {
                             </li>
                             <li>
                                 Payment and other information pertaining to your transactions on the
-                                Disney+ Hotstar Service
+                                Netray Service
                             </li>
                             <li>Any service requests</li>
                             <li>Search terms</li>
@@ -260,18 +260,18 @@ export default function Privacy() {
                             We and certain third parties on our behalf may collect information about you
                             and your use of our Platform, your interactions with us or our advertising or
                             any marketing communication we send you, as well as information regarding your
-                            computer or other Streaming Devices used to access Disney+ Hotstar Service.
+                            computer or other Streaming Devices used to access Netray Service.
                             The information may be collected using tracking technologies such as cookies,
                             flash cookies, pixels, tags, software development kits, application program
                             interfaces, and web beacons and may include:
                             </p>
                             <ol>
                             <li>
-                                Your activity on the Disney+ Hotstar Service such as pages/titles
+                                Your activity on the Netray Service such as pages/titles
                                 viewed, load times, watch times, content selection and watch
                                 history, transactions initiated and/or completed, search queries and
                                 platform features used. This information may include the platform or
-                                website that you just visited (whether this platform is on Disney+
+                                website that you just visited (whether this platform is on Netray+
                                 Hotstar Service or not), which platform or website you next visit;
                             </li>
                             <li>
@@ -306,8 +306,8 @@ export default function Privacy() {
                             <li>
                                 Advertisement identifiers such as Identifier for Advertisers (IDFA),
                                 Google Advertising ID (GAID), etc. and data related to your
-                                interaction with the advertisement that are served on the Disney+
-                                Hotstar Service or any advertising of the Disney+ Hotstar Service;
+                                interaction with the advertisement that are served on the Netray+
+                                Hotstar Service or any advertising of the Netray Service;
                             </li>
                             <li>
                                 We capture information related to the performance of the mobile
@@ -318,7 +318,7 @@ export default function Privacy() {
                             <li>
                                 Information collected by us or our service providers, partners or
                                 advertising networks via the use of cookies and other technologies
-                                on the Disney+ Hotstar Service website (You can read more about how
+                                on the Netray Service website (You can read more about how
                                 we use cookies in the Cookies section set out below).
                             </li>
                             </ol>
@@ -331,7 +331,7 @@ export default function Privacy() {
                             <p>
                             We may track certain information about the content viewed, your visit to our
                             Platform and your interaction with the Platform. This information may include
-                            the platform that you just visited (whether this platform is on Disney+
+                            the platform that you just visited (whether this platform is on Netray+
                             Hotstar Services or not), which platform you next visit, your computer browser
                             information, your mobile phone operating system and its version.
                             </p>
@@ -441,13 +441,13 @@ export default function Privacy() {
                         think applies (but if the context changes or other circumstances arise then
                         the lawful basis may also change). Our primary purpose in collecting your
                         information, including Personal Information from you is to deliver the
-                        personalized Disney+ Hotstar Service and its various features. Please note
+                        personalized Netray Service and its various features. Please note
                         that should you choose to not provide us consent to collect your information,
                         including Personal Information, we may not be able to perform the contract
                         with you. Where we refer to ‘perform the contract’ we mean the Terms of Use
-                        applicable to your use of the Disney+ Hotstar Service, which means that you
-                        may either not be able to access certain features of the Disney+ Hotstar
-                        Service or we may not be able to provide you the Disney+ Hotstar Service in
+                        applicable to your use of the Netray Service, which means that you
+                        may either not be able to access certain features of the Netray
+                        Service or we may not be able to provide you the Netray Service in
                         entirety.
                         </p>
                         <p>For example, we use your Personal Information to:</p>
@@ -473,7 +473,7 @@ export default function Privacy() {
                             Send you transactional communications or to provide you with information,
                             direct marketing, online and offline advertising and other materials
                             regarding products, services and other offers from time to time in
-                            connection with the Disney+ Hotstar Service or its parent, subsidiary, group
+                            connection with the Netray Service or its parent, subsidiary, group
                             and/or affiliated companies (“<strong>Platform Entities</strong>”) and its
                             joint ventures,
                         </li>
@@ -489,7 +489,7 @@ export default function Privacy() {
                             <a id="g._If_you_are_a_traveler_visiting_variou"></a>If you are a traveler
                             visiting various countries around the world and avail the Platform's
                             services, then we will determine your location using your IP address to
-                            determine the relevant Disney+ Hotstar Services which may be offered to you
+                            determine the relevant Netray Services which may be offered to you
                             or may not be able to offer any service outside your home country,
                         </li>
                         <li>
@@ -568,7 +568,7 @@ export default function Privacy() {
                         <li>
                             When you agree to share your precise location based on GPS data, we will
                             combine this information with other information that you provide to us on
-                            the Disney+ Hotstar Service to provide personalised content and
+                            the Netray Service to provide personalised content and
                             advertisements with better accuracy basis your geographic location e.g. you
                             may see more regional content recommendations or advertisements for local
                             establishments, when you share your precise location based on GPS data; or
@@ -576,7 +576,7 @@ export default function Privacy() {
                         <li>
                             When you agree to share information pertaining to the applications
                             frequently used by you on your device, we will combine this information with
-                            other information that you provide to us on the Disney+ Hotstar Service, to
+                            other information that you provide to us on the Netray Service, to
                             display advertisements that are more relevant to your interest areas e.g. if
                             you frequently use applications related to sporting events, we may serve
                             advertisements of companies or products related to sporting events.
@@ -605,7 +605,7 @@ export default function Privacy() {
                             service providers) that work with us or assist us to provide services to you
                             or license us software which we include in our application(s). Personal
                             Information will only be shared with our service providers to provide, support
-                            or improve the Disney+ Hotstar Service and to enable us to analyse our
+                            or improve the Netray Service and to enable us to analyse our
                             services and marketing efforts. We do not authorize our service providers to
                             use or disclose your Personal Information except in connection with providing
                             their services. We or our service providers may also share your advertisement
@@ -697,7 +697,7 @@ export default function Privacy() {
                             <a id="7.2_INTEREST-BASED_ADVERTISING"></a><a id="_bookmark16"></a>INTEREST-BASED ADVERTISING
                             </h4>
                             <p>
-                            To opt out of interest-based advertisements from Disney+ Hotstar Service in
+                            To opt out of interest-based advertisements from Netray Service in
                             connection with a resettable device identifier on a mobile device, tablet, or
                             streaming media devices, please configure the appropriate setting on your
                             device (usually found under "privacy" or "ads" in your device settings). You
@@ -724,7 +724,7 @@ export default function Privacy() {
                             <p>
                             You can ask us to correct inaccurate or incomplete Personal Information
                             concerning you by sending us an email to our customer support email address
-                            <a href="mailto:disneyplus.id@hotstar.com">disneyplus.id@hotstar.com</a>. In
+                            <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com</a>. In
                             case you have made your subscription via Apple iTunes or such other third
                             party platforms then you will have to rectify your subscription and / or
                             personal data on the Apple iTunes platform or such other third party platforms
@@ -878,7 +878,7 @@ export default function Privacy() {
                         <p>
                         The Platform includes a kid’s mode feature, which when activated, provides
                         access exclusively to children-friendly content. While persons under the age
-                        of 18 may utilize the Disney+ Hotstar Service, they may do so only with the
+                        of 18 may utilize the Netray Service, they may do so only with the
                         involvement, supervision, and approval of a parent or legal guardian.
                         </p>
                     </li>
@@ -915,13 +915,13 @@ export default function Privacy() {
                         contact us (See Contact Information below).
                         </p>
                         <p>
-                        The Disney+ Hotstar Service uses commercially reasonable industry standard
+                        The Netray Service uses commercially reasonable industry standard
                         security practices and procedures designed to help keep your Personal
                         Information safe and secure. Unfortunately, the transmission of information
                         over the internet is not completely secure and despite our best efforts, no
                         security measures are perfect or impenetrable. Although we strive to protect
                         your Personal Information, we cannot guarantee the security of your data while
-                        it is being transmitted to our Disney+ Hotstar Service; any transmission is at
+                        it is being transmitted to our Netray Service; any transmission is at
                         your own risk. We will also ensure, on a reasonable efforts basis, that any
                         agent or third party that we employ complies with the same security standards
                         as we do for the protection of your Personal Information.
@@ -975,7 +975,7 @@ export default function Privacy() {
                         The information we obtain through the use of cookies may be combined with
                         other Personal Information relating to you in certain circumstances, where you
                         voluntarily provide Personal Information (e.g. by completing an online form)
-                        or where you register/sign up or subscribe to Disney+ Hotstar Service and you
+                        or where you register/sign up or subscribe to Netray Service and you
                         hereby agree to this.
                         </p>
                     </li>
@@ -993,9 +993,9 @@ export default function Privacy() {
                         otherwise) and shall supersede the terms of this Privacy Policy. We will
                         notify you of any changes to this Privacy Policy and we will obtain your
                         consent if the changes significantly affect your rights or as may be required
-                        by law. Your continued use of the Disney+ Hotstar Service after any updates
+                        by law. Your continued use of the Netray Service after any updates
                         will mean you have accepted those changes. If you do not agree to the updates
-                        you should stop using the Disney+ Hotstar Service and cancel your
+                        you should stop using the Netray Service and cancel your
                         subscription.
                         </p>
                     </li>
@@ -1003,19 +1003,19 @@ export default function Privacy() {
                         <h4><a id="13._Contact_us"></a><a id="_bookmark28"></a>CONTACT US</h4>
                         <p>
                         If you have any questions about these Terms of Use, the Privacy Policy, or
-                        your dealings with Disney, or a question or a complaint about the Disney+
+                        your dealings with Netray, or a question or a complaint about the Netray+
                         Hotstar Platform and/or the Content, you can contact customer support services
                         at
-                        <a href="mailto:disneyplus.id@hotstar.com">disneyplus.id@hotstar.com, </a>by
-                        also providing us with your phone number used for accessing your Disney+
+                        <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com, </a>by
+                        also providing us with your phone number used for accessing your Netray+
                         Hotstar Platform. Please do not share any personal information in your emails
-                        to <a href="mailto:disneyplus.id@hotstar.com">disneyplus.id@hotstar.com</a>.
+                        to <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com</a>.
                         </p>
                         <p>
                         If you’re not satisfied with our response to any complaint or believe our
                         processing of your information does not comply with applicable data protection
                         law, you can write to
-                        <a href="mailto:disneyplus.id@hotstar.com">disneyplus.id@hotstar.com. </a>Data
+                        <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com. </a>Data
                         related issue will be responded as soon as practicable.
                         </p>
                     </li>
