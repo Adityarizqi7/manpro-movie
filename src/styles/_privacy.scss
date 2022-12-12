@@ -30,7 +30,7 @@
   }
   
   .privacy ol {
-    counter-reset: item;
+    counter-reset: items;
     padding-left: 1em;
   }
   
@@ -39,8 +39,8 @@
   }
   
   .privacy li:before {
-    content: counters(item, ".") ". ";
-    counter-increment: item;
+    content: counters(items, ".") ". ";
+    counter-increment: items;
     padding-right: 0.6em;
   }
   
