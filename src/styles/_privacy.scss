@@ -37,6 +37,10 @@
   .privacy li {
     display: block;
   }
+
+  .privacy li ol li {
+    display: block;
+  }
   
   .privacy li:before {
     content: counters(items, ".") ". ";
@@ -52,6 +56,10 @@
     margin-left: 1em;
   }
   
-  .privacy ol li ol {
+  .privacy h4 {
+    margin-left: 1em;
+  }
+
+  .privacy ol li ol p {
     margin-left: 1em;
   }
