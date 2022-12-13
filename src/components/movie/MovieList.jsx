@@ -99,7 +99,7 @@ function UpcomingMV() {
                 upcomingMV.map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard3 {...item} classOverlay='hidden' />
+                            <MovieCard3 {...item} classOverlay='hidden' classWrapper='cursor-grab' />
                         </SwiperSlide>
                     )
                 })}
@@ -152,7 +152,7 @@ function NowPlayMV() {
                 nowPlayMV.slice(0, 10).map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard3 {...item} />
+                            <MovieCard3 {...item} classWrapper='cursor-pointer' />
                         </SwiperSlide>
                     )
                 })}
@@ -167,7 +167,6 @@ function PopularMV() {
         const getDataPopularMV = async () => {
             const { data } = await tmdb.get('/movie/popular')
             setPopularMV(data.results)
-            console.log(data.results)
         }
 
         getDataPopularMV()
@@ -202,7 +201,7 @@ function PopularMV() {
                 popularMV.slice(0, 10).map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard3 {...item} />
+                            <MovieCard3 {...item} classWrapper='cursor-pointer' />
                         </SwiperSlide>
                     )
                 })}
