@@ -34,7 +34,9 @@
         }
         section {
             #right_section {
-                #upcoming_movie, #now_playing_movie, #top_rated_movie {
+                #upcoming_movie,
+                #now_playing_movie,
+                #top_rated_movie {
                     .container-list-card {
                         .slick-list {
                             // margin: 0 -10px;

@@ -61,7 +61,7 @@ export default function Netray({
 Netray.defaultProps = {
     title: 'Netray Official — Bluray Film',
     key: 'netray, netray id, netray indonesia',
-    desc: 'Netray Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan',
+    desc: 'Netray Official. Tempat terbaik dan menyenangkan untuk mencari dan menonton film atau tv series favorit anda. Ribuan film sudah siap untuk memanjakan hari-hari anda.',
     ogUrl: null,
     ogType: null,
     ogTitle: null,

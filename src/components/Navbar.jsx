@@ -1,96 +1,206 @@
 // import React from 'react'
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Transition } from "@headlessui/react";
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { Menu, Transition } from '@headlessui/react'
 
 import '@/styles/component/_navbar.scss'
+import netray from '@/assets/images/netray.png'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
+
+    const [isOpen, setIsOpen] = useState(false)
     let activeStyle = {
-        color: "white"
-    };
+        color: 'white',
+    }
     
+    let location = useLocation()
+    function checkPath(...path) {
+        for (let i = 0; i < path.length; i++) {
+            return path[i] === location.pathname ? 'text-white' : ''
+        }
+    }
+
     return (
-        // Kerjain dibawah sini gais
-        <header className="bg-slate-800 shadow w-full sticky top-0 z-50">
-            <div className="montserrat">
-                <div className="flex items-center justify-between h-[4.5rem]">
-                    <div className="flex items-center gap-6">
+        <header className='sticky top-0 z-50 w-full bg-slate-800 shadow'>
+            <div className='montserrat'>
+                <div className='flex h-[4.5rem] items-center justify-between'>
+                    <div className='flex items-center gap-6'>
                         <div>
                             <img
-                            className="h-8 w-8"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                            alt="Workflow"
+                                className='h-12 w-12'
+                                src={netray}
+                                alt='Netray Logo'
                             />
                         </div>
-                        <div className="hidden md:block items-center">
-                            <div className="ml-0 space-x-4">
-                                <NavLink to="/"
+                        <div className='hidden items-center md:block'>
+                            <div className='ml-0 space-x-4'>
+                                <NavLink
+                                    to='/'
                                     style={({ isActive }) =>
-                                    isActive ? activeStyle : undefined}
-                                    className="hover:bg-gray-700 text-gray-300 px-3 py-2 rounded-md text-sm font-medium"
+                                        isActive ? activeStyle : undefined
+                                    }
+                                    className='rounded-md px-3 py-2 text-[1rem] font-medium text-gray-300 hover:bg-gray-700'
                                 >
                                     Home
                                 </NavLink>
-                                <NavLink to="#trending_movie" 
-                                    style={({ isActive }) =>
-                                    isActive ? activeStyle : undefined}
-                                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                >
-                                    Movies
-                                </NavLink>
-                                <NavLink to="#trending_tv"
-                                    style={({ isActive }) =>
-                                    isActive ? activeStyle : undefined}
-                                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                >
-                                    Series
-                                </NavLink>
+                                <Menu>
+                                    <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath('/upcoming-movies', '/now-playing-movies', '/popular-movies')} rounded-md px-3 py-2 text-[1rem] font-medium text-gray-300 hover:bg-gray-700 hover:text-white`}>
+                                        <div className='flex items-center gap-2'>
+                                            <span>Movies</span>
+                                            <ChevronDownIcon className='w-4 h-4' />
+                                        </div>
+                                    </Menu.Button>
+                                    <Transition
+                                        enter="transition-transform duration-100 ease-out"
+                                        enterFrom="transform scale-95 opacity-0"
+                                        enterTo="transform scale-100 opacity-100"
+                                        leave="transition duration-100 ease-out"
+                                        leaveFrom="transform scale-100 opacity-100"
+                                        leaveTo="transform scale-95 opacity-0"
+                                        className='absolute left-[9.25rem] top-[4rem]'
+                                    >
+                                        <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px]'}>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                    className={`${
+                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    } py-2 px-6`}
+                                                    href="/upcoming-movies"
+                                                    >
+                                                        Upcoming
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                    className={`${
+                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    } py-2 px-6`}
+                                                    href="/now-playing-movies"
+                                                    >
+                                                    Now Playing
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                    className={`${
+                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    } py-2 px-6`}
+                                                    href="/popular-movies"
+                                                    >
+                                                    Popular
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                        </Menu.Items>                                        
+                                    </Transition>
+                                </Menu>
+                                <Menu>
+                                    <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath('/top-rated-series', '/popular-movies')} rounded-md px-3 py-2 text-[1rem] font-medium text-gray-300 hover:bg-gray-700 hover:text-white`}>
+                                        <div className='flex items-center gap-2'>
+                                            <span>TV Series</span>
+                                            <ChevronDownIcon className='w-4 h-4' />
+                                        </div>
+                                    </Menu.Button>
+                                    <Transition
+                                        enter="transition-transform duration-100 ease-out"
+                                        enterFrom="transform scale-95 opacity-0"
+                                        enterTo="transform scale-100 opacity-100"
+                                        leave="transition duration-100 ease-out"
+                                        leaveFrom="transform scale-100 opacity-100"
+                                        leaveTo="transform scale-95 opacity-0"
+                                        className='absolute left-[15rem] top-[4rem]'
+                                    >
+                                        <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px]'}>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                    className={`${
+                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    } py-2 px-6`}
+                                                    href="/upcoming-movies"
+                                                    >
+                                                        Upcoming
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                    className={`${
+                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    } py-2 px-6`}
+                                                    href="/now-playing-movies"
+                                                    >
+                                                    Now Playing
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                    className={`${
+                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    } py-2 px-6`}
+                                                    href="/popular-movies"
+                                                    >
+                                                    Popular
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                        </Menu.Items>                                        
+                                    </Transition>
+                                </Menu>
                             </div>
                         </div>
                     </div>
-                    <div className="-mr-2 flex md:hidden">
+                    <div className='-mr-2 flex md:hidden'>
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            type="button"
-                            className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                            aria-controls="mobile-menu"
-                            aria-expanded="false"
+                            type='button'
+                            className='inline-flex items-center justify-center rounded-md text-gray-400 focus:outline-none'
+                            aria-controls='mobile-menu'
+                            aria-expanded='false'
                         >
-                            <span className="sr-only">Open main menu</span>
+                            <span className='sr-only'>Open main menu</span>
                             {!isOpen ? (
-                            <svg
-                                className="block h-6 w-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M4 6h16M4 12h16M4 18h16"
-                                />
-                            </svg>
+                                <svg
+                                    className='block h-6 w-6'
+                                    xmlns='http://www.w3.org/2000/svg'
+                                    fill='none'
+                                    viewBox='0 0 24 24'
+                                    stroke='currentColor'
+                                    aria-hidden='true'
+                                >
+                                    <path
+                                        strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                        strokeWidth='2'
+                                        d='M4 6h16M4 12h16M4 18h16'
+                                    />
+                                </svg>
                             ) : (
-                            <svg
-                                className="block h-6 w-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
+                                <svg
+                                    className='block h-6 w-6'
+                                    xmlns='http://www.w3.org/2000/svg'
+                                    fill='none'
+                                    viewBox='0 0 24 24'
+                                    stroke='currentColor'
+                                    aria-hidden='true'
+                                >
+                                    <path
+                                        strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                        strokeWidth='2'
+                                        d='M6 18L18 6M6 6l12 12'
+                                    />
+                                </svg>
                             )}
                         </button>
                     </div>
@@ -99,40 +209,138 @@ export default function Navbar() {
 
             <Transition
                 show={isOpen}
-                enter="transition ease-out duration-100 transform"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="transition ease-in duration-75 transform"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
+                enter='transition ease-out duration-100 transform'
+                enterFrom='opacity-0 scale-95'
+                enterTo='opacity-100 scale-100'
+                leave='transition ease-in duration-75 transform'
+                leaveFrom='opacity-100 scale-100'
+                leaveTo='opacity-0 scale-95'
             >
-            {(ref) => (
-                <div className="md:hidden montserrat" id="mobile-menu">
-                    <div ref={ref} className="pt-2 pb-3 space-y-1">
-                        <NavLink to="/"
-                            style={({ isActive }) =>
-                            isActive ? activeStyle : undefined}
-                            className="hover:bg-gray-700 text-gray-300 block py-4 rounded-md text-base font-medium"
-                        >
-                        Home
-                        </NavLink>
-                        <NavLink to="#trending_movie"
-                            style={({ isActive }) =>
-                            isActive ? activeStyle : undefined}
-                            className="text-gray-300 hover:bg-gray-700 hover:text-white block py-4 rounded-md text-base font-medium"
-                        >
-                        Movies
-                        </NavLink>
-                        <NavLink to="#trending_tv"
-                            style={({ isActive }) =>
-                            isActive ? activeStyle : undefined}
-                            className="text-gray-300 hover:bg-gray-700 hover:text-white block py-4 rounded-md text-base font-medium"
-                        >
-                        Series
-                        </NavLink>
+                {(ref) => (
+                    <div className='montserrat md:hidden' id='mobile-menu'>
+                        <div ref={ref} className='space-y-1 pt-2 pb-3'>
+                            <NavLink
+                                to='/'
+                                style={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }
+                                className='block py-4 text-ba[1rem] font-medium text-gray-300'
+                            >
+                                Home
+                            </NavLink>
+                            <Menu>
+                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath('/upcoming-movies', '/now-playing-movies', '/popular-movies')} w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
+                                    <div className='flex items-center gap-2 justify-between'>
+                                        <span>Movies</span>
+                                        <ChevronDownIcon className='w-4 h-4' />
+                                    </div>
+                                </Menu.Button>
+                                <Transition
+                                    enter="transition-transform duration-100 ease-out"
+                                    enterFrom="transform scale-95 opacity-0"
+                                    enterTo="transform scale-100 opacity-100"
+                                    leave="transition duration-100 ease-out"
+                                    leaveFrom="transform scale-100 opacity-100"
+                                    leaveTo="transform scale-95 opacity-0"
+                                >
+                                    <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px] mt-2'}>
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <a
+                                                className={`${
+                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                href="/upcoming-movies"
+                                                >
+                                                    Upcoming
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <a
+                                                className={`${
+                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                href="/now-playing-movies"
+                                                >
+                                                Now Playing
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <a
+                                                className={`${
+                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                href="/popular-movies"
+                                                >
+                                                Popular
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                    </Menu.Items>                                        
+                                </Transition>
+                            </Menu>
+                            <Menu>
+                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath('/top-rated-series', '/popular-series', '/upcoming-series')} w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
+                                    <div className='flex items-center gap-2 justify-between'>
+                                        <span>TV Series</span>
+                                        <ChevronDownIcon className='w-4 h-4' />
+                                    </div>
+                                </Menu.Button>
+                                <Transition
+                                    enter="transition-transform duration-100 ease-out"
+                                    enterFrom="transform scale-95 opacity-0"
+                                    enterTo="transform scale-100 opacity-100"
+                                    leave="transition duration-100 ease-out"
+                                    leaveFrom="transform scale-100 opacity-100"
+                                    leaveTo="transform scale-95 opacity-0"
+                                >
+                                    <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px] mt-2'}>
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <a
+                                                className={`${
+                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                href="/upcoming-movies"
+                                                >
+                                                    Upcoming
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <a
+                                                className={`${
+                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                href="/now-playing-movies"
+                                                >
+                                                Now Playing
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <a
+                                                className={`${
+                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                href="/popular-movies"
+                                                >
+                                                Popular
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                    </Menu.Items>                                        
+                                </Transition>
+                            </Menu>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
             </Transition>
         </header>
     )
