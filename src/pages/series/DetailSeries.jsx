@@ -2,42 +2,28 @@ import tmbd from '@/api/tmbd'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import Lightbox from '@/components/image/Lightbox'
+import { PhotoIcon } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
-import { PhotoIcon, PlayIcon } from '@heroicons/react/24/outline'
 
 import 'react-loading-skeleton/dist/skeleton.css'
 import '@/styles/component/movie/_detailmovies.scss'
 
 import Netray from '@/layouts/Netray'
 
-const DetailMovie = () => {
+const DetailSeries = () => {
     const [toggler, setToggler] = useState(false)
-    const [togglerTrailer, setTogglerTrailer] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const [detailMV, setDetailMV] = useState(null)
-    const [trailerMV, setTrailerMV] = useState(null)
-    const { movieId } = useParams()
+    const [detailTV, setDetailTV] = useState(null)
+    const { seriesId } = useParams()
 
     const getDetailMovie = useCallback(async () => {
         setLoading(true)
-        const res = await tmbd.get(`/movie/${movieId}`)
-        const res_ = await tmbd.get(`/movie/${movieId}/videos`, {
-            params: {
-                append_to_response: 'videos',
-            },
-        })
+        const res = await tmbd.get(`/tv/${seriesId}`)
 
         if (res.status === 200) {
             setLoading(false)
-            setDetailMV(res.data)
-        }
-
-        if (res_.status === 200) {
-            setLoading(false)
-            setTrailerMV(res_.data.results.filter(value => value.name === 'Official Trailer').map(item => {
-                return item.key
-            }))
+            setDetailTV(res.data)
         }
     }, [])
 
@@ -47,7 +33,7 @@ const DetailMovie = () => {
 
     return (
         <Netray
-            title={ `${loading ? 'Loading' : detailMV?.original_title} - Netray`}
+            title={ `${loading ? 'Loading' : detailTV?.original_name} - Netray`}
             kw='netray home, netray beranda, netray id home, netray beranda indonesia'
             desc='Netray Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan'
             ogUrl={''}
@@ -64,8 +50,8 @@ const DetailMovie = () => {
                             !loading &&
                             <img
                                 className='object-cover object-top sm:h-[500px] h-[200px] overflow-hidden w-full shadow-lg'
-                                src={`https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`}
-                                alt={`${detailMV?.original_title}`}
+                                src={`https://image.tmdb.org/t/p/original_filter(grayscale,032541,01b4e4)/${detailTV?.backdrop_path}`}
+                                alt={`${detailTV?.original_name}`}
                             />
                         }
                 </div>
@@ -73,24 +59,25 @@ const DetailMovie = () => {
                 <div className='content-detail-movie lg:flex lg:gap-7'>
                     {/* poster  */}
                     <div className='poster-content lg:block hidden rounded-md w-[30%]'>
+                        {loading && <Skeleton height={500} />}
                         {
-                            loading ? <Skeleton height={500} /> :
+                            !loading &&
                             <img
                                 className='object-cover'
-                                src={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
-                                alt={`${detailMV?.original_title}`}
+                                src={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`}
+                                alt={`${detailTV?.original_name}`}
                             />
                         }
                     </div>
-                    <div className='wrapper-content lg:w-[70%] w-full space-y-8'>
+                    <div className='wrapper-content lg:w-[70%] w-full space-y-6'>
                         {/* head title  */}
                         <div className='head-title-content'>
                             <h2 className='text-[1.875rem] font-medium text-neutral-800 montserrat'>
                                 { loading ? <Skeleton width={300} height={50} /> :
                                     (
                                         <>
-                                            <span>{`${detailMV?.original_title}`}</span>
-                                            <span className='text-gray-600 font-light ml-2'>({`${detailMV?.release_date.split('-')[0]}`})</span>
+                                            <span>{`${detailTV?.original_name}`}</span>
+                                            <span className='text-gray-600 font-light ml-2'>({`${detailTV?.first_air_date.split('-')[0]}`})</span>
                                         </>
                                     )
                                 }
@@ -103,7 +90,7 @@ const DetailMovie = () => {
                                     <div className="div flex gap-3 items-center">
                                         <div className='flex flex-wrap gap-4 poppins'>
                                             {
-                                                detailMV?.genres.map((genre, idx) => (
+                                                detailTV?.genres.map((genre, idx) => (
                                                         <h3
                                                             className='font-medium text-blue-800'
                                                             key={`detail-genre-${idx}`}
@@ -120,35 +107,14 @@ const DetailMovie = () => {
                                     {
                                         loading ? <Skeleton height={30} width={50} containerClassName={'flex flex-wrap gap-4 last:gap-0'} />
                                         :
-                                        detailMV?.runtime.length === 0 ? '0m' : `${detailMV?.runtime[0]}m`
+                                        detailTV?.episode_run_time.length === 0 ? '0m' : `${detailTV?.episode_run_time[0]}m`
                                     }
                                 </h3>
                             </div>
-                            <Lightbox 
-                                source={[
-                                    <iframe
-                                        className='aspect-video'
-                                        width="1920px"
-						                height="1080px"
-                                        src={`https://www.youtube.com/embed/${trailerMV}?showinfo=0&enablejsapi=1&origin=http://127.0.0.1:5173`}
-                                        title={`${detailMV?.original_title}`}
-                                        frameBorder='0'
-                                        scrolling="no"
-                                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                                        allowFullScreen
-                                    ></iframe>
-                                ]} 
-                                toggler={togglerTrailer}
-                            >
-                                <button onClick={() => setTogglerTrailer(!togglerTrailer)} className='mt-3 montserrat flex items-center text-blue-600 gap-x-1'>
-                                    <PlayIcon className='w-4 h-4' />
-                                    <h2 className='text-[0.95rem] font-normal'>Play Opening Credits</h2>
-                                </button>
-                            </Lightbox>
                         </div>
                         {
                             loading ? <Skeleton width={180} height={45} /> :
-                            <h2 className={`${detailMV?.tagline === '' ? 'hidden' : 'block'} italic text-gray-700 font-light sm:text-[1.5rem] text-[6vw]`}>'{detailMV?.tagline}'</h2>
+                            <h2 className={`${detailTV?.tagline === '' ? 'hidden' : 'block'} italic text-gray-700 font-light sm:text-[1.5rem] text-[6vw]`}>'{detailTV?.tagline}'</h2>
                         }
                         {/* Poster on Mobile */}
                         {/* informations  */}
@@ -157,8 +123,8 @@ const DetailMovie = () => {
                                 source={[
                                     <img
                                         className='object-cover'
-                                        src={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
-                                        alt={`${detailMV?.original_title}`}
+                                        src={`https://image.tmdb.org/t/p/w342/${detailTV?.poster_path}`}
+                                        alt={`${detailTV?.original_name}`}
                                     />
                                 ]} 
                                 toggler={toggler}
@@ -176,7 +142,7 @@ const DetailMovie = () => {
                                 <p className='inter'>
                                     {
                                         loading ? <Skeleton height={60} /> :
-                                        detailMV?.overview
+                                        detailTV?.overview
                                     }
                                 </p>
                             </div>
@@ -188,7 +154,7 @@ const DetailMovie = () => {
                                     </h6>
                                     <p className='inter'>{
                                         loading ? <Skeleton height={30} width={150} /> :
-                                        detailMV?.release_date
+                                        detailTV?.first_air_date
                                     }</p>
                                 </div>
                                 <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
@@ -197,7 +163,7 @@ const DetailMovie = () => {
                                     </h6>
                                     <p className='inter'>{
                                         loading ? <Skeleton height={30} width={150} /> :
-                                        detailMV?.popularity
+                                        detailTV?.popularity
                                     } popularitas</p>
                                 </div>
                                 <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
@@ -207,7 +173,7 @@ const DetailMovie = () => {
                                     <p className='inter'>
                                         {
                                             loading ? <Skeleton height={30} width={300} /> :
-                                            detailMV?.production_companies.map(
+                                            detailTV?.production_companies.map(
                                                 (company, idx) => (
                                                     <span
                                                         className='mr-1'
@@ -215,7 +181,7 @@ const DetailMovie = () => {
                                                     >
                                                         {company.name}
                                                         {idx + 1 !==
-                                                            detailMV
+                                                            detailTV
                                                                 ?.production_companies
                                                                 .length && ','}
                                                     </span>
@@ -225,6 +191,29 @@ const DetailMovie = () => {
                                     </p>
                                 </div>
                             </div>
+                            <div className="creator-detail mt-8 text-neutral-700">
+                                {
+                                    loading ? <Skeleton height={30} width={300} /> :
+                                    detailTV?.created_by.length < 1 ?
+                                    <span className='inter'>Tidak ada informasi</span>
+                                    :
+                                    detailTV?.created_by.map(
+                                        (item, idx) => (
+                                            <span
+                                                className='inter'
+                                                key={`detail-creator-item-${idx}`}
+                                            >
+                                                {item.name}
+                                                {idx + 1 !==
+                                                            detailTV
+                                                                ?.created_by
+                                                                .length && ', '}
+                                            </span>
+                                        )
+                                    )
+                                }
+                                <h6 className='mt-1 text-[1rem] font-medium poppins'>Creator TV Series</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -233,4 +222,4 @@ const DetailMovie = () => {
     )
 }
 
-export default DetailMovie
+export default DetailSeries

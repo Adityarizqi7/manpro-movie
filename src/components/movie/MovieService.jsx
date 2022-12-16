@@ -9,8 +9,8 @@ import 'swiper/scss/lazy'
 import 'swiper/scss/navigation'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import { MovieCard, MovieCard2, MovieCard3 } from './MovieCard'
 import { SkeletonCard } from '../loading/skeleton/SkeletonCard'
+import { MovieCard, SeriesCard2, MovieCard2, SeriesCard } from './MovieCard'
 
 function TrendMV() {
     const [trendMV, setTrendMV] = useState([])
@@ -123,7 +123,7 @@ function UpcomingMV() {
                 upcomingMV.map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard3 {...item} classOverlay='hidden' classWrapper='cursor-grab' />
+                            <MovieCard2 {...item} classOverlay='hidden' classWrapper='cursor-grab' />
                         </SwiperSlide>
                     )
                 })
@@ -184,7 +184,7 @@ function NowPlayMV() {
                 nowPlayMV.slice(0, 10).map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard3 {...item} classWrapper='cursor-pointer' />
+                            <MovieCard2 {...item} classWrapper='cursor-pointer' />
                         </SwiperSlide>
                     )
                 })
@@ -245,7 +245,7 @@ function PopularMV() {
                 popularMV.slice(0, 10).map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard3 {...item} classWrapper='cursor-pointer' />
+                            <MovieCard2 {...item} classWrapper='cursor-pointer' />
                         </SwiperSlide>
                     )
                 })
@@ -304,7 +304,7 @@ function TrendTV() {
                 trendTV.map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard {...item} />
+                            <SeriesCard {...item} />
                         </SwiperSlide>
                     )
                 })
@@ -358,7 +358,7 @@ function PopularTV() {
             </>
         ) :
         PopularTV && (
-            <MovieCard2 {...PopularTV} key_trailer={trailerSeries.key} />
+            <SeriesCard2 {...PopularTV} key_trailer={trailerSeries.key} />
         )
     )
 }

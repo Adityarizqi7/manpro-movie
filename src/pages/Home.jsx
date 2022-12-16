@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 export default function Home() {
     return (
         <Netray
-            title='Netray Official — Bluray Film'
+            title='Netray Official — Tonton Movie dan TV Show Online Sambil Nyemil'
             kw='netray home, netray beranda, netray id home, netray beranda indonesia'
             desc='Netray Official. Tempat terbaik dan menyenangkan untuk mencari dan menonton film atau tv series favorit anda. Ribuan film sudah siap untuk memanjakan hari-hari anda.'
             ogUrl={''}

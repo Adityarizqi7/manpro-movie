@@ -7,6 +7,7 @@ import UpcomingMovie from '@/pages/movies/UpcomingMovie'
 import Privacy from '@/pages/Privacy'
 import NotFound from '@/pages/NotFound'
 import DetailMovie from '@/pages/movies/DetailMovie'
+import DetailSeries from '@/pages/series/DetailSeries'
 import ScrollPage from '@/components/button/ScrollPage'
 
 export default function Router() {
@@ -18,7 +19,8 @@ export default function Router() {
                 <Route path='/privacy-policy' element={<Privacy />} />
                 
                 {/* Movies Page */}
-                <Route path='/detail/:movieId' element={<DetailMovie />} />
+                <Route path='/movie/:movieId' element={<DetailMovie />} />
+                <Route path='/series/:seriesId' element={<DetailSeries />} />
                 <Route path='/upcoming-movies' element={<UpcomingMovie />} />
 
                 <Route path='*' element={<NotFound />} />
