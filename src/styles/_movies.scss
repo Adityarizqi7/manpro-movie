@@ -1,8 +1,0 @@
-@use '../styles/base/' as *;
-
-.movies-component {
-    padding: 3rem 2.5rem 3.5rem 2.5rem;
-    @media only screen and (max-width: 639px) {
-        padding: 3rem 1.5rem 3.5rem 1.5rem;
-    }
-}

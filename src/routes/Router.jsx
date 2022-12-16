@@ -3,10 +3,10 @@ import { Routes, Route } from 'react-router-dom'
 
 import Home from '@/pages/Home'
 import Terms from '@/pages/Terms'
-import Movies from '@/pages/Movies'
+import UpcomingMovie from '@/pages/movies/UpcomingMovie'
 import Privacy from '@/pages/Privacy'
 import NotFound from '@/pages/NotFound'
-import DetailMovie from '@/pages/DetailMovie'
+import DetailMovie from '@/pages/movies/DetailMovie'
 import ScrollPage from '@/components/button/ScrollPage'
 
 export default function Router() {
@@ -18,8 +18,8 @@ export default function Router() {
                 <Route path='/privacy-policy' element={<Privacy />} />
                 
                 {/* Movies Page */}
-                <Route path='/upcoming-movies' element={<Movies />} />
                 <Route path='/detail/:movieId' element={<DetailMovie />} />
+                <Route path='/upcoming-movies' element={<UpcomingMovie />} />
 
                 <Route path='*' element={<NotFound />} />
             </Routes>

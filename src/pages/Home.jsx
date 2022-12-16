@@ -10,7 +10,7 @@ import {
     TrendMV,
     TrendTV,
     UpcomingMV,
-} from '@/components/movie/MovieList'
+} from '@/components/movie/MovieService'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
@@ -85,7 +85,7 @@ export default function Home() {
                                     <h1 className=' font-semibold text-black'>
                                         Upcoming Movie
                                     </h1>
-                                    <Link to={'/upcoming-movie'}>
+                                    <Link to={'/upcoming-movies'}>
                                         <h2 className='font-normal text-gray-600 text-sm hover:text-blue-600'>
                                             See more
                                         </h2>

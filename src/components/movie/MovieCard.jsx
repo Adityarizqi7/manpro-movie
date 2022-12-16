@@ -1,9 +1,11 @@
 import React from 'react'
-import { Popover } from '@headlessui/react'
-import { PlayIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
+import { Popover } from '@headlessui/react'
+import { PlayIcon } from '@heroicons/react/24/solid'
 
 import '@/styles/component/movie/_moviecard.scss'
+import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from 'react-loading-skeleton'
 
 const getPoster = (path, size = 'w500') => {
     return `https://www.themoviedb.org/t/p/${size}/${path}`
@@ -17,34 +19,38 @@ function MovieCard({
     vote_average,
     original_name,
     first_air_date,
-    ...restProps
 }) {
+
+    
+
     return (
         <Link to={`/detail/${id}`}>
             <div className='wrapper-card group cursor-pointer'>
-                <div className='image-card relative'>
-                    <img
-                        src={`${getPoster(poster_path, 'w220_and_h330_face')}`}
-                        alt={`${title || original_name}`}
-                        className='w-full rounded-[0.5rem] object-cover'
-                    />
-                    <div className='overlay absolute top-0 h-full w-full rounded-[0.5rem] transition-colors group-hover:bg-black/60'>
-                        <div className='flex h-full flex-col items-center'>
-                            <PlayIcon className='icon-play my-auto mx-auto w-[3.5rem] scale-0 rounded-full bg-blue-600 p-2 text-white transition-transform group-hover:scale-100' />
+                {
+                    <div className='image-card relative'>
+                        <img
+                            src={`${getPoster(poster_path, 'w220_and_h330_face')}`}
+                            alt={`${title || original_name}`}
+                            className='w-full rounded-[0.5rem] object-cover'
+                        />
+                        <div className='overlay absolute top-0 h-full w-full rounded-[0.5rem] transition-colors group-hover:bg-black/60'>
+                            <div className='flex h-full flex-col items-center'>
+                                <PlayIcon className='icon-play my-auto mx-auto sm:w-[3.5rem] w-[18vw] scale-0 rounded-full bg-blue-600 p-2 text-white transition-transform group-hover:scale-100' />
+                            </div>
+                        </div>
+                        <div className='rate-year absolute bottom-0 h-[3.5rem] w-full bg-gradient-to-b from-gray-600/0 via-gray-800/50 to-gray-900/80'>
+                            <div className='inter ml-3 mt-4 flex items-center gap-3'>
+                                <h2 className='rounded-[5px] bg-yellow-400 py-[2px] px-[10px] text-sm'>
+                                    {vote_average.toFixed(1)}
+                                </h2>
+                                <h2 className='text-sm text-white'>
+                                    {release_date?.substring(0, 4) ||
+                                        first_air_date?.substring(0, 4)}
+                                </h2>
+                            </div>
                         </div>
                     </div>
-                    <div className='rate-year absolute bottom-0 h-[3.5rem] w-full bg-gradient-to-b from-gray-600/0 via-gray-800/50 to-gray-900/80'>
-                        <div className='inter ml-3 mt-4 flex items-center gap-3'>
-                            <h2 className='rounded-[5px] bg-yellow-400 py-[2px] px-[10px] text-sm'>
-                                {vote_average.toFixed(1)}
-                            </h2>
-                            <h2 className='text-sm text-white'>
-                                {release_date?.substring(0, 4) ||
-                                    first_air_date?.substring(0, 4)}
-                            </h2>
-                        </div>
-                    </div>
-                </div>
+                }
                 <h1 className='montserrat mt-3 text-[15px] font-semibold text-slate-800 group-hover:text-blue-600'>
                     {title || original_name}
                 </h1>
