@@ -117,10 +117,15 @@ export default function Home() {
                                 id='popular_movie'
                                 className='movie-container space-y-8'
                             >
-                                <div className='heading-card montserrat'>
+                                <div className='heading-card montserrat flex flex-wrap gap-4 items-center justify-between'>
                                     <h1 className='font-semibold text-black'>
                                         Popular Movie
                                     </h1>
+                                    <Link to={'/now-playing-movies'}>
+                                        <h2 className='font-normal text-gray-600 text-sm hover:text-blue-600'>
+                                            See more
+                                        </h2>
+                                    </Link>
                                 </div>
                                 <div className='container-list-card'>
                                     <PopularMV />

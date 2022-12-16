@@ -8,6 +8,7 @@ import NotFound from '@/pages/NotFound'
 import DetailMovie from '@/pages/movies/DetailMovie'
 import DetailSeries from '@/pages/series/DetailSeries'
 import ScrollPage from '@/components/button/ScrollPage'
+import PopularMovie from '@/pages/movies/PopularMovie'
 import UpcomingMovie from '@/pages/movies/UpcomingMovie'
 import NowPlayingMovie from '@/pages/movies/NowPlayingMovie'
 
@@ -22,6 +23,7 @@ export default function Router() {
                 {/* Movies Page */}
                 <Route path='/movie/:movieId' element={<DetailMovie />} />
                 <Route path='/series/:seriesId' element={<DetailSeries />} />
+                <Route path='/popular-movies' element={<PopularMovie />} />
                 <Route path='/upcoming-movies' element={<UpcomingMovie />} />
                 <Route path='/now-playing-movies' element={<NowPlayingMovie />} />
 
