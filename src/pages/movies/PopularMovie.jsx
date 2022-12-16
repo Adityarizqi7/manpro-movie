@@ -85,10 +85,13 @@ export default function NowPlayingMovie() {
                     </div>
                     <div className='search-movies montserrat mb-10'>
                         <div className="box-search md:w-[35%] w-full inter relative">
-                            <input type="text" name="search-movie" autoComplete='off' className={`${focusInput ? 'border-b-[rgb(72, 96, 228)]' : false} md:w-[35%] w-full pr-[3rem]`} placeholder="Cari movie yang akan datang" onChange={handleChange} ref={inputRef} value={searchMovie} />
+                            <input type="text" name="search-movie" autoComplete='off' className={`${focusInput ? 'border-b-[rgb(72, 96, 228)]' : false} md:w-[35%] w-full pr-[3rem]`} placeholder="Cari movie yang sedang popular ..." onChange={handleChange} ref={inputRef} value={searchMovie} />
                             {
                                 searchMovie !== '' &&
-                                <kbd onClick={deleteText} class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg absolute top-[0.85rem] right-0 montserrat cursor-pointer">Esc</kbd>
+                                <>
+                                    <kbd onClick={deleteText} className="sm:block hidden px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg absolute top-[0.85rem] right-0 montserrat cursor-pointer">Esc</kbd>
+                                    <kbd onClick={deleteText} className="sm:hidden block px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg absolute top-[0.85rem] right-0 montserrat cursor-pointer">Del</kbd>
+                                </>
                             }
                             {
                                 <h1 className={`${
