@@ -121,41 +121,41 @@ export default function Navbar() {
                                     <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px]'}>
                                         <Menu.Item>
                                             {({ active }) => (
-                                                <a
-                                                className={`${
-                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
-                                                } py-2 px-6`}
-                                                to="/upcoming-movies"
+                                                <NavLink
+                                                    className={`${
+                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    } py-2 px-6`}
+                                                    to="/upcoming-series"
                                                 >
                                                     Upcoming
-                                                </a>
+                                                </NavLink>
                                             )}
                                         </Menu.Item>
                                         <Menu.Item>
                                             {({ active }) => (
-                                                <a
-                                                className={`${
-                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
-                                                } py-2 px-6`}
-                                                to="/now-playing-movies"
+                                                <NavLink
+                                                    className={`${
+                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    } py-2 px-6`}
+                                                    to="/now-playing-series"
                                                 >
-                                                Now Playing
-                                                </a>
+                                                    Now Playing
+                                                </NavLink>
                                             )}
                                         </Menu.Item>
                                         <Menu.Item>
                                             {({ active }) => (
-                                                <a
-                                                className={`${
-                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
-                                                } py-2 px-6`}
-                                                to="/popular-movies"
+                                                <NavLink
+                                                    className={`${
+                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    } py-2 px-6`}
+                                                    to="/popular-series"
                                                 >
-                                                Popular
-                                                </a>
+                                                    Popular
+                                                </NavLink>
                                             )}
                                         </Menu.Item>
-                                    </Menu.Items>                                        
+                                    </Menu.Items>                                                                               
                                 </Transition>
                             </Menu>
                         </div>
