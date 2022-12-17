@@ -42,6 +42,8 @@ function TrendMV() {
             onSwiper={(swiper) => {
                 swiper.allowTouchMove = true
             }}
+            centeredSlides
+            centeredSlidesBounds
             breakpoints={{
                 640: {
                     slidesPerView: 3,
@@ -98,8 +100,6 @@ function UpcomingMV() {
             }}
             spaceBetween={15}
             slidesPerView={2}
-            centeredSlides
-            centeredSlidesBounds
             onSwiper={(swiper) => {
                 swiper.allowTouchMove = true
             }}
@@ -139,7 +139,11 @@ function NowPlayMV() {
     const getDataNowPlayMV = useCallback( async () => {
         try {
             setLoading(true)
-            const { data, status } = await tmdb.get('/movie/now_playing')
+            const { data, status } = await tmdb.get('/movie/now_playing', {
+                params: {
+                    region: 'ID'
+                }
+            })
             status === 200 && setNowPlayMV(data.results)
             setLoading(false)
         } catch {
@@ -200,7 +204,11 @@ function PopularMV() {
     const getDataPopularMV = useCallback ( async () => {
         try {
             setLoading(true)
-            const { data, status } = await tmdb.get('/movie/popular')
+            const { data, status } = await tmdb.get('/movie/popular', {
+                params: {
+                    region: 'ID'
+                }
+            })
             status === 200 && setPopularMV(data.results)
             setLoading(false)
         } catch {
@@ -279,6 +287,8 @@ function TrendTV() {
             style={{
                 '--swiper-navigation-color': '#fff',
             }}
+            centeredSlides
+            centeredSlidesBounds
             spaceBetween={15}
             slidesPerView={2}
             onSwiper={(swiper) => {

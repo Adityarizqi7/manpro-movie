@@ -122,7 +122,7 @@ export default function UpcomingMovie() {
                                         <Skeleton height={25} count={4} containerClassName='flex gap-[10px] mt-3' />
                                     </>
                                 ) :
-                                    <div className='container-list-card grid grid-cols-3 2xs:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-7'>
+                                    <div className='container-list-card grid sm:grid-cols-3 grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-7'>
                                         {
                                             initialPosts.filter( value => { // eslint-disable-line array-callback-return
                                                 if(searchMovie === '') return value

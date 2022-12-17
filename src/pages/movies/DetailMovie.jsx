@@ -47,7 +47,7 @@ const DetailMovie = () => {
 
     return (
         <Netray
-            title={ `${loading ? 'Loading' : detailMV?.original_title} - Netray`}
+            title={ loading ? 'Loading' : `${detailMV?.original_title} (${detailMV?.release_date.split('-')[0]})` + ' - Netray'}
             kw='netray home, netray beranda, netray id home, netray beranda indonesia'
             desc='Netray Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan'
             ogUrl={''}
@@ -120,7 +120,7 @@ const DetailMovie = () => {
                                     {
                                         loading ? <Skeleton height={30} width={50} containerClassName={'flex flex-wrap gap-4 last:gap-0'} />
                                         :
-                                        detailMV?.runtime.length === 0 ? '0m' : `${detailMV?.runtime[0]}m`
+                                        detailMV?.runtime === '' ? '0m' : `${detailMV?.runtime}m`
                                     }
                                 </h3>
                             </div>
