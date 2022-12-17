@@ -24,11 +24,6 @@ export default function Privacy() {
                 <p className='mx-auto py-8 text-zinc-400'>
                     <strong>CONTENTS</strong>
                 </p>
-                {/* <ol className='mx-auto py-8 text-zinc-400 decimal-ol'>
-                    <li className='decimal-li'>
-                        <a href='/'></a>
-                    </li>
-                </ol> */}
                 <ol class="mx-auto text-zinc-400 decimal-ol">
                     <li class="decimal-li"><a href="#_bookmark0">CONTACT INFORMATION</a></li>
                     <li class="decimal-li"><a href="#_bookmark1">OBJECTIVE AND SCOPE</a></li>
