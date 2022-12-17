@@ -3,7 +3,7 @@
 .home-component {
     padding: 3rem 2.5rem 3.5rem 2.5rem;
     @media only screen and (max-width: 639px) {
-        padding: 3rem 1.5rem 3.5rem 1.5rem;
+        padding: 1.5rem 1.5rem 3.5rem 1.5rem;
     }
     #container_home {
         .movie-container {
@@ -34,7 +34,9 @@
         }
         section {
             #right_section {
-                #upcoming_movie, #now_playing_movie, #top_rated_movie {
+                #upcoming_movie,
+                #now_playing_movie,
+                #top_rated_movie {
                     .container-list-card {
                         .slick-list {
                             // margin: 0 -10px;

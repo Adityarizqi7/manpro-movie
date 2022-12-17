@@ -3,9 +3,24 @@
 .wrapper-card {
     .image-card {
         .overlay-card-two {
-            background: -moz-linear-gradient(90deg, rgb(0, 0, 0) 5%, rgba(0, 0, 0, 0.780) 40%, rgba(3, 2, 24, 0.158) 65%);
-            background: -webkit-linear-gradient(90deg, rgba(0, 0, 0) 5%, rgba(0, 0, 0, 0.780) 40%, rgba(3, 2, 24, 0.158) 65%);
-            background: linear-gradient(90deg, rgba(0, 0, 0) 5%, rgba(0, 0, 0, 0.780) 40%, rgba(3, 2, 24, 0.158) 65%);
+            background: -moz-linear-gradient(
+                90deg,
+                rgb(0, 0, 0) 5%,
+                rgba(0, 0, 0, 0.78) 40%,
+                rgba(3, 2, 24, 0.158) 65%
+            );
+            background: -webkit-linear-gradient(
+                90deg,
+                rgba(0, 0, 0) 5%,
+                rgba(0, 0, 0, 0.78) 40%,
+                rgba(3, 2, 24, 0.158) 65%
+            );
+            background: linear-gradient(
+                90deg,
+                rgba(0, 0, 0) 5%,
+                rgba(0, 0, 0, 0.78) 40%,
+                rgba(3, 2, 24, 0.158) 65%
+            );
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#030218",endColorstr="#030218",GradientType=1);
         }
     }
