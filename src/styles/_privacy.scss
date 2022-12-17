@@ -21,45 +21,80 @@
 
   ///
 
-  .privacy a {
-    text-decoration: none;
-  }
-  
-  .privacy a:hover {
-    text-decoration: underline;
-  }
-  
-  .privacy ol {
-    counter-reset: items;
-    padding-left: 1em;
-  }
-  
-  .privacy li {
-    display: block;
-  }
+// .privacy a {
+//   text-decoration: none;
+// }
 
-  .privacy li ol li {
-    display: block;
-  }
-  
-  .privacy li:before {
-    content: counters(items, ".") ". ";
-    counter-increment: items;
-    padding-right: 0.6em;
-  }
-  
-  .privacy ol li h4 {
-    margin-left: 1em;
-  }
+// .privacy a:hover {
+//   text-decoration: underline;
+// }
 
-  .privacy ol li p {
-    margin-left: 1em;
-  }
-  
-  .privacy h4 {
-    margin-left: 1em;
-  }
+// .privacy ol {
+//   counter-reset: items;
+//   padding-left: 1em;
+// }
 
-  .privacy ol li ol p {
-    margin-left: 1em;
-  }
+// .privacy li {
+//   display: block;
+// }
+
+// .privacy li ol li {
+//   display: block;
+// }
+
+// .privacy li::before {
+//   content: counters(items, ".") ". ";
+//   counter-increment: items;
+//   padding-right: 0.6em;
+// }
+
+// .privacy ol li h4 {
+//   margin-left: 1em;
+// }
+
+// .privacy ol li p {
+//   margin-left: 1em;
+// }
+
+// .privacy h4 {
+//   margin-left: 1em;
+// }
+
+// .privacy ol li ol p {
+//   margin-left: 1em;
+// }
+
+.privacy a {
+  text-decoration: none;
+}
+
+.privacy a:hover {
+  text-decoration: underline;
+}
+
+.privacy ol {
+  counter-reset: items;
+  padding-left: 1em;
+}
+
+.privacy li {
+  display: block;
+}
+
+.privacy li::before {
+  content: counters(items, ".") ". ";
+  counter-increment: items;
+  // padding-right: 0.6em;
+}
+
+// .privacy ol li ol li ol {
+//   counter-reset: chapter;
+//   padding-left: 1em;
+//   list-style-type: lower-alpha;
+// }
+
+// .privacy ol li ol li ol li::before {
+//   content: counters(chapter, lower-alpha) ". ";
+//   counter-increment: chapter;
+//   padding-right: 0.6em;
+// }

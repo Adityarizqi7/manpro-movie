@@ -91,9 +91,7 @@ export default function Privacy() {
             <div className='privacy px-1 mx-auto py-5'>
                 <ol className="mx-auto text-zinc-400 decimal-ol">
                     <li class="decimal-li">
-                        <h4>
-                        <a id="1._Contact_information"></a><a id="_bookmark0"></a>CONTACT INFORMATION
-                        </h4>
+                        <h4 id="_bookmark0">CONTACT INFORMATION</h4>
                         <p>
                         The Netray Company (Southeast Asia) Pte. Limited, a company registered
                         under the laws of Indonesia, with its principal office at Indonesia
@@ -101,7 +99,7 @@ export default function Privacy() {
                         "<strong>Netray</strong>") provides, directly or through its distributors or
                         service providers, a subscription service in Indonesia, which may be available
                         through an online website
-                        <a href="https://www.hotstar.com/">https://www.hotstar.com </a>and/or
+                        <a href="https://www.netray.com/">https://www.netray.com </a>and/or
                         applications (“<strong>Platform</strong>” or the
                         <strong>“Netray Service</strong>”, which includes all the features
                         available on such Platform).
@@ -117,13 +115,11 @@ export default function Privacy() {
                         processing of your Personal Information (defined below) or this Privacy Policy
                         or if you require any general information or clarification or inquiry
                         regarding the Platform please email us at
-                        <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com</a><a id="."></a>.
+                        <a href="mailto:netray.id@netray.com">netray.id@netray.com</a><a id="."></a>.
                         </p>
                     </li>
                     <li class="decimal-li">
-                        <h4>
-                        <a id="2._Objective_and_Scope"></a><a id="_bookmark1"></a>OBJECTIVE AND SCOPE
-                        </h4>
+                        <h4 id="_bookmark1">OBJECTIVE AND SCOPE</h4>
                         <p>
                         This Privacy Policy ("<strong>Privacy Policy</strong>") explains how we use,
                         process and protect Personal Information of the users or subscribers of the
@@ -153,9 +149,7 @@ export default function Privacy() {
                         </p>
                     </li>
                     <li class="decimal-li">
-                        <h4>
-                        <a id="3._Collection_of_Personal_Information"></a><a id="_bookmark2"></a>COLLECTION OF PERSONAL INFORMATION
-                        </h4>
+                        <h4 id="_bookmark2">COLLECTION OF PERSONAL INFORMATION</h4>
                         <p>
                         Where we refer to 'Personal Information' we mean any information which enable
                         us to identify a particular individual, or resulting in a particular
@@ -173,10 +167,7 @@ export default function Privacy() {
                         </p>
                         <ol class="decimal-ol">
                         <li class="decimal-li">
-                            <h4>
-                            <a id="3.1_Information_provided_by_you"></a><a id="_bookmark3"></a>INFORMATION
-                            PROVIDED BY YOU
-                            </h4>
+                            <h4 id="_bookmark3">INFORMATION PROVIDED BY YOU</h4>
                             <p>
                             We may ask for and you may choose to provide the below information, which may
                             include Personal Information, <em>inter alia </em>when you use or register for
@@ -253,9 +244,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="3.2_Information_we_collect_automatically"></a><a id="_bookmark4"></a>INFORMATION WE COLLECT AUTOMATICALLY
-                            </h4>
+                            <h4 id="_bookmark4">INFORMATION WE COLLECT AUTOMATICALLY</h4>
                             <p>
                             We and certain third parties on our behalf may collect information about you
                             and your use of our Platform, your interactions with us or our advertising or
@@ -271,8 +260,8 @@ export default function Privacy() {
                                 viewed, load times, watch times, content selection and watch
                                 history, transactions initiated and/or completed, search queries and
                                 platform features used. This information may include the platform or
-                                website that you just visited (whether this platform is on Netray+
-                                Hotstar Service or not), which platform or website you next visit;
+                                website that you just visited (whether this platform is on Netray
+                                Service or not), which platform or website you next visit;
                             </li>
                             <li>
                                 Device tokens for push notification (unless you have disabled push
@@ -306,8 +295,8 @@ export default function Privacy() {
                             <li>
                                 Advertisement identifiers such as Identifier for Advertisers (IDFA),
                                 Google Advertising ID (GAID), etc. and data related to your
-                                interaction with the advertisement that are served on the Netray+
-                                Hotstar Service or any advertising of the Netray Service;
+                                interaction with the advertisement that are served on the Netray
+                                Service or any advertising of the Netray Service;
                             </li>
                             <li>
                                 We capture information related to the performance of the mobile
@@ -324,23 +313,18 @@ export default function Privacy() {
                             </ol>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="3.3_Inferred_Information_through_usage_a"></a><a id="_bookmark5"></a>INFERRED INFORMATION THROUGH USAGE AND
-                            LOG DATA
-                            </h4>
+                            <h4 id="_bookmark5">INFERRED INFORMATION THROUGH USAGE AND LOG DATA</h4>
                             <p>
                             We may track certain information about the content viewed, your visit to our
                             Platform and your interaction with the Platform. This information may include
-                            the platform that you just visited (whether this platform is on Netray+
-                            Hotstar Services or not), which platform you next visit, your computer browser
+                            the platform that you just visited (whether this platform is on Netray
+                            Services or not), which platform you next visit, your computer browser
                             information, your mobile phone operating system and its version.
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="3.4_Information_we_collect_through_third"></a><a id="_bookmark6"></a>INFORMATION WE COLLECT THROUGH THIRD
-                            PARTY SOURCES
-                            </h4>
+                            <h4 id="_bookmark6">INFORMATION WE COLLECT THROUGH THIRD
+                            PARTY SOURCES</h4>
                             <p>We may obtain your Personal Information from other sources.</p>
                             <p>
                             If you choose to link, connect or login to our Platform using a social media
@@ -359,8 +343,7 @@ export default function Privacy() {
                         </ol>
                     </li>
                     <li class="decimal-li">
-                        <h4>
-                        <a id="4._Payment,_Card_and_Billing_Information"></a><a id="_bookmark7"></a>PAYMENT, CARD AND BILLING INFORMATION
+                        <h4 id="_bookmark7">PAYMENT, CARD AND BILLING INFORMATION
                         </h4>
                         <p>
                         When you purchase a subscription package using one or more of our payment
@@ -428,10 +411,7 @@ export default function Privacy() {
                         </p>
                     </li>
                     <li class="decimal-li">
-                        <h4>
-                        <a id="5._Purposes_of_processing"></a><a id="_bookmark8"></a>PURPOSES OF
-                        PROCESSING
-                        </h4>
+                        <h4 id="_bookmark8">PURPOSES OF PROCESSING</h4>
                         <p>
                         We will only collect and process Personal Information about you where we have
                         lawful basis to do so. Our lawful basis for processing your Personal
@@ -591,12 +571,10 @@ export default function Privacy() {
                         </p>
                     </li>
                     <li class="decimal-li">
-                        <h4><a id="6._Disclosure"></a><a id="_bookmark9"></a>DISCLOSURE</h4>
+                        <h4 id="_bookmark9">DISCLOSURE</h4>
                         <ol class="decimal-ol">
                         <li class="decimal-li">
-                            <h4>
-                            <a id="6.1_SERVICE_PROVIDERS"></a><a id="_bookmark10"></a>SERVICE PROVIDERS
-                            </h4>
+                            <h4 id="_bookmark10">SERVICE PROVIDERS</h4>
                             <p>
                             At times, we may make your Personal Information available to our service
                             providers (such as but not limited to: marketing, analytics, research,
@@ -617,9 +595,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="6.2_BUSINESS_OR_PROMOTIONAL_PARTNERS"></a><a id="_bookmark11"></a>BUSINESS OR PROMOTIONAL PARTNERS
-                            </h4>
+                            <h4 id="_bookmark11">BUSINESS OR PROMOTIONAL PARTNERS</h4>
                             <p>
                             We may offer joint promotions that, in order for you to participate and
                             benefit from any promotional offer, will require us to share your Personal
@@ -633,9 +609,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="6.3_Business_Transfers"></a><a id="_bookmark12"></a>BUSINESS TRANSFERS
-                            </h4>
+                            <h4 id="_bookmark12">BUSINESS TRANSFERS</h4>
                             <p>
                             We provide Personal Information to our Platform entities and other trusted
                             businesses or persons to process it for us, based on our instructions and in
@@ -650,7 +624,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4><a id="6.4_Legal"></a><a id="_bookmark13"></a>LEGAL</h4>
+                            <h4 id="_bookmark13">LEGAL</h4>
                             <p>
                             In the event of any requirement by court order, government or quasi-government
                             agency or in keeping with the applicable laws to disclose your Personal
@@ -670,10 +644,7 @@ export default function Privacy() {
                         </ol>
                     </li>
                     <li class="decimal-li">
-                        <h4>
-                        <a id="7._Your_Controls_and_Choices"></a><a id="_bookmark14"></a>YOUR CONTROLS
-                        AND CHOICES
-                        </h4>
+                        <h4 id="_bookmark14">YOUR CONTROLS AND CHOICES</h4>
                         <p>
                         We provide you the ability to exercise certain controls and choices regarding
                         our collection, use and sharing of your Personal Information. In accordance
@@ -681,10 +652,7 @@ export default function Privacy() {
                         </p>
                         <ol class="decimal-ol">
                         <li class="decimal-li">
-                            <h4>
-                            <a id="7.1_Managing_Your_Information"></a><a id="_bookmark15"></a>MANAGING
-                            YOUR INFORMATION
-                            </h4>
+                            <h4 id="_bookmark15">MANAGING YOUR INFORMATION</h4>
                             <p>
                             You can access some of your Personal Information through the 'My Account'
                             section of the Platform after a successful login. You are responsible for
@@ -693,9 +661,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="7.2_INTEREST-BASED_ADVERTISING"></a><a id="_bookmark16"></a>INTEREST-BASED ADVERTISING
-                            </h4>
+                            <h4 id="_bookmark16">INTEREST-BASED ADVERTISING</h4>
                             <p>
                             To opt out of interest-based advertisements from Netray Service in
                             connection with a resettable device identifier on a mobile device, tablet, or
@@ -706,10 +672,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="7.3_PUSH_NOTIFICATIONS_/MARKETING_MESSAG"></a><a id="_bookmark17"></a>PUSH NOTIFICATIONS /MARKETING
-                            MESSAGES
-                            </h4>
+                            <h4 id="_bookmark17">PUSH NOTIFICATIONS/MARKETING MESSAGES</h4>
                             <p>
                             If you want to disable or enable push notifications or marketing messages then
                             you can disable (or enable) any time by going to your device “Settings” and
@@ -717,14 +680,11 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="7.4_Rectification_of_Inaccurate_or_Incom"></a><a id="_bookmark18"></a>RECTIFICATION OF INACCURATE OR
-                            INCOMPLETE INFORMATION
-                            </h4>
+                            <h4 id="_bookmark18">RECTIFICATION OF INACCURATE OR INCOMPLETE INFORMATION</h4>
                             <p>
                             You can ask us to correct inaccurate or incomplete Personal Information
                             concerning you by sending us an email to our customer support email address
-                            <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com</a>. In
+                            <a href="mailto:netray.id@netray.com">netray.id@netray.com</a>. In
                             case you have made your subscription via Apple iTunes or such other third
                             party platforms then you will have to rectify your subscription and / or
                             personal data on the Apple iTunes platform or such other third party platforms
@@ -732,10 +692,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="7.5_Data_Access_and_Portability"></a><a id="_bookmark19"></a>DATA
-                            ACCESS AND PORTABILITY
-                            </h4>
+                            <h4 id="_bookmark19">DATA ACCESS AND PORTABILITY</h4>
                             <p>
                             In some jurisdictions, applicable law may entitle you to request copies of
                             your Personal Information held by us. You may also be entitled to request
@@ -752,10 +709,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="7.6_Data_Retention_and_Erasure"></a><a id="_bookmark20"></a>DATA
-                            RETENTION AND ERASURE
-                            </h4>
+                            <h4 id="_bookmark20">DATA RETENTION AND ERASURE</h4>
                             <p>
                             We retain your Personal Information as long as necessary for providing you the
                             services and as per the lawful basis of processing and to comply with our
@@ -818,11 +772,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="7.7_Withdrawing_Consent_and_Restriction_"></a><a id="_bookmark21"></a>WITHDRAWING CONSENT AND
-                            RESTRICTION
-                            OF PROCESSING
-                            </h4>
+                            <h4 id="_bookmark21">WITHDRAWING CONSENT AND RESTRICTION OF PROCESSING</h4>
                             <p>
                             For data that we collect, and process based on permissions or consent obtained
                             from you, you may withdraw your consent at any time, by selecting preferences
@@ -836,10 +786,7 @@ export default function Privacy() {
                             </p>
                         </li>
                         <li class="decimal-li">
-                            <h4>
-                            <a id="7.8_Objection_to_Processing"></a><a id="_bookmark22"></a>OBJECTION TO
-                            PROCESSING
-                            </h4>
+                            <h4 id="_bookmark22">OBJECTION TO PROCESSING</h4>
                             <p>
                             <a id="In_certain_jurisdictions_where_you_have_"></a>In certain jurisdictions
                             where you have the legal right to object to the use of your Personal
@@ -864,9 +811,7 @@ export default function Privacy() {
                         </ol>
                     </li>
                     <li class="decimal-li">
-                        <h4>
-                        <a id="8._Children's_Privacy"></a><a id="_bookmark23"></a>CHILDREN'S PRIVACY
-                        </h4>
+                        <h4 id="_bookmark23">CHILDREN'S PRIVACY</h4>
                         <p>
                         We do not knowingly permit any person who is under 18 years of age to register
                         or to provide any other personally identifying information. Please do not
@@ -883,10 +828,7 @@ export default function Privacy() {
                         </p>
                     </li>
                     <li class="decimal-li">
-                        <h4>
-                        <a id="9._Data_transfer,_storage_&amp;_processing_g"></a><a id="_bookmark24"></a>DATA TRANSFER, STORAGE &amp;
-                        PROCESSING GLOBALLY
-                        </h4>
+                        <h4 id="_bookmark24">DATA TRANSFER, STORAGE &amp; PROCESSING GLOBALLY</h4>
                         <p>
                         We operate globally and may transfer your Personal Information to our Platform
                         Entities or service providers or third-party recipients to whom we provide
@@ -901,7 +843,7 @@ export default function Privacy() {
                         </p>
                     </li>
                     <li class="decimal-li">
-                        <h4><a id="10._Security"></a><a id="_bookmark25"></a>SECURITY</h4>
+                        <h4 id="_bookmark25">SECURITY</h4>
                         <p>
                         We are continuously implementing and updating administrative, technical, and
                         physical security measures to help protect your Personal Information against
@@ -935,7 +877,7 @@ export default function Privacy() {
                         </p>
                     </li>
                     <li class="decimal-li">
-                        <h4><a id="11._Cookies"></a><a id="_bookmark26"></a>COOKIES</h4>
+                        <h4 id="_bookmark26">COOKIES</h4>
                         <p>
                         A cookie is a small text file that can be stored on and accessed from your
                         device when you visit our Platform, to the extent you agree. The other
@@ -980,10 +922,7 @@ export default function Privacy() {
                         </p>
                     </li>
                     <li class="decimal-li">
-                        <h4>
-                        <a id="12._Change_in_Privacy_Policy"></a><a id="_bookmark27"></a>CHANGE IN
-                        PRIVACY POLICY
-                        </h4>
+                        <h4 id="_bookmark27">CHANGE IN PRIVACY POLICY</h4>
                         <p>
                         This Privacy Policy is subject to change from time to time. We reserve the
                         right, at our sole discretion, to modify the terms of this Privacy Policy from
@@ -1003,19 +942,17 @@ export default function Privacy() {
                         <h4><a id="13._Contact_us"></a><a id="_bookmark28"></a>CONTACT US</h4>
                         <p>
                         If you have any questions about these Terms of Use, the Privacy Policy, or
-                        your dealings with Netray, or a question or a complaint about the Netray+
-                        Hotstar Platform and/or the Content, you can contact customer support services
+                        your dealings with Netray, or a question or a complaint about the Netray Platform and/or the Content, you can contact customer support services
                         at
-                        <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com, </a>by
-                        also providing us with your phone number used for accessing your Netray+
-                        Hotstar Platform. Please do not share any personal information in your emails
-                        to <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com</a>.
+                        <a href="mailto:netray.id@netray.com">netray.id@netray.com, </a>by
+                        also providing us with your phone number used for accessing your Netray Platform. Please do not share any personal information in your emails
+                        to <a href="mailto:netray.id@netray.com">netray.id@netray.com</a>.
                         </p>
                         <p>
                         If you’re not satisfied with our response to any complaint or believe our
                         processing of your information does not comply with applicable data protection
                         law, you can write to
-                        <a href="mailto:netray.id@hotstar.com">netray.id@hotstar.com. </a>Data
+                        <a href="mailto:netray.id@netray.com">netray.id@netray.com. </a>Data
                         related issue will be responded as soon as practicable.
                         </p>
                     </li>
