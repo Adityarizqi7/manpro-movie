@@ -45,7 +45,7 @@ export default function Footer() {
                                 <a href="/privacy-policy" target="_blank" className="text-gray-200 hover:underline">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="/terms-of-use" target="_blank" rel="nofollow" className="text-gray-200 hover:underline">Terms & Condition</a>
+                                <a href="/terms-of-use" target="_blank" rel="nofollow" className="text-gray-200 hover:underline">Terms of Use</a>
                             </li>
                         </ul>
                     </div>
