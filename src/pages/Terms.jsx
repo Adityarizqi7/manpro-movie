@@ -6,7 +6,7 @@ export default function Terms() {
     return (
         <Netray
             title='Terms of use - Netray'
-            kw='netray terms, netray beranda, netray id terms, netray beranda indonesia'
+            kw='netray terms'
             desc='Syarat Penggunaan (Terms of use). Selamat datang di Netray. Disarankan sebelum mengakses Situs lebih jauh, anda terlebih dahulu membaca dan memahami syarat dan ketentuan yang berlaku'
             ogUrl={''}
             ogType={''}

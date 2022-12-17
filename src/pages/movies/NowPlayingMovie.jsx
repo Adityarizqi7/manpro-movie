@@ -68,7 +68,7 @@ export default function NowPlayingMovie() {
     return (
         <Netray
             title='Now Playing Movies - Netray'
-            kw='now playing movies home, now playing movies beranda, now playing movies id home, now playing movies beranda indonesia'
+            kw='now playing movies, now playing movies, now playing movies, now playing movies'
             desc='Now Playing Movies - Netray. Lihat film-film apa saja yang sedang tayang di platform film kesayangan anda.'
             ogUrl={''}
             ogType={''}
@@ -94,7 +94,7 @@ export default function NowPlayingMovie() {
                                 </>
                             }
                             {
-                                <h1 className={`${
+                                <h1 onClick={() => inputRef.current.focus()} className={`${
                                     searchMovie !== '' ? 'hidden' : 'block'
                                 } font-semibold text-gray-400 inter text-[14px] absolute top-[1.15rem] right-0`}>Ctrl K</h1>
                             }

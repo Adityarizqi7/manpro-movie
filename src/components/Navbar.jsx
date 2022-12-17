@@ -17,8 +17,8 @@ export default function Navbar() {
     
     let location = useLocation()
     function checkPath(...path) {
-        for (let i = 0; i < path.length; i++) {
-            return path[i] === location.pathname ? 'text-white' : ''
+        for (let i = 0; i <= path.length; i++) {
+            return path[i] === location.pathname ? 'text-white' : 'text-gray-300'
         }
     }
 
@@ -47,7 +47,7 @@ export default function Navbar() {
                                 Home
                             </NavLink>
                             <Menu>
-                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath('/upcoming-movies', '/now-playing-movies', '/popular-movies')} rounded-md px-3 py-2 text-[1rem] font-medium text-gray-300 hover:bg-gray-700 hover:text-white`}>
+                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath('/movies/upcoming', '/movies/now-playing', '/movies/popular')} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}>
                                     <div className='flex items-center gap-2'>
                                         <span>Movies</span>
                                         <ChevronDownIcon className='w-4 h-4' />
@@ -69,7 +69,7 @@ export default function Navbar() {
                                                     className={`${
                                                         active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/upcoming-movies"
+                                                    to="/movies/upcoming"
                                                 >
                                                     Upcoming
                                                 </NavLink>
@@ -81,7 +81,7 @@ export default function Navbar() {
                                                     className={`${
                                                         active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/now-playing-movies"
+                                                    to="/movies/now-playing"
                                                 >
                                                     Now Playing
                                                 </NavLink>
@@ -93,7 +93,7 @@ export default function Navbar() {
                                                     className={`${
                                                         active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/popular-movies"
+                                                    to="/movies/popular"
                                                 >
                                                     Popular
                                                 </NavLink>
@@ -103,7 +103,7 @@ export default function Navbar() {
                                 </Transition>
                             </Menu>
                             <Menu>
-                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath('/top-rated-series', '/popular-movies')} rounded-md px-3 py-2 text-[1rem] font-medium text-gray-300 hover:bg-gray-700 hover:text-white`}>
+                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath('/series/airing-today', '/series/top-rated', '/series/on-the-air')} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}>
                                     <div className='flex items-center gap-2'>
                                         <span>TV Series</span>
                                         <ChevronDownIcon className='w-4 h-4' />
@@ -125,9 +125,9 @@ export default function Navbar() {
                                                     className={`${
                                                         active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/upcoming-series"
+                                                    to="/series/airing-today"
                                                 >
-                                                    Upcoming
+                                                    Airing Today
                                                 </NavLink>
                                             )}
                                         </Menu.Item>
@@ -137,9 +137,9 @@ export default function Navbar() {
                                                     className={`${
                                                         active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/now-playing-series"
+                                                    to="/series/on-the-air"
                                                 >
-                                                    Now Playing
+                                                    On TV
                                                 </NavLink>
                                             )}
                                         </Menu.Item>
@@ -149,9 +149,9 @@ export default function Navbar() {
                                                     className={`${
                                                         active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/popular-series"
+                                                    to="/series/top-rated"
                                                 >
-                                                    Popular
+                                                    Top Rated
                                                 </NavLink>
                                             )}
                                         </Menu.Item>
@@ -228,7 +228,7 @@ export default function Navbar() {
                             Home
                         </NavLink>
                         <Menu>
-                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath('/upcoming-movies', '/now-playing-movies', '/popular-movies')} w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
+                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath('/movies/upcoming', '/movies/now-playing', '/movies/popular')} w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
                                 <div className='flex items-center gap-2 justify-between'>
                                     <span>Movies</span>
                                     <ChevronDownIcon className='w-4 h-4' />
@@ -249,7 +249,7 @@ export default function Navbar() {
                                                 className={`${
                                                     active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                                 } py-2 px-6`}
-                                                to="/upcoming-movies"
+                                                to="/movies/upcoming"
                                             >
                                                 Upcoming
                                             </NavLink>
@@ -261,7 +261,7 @@ export default function Navbar() {
                                             className={`${
                                                 active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                             } py-2 px-6`}
-                                            to="/now-playing-movies"
+                                            to="/movies/now-playing"
                                             >
                                             Now Playing
                                             </NavLink>
@@ -273,7 +273,7 @@ export default function Navbar() {
                                             className={`${
                                                 active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                             } py-2 px-6`}
-                                            to="/popular-movies"
+                                            to="/movies/popular"
                                             >
                                                 Popular
                                             </NavLink>
@@ -283,7 +283,7 @@ export default function Navbar() {
                             </Transition>
                         </Menu>
                         <Menu>
-                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath('/top-rated-series', '/popular-series', '/upcoming-series')} w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
+                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath('/series/airing-today', '/series/top-rated', '/series/on-the-air')}  w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
                                 <div className='flex items-center gap-2 justify-between'>
                                     <span>TV Series</span>
                                     <ChevronDownIcon className='w-4 h-4' />
@@ -300,41 +300,41 @@ export default function Navbar() {
                                 <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px] mt-2'}>
                                     <Menu.Item>
                                         {({ active }) => (
-                                            <a
-                                            className={`${
-                                                active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
-                                            } py-2 px-6`}
-                                            to="/upcoming-movies"
+                                            <NavLink
+                                                className={`${
+                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                to="/series/airing-today"
                                             >
-                                                Upcoming
-                                            </a>
+                                                Airing Today
+                                            </NavLink>
                                         )}
                                     </Menu.Item>
                                     <Menu.Item>
                                         {({ active }) => (
-                                            <a
+                                            <NavLink
                                             className={`${
                                                 active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                             } py-2 px-6`}
-                                            to="/now-playing-movies"
+                                            to="/series/on-the-air"
                                             >
-                                            Now Playing
-                                            </a>
+                                            On TV
+                                            </NavLink>
                                         )}
                                     </Menu.Item>
                                     <Menu.Item>
                                         {({ active }) => (
-                                            <a
+                                            <NavLink
                                             className={`${
                                                 active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
                                             } py-2 px-6`}
-                                            to="/popular-movies"
+                                            to="/series/top-rated"
                                             >
-                                            Popular
-                                            </a>
+                                                Top Rated
+                                            </NavLink>
                                         )}
                                     </Menu.Item>
-                                </Menu.Items>                                        
+                                </Menu.Items>                             
                             </Transition>
                         </Menu>
                     </div>

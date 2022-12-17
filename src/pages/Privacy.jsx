@@ -6,7 +6,7 @@ export default function Terms() {
     return (
         <Netray
             title='privacy of use - Netray'
-            kw='netray privacy, netray beranda, netray id privacy, netray beranda indonesia'
+            kw='netray privacy'
             desc='Privacy Policy.'
             ogUrl={''}
             ogType={''}

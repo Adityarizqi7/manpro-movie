@@ -68,7 +68,7 @@ export default function UpcomingMovie() {
     return (
         <Netray
             title='Upcoming Movies - Netray'
-            kw='upcoming movies home, upcoming movies beranda, upcoming movies id home, upcoming movies beranda indonesia'
+            kw='upcoming movies, upcoming movies, upcoming movies, upcoming movies'
             desc='Upcoming Movies - Netray. Lihat film-film apa saja yang akan rilis di platform film kesayangan anda.'
             ogUrl={''}
             ogType={''}
@@ -94,7 +94,7 @@ export default function UpcomingMovie() {
                                 </>
                             }
                             {
-                                <h1 className={`${
+                                <h1 onClick={() => inputRef.current.focus()} className={`${
                                     searchMovie !== '' ? 'hidden' : 'block'
                                 } font-semibold text-gray-400 inter text-[14px] absolute top-[1.15rem] right-0`}>Ctrl K</h1>
                             }

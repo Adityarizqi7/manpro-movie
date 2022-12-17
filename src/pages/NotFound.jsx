@@ -11,7 +11,7 @@ export default function NotFound() {
     return (
         <Netray
             title='404 | Halaman tidak ditemukan'
-            kw='netray not found, netray halaman tidak ditemukan, netray id home, netray halaman tidak ditemukan indonesia'
+            kw='netray not found, netray halaman tidak ditemukan, netray, netray halaman tidak ditemukan indonesia'
             desc='Halaman 404'
             ogUrl={status}
             ogType={status}

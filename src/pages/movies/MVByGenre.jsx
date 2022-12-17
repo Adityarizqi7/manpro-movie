@@ -62,8 +62,8 @@ export default function MVByGenre() {
     return (
         <Netray
             title='Genre Movies - Netray'
-            kw='genre movies home, genre movies beranda, genre movies id home, genre movies beranda indonesia'
-            desc='Genre Movies - Netray. Lihat film-film apa saja sesuai genre kesukaan kalian.'
+            kw={`${genre.map(e => e.name)} movies`}
+            desc={`${genre.map(e => e.name)} Genre - Netray. Lihat film-film apa saja sesuai genre kesukaan kalian.`}
             ogUrl={''}
             ogType={''}
             ogTitle={''}

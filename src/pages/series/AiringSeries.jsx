@@ -2,26 +2,26 @@ import React from 'react'
 import tmdb from '@/api/tmbd'
 import Skeleton from 'react-loading-skeleton'
 
-import '@/styles/movie/_popular.scss'
+import '@/styles/series/_airing.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { slice } from '@/utils/Slice'
 import Netray from '@/layouts/Netray'
 import List from '@/components/list/List'
 import { Spin } from '@/components/loading/Spin'
-import { MovieCard } from '@/components/movie/MovieCard'
+import { SeriesCard } from '@/components/movie/MovieCard'
 
-export default function NowPlayingMovie() {
+export default function AiringSeries() {
 
     const inputRef = React.useRef();
     const [searchMovie, setSearchMovie] = React.useState('')
     const [focusInput, setFocusInput] = React.useState(false)
 
-    const [popularMVAll, setPopularMVAll] = React.useState([])
+    const [airingTVAll, setAiringTVAll] = React.useState([])
 
     const [index, setIndex] = React.useState(8)
     const [loading, setLoading] = React.useState(false)
-    const initialPosts = slice(popularMVAll, 0, index)
+    const initialPosts = slice(airingTVAll, 0, index)
 
     const handleChange = (e) => setSearchMovie(e.target.value)
     const deleteText = () => setSearchMovie('')
@@ -41,11 +41,11 @@ export default function NowPlayingMovie() {
         setLoading(false)
     }
 
-    const PopularMVAll = React.useCallback( async () => {
+    const AiringTVAll = React.useCallback( async () => {
         try {
             setLoading(true)
-            const { data, status } = await tmdb.get('/movie/popular')
-            status === 200 && setPopularMVAll(data.results) 
+            const { data, status } = await tmdb.get('/tv/airing_today')
+            status === 200 && setAiringTVAll(data.results) 
             setLoading(false)
         } catch {
             setLoading(false)
@@ -62,30 +62,30 @@ export default function NowPlayingMovie() {
     }, [handleFocusInput]);
     
     React.useEffect(() => {
-        PopularMVAll()
-    }, [PopularMVAll])
+        AiringTVAll()
+    }, [AiringTVAll])
 
     return (
         <Netray
-            title='Now Playing Movies - Netray'
-            kw='now playing movies, now playing movies, now playing movies, now playing movies'
-            desc='Now Playing Movies - Netray. Lihat film-film apa saja yang sedang tayang di platform film kesayangan anda.'
+            title='Series Airing Today- Netray'
+            kw='airing today series, airing today series, airing today series, airing today series'
+            desc='Series Airing Today- Netray. Lihat series dan TV Show apa saja Tayang Hari ini.'
             ogUrl={''}
             ogType={''}
             ogTitle={''}
             ogDesc={''}
             twitTitle={''}
         >
-            <main className='popular-movies-component'>
-                <section id='popular_container_movies'>
-                    <div className='heading-popular-movies montserrat mb-8'>
+            <main className='airing-series-component'>
+                <section id='airing_container_series'>
+                    <div className='heading-airing-series montserrat mb-8'>
                         <h1 className='font-semibold text-black text-[2rem]'>
-                            Popular Movies
+                            Series Airing On Today
                         </h1>
                     </div>
-                    <div className='search-movies montserrat mb-10'>
+                    <div className='search-series montserrat mb-10'>
                         <div className="box-search md:w-[35%] w-full inter relative">
-                            <input type="text" name="search-movie" autoComplete='off' className={`${focusInput ? 'border-b-[rgb(72, 96, 228)]' : false} md:w-[35%] w-full pr-[3rem]`} placeholder="Cari movie yang sedang popular ..." onChange={handleChange} ref={inputRef} value={searchMovie} />
+                            <input type="text" name="search-movie" autoComplete='off' className={`${focusInput ? 'border-b-[rgb(72, 96, 228)]' : false} md:w-[35%] w-full pr-[3rem]`} placeholder="Cari series, TV Show yang akan datang ..." onChange={handleChange} ref={inputRef} value={searchMovie} />
                             {
                                 searchMovie !== '' &&
                                 <>
@@ -131,7 +131,7 @@ export default function NowPlayingMovie() {
                                                 }
                                             }).map((item, index) => {
                                                 return (
-                                                    <MovieCard key={index} {...item} />
+                                                    <SeriesCard key={index} {...item} />
                                                 )
                                             })
                                         }
