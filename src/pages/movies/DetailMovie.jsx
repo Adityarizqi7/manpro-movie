@@ -130,7 +130,7 @@ const DetailMovie = () => {
                                         className='aspect-video'
                                         width="1920px"
 						                height="1080px"
-                                        src={`https://www.youtube.com/embed/${trailerMV}?showinfo=0&enablejsapi=1&origin=http://127.0.0.1:5173`}
+                                        src={`https://www.youtube.com/embed/${trailerMV}?showinfo=0&enablejsapi=1&origin=https://netray.netlify.app`}
                                         title={`${detailMV?.original_title}`}
                                         frameBorder='0'
                                         scrolling="no"

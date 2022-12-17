@@ -176,7 +176,7 @@ function SeriesCard2({
                     <Popover.Panel className='youtube-container absolute top-0 right-0 z-20 w-full max-w-full'>
                         <iframe
                             className='aspect-video h-[43vw] w-full'
-                            src={`https://www.youtube.com/embed/${key_trailer}?showinfo=0&enablejsapi=1&origin=http://127.0.0.1:5173`}
+                            src={`https://www.youtube.com/embed/${key_trailer}?showinfo=0&enablejsapi=1&origin=https://netray.netlify.app`}
                             title={`${original_name} | ${name}`}
                             frameBorder='0'
                             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
