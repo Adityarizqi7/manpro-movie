@@ -1,4 +1,4 @@
-let plugin = require("tailwindcss/plugin");
+let plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -22,9 +22,9 @@ module.exports = {
     },
     plugins: [
         require('prettier-plugin-tailwindcss'),
-        plugin(function({ addVariant }) {
+        plugin(function ({ addVariant }) {
             addVariant('select-all-child', '&:>*')
-        }),  
+        }),
         require('@headlessui/tailwindcss')({ prefix: 'ui' }),
     ],
 }

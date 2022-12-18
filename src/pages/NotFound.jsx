@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import Netray from '../layouts/Netray'
 
 export default function NotFound() {
-
     const status = null
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     return (
         <Netray
@@ -35,7 +34,7 @@ export default function NotFound() {
 
                         <button
                             onClick={() => navigate(-1)}
-                            className='bg-blue-100 px-6 py-2 text-sm font-semibold text-blue-800 hover:bg-blue-700/30 hover:text-blue-800 transition-colors'
+                            className='bg-blue-100 px-6 py-2 text-sm font-semibold text-blue-800 transition-colors hover:bg-blue-700/30 hover:text-blue-800'
                         >
                             Go back
                         </button>

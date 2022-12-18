@@ -23,8 +23,8 @@
                         border-bottom-color: rgb(72, 96, 228);
                     }
                     &:focus-visible {
-                        &+h1 {
-                            display: none
+                        & + h1 {
+                            display: none;
                         }
                     }
                 }

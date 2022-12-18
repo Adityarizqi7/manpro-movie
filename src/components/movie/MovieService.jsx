@@ -16,14 +16,14 @@ function TrendMV() {
     const [trendMV, setTrendMV] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getDataTrend = useCallback( async () => {
+    const getDataTrend = useCallback(async () => {
         try {
             setLoading(true)
-            const { data, status} = await tmdb.get('/trending/movie/week')
+            const { data, status } = await tmdb.get('/trending/movie/week')
             status === 200 && setTrendMV(data.results)
             setLoading(false)
         } catch {
-            setLoading(false);
+            setLoading(false)
         }
     }, [])
 
@@ -56,10 +56,9 @@ function TrendMV() {
                 },
             }}
         >
-            {
-                loading ? (
-                    <SkeletonCard classSkeletonContainer={'lg:grid-cols-6'} />
-                ) :
+            {loading ? (
+                <SkeletonCard classSkeletonContainer={'lg:grid-cols-6'} />
+            ) : (
                 trendMV &&
                 trendMV.map((item, index) => {
                     return (
@@ -68,7 +67,7 @@ function TrendMV() {
                         </SwiperSlide>
                     )
                 })
-            }
+            )}
         </Swiper>
     )
 }
@@ -77,11 +76,11 @@ function UpcomingMV() {
     const [upcomingMV, setUpcomingMV] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getDataUpcomingMV = useCallback( async () => {
+    const getDataUpcomingMV = useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/movie/upcoming')
-            status === 200 && setUpcomingMV(data.results) 
+            status === 200 && setUpcomingMV(data.results)
             setLoading(false)
         } catch {
             setLoading(false)
@@ -115,19 +114,26 @@ function UpcomingMV() {
                 },
             }}
         >
-            {
-                loading ? (
-                    <SkeletonCard classSkeletonTitle={'hidden'} classSkeletonContainer={'lg:grid-cols-4'} length={4} />
-                ) :
+            {loading ? (
+                <SkeletonCard
+                    classSkeletonTitle={'hidden'}
+                    classSkeletonContainer={'lg:grid-cols-4'}
+                    length={4}
+                />
+            ) : (
                 upcomingMV &&
                 upcomingMV.map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard2 {...item} classOverlay='hidden' classWrapper='cursor-grab' />
+                            <MovieCard2
+                                {...item}
+                                classOverlay='hidden'
+                                classWrapper='cursor-grab'
+                            />
                         </SwiperSlide>
                     )
                 })
-            }
+            )}
         </Swiper>
     )
 }
@@ -136,13 +142,13 @@ function NowPlayMV() {
     const [nowPlayMV, setNowPlayMV] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getDataNowPlayMV = useCallback( async () => {
+    const getDataNowPlayMV = useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/movie/now_playing', {
                 params: {
-                    region: 'ID'
-                }
+                    region: 'ID',
+                },
             })
             status === 200 && setNowPlayMV(data.results)
             setLoading(false)
@@ -180,19 +186,25 @@ function NowPlayMV() {
                 },
             }}
         >
-            {
-                loading ? (
-                    <SkeletonCard classSkeletonTitle={'hidden'} classSkeletonContainer={'lg:grid-cols-6'} height={'15vw'} />
-                ) :
+            {loading ? (
+                <SkeletonCard
+                    classSkeletonTitle={'hidden'}
+                    classSkeletonContainer={'lg:grid-cols-6'}
+                    height={'15vw'}
+                />
+            ) : (
                 nowPlayMV &&
                 nowPlayMV.slice(0, 10).map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard2 {...item} classWrapper='cursor-pointer' />
+                            <MovieCard2
+                                {...item}
+                                classWrapper='cursor-pointer'
+                            />
                         </SwiperSlide>
                     )
                 })
-            }
+            )}
         </Swiper>
     )
 }
@@ -201,13 +213,13 @@ function PopularMV() {
     const [popularMV, setPopularMV] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getDataPopularMV = useCallback ( async () => {
+    const getDataPopularMV = useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/movie/popular', {
                 params: {
-                    region: 'ID'
-                }
+                    region: 'ID',
+                },
             })
             status === 200 && setPopularMV(data.results)
             setLoading(false)
@@ -245,19 +257,25 @@ function PopularMV() {
                 },
             }}
         >
-            {
-                loading ? (
-                    <SkeletonCard classSkeletonTitle={'hidden'} classSkeletonContainer={'lg:grid-cols-6'} height={'15vw'} />
-                ) :
+            {loading ? (
+                <SkeletonCard
+                    classSkeletonTitle={'hidden'}
+                    classSkeletonContainer={'lg:grid-cols-6'}
+                    height={'15vw'}
+                />
+            ) : (
                 popularMV &&
                 popularMV.slice(0, 10).map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <MovieCard2 {...item} classWrapper='cursor-pointer' />
+                            <MovieCard2
+                                {...item}
+                                classWrapper='cursor-pointer'
+                            />
                         </SwiperSlide>
                     )
                 })
-            }
+            )}
         </Swiper>
     )
 }
@@ -266,7 +284,7 @@ function TrendTV() {
     const [trendTV, setTrendTV] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getDataTrend = useCallback( async () => {
+    const getDataTrend = useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/trending/tv/week')
@@ -306,10 +324,9 @@ function TrendTV() {
                 },
             }}
         >
-            {
-                loading ? (
-                    <SkeletonCard classSkeletonContainer={'lg:grid-cols-6'} />
-                ) :
+            {loading ? (
+                <SkeletonCard classSkeletonContainer={'lg:grid-cols-6'} />
+            ) : (
                 trendTV &&
                 trendTV.map((item, index) => {
                     return (
@@ -318,7 +335,7 @@ function TrendTV() {
                         </SwiperSlide>
                     )
                 })
-            }
+            )}
         </Swiper>
     )
 }
@@ -328,7 +345,7 @@ function PopularTV() {
     const [trailerSeries, setTrailerSeries] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getDataTrend = useCallback( async () => {
+    const getDataTrend = useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/tv/popular', {
@@ -361,12 +378,11 @@ function PopularTV() {
         getDataTrailerSeries()
     }, [])
 
-    return (
-        loading ? (
-            <>
-                <Skeleton height={800} />
-            </>
-        ) :
+    return loading ? (
+        <>
+            <Skeleton height={800} />
+        </>
+    ) : (
         PopularTV && (
             <SeriesCard2 {...PopularTV} key_trailer={trailerSeries.key} />
         )

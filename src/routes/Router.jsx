@@ -27,14 +27,17 @@ export default function Router() {
                 <Route path='/' element={<Home />} />
                 <Route path='/terms-of-use' element={<Terms />} />
                 <Route path='/privacy-policy' element={<Privacy />} />
-                
+
                 {/* Movies Page */}
                 <Route path='/movie/:movieId' element={<DetailMovie />} />
                 <Route path='/series/:seriesId' element={<DetailSeries />} />
 
                 <Route path='/movies/popular' element={<PopularMovie />} />
                 <Route path='/movies/upcoming' element={<UpcomingMovie />} />
-                <Route path='/movies/now-playing' element={<NowPlayingMovie />} />
+                <Route
+                    path='/movies/now-playing'
+                    element={<NowPlayingMovie />}
+                />
                 <Route path='/genre/:genreId/movie' element={<MVByGenre />} />
 
                 <Route path='/series/on-the-air' element={<OnTVSeries />} />

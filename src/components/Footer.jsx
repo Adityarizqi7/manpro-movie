@@ -5,7 +5,10 @@ import ftlogo from '@/assets/images/footer-bg.jpg'
 
 export default function Footer() {
     return (
-        <footer className='montserrat bg-white p-4 sm:p-12 bg-no-repeat bg-cover text-white' style={{backgroundImage: `url(${ftlogo})`}}>
+        <footer
+            className='montserrat bg-white bg-cover bg-no-repeat p-4 text-white sm:p-12'
+            style={{ backgroundImage: `url(${ftlogo})` }}
+        >
             <div className='md:flex md:justify-between'>
                 <div className='mb-6 md:mb-0'>
                     <a href='/' target='_blank' className='flex items-center'>

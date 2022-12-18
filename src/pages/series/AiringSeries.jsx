@@ -12,8 +12,7 @@ import { Spin } from '@/components/loading/Spin'
 import { SeriesCard } from '@/components/movie/MovieCard'
 
 export default function AiringSeries() {
-
-    const inputRef = React.useRef();
+    const inputRef = React.useRef()
     const [searchMovie, setSearchMovie] = React.useState('')
     const [focusInput, setFocusInput] = React.useState(false)
 
@@ -25,15 +24,15 @@ export default function AiringSeries() {
 
     const handleChange = (e) => setSearchMovie(e.target.value)
     const deleteText = () => setSearchMovie('')
-    
+
     const handleFocusInput = React.useCallback((event) => {
-        if (((event.ctrlKey || event.metaKey) && event.code === 'KeyK')) { 
+        if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
             setFocusInput(true)
-            event.preventDefault();
+            event.preventDefault()
             inputRef.current.focus()
         }
         if (event.code === 'Escape') inputRef.current.blur() || deleteText()
-    }, []);
+    }, [])
 
     const loadMore = () => {
         setLoading(true)
@@ -41,26 +40,25 @@ export default function AiringSeries() {
         setLoading(false)
     }
 
-    const AiringTVAll = React.useCallback( async () => {
+    const AiringTVAll = React.useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/tv/airing_today')
-            status === 200 && setAiringTVAll(data.results) 
+            status === 200 && setAiringTVAll(data.results)
             setLoading(false)
         } catch {
             setLoading(false)
         }
     }, [])
-    
-    React.useEffect(() => {
 
-        document.addEventListener('keydown', handleFocusInput);
-    
+    React.useEffect(() => {
+        document.addEventListener('keydown', handleFocusInput)
+
         return () => {
-          document.removeEventListener('keydown', handleFocusInput);
-        };
-    }, [handleFocusInput]);
-    
+            document.removeEventListener('keydown', handleFocusInput)
+        }
+    }, [handleFocusInput])
+
     React.useEffect(() => {
         AiringTVAll()
     }, [AiringTVAll])
@@ -79,32 +77,59 @@ export default function AiringSeries() {
             <main className='airing-series-component'>
                 <section id='airing_container_series'>
                     <div className='heading-airing-series montserrat mb-8'>
-                        <h1 className='font-semibold text-black text-[2rem]'>
+                        <h1 className='text-[2rem] font-semibold text-black'>
                             Series Airing On Today
                         </h1>
                     </div>
                     <div className='search-series montserrat mb-10'>
-                        <div className="box-search md:w-[35%] w-full inter relative">
-                            <input type="text" name="search-movie" autoComplete='off' className={`${focusInput ? 'border-b-[rgb(72, 96, 228)]' : false} md:w-[35%] w-full pr-[3rem]`} placeholder="Cari series, TV Show yang akan datang ..." onChange={handleChange} ref={inputRef} value={searchMovie} />
-                            {
-                                searchMovie !== '' &&
+                        <div className='box-search inter relative w-full md:w-[35%]'>
+                            <input
+                                type='text'
+                                name='search-movie'
+                                autoComplete='off'
+                                className={`${
+                                    focusInput
+                                        ? 'border-b-[rgb(72, 96, 228)]'
+                                        : false
+                                } w-full pr-[3rem] md:w-[35%]`}
+                                placeholder='Cari series, TV Show yang akan datang ...'
+                                onChange={handleChange}
+                                ref={inputRef}
+                                value={searchMovie}
+                            />
+                            {searchMovie !== '' && (
                                 <>
-                                    <kbd onClick={deleteText} className="sm:block hidden px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg absolute top-[0.85rem] right-0 montserrat cursor-pointer">Esc</kbd>
-                                    <kbd onClick={deleteText} className="sm:hidden block px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg absolute top-[0.85rem] right-0 montserrat cursor-pointer">Del</kbd>
+                                    <kbd
+                                        onClick={deleteText}
+                                        className='montserrat absolute top-[0.85rem] right-0 hidden cursor-pointer rounded-lg border border-gray-200 bg-gray-100 px-2 py-1.5 text-xs font-semibold text-gray-800 sm:block'
+                                    >
+                                        Esc
+                                    </kbd>
+                                    <kbd
+                                        onClick={deleteText}
+                                        className='montserrat absolute top-[0.85rem] right-0 block cursor-pointer rounded-lg border border-gray-200 bg-gray-100 px-2 py-1.5 text-xs font-semibold text-gray-800 sm:hidden'
+                                    >
+                                        Del
+                                    </kbd>
                                 </>
-                            }
+                            )}
                             {
-                                <h1 onClick={() => inputRef.current.focus()} className={`${
-                                    searchMovie !== '' ? 'hidden' : 'block'
-                                } font-semibold text-gray-400 inter text-[14px] absolute top-[1.15rem] right-0`}>Ctrl K</h1>
+                                <h1
+                                    onClick={() => inputRef.current.focus()}
+                                    className={`${
+                                        searchMovie !== '' ? 'hidden' : 'block'
+                                    } inter absolute top-[1.15rem] right-0 text-[14px] font-semibold text-gray-400`}
+                                >
+                                    Ctrl K
+                                </h1>
                             }
                         </div>
                     </div>
-                    <section className='flex flex-col sm:flex-row gap-5'>
+                    <section className='flex flex-col gap-5 sm:flex-row'>
                         <List
                             title='Genres'
                             id='left-section'
-                            className='list-container order-1 md:block hidden space-y-2 sm:order-2 md:w-[30%]'
+                            className='list-container order-1 hidden space-y-2 sm:order-2 md:block md:w-[30%]'
                             urlAPI='/genre/movie/list'
                         />
                         <div
@@ -115,39 +140,65 @@ export default function AiringSeries() {
                                 id='movie_all'
                                 className='movie-container mb-14 space-y-8'
                             >
-                                {
-                                    loading ? (
+                                {loading ? (
                                     <>
-                                        <Skeleton height={300} count={4} containerClassName='flex gap-[10px]' />
-                                        <Skeleton height={25} count={4} containerClassName='flex gap-[10px] mt-3' />
+                                        <Skeleton
+                                            height={300}
+                                            count={4}
+                                            containerClassName='flex gap-[10px]'
+                                        />
+                                        <Skeleton
+                                            height={25}
+                                            count={4}
+                                            containerClassName='flex gap-[10px] mt-3'
+                                        />
                                     </>
-                                ) :
-                                    <div className='container-list-card grid sm:grid-cols-3 grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-7'>
-                                        {
-                                            initialPosts.filter( value => { // eslint-disable-line array-callback-return
-                                                if(searchMovie === '') return value
-                                                if (value.title?.toLowerCase().includes(searchMovie?.toLowerCase().trim()) || value.original_title?.toLowerCase().includes(searchMovie?.toLowerCase().trim())) {
+                                ) : (
+                                    <div className='container-list-card grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4'>
+                                        {initialPosts
+                                            .filter((value) => {
+                                                // eslint-disable-line array-callback-return
+                                                if (searchMovie === '')
+                                                    return value
+                                                if (
+                                                    value.title
+                                                        ?.toLowerCase()
+                                                        .includes(
+                                                            searchMovie
+                                                                ?.toLowerCase()
+                                                                .trim()
+                                                        ) ||
+                                                    value.original_title
+                                                        ?.toLowerCase()
+                                                        .includes(
+                                                            searchMovie
+                                                                ?.toLowerCase()
+                                                                .trim()
+                                                        )
+                                                ) {
                                                     return value
                                                 }
-                                            }).map((item, index) => {
-                                                return (
-                                                    <SeriesCard key={index} {...item} />
-                                                )
                                             })
-                                        }
+                                            .map((item, index) => {
+                                                return (
+                                                    <SeriesCard
+                                                        key={index}
+                                                        {...item}
+                                                    />
+                                                )
+                                            })}
                                     </div>
-                                }
-                                {
-                                    index !== 20 && 
-                                    <button onClick={loadMore} className={`${loading && 'pointer-events-none'} focus:outline-none poppins text-white text-[1.125rem] bg-blue-500 hover:bg-opacity-80 transition-colors duration-300 py-3 w-full shadow-sm'`}>
-                                       {
-                                        loading ? 
-                                            <Spin />
-                                        :
-                                            'load more'
-                                       }
+                                )}
+                                {index !== 20 && (
+                                    <button
+                                        onClick={loadMore}
+                                        className={`${
+                                            loading && 'pointer-events-none'
+                                        } poppins shadow-sm' w-full bg-blue-500 py-3 text-[1.125rem] text-white transition-colors duration-300 hover:bg-opacity-80 focus:outline-none`}
+                                    >
+                                        {loading ? <Spin /> : 'load more'}
                                     </button>
-                                }
+                                )}
                             </article>
                         </div>
                     </section>

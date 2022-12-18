@@ -16,7 +16,7 @@ export default function Terms() {
         >
             <main className='privacy-component'>
                 <section id='container_privacy'>
-                {/* Kerjain disini ya Caca */}
+                    {/* Kerjain disini ya Caca */}
                 </section>
             </main>
         </Netray>

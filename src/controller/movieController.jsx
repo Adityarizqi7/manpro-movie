@@ -1,30 +1,32 @@
-import create from "zustand";
+import create from 'zustand'
 
-export const useMovieController = create(set => ({
-    searchKey: "",
+export const useMovieController = create((set) => ({
+    searchKey: '',
     upComingDataMV: [],
 
     handleChange: (e) => {
-        set(state => ({
-            searchKey: e.target.value
-        }));
+        set((state) => ({
+            searchKey: e.target.value,
+        }))
     },
 
     // Clear keyword search bar
     clearKeySearch: () => {
-        set(state => ({
-            searchKey: ""
-        }));
-        set(state => ({
-            upComingDataMV: upComingDataMV
-        }));
+        set((state) => ({
+            searchKey: '',
+        }))
+        set((state) => ({
+            upComingDataMV: upComingDataMV,
+        }))
     },
 
     handleSearchResults: (data) => {
-        set(state => ({
+        set((state) => ({
             upComingDataMV: data.filter((e) =>
-                e.title.toLowerCase().includes(state.searchKey.toLowerCase().trim())
-            )
-        }));
+                e.title
+                    .toLowerCase()
+                    .includes(state.searchKey.toLowerCase().trim())
+            ),
+        }))
     },
-}));
+}))

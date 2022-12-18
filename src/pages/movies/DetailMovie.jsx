@@ -19,10 +19,10 @@ const DetailMovie = () => {
     const [trailerMV, setTrailerMV] = useState([])
     const { movieId } = useParams()
 
-    const getDetailMovie = useCallback( async () => {
+    const getDetailMovie = useCallback(async () => {
         try {
             setLoading(true)
-            const {data, status} = await tmbd.get(`/movie/${movieId}`)
+            const { data, status } = await tmbd.get(`/movie/${movieId}`)
             if (status === 200) {
                 setLoading(false)
                 setDetailMV(data)
@@ -33,16 +33,23 @@ const DetailMovie = () => {
 
         try {
             setLoading(true)
-            const {data, status} = await tmbd.get(`/movie/${movieId}/videos`, {
-                params: {
-                    append_to_response: 'videos',
-                },
-            })
+            const { data, status } = await tmbd.get(
+                `/movie/${movieId}/videos`,
+                {
+                    params: {
+                        append_to_response: 'videos',
+                    },
+                }
+            )
             if (status === 200) {
                 setLoading(false)
-                setTrailerMV(data.results.filter(value => value.name === 'Official Trailer').map(item => {
-                    return item.key
-                }))
+                setTrailerMV(
+                    data.results
+                        .filter((value) => value.name === 'Official Trailer')
+                        .map((item) => {
+                            return item.key
+                        })
+                )
             }
         } catch {
             setLoading(false)
@@ -55,8 +62,14 @@ const DetailMovie = () => {
 
     return (
         <Netray
-            title={ loading ? 'Loading' : `${detailMV?.original_title} (${detailMV?.release_date.split('-')[0]})` + ' - Netray'}
-            kw={ detailMV?.original_title + ' netray' }
+            title={
+                loading
+                    ? 'Loading'
+                    : `${detailMV?.original_title} (${
+                          detailMV?.release_date.split('-')[0]
+                      })` + ' - Netray'
+            }
+            kw={detailMV?.original_title + ' netray'}
             desc='Netray Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan'
             ogUrl={''}
             ogType={''}
@@ -67,154 +80,207 @@ const DetailMovie = () => {
             <main className='detail-movie-component'>
                 {/* banner */}
                 <div className='jumbotron-image'>
-                        {loading && <Skeleton height={500} />}
-                        { 
-                            !loading &&
-                            <img
-                                className='object-cover object-top sm:h-[500px] h-[200px] overflow-hidden w-full shadow-lg'
-                                src={`https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`}
-                                alt={`${detailMV?.original_title}`}
-                            />
-                        }
+                    {loading && <Skeleton height={500} />}
+                    {!loading && (
+                        <img
+                            className='h-[200px] w-full overflow-hidden object-cover object-top shadow-lg sm:h-[500px]'
+                            src={`https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`}
+                            alt={`${detailMV?.original_title}`}
+                        />
+                    )}
                 </div>
                 {/* contents */}
                 <div className='content-detail-movie lg:flex lg:gap-7'>
                     {/* poster  */}
-                    <div className='poster-content lg:block hidden rounded-md w-[30%]'>
-                        {
-                            loading ? <Skeleton height={500} /> :
+                    <div className='poster-content hidden w-[30%] rounded-md lg:block'>
+                        {loading ? (
+                            <Skeleton height={500} />
+                        ) : (
                             <img
                                 className='object-cover'
                                 src={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
                                 alt={`${detailMV?.original_title}`}
                             />
-                        }
+                        )}
                     </div>
-                    <div className='wrapper-content lg:w-[70%] w-full space-y-8'>
+                    <div className='wrapper-content w-full space-y-8 lg:w-[70%]'>
                         {/* head title  */}
                         <div className='head-title-content'>
-                            <h2 className='text-[1.875rem] font-medium text-neutral-800 montserrat'>
-                                { loading ? <Skeleton width={300} height={50} /> :
-                                    (
-                                        <>
-                                            <span>{`${detailMV?.original_title}`}</span>
-                                            <span className='text-gray-600 font-light ml-2'>({`${detailMV?.release_date.split('-')[0]}`})</span>
-                                        </>
-                                    )
-                                }
+                            <h2 className='montserrat text-[1.875rem] font-medium text-neutral-800'>
+                                {loading ? (
+                                    <Skeleton width={300} height={50} />
+                                ) : (
+                                    <>
+                                        <span>{`${detailMV?.original_title}`}</span>
+                                        <span className='ml-2 font-light text-gray-600'>
+                                            (
+                                            {`${
+                                                detailMV?.release_date.split(
+                                                    '-'
+                                                )[0]
+                                            }`}
+                                            )
+                                        </span>
+                                    </>
+                                )}
                             </h2>
-                            <div className='flex flex-wrap items-center gap-3 mt-2'>
-                                {
-                                    loading ?
-                                        <Skeleton height={30} width={100} count={3} containerClassName={'flex flex-wrap gap-4 last:gap-0'} />
-                                    :
-                                    <div className="div flex gap-3 items-center">
-                                        <div className='flex flex-wrap gap-4 poppins'>
-                                            {
-                                                detailMV?.genres.map((genre, idx) => (
-                                                        <h3
-                                                            className='font-medium text-blue-800'
-                                                            key={`detail-genre-${idx}`}
-                                                        >
-                                                            #{genre.name}
-                                                        </h3>
-                                                ))
-                                            }
+                            <div className='mt-2 flex flex-wrap items-center gap-3'>
+                                {loading ? (
+                                    <Skeleton
+                                        height={30}
+                                        width={100}
+                                        count={3}
+                                        containerClassName={
+                                            'flex flex-wrap gap-4 last:gap-0'
+                                        }
+                                    />
+                                ) : (
+                                    <div className='div flex items-center gap-3'>
+                                        <div className='poppins flex flex-wrap gap-4'>
+                                            {detailMV?.genres.map(
+                                                (genre, idx) => (
+                                                    <h3
+                                                        className='font-medium text-blue-800'
+                                                        key={`detail-genre-${idx}`}
+                                                    >
+                                                        #{genre.name}
+                                                    </h3>
+                                                )
+                                            )}
                                         </div>
                                     </div>
-                                }
+                                )}
                                 <span>·</span>
                                 <h3 className='montserrat'>
-                                    {
-                                        loading ? <Skeleton height={30} width={50} containerClassName={'flex flex-wrap gap-4 last:gap-0'} />
-                                        :
-                                        detailMV?.runtime === '' ? '0m' : `${detailMV?.runtime}m`
-                                    }
+                                    {loading ? (
+                                        <Skeleton
+                                            height={30}
+                                            width={50}
+                                            containerClassName={
+                                                'flex flex-wrap gap-4 last:gap-0'
+                                            }
+                                        />
+                                    ) : detailMV?.runtime === '' ? (
+                                        '0m'
+                                    ) : (
+                                        `${detailMV?.runtime}m`
+                                    )}
                                 </h3>
                             </div>
-                            <Lightbox 
+                            <Lightbox
                                 source={[
                                     <iframe
                                         className='aspect-video'
-                                        width="1920px"
-						                height="1080px"
+                                        width='1920px'
+                                        height='1080px'
                                         src={`https://www.youtube.com/embed/${trailerMV}?showinfo=0&enablejsapi=1&origin=https://netray.netlify.app`}
                                         title={`${detailMV?.original_title}`}
                                         frameBorder='0'
-                                        scrolling="no"
+                                        scrolling='no'
                                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                                         allowFullScreen
-                                    ></iframe>
-                                ]} 
+                                    ></iframe>,
+                                ]}
                                 toggler={togglerTrailer}
                             >
-                                <button onClick={() => setTogglerTrailer(!togglerTrailer)} className={`${trailerMV.length === 0 &&'pointer-events-none'} mt-3 montserrat flex items-center text-blue-600 gap-x-1`}>
-                                    <PlayIcon className='w-4 h-4' />
-                                    <h2 className='text-[0.95rem] font-normal'>Play Opening Credits</h2>
+                                <button
+                                    onClick={() =>
+                                        setTogglerTrailer(!togglerTrailer)
+                                    }
+                                    className={`${
+                                        trailerMV.length === 0 &&
+                                        'pointer-events-none'
+                                    } montserrat mt-3 flex items-center gap-x-1 text-blue-600`}
+                                >
+                                    <PlayIcon className='h-4 w-4' />
+                                    <h2 className='text-[0.95rem] font-normal'>
+                                        Play Opening Credits
+                                    </h2>
                                 </button>
                             </Lightbox>
                         </div>
-                        {
-                            loading ? <Skeleton width={180} height={45} /> :
-                            <h2 className={`${detailMV?.tagline === '' ? 'hidden' : 'block'} italic text-gray-700 font-light sm:text-[1.5rem] text-[6vw]`}>'{detailMV?.tagline}'</h2>
-                        }
+                        {loading ? (
+                            <Skeleton width={180} height={45} />
+                        ) : (
+                            <h2
+                                className={`${
+                                    detailMV?.tagline === ''
+                                        ? 'hidden'
+                                        : 'block'
+                                } text-[6vw] font-light italic text-gray-700 sm:text-[1.5rem]`}
+                            >
+                                '{detailMV?.tagline}'
+                            </h2>
+                        )}
                         {/* Poster on Mobile */}
                         {/* informations  */}
                         <div className='wrapper-information'>
-                            <Lightbox 
+                            <Lightbox
                                 source={[
                                     <img
                                         className='object-cover'
                                         src={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
                                         alt={`${detailMV?.original_title}`}
-                                    />
-                                ]} 
+                                    />,
+                                ]}
                                 toggler={toggler}
                             >
-                                <button onClick={() => setToggler(!toggler)} className='button-poster-mobile lg:hidden mb-3 flex items-center gap-2 montserrat focus:outline-none py-1 px-3 border border-blue-600/60 rounded-md'>
-                                    <PhotoIcon className='w-5 h-5' />
+                                <button
+                                    onClick={() => setToggler(!toggler)}
+                                    className='button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden'
+                                >
+                                    <PhotoIcon className='h-5 w-5' />
                                     <span>Lihat Poster</span>
                                 </button>
                             </Lightbox>
                             {/* description  */}
                             <div className='space-y-1 text-neutral-700'>
-                                <h6 className='text-[1.125rem] font-medium poppins'>
+                                <h6 className='poppins text-[1.125rem] font-medium'>
                                     Deskripsi Singkat
                                 </h6>
                                 <p className='inter'>
-                                    {
-                                        loading ? <Skeleton height={60} /> :
+                                    {loading ? (
+                                        <Skeleton height={60} />
+                                    ) : (
                                         detailMV?.overview
-                                    }
+                                    )}
                                 </p>
                             </div>
                             {/* advanced information lists  */}
                             <div className='mt-6 flex flex-col gap-5 text-neutral-700'>
                                 <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
-                                    <h6 className='min-w-[200px] text-[1rem] font-medium poppins'>
+                                    <h6 className='poppins min-w-[200px] text-[1rem] font-medium'>
                                         Tanggal Rilis
                                     </h6>
-                                    <p className='inter'>{
-                                        loading ? <Skeleton height={30} width={150} /> :
-                                        detailMV?.release_date
-                                    }</p>
+                                    <p className='inter'>
+                                        {loading ? (
+                                            <Skeleton height={30} width={150} />
+                                        ) : (
+                                            detailMV?.release_date
+                                        )}
+                                    </p>
                                 </div>
                                 <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
-                                    <h6 className='min-w-[200px] text-[1rem] font-medium poppins'>
+                                    <h6 className='poppins min-w-[200px] text-[1rem] font-medium'>
                                         Nilai Popularitas
                                     </h6>
-                                    <p className='inter'>{
-                                        loading ? <Skeleton height={30} width={150} /> :
-                                        detailMV?.popularity
-                                    } popularitas</p>
+                                    <p className='inter'>
+                                        {loading ? (
+                                            <Skeleton height={30} width={150} />
+                                        ) : (
+                                            detailMV?.popularity
+                                        )}{' '}
+                                        popularitas
+                                    </p>
                                 </div>
                                 <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
-                                    <h6 className='min-w-[200px] text-[1rem] font-medium poppins'>
+                                    <h6 className='poppins min-w-[200px] text-[1rem] font-medium'>
                                         Perusahaan produksi film
                                     </h6>
                                     <p className='inter'>
-                                        {
-                                            loading ? <Skeleton height={30} width={300} /> :
+                                        {loading ? (
+                                            <Skeleton height={30} width={300} />
+                                        ) : (
                                             detailMV?.production_companies.map(
                                                 (company, idx) => (
                                                     <span
@@ -229,7 +295,7 @@ const DetailMovie = () => {
                                                     </span>
                                                 )
                                             )
-                                        }
+                                        )}
                                     </p>
                                 </div>
                             </div>

@@ -9,21 +9,28 @@ import netray from '@/assets/images/netray.png'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 
 export default function Navbar() {
-
     const [isOpen, setIsOpen] = useState(false)
     let activeStyle = {
         color: 'white',
     }
-    
+
     let location = useLocation()
     function checkPath() {
-        if(location.pathname === '/movies/upcoming' || location.pathname === '/movies/now-playing' || location.pathname === '/movies/popular' || location.pathname === '/series/airing-today' || location.pathname === '/series/top-rated' || location.pathname === '/series/on-the-air') return 'text-white'
+        if (
+            location.pathname === '/movies/upcoming' ||
+            location.pathname === '/movies/now-playing' ||
+            location.pathname === '/movies/popular' ||
+            location.pathname === '/series/airing-today' ||
+            location.pathname === '/series/top-rated' ||
+            location.pathname === '/series/on-the-air'
+        )
+            return 'text-white'
         return 'text-gray-300'
     }
 
     return (
         <header className='sticky top-0 z-50 w-full bg-gray-800 shadow'>
-            <div className='flex h-[4.5rem] items-center justify-between montserrat'>
+            <div className='montserrat flex h-[4.5rem] items-center justify-between'>
                 <div className='flex items-center gap-6'>
                     <div>
                         <Link to={'/'}>
@@ -48,29 +55,37 @@ export default function Navbar() {
 
                             {/* Movies Menu Item */}
                             <Menu>
-                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath()} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}>
+                                <Menu.Button
+                                    className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath()} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}
+                                >
                                     <div className='flex items-center gap-2'>
                                         <span>Movies</span>
-                                        <ChevronDownIcon className='w-4 h-4' />
+                                        <ChevronDownIcon className='h-4 w-4' />
                                     </div>
                                 </Menu.Button>
                                 <Transition
-                                    enter="transition-transform duration-100 ease-out"
-                                    enterFrom="transform scale-95 opacity-0"
-                                    enterTo="transform scale-100 opacity-100"
-                                    leave="transition duration-100 ease-out"
-                                    leaveFrom="transform scale-100 opacity-100"
-                                    leaveTo="transform scale-95 opacity-0"
+                                    enter='transition-transform duration-100 ease-out'
+                                    enterFrom='transform scale-95 opacity-0'
+                                    enterTo='transform scale-100 opacity-100'
+                                    leave='transition duration-100 ease-out'
+                                    leaveFrom='transform scale-100 opacity-100'
+                                    leaveTo='transform scale-95 opacity-0'
                                     className='absolute left-[10.15rem] top-[4rem]'
                                 >
-                                    <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px]'}>
+                                    <Menu.Items
+                                        className={
+                                            'shadow-own flex flex-col rounded-[5px] bg-white py-1'
+                                        }
+                                    >
                                         <Menu.Item>
                                             {({ active }) => (
                                                 <NavLink
                                                     className={`${
-                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                        active
+                                                            ? 'bg-blue-600/50 text-white'
+                                                            : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/movies/upcoming"
+                                                    to='/movies/upcoming'
                                                 >
                                                     Upcoming
                                                 </NavLink>
@@ -80,9 +95,11 @@ export default function Navbar() {
                                             {({ active }) => (
                                                 <NavLink
                                                     className={`${
-                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                        active
+                                                            ? 'bg-blue-600/50 text-white'
+                                                            : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/movies/now-playing"
+                                                    to='/movies/now-playing'
                                                 >
                                                     Now Playing
                                                 </NavLink>
@@ -92,41 +109,51 @@ export default function Navbar() {
                                             {({ active }) => (
                                                 <NavLink
                                                     className={`${
-                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                        active
+                                                            ? 'bg-blue-600/50 text-white'
+                                                            : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/movies/popular"
+                                                    to='/movies/popular'
                                                 >
                                                     Popular
                                                 </NavLink>
                                             )}
                                         </Menu.Item>
-                                    </Menu.Items>                                        
+                                    </Menu.Items>
                                 </Transition>
                             </Menu>
                             <Menu>
-                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath()} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}>
+                                <Menu.Button
+                                    className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath()} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}
+                                >
                                     <div className='flex items-center gap-2'>
                                         <span>TV Series</span>
-                                        <ChevronDownIcon className='w-4 h-4' />
+                                        <ChevronDownIcon className='h-4 w-4' />
                                     </div>
                                 </Menu.Button>
                                 <Transition
-                                    enter="transition-transform duration-100 ease-out"
-                                    enterFrom="transform scale-95 opacity-0"
-                                    enterTo="transform scale-100 opacity-100"
-                                    leave="transition duration-100 ease-out"
-                                    leaveFrom="transform scale-100 opacity-100"
-                                    leaveTo="transform scale-95 opacity-0"
+                                    enter='transition-transform duration-100 ease-out'
+                                    enterFrom='transform scale-95 opacity-0'
+                                    enterTo='transform scale-100 opacity-100'
+                                    leave='transition duration-100 ease-out'
+                                    leaveFrom='transform scale-100 opacity-100'
+                                    leaveTo='transform scale-95 opacity-0'
                                     className='absolute left-[18.30rem] top-[4rem]'
                                 >
-                                    <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px]'}>
+                                    <Menu.Items
+                                        className={
+                                            'shadow-own flex flex-col rounded-[5px] bg-white py-1'
+                                        }
+                                    >
                                         <Menu.Item>
                                             {({ active }) => (
                                                 <NavLink
                                                     className={`${
-                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                        active
+                                                            ? 'bg-blue-600/50 text-white'
+                                                            : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/series/airing-today"
+                                                    to='/series/airing-today'
                                                 >
                                                     Airing Today
                                                 </NavLink>
@@ -136,9 +163,11 @@ export default function Navbar() {
                                             {({ active }) => (
                                                 <NavLink
                                                     className={`${
-                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                        active
+                                                            ? 'bg-blue-600/50 text-white'
+                                                            : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/series/on-the-air"
+                                                    to='/series/on-the-air'
                                                 >
                                                     On TV
                                                 </NavLink>
@@ -148,15 +177,17 @@ export default function Navbar() {
                                             {({ active }) => (
                                                 <NavLink
                                                     className={`${
-                                                        active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                        active
+                                                            ? 'bg-blue-600/50 text-white'
+                                                            : 'bg-white text-black'
                                                     } py-2 px-6`}
-                                                    to="/series/top-rated"
+                                                    to='/series/top-rated'
                                                 >
                                                     Top Rated
                                                 </NavLink>
                                             )}
                                         </Menu.Item>
-                                    </Menu.Items>                                                                               
+                                    </Menu.Items>
                                 </Transition>
                             </Menu>
                         </div>
@@ -225,33 +256,41 @@ export default function Navbar() {
                             style={({ isActive }) =>
                                 isActive ? activeStyle : undefined
                             }
-                            className='block py-4 text-ba[1rem] font-medium text-gray-300'
+                            className='text-ba[1rem] block py-4 font-medium text-gray-300'
                         >
                             Home
                         </NavLink>
                         <Menu>
-                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath()} w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
-                                <div className='flex items-center gap-2 justify-between'>
+                            <Menu.Button
+                                className={`ui-open:rounded-md ui-open:bg-gray-700 ui-open:px-2 ui-open:text-white ${checkPath()} block w-full py-4 text-[1rem] font-medium text-gray-300`}
+                            >
+                                <div className='flex items-center justify-between gap-2'>
                                     <span>Movies</span>
-                                    <ChevronDownIcon className='w-4 h-4' />
+                                    <ChevronDownIcon className='h-4 w-4' />
                                 </div>
                             </Menu.Button>
                             <Transition
-                                enter="transition-transform duration-100 ease-out"
-                                enterFrom="transform scale-95 opacity-0"
-                                enterTo="transform scale-100 opacity-100"
-                                leave="transition duration-100 ease-out"
-                                leaveFrom="transform scale-100 opacity-100"
-                                leaveTo="transform scale-95 opacity-0"
+                                enter='transition-transform duration-100 ease-out'
+                                enterFrom='transform scale-95 opacity-0'
+                                enterTo='transform scale-100 opacity-100'
+                                leave='transition duration-100 ease-out'
+                                leaveFrom='transform scale-100 opacity-100'
+                                leaveTo='transform scale-95 opacity-0'
                             >
-                                <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px] mt-2'}>
+                                <Menu.Items
+                                    className={
+                                        'shadow-own mt-2 flex flex-col rounded-[5px] bg-white py-1'
+                                    }
+                                >
                                     <Menu.Item>
                                         {({ active }) => (
                                             <NavLink
                                                 className={`${
-                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    active
+                                                        ? 'bg-blue-600/50 text-white'
+                                                        : 'bg-white text-black'
                                                 } py-2 px-6`}
-                                                to="/movies/upcoming"
+                                                to='/movies/upcoming'
                                             >
                                                 Upcoming
                                             </NavLink>
@@ -260,53 +299,65 @@ export default function Navbar() {
                                     <Menu.Item>
                                         {({ active }) => (
                                             <NavLink
-                                            className={`${
-                                                active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
-                                            } py-2 px-6`}
-                                            to="/movies/now-playing"
+                                                className={`${
+                                                    active
+                                                        ? 'bg-blue-600/50 text-white'
+                                                        : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                to='/movies/now-playing'
                                             >
-                                            Now Playing
+                                                Now Playing
                                             </NavLink>
                                         )}
                                     </Menu.Item>
                                     <Menu.Item>
                                         {({ active }) => (
                                             <NavLink
-                                            className={`${
-                                                active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
-                                            } py-2 px-6`}
-                                            to="/movies/popular"
+                                                className={`${
+                                                    active
+                                                        ? 'bg-blue-600/50 text-white'
+                                                        : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                to='/movies/popular'
                                             >
                                                 Popular
                                             </NavLink>
                                         )}
                                     </Menu.Item>
-                                </Menu.Items>                                        
+                                </Menu.Items>
                             </Transition>
                         </Menu>
                         <Menu>
-                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath()}  w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
-                                <div className='flex items-center gap-2 justify-between'>
+                            <Menu.Button
+                                className={`ui-open:rounded-md ui-open:bg-gray-700 ui-open:px-2 ui-open:text-white ${checkPath()}  block w-full py-4 text-[1rem] font-medium text-gray-300`}
+                            >
+                                <div className='flex items-center justify-between gap-2'>
                                     <span>TV Series</span>
-                                    <ChevronDownIcon className='w-4 h-4' />
+                                    <ChevronDownIcon className='h-4 w-4' />
                                 </div>
                             </Menu.Button>
                             <Transition
-                                enter="transition-transform duration-100 ease-out"
-                                enterFrom="transform scale-95 opacity-0"
-                                enterTo="transform scale-100 opacity-100"
-                                leave="transition duration-100 ease-out"
-                                leaveFrom="transform scale-100 opacity-100"
-                                leaveTo="transform scale-95 opacity-0"
+                                enter='transition-transform duration-100 ease-out'
+                                enterFrom='transform scale-95 opacity-0'
+                                enterTo='transform scale-100 opacity-100'
+                                leave='transition duration-100 ease-out'
+                                leaveFrom='transform scale-100 opacity-100'
+                                leaveTo='transform scale-95 opacity-0'
                             >
-                                <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px] mt-2'}>
+                                <Menu.Items
+                                    className={
+                                        'shadow-own mt-2 flex flex-col rounded-[5px] bg-white py-1'
+                                    }
+                                >
                                     <Menu.Item>
                                         {({ active }) => (
                                             <NavLink
                                                 className={`${
-                                                    active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
+                                                    active
+                                                        ? 'bg-blue-600/50 text-white'
+                                                        : 'bg-white text-black'
                                                 } py-2 px-6`}
-                                                to="/series/airing-today"
+                                                to='/series/airing-today'
                                             >
                                                 Airing Today
                                             </NavLink>
@@ -315,28 +366,32 @@ export default function Navbar() {
                                     <Menu.Item>
                                         {({ active }) => (
                                             <NavLink
-                                            className={`${
-                                                active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
-                                            } py-2 px-6`}
-                                            to="/series/on-the-air"
+                                                className={`${
+                                                    active
+                                                        ? 'bg-blue-600/50 text-white'
+                                                        : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                to='/series/on-the-air'
                                             >
-                                            On TV
+                                                On TV
                                             </NavLink>
                                         )}
                                     </Menu.Item>
                                     <Menu.Item>
                                         {({ active }) => (
                                             <NavLink
-                                            className={`${
-                                                active ? 'bg-blue-600/50 text-white' : 'bg-white text-black'
-                                            } py-2 px-6`}
-                                            to="/series/top-rated"
+                                                className={`${
+                                                    active
+                                                        ? 'bg-blue-600/50 text-white'
+                                                        : 'bg-white text-black'
+                                                } py-2 px-6`}
+                                                to='/series/top-rated'
                                             >
                                                 Top Rated
                                             </NavLink>
                                         )}
                                     </Menu.Item>
-                                </Menu.Items>                             
+                                </Menu.Items>
                             </Transition>
                         </Menu>
                     </div>

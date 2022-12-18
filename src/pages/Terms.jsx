@@ -16,7 +16,7 @@ export default function Terms() {
         >
             <main className='terms-component'>
                 <section id='container_terms'>
-                {/* Kerjain disini ya Caca */}
+                    {/* Kerjain disini ya Caca */}
                 </section>
             </main>
         </Netray>

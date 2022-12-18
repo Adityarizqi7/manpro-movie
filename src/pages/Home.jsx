@@ -81,12 +81,12 @@ export default function Home() {
                                 id='upcoming_movie'
                                 className='movie-container mb-14 space-y-8'
                             >
-                                <div className='heading-card montserrat flex flex-wrap gap-4 justify-between items-center'>
+                                <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
                                     <h1 className=' font-semibold text-black'>
                                         Upcoming Movie
                                     </h1>
                                     <Link to={'/movies/upcoming'}>
-                                        <h2 className='font-normal text-gray-600 text-sm hover:text-blue-600'>
+                                        <h2 className='text-sm font-normal text-gray-600 hover:text-blue-600'>
                                             See more
                                         </h2>
                                     </Link>
@@ -99,12 +99,12 @@ export default function Home() {
                                 id='now_playing_movie'
                                 className='movie-container mb-14 space-y-8'
                             >
-                                <div className='heading-card montserrat flex flex-wrap gap-4 items-center justify-between'>
+                                <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
                                     <h1 className='font-semibold text-black'>
                                         Now Playing Movie
                                     </h1>
                                     <Link to={'/movies/now-playing'}>
-                                        <h2 className='font-normal text-gray-600 text-sm hover:text-blue-600'>
+                                        <h2 className='text-sm font-normal text-gray-600 hover:text-blue-600'>
                                             See more
                                         </h2>
                                     </Link>
@@ -117,12 +117,12 @@ export default function Home() {
                                 id='popular_movie'
                                 className='movie-container space-y-8'
                             >
-                                <div className='heading-card montserrat flex flex-wrap gap-4 items-center justify-between'>
+                                <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
                                     <h1 className='font-semibold text-black'>
                                         Popular Movie
                                     </h1>
                                     <Link to={'/movies/popular'}>
-                                        <h2 className='font-normal text-gray-600 text-sm hover:text-blue-600'>
+                                        <h2 className='text-sm font-normal text-gray-600 hover:text-blue-600'>
                                             See more
                                         </h2>
                                     </Link>
