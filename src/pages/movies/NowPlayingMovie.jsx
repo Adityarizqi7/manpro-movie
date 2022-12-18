@@ -44,7 +44,11 @@ export default function NowPlayingMovie() {
     const getDataNowPlayingMVAll = React.useCallback( async () => {
         try {
             setLoading(true)
-            const { data, status } = await tmdb.get('/movie/now_playing')
+            const { data, status } = await tmdb.get('/movie/now_playing', {
+                params: {
+                    region: 'ID'
+                }
+            })
             status === 200 && setNowPlayingMVAll(data.results) 
             setLoading(false)
         } catch {

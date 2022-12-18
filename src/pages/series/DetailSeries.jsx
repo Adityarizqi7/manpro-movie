@@ -2,8 +2,8 @@ import tmbd from '@/api/tmbd'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import Lightbox from '@/components/image/Lightbox'
-import { PhotoIcon } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
+import { PhotoIcon, PlayIcon } from '@heroicons/react/24/outline'
 
 import 'react-loading-skeleton/dist/skeleton.css'
 import '@/styles/component/movie/_detailmovies.scss'
@@ -13,28 +13,51 @@ import Netray from '@/layouts/Netray'
 const DetailSeries = () => {
     const [toggler, setToggler] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [togglerTrailer, setTogglerTrailer] = useState(false)
 
     const [detailTV, setDetailTV] = useState(null)
+    const [trailerTV, setTrailerTV] = useState([])
     const { seriesId } = useParams()
 
-    const getDetailMovie = useCallback(async () => {
-        setLoading(true)
-        const res = await tmbd.get(`/tv/${seriesId}`)
-
-        if (res.status === 200) {
+    const getDetailSeries = useCallback( async () => {
+        try {
+            setLoading(true)
+            const { data, status } = await tmbd.get(`/tv/${seriesId}`)
+    
+            if (status === 200) {
+                setLoading(false)
+                setDetailTV(data)
+            }
+        } catch {
             setLoading(false)
-            setDetailTV(res.data)
+        }
+
+        try {
+            setLoading(true)
+            const {data, status} = await tmbd.get(`/tv/${seriesId}/videos`, {
+                params: {
+                    append_to_response: 'videos',
+                },
+            })
+            if (status === 200) {
+                setLoading(false)
+                setTrailerTV(data.results.filter(value => value.name === 'Official Trailer').map(item => {
+                    return item.key
+                }))
+            }
+        } catch {
+            setLoading(false)
         }
     }, [])
 
     useEffect(() => {
-        getDetailMovie()
-    }, [getDetailMovie])
+        getDetailSeries()
+    }, [getDetailSeries])
 
     return (
         <Netray
             title={ `${loading ? 'Loading' : detailTV?.original_name} - Netray`}
-            kw='netray home, netray beranda, netray id home, netray beranda indonesia'
+            kw={ detailTV?.original_title + ' netray' }
             desc='Netray Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan'
             ogUrl={''}
             ogType={''}
@@ -111,6 +134,27 @@ const DetailSeries = () => {
                                     }
                                 </h3>
                             </div>
+                            <Lightbox 
+                            source={[
+                                <iframe
+                                    className='aspect-video'
+                                    width="1920px"
+                                    height="1080px"
+                                    src={`https://www.youtube.com/embed/${trailerTV}?showinfo=0&enablejsapi=1&origin=http://127.0.0.1:5173`}
+                                    title={`${detailTV?.original_name}`}
+                                    frameBorder='0'
+                                    scrolling="no"
+                                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                                    allowFullScreen
+                                ></iframe>
+                            ]} 
+                            toggler={togglerTrailer}
+                        >
+                            <button onClick={() => setTogglerTrailer(!togglerTrailer)} className={`${trailerTV.length === 0 &&'pointer-events-none'} mt-3 montserrat flex items-center text-blue-600 gap-x-1`}>
+                                <PlayIcon className='w-4 h-4' />
+                                <h2 className='text-[0.95rem] font-normal'>Play Opening Credits</h2>
+                            </button>
+                            </Lightbox>
                         </div>
                         {
                             loading ? <Skeleton width={180} height={45} /> :

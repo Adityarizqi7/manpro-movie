@@ -12,32 +12,40 @@ import Netray from '@/layouts/Netray'
 
 const DetailMovie = () => {
     const [toggler, setToggler] = useState(false)
-    const [togglerTrailer, setTogglerTrailer] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [togglerTrailer, setTogglerTrailer] = useState(false)
 
     const [detailMV, setDetailMV] = useState(null)
-    const [trailerMV, setTrailerMV] = useState(null)
+    const [trailerMV, setTrailerMV] = useState([])
     const { movieId } = useParams()
 
-    const getDetailMovie = useCallback(async () => {
-        setLoading(true)
-        const res = await tmbd.get(`/movie/${movieId}`)
-        const res_ = await tmbd.get(`/movie/${movieId}/videos`, {
-            params: {
-                append_to_response: 'videos',
-            },
-        })
-
-        if (res.status === 200) {
+    const getDetailMovie = useCallback( async () => {
+        try {
+            setLoading(true)
+            const {data, status} = await tmbd.get(`/movie/${movieId}`)
+            if (status === 200) {
+                setLoading(false)
+                setDetailMV(data)
+            }
+        } catch {
             setLoading(false)
-            setDetailMV(res.data)
         }
 
-        if (res_.status === 200) {
+        try {
+            setLoading(true)
+            const {data, status} = await tmbd.get(`/movie/${movieId}/videos`, {
+                params: {
+                    append_to_response: 'videos',
+                },
+            })
+            if (status === 200) {
+                setLoading(false)
+                setTrailerMV(data.results.filter(value => value.name === 'Official Trailer').map(item => {
+                    return item.key
+                }))
+            }
+        } catch {
             setLoading(false)
-            setTrailerMV(res_.data.results.filter(value => value.name === 'Official Trailer').map(item => {
-                return item.key
-            }))
         }
     }, [])
 
@@ -48,7 +56,7 @@ const DetailMovie = () => {
     return (
         <Netray
             title={ loading ? 'Loading' : `${detailMV?.original_title} (${detailMV?.release_date.split('-')[0]})` + ' - Netray'}
-            kw='netray home, netray beranda, netray id home, netray beranda indonesia'
+            kw={ detailMV?.original_title + ' netray' }
             desc='Netray Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan'
             ogUrl={''}
             ogType={''}
@@ -140,7 +148,7 @@ const DetailMovie = () => {
                                 ]} 
                                 toggler={togglerTrailer}
                             >
-                                <button onClick={() => setTogglerTrailer(!togglerTrailer)} className='mt-3 montserrat flex items-center text-blue-600 gap-x-1'>
+                                <button onClick={() => setTogglerTrailer(!togglerTrailer)} className={`${trailerMV.length === 0 &&'pointer-events-none'} mt-3 montserrat flex items-center text-blue-600 gap-x-1`}>
                                     <PlayIcon className='w-4 h-4' />
                                     <h2 className='text-[0.95rem] font-normal'>Play Opening Credits</h2>
                                 </button>

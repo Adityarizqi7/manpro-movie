@@ -68,7 +68,7 @@ export default function UpcomingMovie() {
     return (
         <Netray
             title='Upcoming Movies - Netray'
-            kw='upcoming movies, upcoming movies, upcoming movies, upcoming movies'
+            kw='upcoming movies'
             desc='Upcoming Movies - Netray. Lihat film-film apa saja yang akan rilis di platform film kesayangan anda.'
             ogUrl={''}
             ogType={''}
