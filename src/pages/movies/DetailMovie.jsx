@@ -134,19 +134,22 @@ const DetailMovie = () => {
                             </div>
                             <Lightbox 
                                 source={[
-                                    <iframe
-                                        className='aspect-video'
-                                        width="1920px"
-						                height="1080px"
-                                        src={`https://www.youtube.com/embed/${trailerMV}?showinfo=0&enablejsapi=1&origin=http://127.0.0.1:5173`}
-                                        title={`${detailMV?.original_title}`}
-                                        frameBorder='0'
-                                        scrolling="no"
-                                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                                        allowFullScreen
-                                    ></iframe>
+                                    {
+                                        type: "video",
+                                        width: 1920,
+                                        height: 1080,
+                                        poster: `https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`,
+                                        sources: [
+                                            {
+                                                src: `http://www.youtube.com/embed/${trailerMV}`,
+                                                type: "video/mp4"
+                                            }
+                                        ],
+                                        crossOrigin: 'anonymous'
+                                    }
                                 ]} 
-                                toggler={togglerTrailer}
+                                openFunc={togglerTrailer}
+                                closeFunc={() => setTogglerTrailer(!togglerTrailer)}
                             >
                                 <button onClick={() => setTogglerTrailer(!togglerTrailer)} className={`${trailerMV.length === 0 &&'pointer-events-none'} mt-3 montserrat flex items-center text-blue-600 gap-x-1`}>
                                     <PlayIcon className='w-4 h-4' />
@@ -162,14 +165,9 @@ const DetailMovie = () => {
                         {/* informations  */}
                         <div className='wrapper-information'>
                             <Lightbox 
-                                source={[
-                                    <img
-                                        className='object-cover'
-                                        src={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
-                                        alt={`${detailMV?.original_title}`}
-                                    />
-                                ]} 
-                                toggler={toggler}
+                                source={[{ src: `https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`, title: `${detailMV?.original_title}`}]}
+                                openFunc={toggler}
+                                closeFunc={() => setToggler(toggler)}
                             >
                                 <button onClick={() => setToggler(!toggler)} className='button-poster-mobile lg:hidden mb-3 flex items-center gap-2 montserrat focus:outline-none py-1 px-3 border border-blue-600/60 rounded-md'>
                                     <PhotoIcon className='w-5 h-5' />
