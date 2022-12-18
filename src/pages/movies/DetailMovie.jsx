@@ -170,21 +170,23 @@ const DetailMovie = () => {
                             <Lightbox
                                 source={[
                                     {
-                                        type: "video",
+                                        type: 'video',
                                         width: 1920,
                                         height: 1080,
                                         poster: `https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`,
                                         sources: [
                                             {
                                                 src: `http://www.youtube.com/embed/${trailerMV}?showinfo=0&enablejsapi=1&origin=https://netray.netlify.app`,
-                                                type: "video/mp4"
-                                            }
+                                                type: 'video/mp4',
+                                            },
                                         ],
-                                        crossOrigin: 'anonymous'
-                                    }
-                                ]} 
+                                        crossOrigin: 'anonymous',
+                                    },
+                                ]}
                                 openFunc={togglerTrailer}
-                                closeFunc={() => setTogglerTrailer(!togglerTrailer)}
+                                closeFunc={() =>
+                                    setTogglerTrailer(!togglerTrailer)
+                                }
                             >
                                 <button
                                     onClick={() =>
@@ -218,8 +220,13 @@ const DetailMovie = () => {
                         {/* Poster on Mobile */}
                         {/* informations  */}
                         <div className='wrapper-information'>
-                            <Lightbox 
-                                source={[{ src: `https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`, title: `${detailMV?.original_title}`}]}
+                            <Lightbox
+                                source={[
+                                    {
+                                        src: `https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`,
+                                        title: `${detailMV?.original_title}`,
+                                    },
+                                ]}
                                 openFunc={toggler}
                                 closeFunc={() => setToggler(toggler)}
                             >
