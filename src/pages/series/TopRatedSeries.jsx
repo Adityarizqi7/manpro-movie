@@ -44,7 +44,11 @@ export default function TopRatedSeries() {
     const TopratedTVAll = React.useCallback( async () => {
         try {
             setLoading(true)
-            const { data, status } = await tmdb.get('/tv/top_rated')
+            const { data, status } = await tmdb.get('/tv/top_rated', {
+                params: {
+                    region: 'US'
+                }
+            })
             status === 200 && setTopRatedTVAll(data.results) 
             setLoading(false)
         } catch {

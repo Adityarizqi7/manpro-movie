@@ -85,7 +85,7 @@ export default function Home() {
                                     <h1 className=' font-semibold text-black'>
                                         Upcoming Movie
                                     </h1>
-                                    <Link to={'/upcoming-movies'}>
+                                    <Link to={'/movies/upcoming'}>
                                         <h2 className='font-normal text-gray-600 text-sm hover:text-blue-600'>
                                             See more
                                         </h2>
@@ -103,7 +103,7 @@ export default function Home() {
                                     <h1 className='font-semibold text-black'>
                                         Now Playing Movie
                                     </h1>
-                                    <Link to={'/now-playing-movies'}>
+                                    <Link to={'/movies/now-playing'}>
                                         <h2 className='font-normal text-gray-600 text-sm hover:text-blue-600'>
                                             See more
                                         </h2>
@@ -121,7 +121,7 @@ export default function Home() {
                                     <h1 className='font-semibold text-black'>
                                         Popular Movie
                                     </h1>
-                                    <Link to={'/now-playing-movies'}>
+                                    <Link to={'/movies/popular'}>
                                         <h2 className='font-normal text-gray-600 text-sm hover:text-blue-600'>
                                             See more
                                         </h2>
