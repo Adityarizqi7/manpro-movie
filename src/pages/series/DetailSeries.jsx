@@ -136,7 +136,17 @@ const DetailSeries = () => {
                             </div>
                             <Lightbox 
                             source={[
-                                <IframeYoutube title={detailTV?.original_name} trailerKey={trailerTV} />
+                                <iframe
+                                    className='aspect-video'
+                                    width="1920px"
+                                    height="1080px"
+                                    src={`https://www.youtube.com/embed/${trailerTV}?showinfo=0&enablejsapi=1&origin=http://127.0.0.1:5173`}
+                                    title={`${detailTV?.original_name}`}
+                                    frameBorder='0'
+                                    scrolling="no"
+                                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                                    allowFullScreen
+                                ></iframe>
                             ]} 
                             toggler={togglerTrailer}
                         >
