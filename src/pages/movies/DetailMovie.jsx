@@ -9,7 +9,6 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import '@/styles/component/movie/_detailmovies.scss'
 
 import Netray from '@/layouts/Netray'
-import IframeYoutube from '@/components/video/IframeYoutube'
 
 const DetailMovie = () => {
     const [toggler, setToggler] = useState(false)
@@ -135,7 +134,17 @@ const DetailMovie = () => {
                             </div>
                             <Lightbox 
                                 source={[
-                                    <IframeYoutube title={`${detailMV?.original_name}`} trailerKey={trailerMV} />
+                                    <iframe
+                                        className='aspect-video'
+                                        width="1920px"
+						                height="1080px"
+                                        src={`https://www.youtube.com/embed/${trailerMV}?showinfo=0&enablejsapi=1&origin=http://127.0.0.1:5173`}
+                                        title={`${detailMV?.original_title}`}
+                                        frameBorder='0'
+                                        scrolling="no"
+                                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                                        allowFullScreen
+                                    ></iframe>
                                 ]} 
                                 toggler={togglerTrailer}
                             >

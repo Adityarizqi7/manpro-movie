@@ -9,7 +9,6 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import '@/styles/component/movie/_detailmovies.scss'
 
 import Netray from '@/layouts/Netray'
-import IframeYoutube from '@/components/video/IframeYoutube'
 
 const DetailSeries = () => {
     const [toggler, setToggler] = useState(false)

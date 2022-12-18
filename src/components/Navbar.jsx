@@ -16,10 +16,9 @@ export default function Navbar() {
     }
     
     let location = useLocation()
-    function checkPath(...path) {
-        for (let i = 0; i <= path.length; i++) {
-            return path[i] === location.pathname ? 'text-white' : 'text-gray-300'
-        }
+    function checkPath() {
+        if(location.pathname === '/movies/upcoming' || location.pathname === '/movies/now-playing' || location.pathname === '/movies/popular' || location.pathname === '/series/airing-today' || location.pathname === '/series/top-rated' || location.pathname === '/series/on-the-air') return 'text-white'
+        return 'text-gray-300'
     }
 
     return (
@@ -46,8 +45,10 @@ export default function Navbar() {
                             >
                                 Home
                             </NavLink>
+
+                            {/* Movies Menu Item */}
                             <Menu>
-                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath('/movies/upcoming', '/movies/now-playing', '/movies/popular')} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}>
+                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath()} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}>
                                     <div className='flex items-center gap-2'>
                                         <span>Movies</span>
                                         <ChevronDownIcon className='w-4 h-4' />
@@ -60,7 +61,7 @@ export default function Navbar() {
                                     leave="transition duration-100 ease-out"
                                     leaveFrom="transform scale-100 opacity-100"
                                     leaveTo="transform scale-95 opacity-0"
-                                    className='absolute left-[9.25rem] top-[4rem]'
+                                    className='absolute left-[10.15rem] top-[4rem]'
                                 >
                                     <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px]'}>
                                         <Menu.Item>
@@ -103,7 +104,7 @@ export default function Navbar() {
                                 </Transition>
                             </Menu>
                             <Menu>
-                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath('/series/airing-today', '/series/top-rated', '/series/on-the-air')} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}>
+                                <Menu.Button className={`ui-open:bg-gray-700 ui-open:text-white ${checkPath()} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}>
                                     <div className='flex items-center gap-2'>
                                         <span>TV Series</span>
                                         <ChevronDownIcon className='w-4 h-4' />
@@ -116,7 +117,7 @@ export default function Navbar() {
                                     leave="transition duration-100 ease-out"
                                     leaveFrom="transform scale-100 opacity-100"
                                     leaveTo="transform scale-95 opacity-0"
-                                    className='absolute left-[15rem] top-[4rem]'
+                                    className='absolute left-[18.30rem] top-[4rem]'
                                 >
                                     <Menu.Items className={'flex flex-col py-1 bg-white shadow-own rounded-[5px]'}>
                                         <Menu.Item>
@@ -207,6 +208,7 @@ export default function Navbar() {
                 </div>
             </div>
 
+            {/* Mobile Menu Navbar */}
             <Transition
                 show={isOpen}
                 enter='transition ease-out duration-100 transform'
@@ -228,7 +230,7 @@ export default function Navbar() {
                             Home
                         </NavLink>
                         <Menu>
-                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath('/movies/upcoming', '/movies/now-playing', '/movies/popular')} w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
+                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath()} w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
                                 <div className='flex items-center gap-2 justify-between'>
                                     <span>Movies</span>
                                     <ChevronDownIcon className='w-4 h-4' />
@@ -283,7 +285,7 @@ export default function Navbar() {
                             </Transition>
                         </Menu>
                         <Menu>
-                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath('/series/airing-today', '/series/top-rated', '/series/on-the-air')}  w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
+                            <Menu.Button className={`ui-open:bg-gray-700 ui-open:px-2 ui-open:rounded-md ui-open:text-white ${checkPath()}  w-full py-4 text-[1rem] font-medium text-gray-300 block`}>
                                 <div className='flex items-center gap-2 justify-between'>
                                     <span>TV Series</span>
                                     <ChevronDownIcon className='w-4 h-4' />
