@@ -1,19 +1,23 @@
 import tmbd from '@/api/tmbd'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
-import Lightbox from '@/components/image/Lightbox'
+import LightGallery from 'lightgallery/react';
+import lgZoom from 'lightgallery/plugins/zoom';
+import lgVideo from 'lightgallery/plugins/video'
+import lgShare from 'lightgallery/plugins/share'
+import lgRotate from 'lightgallery/plugins/rotate'
 import { useCallback, useEffect, useState } from 'react'
+import lgFullscreen from 'lightgallery/plugins/fullscreen'
 import { PhotoIcon, PlayIcon } from '@heroicons/react/24/outline'
 
 import 'react-loading-skeleton/dist/skeleton.css'
+import 'lightgallery/scss/lightgallery-bundle.scss';
 import '@/styles/component/movie/_detailmovies.scss'
 
 import Netray from '@/layouts/Netray'
 
 const DetailSeries = () => {
-    const [toggler, setToggler] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [togglerTrailer, setTogglerTrailer] = useState(false)
 
     const [detailTV, setDetailTV] = useState(null)
     const [trailerTV, setTrailerTV] = useState([])
@@ -159,37 +163,30 @@ const DetailSeries = () => {
                                     )}
                                 </h3>
                             </div>
-                            <Lightbox
-                                source={[
-                                    <iframe
-                                        className='aspect-video'
-                                        width='1920px'
-                                        height='1080px'
-                                        src={`https://www.youtube.com/embed/${trailerTV}?showinfo=0&enablejsapi=1&origin=https://netray.netlify.app`}
-                                        title={`${detailTV?.original_name}`}
-                                        frameBorder='0'
-                                        scrolling='no'
-                                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                                        allowFullScreen
-                                    ></iframe>,
-                                ]}
-                                toggler={togglerTrailer}
+                            <LightGallery
+                                speed={500}
+                                mode="lg-fade"
+                                plugins={[ lgZoom, lgVideo, lgFullscreen, lgShare ]}
+                                download={true}
+                                autoplayFirstVideo={false}
                             >
-                                <button
-                                    onClick={() =>
-                                        setTogglerTrailer(!togglerTrailer)
-                                    }
-                                    className={`${
-                                        trailerTV.length === 0 &&
-                                        'pointer-events-none'
-                                    } montserrat mt-3 flex items-center gap-x-1 text-blue-600`}
+                                <button className={`${ trailerTV.length ===  0 && 'pointer-events-none'} mt-3 montserrat flex items-center text-blue-600 gap-x-1 cursor-pointer`}
+                                    data-lg-size="1280-720"
+                                    data-iframe={true}
+                                    data-src={`https://www.youtube.com/embed/${trailerTV}`}
+                                    data-poster={`https://image.tmdb.org/t/p/w500/${detailTV?.backdrop_path}`}
                                 >
-                                    <PlayIcon className='h-4 w-4' />
-                                    <h2 className='text-[0.95rem] font-normal'>
-                                        Play Opening Credits
-                                    </h2>
+                                    {
+                                        trailerTV.length ===  0 ?
+                                            <h2 className='text-[0.95rem] font-normal'>Tidak ada trailer</h2>
+                                        :
+                                            <>
+                                                <PlayIcon className='w-4 h-4' />
+                                                <h2 className='text-[0.95rem] font-normal'>Play Opening Credits</h2>
+                                            </>
+                                    }
                                 </button>
-                            </Lightbox>
+                            </LightGallery>
                         </div>
                         {loading ? (
                             <Skeleton width={180} height={45} />
@@ -207,24 +204,26 @@ const DetailSeries = () => {
                         {/* Poster on Mobile */}
                         {/* informations  */}
                         <div className='wrapper-information'>
-                            <Lightbox
-                                source={[
-                                    <img
-                                        className='object-cover'
-                                        src={`https://image.tmdb.org/t/p/w342/${detailTV?.poster_path}`}
-                                        alt={`${detailTV?.original_name}`}
-                                    />,
-                                ]}
-                                toggler={toggler}
+                            <LightGallery
+                                speed={500}
+                                mode="lg-fade"
+                                plugins={[ lgZoom, lgRotate, lgShare, lgFullscreen ]}
+                                download={true}
                             >
-                                <button
-                                    onClick={() => setToggler(!toggler)}
-                                    className='button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden'
+                                <a
+                                    data-sub-html={`<h4>${detailTV?.original_name}</h4>`}
+                                    alt={`https://image.tmdb.org/t/p/w500/${detailTV?.original_name}`}
+                                    data-src={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`}
+                                    data-download={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`}
+                                    data-download-url={true}
                                 >
-                                    <PhotoIcon className='h-5 w-5' />
-                                    <span>Lihat Poster</span>
-                                </button>
-                            </Lightbox>
+                                    <button className='button-poster-mobile lg:hidden mb-3 flex items-center gap-2 montserrat focus:outline-none py-1 px-3 border border-blue-600/60 rounded-md'>
+                                        <PhotoIcon className='w-5 h-5' />
+                                        <span>Lihat Poster</span>
+                                    </button>
+                                </a>
+                            </LightGallery>
+
                             {/* description  */}
                             <div className='space-y-1 text-neutral-700'>
                                 <h6 className='poppins text-[1.125rem] font-medium'>
