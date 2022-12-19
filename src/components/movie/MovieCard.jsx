@@ -23,18 +23,18 @@ function MovieCard({
         <Link to={`/movie/${id}`}>
             <div className='wrapper-card group cursor-pointer'>
                 {
-                    <div className='image-card relative h-[25%] rouned-[0.5rem]'>
+                    <div className='image-card rouned-[0.5rem] relative h-[25%]'>
                         <img
                             src={`${getPoster('w500', poster_path)}`}
                             alt={`${title || original_name}`}
-                            className='w-full h-[25%] rounded-[0.5rem] object-cover object-top'
+                            className='h-[25%] w-full rounded-[0.5rem] object-cover object-top'
                         />
                         <div className='overlay absolute top-0 h-full w-full rounded-[0.5rem] transition-colors group-hover:bg-black/60'>
                             <div className='flex h-full flex-col items-center'>
                                 <PlayIcon className='icon-play my-auto mx-auto w-[18vw] scale-0 rounded-full bg-blue-600 p-2 text-white transition-transform group-hover:scale-100 sm:w-[3.5rem]' />
                             </div>
                         </div>
-                        <div className='rate-year absolute bottom-0 h-[3.5rem] rounded-b-[0.5rem] w-full bg-gradient-to-b from-gray-600/0 via-gray-800/50 to-gray-900/80'>
+                        <div className='rate-year absolute bottom-0 h-[3.5rem] w-full rounded-b-[0.5rem] bg-gradient-to-b from-gray-600/0 via-gray-800/50 to-gray-900/80'>
                             <div className='inter ml-3 mt-4 flex items-center gap-3'>
                                 <h2 className='rounded-[5px] bg-yellow-400 py-[2px] px-[10px] text-sm'>
                                     {vote_average.toFixed(1)}

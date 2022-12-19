@@ -1,8 +1,8 @@
 import tmbd from '@/api/tmbd'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
-import LightGallery from 'lightgallery/react';
-import lgZoom from 'lightgallery/plugins/zoom';
+import LightGallery from 'lightgallery/react'
+import lgZoom from 'lightgallery/plugins/zoom'
 import lgVideo from 'lightgallery/plugins/video'
 import lgShare from 'lightgallery/plugins/share'
 import lgRotate from 'lightgallery/plugins/rotate'
@@ -10,7 +10,7 @@ import { useCallback, useEffect, useState } from 'react'
 import lgFullscreen from 'lightgallery/plugins/fullscreen'
 import { PhotoIcon, PlayIcon } from '@heroicons/react/24/outline'
 
-import 'lightgallery/scss/lightgallery-bundle.scss';
+import 'lightgallery/scss/lightgallery-bundle.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 import '@/styles/component/movie/_detailmovies.scss'
 
@@ -175,26 +175,38 @@ const DetailMovie = () => {
                             </div>
                             <LightGallery
                                 speed={500}
-                                mode="lg-fade"
-                                plugins={[ lgZoom, lgVideo, lgFullscreen, lgShare ]}
+                                mode='lg-fade'
+                                plugins={[
+                                    lgZoom,
+                                    lgVideo,
+                                    lgFullscreen,
+                                    lgShare,
+                                ]}
                                 download={true}
                                 autoplayFirstVideo={false}
                             >
-                                <button className={`${ trailerMV.length ===  0 && 'pointer-events-none'} mt-3 montserrat flex items-center text-blue-600 gap-x-1 cursor-pointer`}
-                                    data-lg-size="1280-720"
+                                <button
+                                    className={`${
+                                        trailerMV.length === 0 &&
+                                        'pointer-events-none'
+                                    } montserrat mt-3 flex cursor-pointer items-center gap-x-1 text-blue-600`}
+                                    data-lg-size='1280-720'
                                     data-iframe={true}
                                     data-src={`https://www.youtube.com/embed/${trailerMV}`}
                                     data-poster={`https://image.tmdb.org/t/p/w500/${detailMV?.backdrop_path}`}
                                 >
-                                    {
-                                        trailerMV.length ===  0 ?
-                                            <h2 className='text-[0.95rem] font-normal'>Tidak ada trailer</h2>
-                                        :
-                                            <>
-                                                <PlayIcon className='w-4 h-4' />
-                                                <h2 className='text-[0.95rem] font-normal'>Play Opening Credits</h2>
-                                            </>
-                                    }
+                                    {trailerMV.length === 0 ? (
+                                        <h2 className='text-[0.95rem] font-normal'>
+                                            Tidak ada trailer
+                                        </h2>
+                                    ) : (
+                                        <>
+                                            <PlayIcon className='h-4 w-4' />
+                                            <h2 className='text-[0.95rem] font-normal'>
+                                                Play Opening Credits
+                                            </h2>
+                                        </>
+                                    )}
                                 </button>
                             </LightGallery>
                         </div>
@@ -214,10 +226,15 @@ const DetailMovie = () => {
                         {/* Poster on Mobile */}
                         {/* informations  */}
                         <div className='wrapper-information'>
-                             <LightGallery
+                            <LightGallery
                                 speed={500}
-                                mode="lg-fade"
-                                plugins={[ lgZoom, lgRotate, lgShare, lgFullscreen ]}
+                                mode='lg-fade'
+                                plugins={[
+                                    lgZoom,
+                                    lgRotate,
+                                    lgShare,
+                                    lgFullscreen,
+                                ]}
                                 download={true}
                             >
                                 <a
@@ -227,8 +244,8 @@ const DetailMovie = () => {
                                     data-download={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
                                     data-download-url={true}
                                 >
-                                    <button className='button-poster-mobile lg:hidden mb-3 flex items-center gap-2 montserrat focus:outline-none py-1 px-3 border border-blue-600/60 rounded-md'>
-                                        <PhotoIcon className='w-5 h-5' />
+                                    <button className='button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden'>
+                                        <PhotoIcon className='h-5 w-5' />
                                         <span>Lihat Poster</span>
                                     </button>
                                 </a>
