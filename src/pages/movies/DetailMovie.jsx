@@ -1,10 +1,16 @@
 import tmbd from '@/api/tmbd'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
-import Lightbox from '@/components/image/Lightbox'
+import LightGallery from 'lightgallery/react';
+import lgZoom from 'lightgallery/plugins/zoom';
+import lgVideo from 'lightgallery/plugins/video'
+import lgShare from 'lightgallery/plugins/share'
+import lgRotate from 'lightgallery/plugins/rotate'
 import { useCallback, useEffect, useState } from 'react'
+import lgFullscreen from 'lightgallery/plugins/fullscreen'
 import { PhotoIcon, PlayIcon } from '@heroicons/react/24/outline'
 
+import 'lightgallery/scss/lightgallery-bundle.scss';
 import 'react-loading-skeleton/dist/skeleton.css'
 import '@/styles/component/movie/_detailmovies.scss'
 
@@ -132,30 +138,30 @@ const DetailMovie = () => {
                                     }
                                 </h3>
                             </div>
-                            <Lightbox 
-                                source={[
-                                    {
-                                        type: "video",
-                                        width: 1920,
-                                        height: 1080,
-                                        poster: `https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`,
-                                        sources: [
-                                            {
-                                                src: `http://www.youtube.com/embed/${trailerMV}`,
-                                                type: "video/mp4"
-                                            }
-                                        ],
-                                        crossOrigin: 'anonymous'
-                                    }
-                                ]} 
-                                openFunc={togglerTrailer}
-                                closeFunc={() => setTogglerTrailer(!togglerTrailer)}
+                            <LightGallery
+                                speed={500}
+                                mode="lg-fade"
+                                plugins={[ lgZoom, lgVideo, lgFullscreen, lgShare ]}
+                                download={true}
+                                autoplayFirstVideo={false}
                             >
-                                <button onClick={() => setTogglerTrailer(!togglerTrailer)} className={`${trailerMV.length === 0 &&'pointer-events-none'} mt-3 montserrat flex items-center text-blue-600 gap-x-1`}>
-                                    <PlayIcon className='w-4 h-4' />
-                                    <h2 className='text-[0.95rem] font-normal'>Play Opening Credits</h2>
+                                <button className={`${ trailerMV.length ===  0 && 'pointer-events-none'} mt-3 montserrat flex items-center text-blue-600 gap-x-1 cursor-pointer`}
+                                    data-lg-size="1280-720"
+                                    data-iframe={true}
+                                    data-src={`https://www.youtube.com/embed/${trailerMV}`}
+                                    data-poster={`https://image.tmdb.org/t/p/w500/${detailMV?.backdrop_path}`}
+                                >
+                                    {
+                                        trailerMV.length ===  0 ?
+                                            <h2 className='text-[0.95rem] font-normal'>Tidak ada trailer</h2>
+                                        :
+                                            <>
+                                                <PlayIcon className='w-4 h-4' />
+                                                <h2 className='text-[0.95rem] font-normal'>Play Opening Credits</h2>
+                                            </>
+                                    }
                                 </button>
-                            </Lightbox>
+                            </LightGallery>
                         </div>
                         {
                             loading ? <Skeleton width={180} height={45} /> :
@@ -164,16 +170,25 @@ const DetailMovie = () => {
                         {/* Poster on Mobile */}
                         {/* informations  */}
                         <div className='wrapper-information'>
-                            <Lightbox 
-                                source={[{ src: `https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`, title: `${detailMV?.original_title}`}]}
-                                openFunc={toggler}
-                                closeFunc={() => setToggler(toggler)}
+                             <LightGallery
+                                speed={500}
+                                mode="lg-fade"
+                                plugins={[ lgZoom, lgRotate, lgShare, lgFullscreen ]}
+                                download={true}
                             >
-                                <button onClick={() => setToggler(!toggler)} className='button-poster-mobile lg:hidden mb-3 flex items-center gap-2 montserrat focus:outline-none py-1 px-3 border border-blue-600/60 rounded-md'>
-                                    <PhotoIcon className='w-5 h-5' />
-                                    <span>Lihat Poster</span>
-                                </button>
-                            </Lightbox>
+                                <a
+                                    data-sub-html={`<h4>${detailMV?.original_name}</h4>`}
+                                    alt={`https://image.tmdb.org/t/p/w500/${detailMV?.original_name}`}
+                                    data-src={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
+                                    data-download={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
+                                    data-download-url={true}
+                                >
+                                    <button className='button-poster-mobile lg:hidden mb-3 flex items-center gap-2 montserrat focus:outline-none py-1 px-3 border border-blue-600/60 rounded-md'>
+                                        <PhotoIcon className='w-5 h-5' />
+                                        <span>Lihat Poster</span>
+                                    </button>
+                                </a>
+                            </LightGallery>
                             {/* description  */}
                             <div className='space-y-1 text-neutral-700'>
                                 <h6 className='text-[1.125rem] font-medium poppins'>

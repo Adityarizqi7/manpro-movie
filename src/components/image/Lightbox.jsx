@@ -1,22 +1,18 @@
 import React from "react"
-import LightboxYet from "yet-another-react-lightbox";
-import Video from "yet-another-react-lightbox/plugins/video";
-// import Captions from "yet-another-react-lightbox/plugins/captions";
+import LightGallery from 'lightgallery/react';
 
-import "yet-another-react-lightbox/styles.css";
-// import "yet-another-react-lightbox/plugins/captions.css";
+import 'lightgallery/scss/lightgallery-bundle.scss';
 
-export default function Lightbox({source, children, openFunc, closeFunc}) {
+export default function Lightbox({children, ...plugins}) {
 
     return (
-        <>
+        <LightGallery
+            speed={500}
+            mode="lg-fade"
+            plugins={[...plugins]}
+            download={true}
+        >
             {children}
-            <LightboxYet
-				open={openFunc}
-				close={closeFunc}
-				slides={source}
-                plugins={[Video]}
-			/>
-        </>
+        </LightGallery>
     )
 }
