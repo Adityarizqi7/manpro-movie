@@ -238,8 +238,8 @@ const DetailMovie = () => {
                                 download={true}
                             >
                                 <a
-                                    data-sub-html={`<h4>${detailMV?.original_name}</h4>`}
-                                    alt={`https://image.tmdb.org/t/p/w500/${detailMV?.original_name}`}
+                                    data-sub-html={`<h4>${detailMV?.original_title}</h4>`}
+                                    alt={`https://image.tmdb.org/t/p/w500/${detailMV?.original_title}`}
                                     data-src={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
                                     data-download={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
                                     data-download-url={true}
