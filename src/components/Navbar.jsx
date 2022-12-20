@@ -7,11 +7,13 @@ import { Menu, Transition, Dialog } from '@headlessui/react'
 
 import '@/styles/component/_navbar.scss'
 import netray from '@/assets/images/netray.png'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import {
+    ChevronDownIcon,
+    MagnifyingGlassIcon,
+} from '@heroicons/react/24/outline'
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
 
 export default function Navbar() {
-
     const inputRef = React.useRef()
     const [loading, setLoading] = React.useState(false)
 
@@ -22,26 +24,32 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenNavbar, setIsOpenNavbar] = useState(false)
 
-    function closeModal() { setIsOpen(false)}
-    function openModal() {setIsOpen(true)}
+    function closeModal() {
+        setIsOpen(false)
+    }
+    function openModal() {
+        setIsOpen(true)
+    }
 
-    const activeStyle = {color: 'white',}
+    const activeStyle = { color: 'white' }
 
     const location = useLocation()
     function checkPathMovies() {
         if (
             location.pathname === '/movies/now-playing' ||
-            location.pathname ===  '/movies/upcoming' ||
+            location.pathname === '/movies/upcoming' ||
             location.pathname === '/movies/popular'
-        ) return 'text-white'
+        )
+            return 'text-white'
         return 'text-gray-300'
     }
     function checkPathSeries() {
         if (
             location.pathname === '/series/airing-today' ||
-            location.pathname ===  '/series/on-the-air' ||
+            location.pathname === '/series/on-the-air' ||
             location.pathname === '/series/top-rated'
-        ) return 'text-white'
+        )
+            return 'text-white'
         return 'text-gray-300'
     }
 
@@ -50,7 +58,7 @@ export default function Navbar() {
         e.preventDefault()
         setLoading(true)
 
-        setSearchTempValue(current => [inputRef.current.value, ...current])
+        setSearchTempValue((current) => [inputRef.current.value, ...current])
 
         try {
             const { data, status } = await tmdb.get('/search/multi', {
@@ -70,19 +78,18 @@ export default function Navbar() {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyM') {
             event.preventDefault()
             setIsOpen(true)
-        } else if(event.key === 'Delete') {
+        } else if (event.key === 'Delete') {
             event.preventDefault()
             setSearchMovie('')
         }
     }, [])
-    
+
     React.useEffect(() => {
         document.addEventListener('keydown', handleFocusInput)
 
         return () => {
             document.removeEventListener('keydown', handleFocusInput)
         }
-
     }, [handleFocusInput])
 
     return (
@@ -250,52 +257,60 @@ export default function Navbar() {
                         </div>
                     </div>
                 </div>
-                <button className={
-                        `cursor-pointer bg-gray-700/70 p-3 rounded-lg xl:w-[20vw] border border-gray-600/80`
-                    } 
-                    type="button"
+                <button
+                    className={`cursor-pointer rounded-lg border border-gray-600/80 bg-gray-700/70 p-3 xl:w-[20vw]`}
+                    type='button'
                     onClick={openModal}
-                >   
-                    <div className="flex items-center gap-3">
+                >
+                    <div className='flex items-center gap-3'>
                         <MagnifyingGlassIcon className='w-5 text-gray-500' />
-                        <h1 className='text-gray-400 5xs:hidden text-sm'>Quick Search....</h1>
+                        <h1 className='text-sm text-gray-400 5xs:hidden'>
+                            Quick Search....
+                        </h1>
                         <h1
-                            className={`text-[14px] 2xs:hidden font-semibold text-gray-400 ml-auto`}
+                            className={`ml-auto text-[14px] font-semibold text-gray-400 2xs:hidden`}
                         >
                             Ctrl M
                         </h1>
                     </div>
                 </button>
                 <Transition appear show={isOpen} as={Fragment}>
-                    <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                    <Dialog
+                        as='div'
+                        className='relative z-10'
+                        onClose={closeModal}
+                    >
                         <Transition.Child
                             as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
+                            enter='ease-out duration-300'
+                            enterFrom='opacity-0'
+                            enterTo='opacity-100'
+                            leave='ease-in duration-200'
+                            leaveFrom='opacity-100'
+                            leaveTo='opacity-0'
                         >
-                            <div className="fixed inset-0 bg-black bg-opacity-10 backdrop-blur-sm" />
+                            <div className='fixed inset-0 bg-black bg-opacity-10 backdrop-blur-sm' />
                         </Transition.Child>
 
-                        <div className="fixed inset-0 overflow-y-auto">
-                            <div className="flex min-h-full items-center justify-center p-4 text-center">
+                        <div className='fixed inset-0 overflow-y-auto'>
+                            <div className='flex min-h-full items-center justify-center p-4 text-center'>
                                 <Transition.Child
                                     as={Fragment}
-                                    enter="ease-out duration-300"
-                                    enterFrom="opacity-0 scale-95"
-                                    enterTo="opacity-100 scale-100"
-                                    leave="ease-in duration-200"
-                                    leaveFrom="opacity-100 scale-100"
-                                    leaveTo="opacity-0 scale-95"
+                                    enter='ease-out duration-300'
+                                    enterFrom='opacity-0 scale-95'
+                                    enterTo='opacity-100 scale-100'
+                                    leave='ease-in duration-200'
+                                    leaveFrom='opacity-100 scale-100'
+                                    leaveTo='opacity-0 scale-95'
                                 >
-                                    <Dialog.Panel className="w-full max-w-2xl transform rounded-2xl bg-white 4xs:px-3 p-6 text-left align-middle transition-all shadow-own">
+                                    <Dialog.Panel className='shadow-own w-full max-w-2xl transform rounded-2xl bg-white p-6 text-left align-middle transition-all 4xs:px-3'>
                                         <div className='search-movies montserrat relative'>
-                                            <form onSubmit={handleSubmitSearch} className='box-search flex items-center border-b pb-4 border-gray-300'>
-                                                <MagnifyingGlassIcon className='w-6 h-6 text-gray-500' />
-                                                <div className="form-control w-full">
+                                            <form
+                                                onSubmit={handleSubmitSearch}
+                                                className='box-search flex items-center border-b border-gray-300 pb-4'
+                                            >
+                                                <MagnifyingGlassIcon className='h-6 w-6 text-gray-500' />
+                                                <div className='form-control w-full'>
                                                     <input
                                                         type='text'
                                                         name='title'
@@ -309,13 +324,17 @@ export default function Navbar() {
                                                     {
                                                         <>
                                                             <kbd
-                                                                onClick={deleteText}
+                                                                onClick={
+                                                                    deleteText
+                                                                }
                                                                 className='montserrat absolute right-0 top-[-0.2rem] hidden cursor-pointer rounded-lg border border-gray-200 px-2 py-1.5 text-xs font-semibold text-gray-800 sm:block'
                                                             >
                                                                 Esc
                                                             </kbd>
                                                             <kbd
-                                                                onClick={deleteText}
+                                                                onClick={
+                                                                    deleteText
+                                                                }
                                                                 className='montserrat absolute right-0 top-[-0.2rem] block cursor-pointer rounded-lg border border-gray-200 px-2 py-1.5 text-xs font-semibold text-gray-800 sm:hidden'
                                                             >
                                                                 Del
@@ -324,9 +343,8 @@ export default function Navbar() {
                                                     }
                                                 </div>
                                             </form>
-                                            <div className="box-result-search overflow-y-auto h-[28vw] space-y-10">
-                                                {  
-                                                    /* searchMovie === '' ? 
+                                            <div className='box-result-search h-[28vw] space-y-10 overflow-y-auto'>
+                                                {/* searchMovie === '' ? 
                                                     <div className="movies-result my-5 montserrat space-y-3 h-[14vw] pr-4 overflow-y-auto">
                                                         <h1 className='font-semibold text-[1.25rem]'>Recent</h1>
                                                         <div className="search-value-temp">
@@ -344,50 +362,91 @@ export default function Navbar() {
                                                             }
                                                         </div>
                                                     </div>
-                                                : */
-                                                }
-                                                <div className="movies-result my-5 montserrat space-y-3 h-[14vw] pr-4 overflow-y-auto">
-                                                    <h1 className='font-semibold text-[1.25rem]'>Movies</h1>
-                                                    <div className="results flex flex-col gap-2">
-                                                        {
-                                                            searchResult.map((e, idx) => {
+                                                : */}
+                                                <div className='movies-result montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4'>
+                                                    <h1 className='text-[1.25rem] font-semibold'>
+                                                        Movies
+                                                    </h1>
+                                                    <div className='results flex flex-col gap-2'>
+                                                        {searchResult.map(
+                                                            (e, idx) => {
                                                                 return (
-                                                                    e.media_type === 'movie' &&  (
-                                                                        <a href={`/movie/${e.id}`}>
-                                                                            <div key={idx} className="box-item-result flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-md hover:bg-blue-500 hover:text-white">
-                                                                                <div className="highlight-info-result flex items-center gap-3">
-                                                                                    <img src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} alt={e.title} className='w-6 aspect-square rounded-full object-cover' />
-                                                                                    <h2>{e.title}</h2>
+                                                                    e.media_type ===
+                                                                        'movie' && (
+                                                                        <a
+                                                                            href={`/movie/${e.id}`}
+                                                                        >
+                                                                            <div
+                                                                                key={
+                                                                                    idx
+                                                                                }
+                                                                                className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'
+                                                                            >
+                                                                                <div className='highlight-info-result flex items-center gap-3'>
+                                                                                    <img
+                                                                                        src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`}
+                                                                                        alt={
+                                                                                            e.title
+                                                                                        }
+                                                                                        className='aspect-square w-6 rounded-full object-cover'
+                                                                                    />
+                                                                                    <h2>
+                                                                                        {
+                                                                                            e.title
+                                                                                        }
+                                                                                    </h2>
                                                                                 </div>
-                                                                                <ChevronRightIcon className='w-3 h-3' />
+                                                                                <ChevronRightIcon className='h-3 w-3' />
                                                                             </div>
                                                                         </a>
                                                                     )
                                                                 )
-                                                            })
-                                                        }
+                                                            }
+                                                        )}
                                                     </div>
                                                 </div>
-                                                <div className="series-result my-5 montserrat space-y-3 h-[14vw] pr-4 overflow-y-auto">
-                                                    <h1 className='font-semibold text-[1.25rem]'>Series / TV Show</h1>
-                                                    <div className="results flex flex-col gap-2">
-                                                        {
-                                                            searchResult.map((e, idx) => {
+                                                <div className='series-result montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4'>
+                                                    <h1 className='text-[1.25rem] font-semibold'>
+                                                        Series / TV Show
+                                                    </h1>
+                                                    <div className='results flex flex-col gap-2'>
+                                                        {searchResult.map(
+                                                            (e, idx) => {
                                                                 return (
-                                                                    e.media_type === 'tv' &&  (
-                                                                        <a href={e.id}>
-                                                                            <div key={idx} className="box-item-result flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-md hover:bg-blue-500 hover:text-white">
-                                                                                <div className="highlight-info-result flex items-center gap-3">
-                                                                                    <img src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} alt={e.name} className='w-6 aspect-square rounded-full object-cover' />
-                                                                                    <h2>{e.name}</h2>
+                                                                    e.media_type ===
+                                                                        'tv' && (
+                                                                        <a
+                                                                            href={
+                                                                                e.id
+                                                                            }
+                                                                        >
+                                                                            <div
+                                                                                key={
+                                                                                    idx
+                                                                                }
+                                                                                className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'
+                                                                            >
+                                                                                <div className='highlight-info-result flex items-center gap-3'>
+                                                                                    <img
+                                                                                        src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`}
+                                                                                        alt={
+                                                                                            e.name
+                                                                                        }
+                                                                                        className='aspect-square w-6 rounded-full object-cover'
+                                                                                    />
+                                                                                    <h2>
+                                                                                        {
+                                                                                            e.name
+                                                                                        }
+                                                                                    </h2>
                                                                                 </div>
-                                                                                <ChevronRightIcon className='w-3 h-3' />
+                                                                                <ChevronRightIcon className='h-3 w-3' />
                                                                             </div>
                                                                         </a>
                                                                     )
                                                                 )
-                                                            })
-                                                        }
+                                                            }
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>
