@@ -1,8 +1,10 @@
+import React from 'react'
 import tmbd from '@/api/tmbd'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import LightGallery from 'lightgallery/react'
 import lgZoom from 'lightgallery/plugins/zoom'
+import { GlobalContext } from '@/routes/Router'
 import lgVideo from 'lightgallery/plugins/video'
 import lgShare from 'lightgallery/plugins/share'
 import lgRotate from 'lightgallery/plugins/rotate'
@@ -17,6 +19,7 @@ import '@/styles/component/movie/_detailmovies.scss'
 import Netray from '@/layouts/Netray'
 
 const DetailMovie = () => {
+
     const [toggler, setToggler] = useState(false)
     const [loading, setLoading] = useState(false)
     const [togglerTrailer, setTogglerTrailer] = useState(false)
@@ -24,6 +27,14 @@ const DetailMovie = () => {
     const [detailMV, setDetailMV] = useState(null)
     const [trailerMV, setTrailerMV] = useState([])
     const { movieId } = useParams()
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
 
     const getDetailMovie = useCallback(async () => {
         try {
@@ -83,7 +94,7 @@ const DetailMovie = () => {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className='detail-movie-component'>
+            <main className={`${renderTheme(theme, "bg-dark-theme")} detail-movie-component`}>
                 {/* banner */}
                 <div className='jumbotron-image'>
                     {loading && <Skeleton height={500} />}
@@ -112,13 +123,13 @@ const DetailMovie = () => {
                     <div className='wrapper-content w-full space-y-8 lg:w-[70%]'>
                         {/* head title  */}
                         <div className='head-title-content'>
-                            <h2 className='montserrat text-[1.875rem] font-medium text-neutral-800'>
+                            <h2 className={`${renderTheme(theme, "text-white", 'text-neutral-800')} montserrat text-[1.875rem] font-medium`}>
                                 {loading ? (
                                     <Skeleton width={300} height={50} />
                                 ) : (
                                     <>
                                         <span>{`${detailMV?.original_title}`}</span>
-                                        <span className='ml-2 font-light text-gray-600'>
+                                        <span className={`${renderTheme(theme, "text-gray-400", 'text-gray-600')} ml-2 font-light`}>
                                             (
                                             {`${
                                                 detailMV?.release_date.split(
@@ -156,8 +167,8 @@ const DetailMovie = () => {
                                         </div>
                                     </div>
                                 )}
-                                <span>·</span>
-                                <h3 className='montserrat'>
+                                <span className={`${renderTheme(theme, "text-white", 'text-black')}`}>·</span>
+                                <h3 className={`${renderTheme(theme, "text-white", 'text-black')} montserrat`}>
                                     {loading ? (
                                         <Skeleton
                                             height={30}
@@ -217,8 +228,8 @@ const DetailMovie = () => {
                                 className={`${
                                     detailMV?.tagline === ''
                                         ? 'hidden'
-                                        : 'block'
-                                } text-[6vw] font-light italic text-gray-700 sm:text-[1.5rem]`}
+                                        : `${renderTheme(theme, "text-gray-300", 'text-gray-700')} block`
+                                } text-[6vw] font-light italic sm:text-[1.5rem]`}
                             >
                                 '{detailMV?.tagline}'
                             </h2>
@@ -244,18 +255,18 @@ const DetailMovie = () => {
                                     data-download={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
                                     data-download-url={true}
                                 >
-                                    <button className='button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden'>
+                                    <button className={`${renderTheme(theme, "text-white", 'text-black')} button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden`}>
                                         <PhotoIcon className='h-5 w-5' />
                                         <span>Lihat Poster</span>
                                     </button>
                                 </a>
                             </LightGallery>
                             {/* description  */}
-                            <div className='space-y-1 text-neutral-700'>
-                                <h6 className='poppins text-[1.125rem] font-medium'>
+                            <div className='space-y-1'>
+                                <h6 className={`${renderTheme(theme, "text-gray-100", 'text-black')} poppins text-[1.125rem] font-medium`}>
                                     Deskripsi Singkat
                                 </h6>
-                                <p className='inter'>
+                                <p className={`${renderTheme(theme, "text-gray-400", 'text-neutral-700')} inter`}>
                                     {loading ? (
                                         <Skeleton height={60} />
                                     ) : (
@@ -264,7 +275,7 @@ const DetailMovie = () => {
                                 </p>
                             </div>
                             {/* advanced information lists  */}
-                            <div className='mt-6 flex flex-col gap-5 text-neutral-700'>
+                            <div className={`${renderTheme(theme, "text-gray-300", 'text-neutral-700')} mt-6 flex flex-col gap-5`}>
                                 <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
                                     <h6 className='poppins min-w-[200px] text-[1rem] font-medium'>
                                         Tanggal Rilis

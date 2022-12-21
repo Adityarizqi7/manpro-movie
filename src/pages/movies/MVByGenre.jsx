@@ -2,6 +2,7 @@ import React from 'react'
 import tmdb from '@/api/tmbd'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
+import { GlobalContext } from '@/routes/Router'
 
 import '@/styles/movie/_mvbygenre.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -18,6 +19,14 @@ export default function MVByGenre() {
 
     const [index, setIndex] = React.useState(1)
     const [loading, setLoading] = React.useState(false)
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
 
     const loadMore = () => {
         setLoading(true)
@@ -75,10 +84,10 @@ export default function MVByGenre() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className='mvby-genre-movies-component'>
+            <main className={`${renderTheme(theme, "bg-dark-theme")} mvby-genre-movies-component`}>
                 <section id='mvby_genre_container_movies'>
                     <div className='heading-mvby-genre-movies montserrat mb-8'>
-                        <h1 className='text-[2rem] font-semibold text-black'>
+                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
                             {genre.map((e) => e.name + ' Movie')}
                         </h1>
                     </div>
