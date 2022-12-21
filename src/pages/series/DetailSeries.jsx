@@ -1,8 +1,10 @@
+import React from 'react'
 import tmbd from '@/api/tmbd'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import LightGallery from 'lightgallery/react'
 import lgZoom from 'lightgallery/plugins/zoom'
+import { GlobalContext } from '@/routes/Router'
 import lgVideo from 'lightgallery/plugins/video'
 import lgShare from 'lightgallery/plugins/share'
 import lgRotate from 'lightgallery/plugins/rotate'
@@ -12,7 +14,7 @@ import { PhotoIcon, PlayIcon } from '@heroicons/react/24/outline'
 
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'lightgallery/scss/lightgallery-bundle.scss'
-import '@/styles/component/movie/_detailmovies.scss'
+import '@/styles/component/series/_detailseries.scss'
 
 import Netray from '@/layouts/Netray'
 
@@ -22,6 +24,14 @@ const DetailSeries = () => {
     const [detailTV, setDetailTV] = useState(null)
     const [trailerTV, setTrailerTV] = useState([])
     const { seriesId } = useParams()
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
 
     const getDetailSeries = useCallback(async () => {
         try {
@@ -73,7 +83,7 @@ const DetailSeries = () => {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className='detail-movie-component'>
+            <main className={`${renderTheme(theme, "bg-dark-theme")} detail-series-component`}>
                 {/* banner */}
                 <div className='jumbotron-image'>
                     {loading && <Skeleton height={500} />}
@@ -86,7 +96,7 @@ const DetailSeries = () => {
                     )}
                 </div>
                 {/* contents */}
-                <div className='content-detail-movie lg:flex lg:gap-7'>
+                <div className='content-detail-series lg:flex lg:gap-7'>
                     {/* poster  */}
                     <div className='poster-content hidden w-[30%] rounded-md lg:block'>
                         {loading && <Skeleton height={500} />}
@@ -101,13 +111,13 @@ const DetailSeries = () => {
                     <div className='wrapper-content w-full space-y-6 lg:w-[70%]'>
                         {/* head title  */}
                         <div className='head-title-content'>
-                            <h2 className='montserrat text-[1.875rem] font-medium text-neutral-800'>
+                            <h2 className={`${renderTheme(theme, "text-white", 'text-neutral-800')} montserrat text-[1.875rem] font-medium`}>
                                 {loading ? (
                                     <Skeleton width={300} height={50} />
                                 ) : (
                                     <>
                                         <span>{`${detailTV?.original_name}`}</span>
-                                        <span className='ml-2 font-light text-gray-600'>
+                                        <span className={`${renderTheme(theme, "text-gray-400", 'text-gray-600')} ml-2 font-light`}>
                                             (
                                             {`${
                                                 detailTV?.first_air_date.split(
@@ -145,8 +155,8 @@ const DetailSeries = () => {
                                         </div>
                                     </div>
                                 )}
-                                <span>·</span>
-                                <h3 className='montserrat'>
+                                <span className={`${renderTheme(theme, "text-white", 'text-black')}`}>·</span>
+                                <h3 className={`${renderTheme(theme, "text-white", 'text-black')} montserrat`}>
                                     {loading ? (
                                         <Skeleton
                                             height={30}
@@ -207,8 +217,8 @@ const DetailSeries = () => {
                                 className={`${
                                     detailTV?.tagline === ''
                                         ? 'hidden'
-                                        : 'block'
-                                } text-[6vw] font-light italic text-gray-700 sm:text-[1.5rem]`}
+                                        : `${renderTheme(theme, "text-gray-300", 'text-gray-700')} block`
+                                } text-[6vw] font-light italic sm:text-[1.5rem]`}
                             >
                                 '{detailTV?.tagline}'
                             </h2>
@@ -234,7 +244,7 @@ const DetailSeries = () => {
                                     data-download={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`}
                                     data-download-url={true}
                                 >
-                                    <button className='button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden'>
+                                    <button className={`${renderTheme(theme, "text-white", 'text-black')} button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden`}>
                                         <PhotoIcon className='h-5 w-5' />
                                         <span>Lihat Poster</span>
                                     </button>
@@ -243,10 +253,10 @@ const DetailSeries = () => {
 
                             {/* description  */}
                             <div className='space-y-1 text-neutral-700'>
-                                <h6 className='poppins text-[1.125rem] font-medium'>
+                                <h6 className={`${renderTheme(theme, "text-gray-100", 'text-black')} poppins text-[1.125rem] font-medium`}>
                                     Deskripsi Singkat
                                 </h6>
-                                <p className='inter'>
+                                <p className={`${renderTheme(theme, "text-gray-400", 'text-neutral-700')} inter`}>
                                     {loading ? (
                                         <Skeleton height={60} />
                                     ) : (
@@ -255,7 +265,7 @@ const DetailSeries = () => {
                                 </p>
                             </div>
                             {/* advanced information lists  */}
-                            <div className='mt-6 flex flex-col gap-5 text-neutral-700'>
+                            <div className={`${renderTheme(theme, "text-gray-300", 'text-neutral-700')} mt-6 flex flex-col gap-5`}>
                                 <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
                                     <h6 className='poppins min-w-[200px] text-[1rem] font-medium'>
                                         Tanggal Rilis
@@ -307,7 +317,7 @@ const DetailSeries = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className='creator-detail mt-8 text-neutral-700'>
+                            <div className={`${renderTheme(theme, "text-gray-300", 'text-neutral-700')} creator-detail mt-8`}>
                                 {loading ? (
                                     <Skeleton height={30} width={300} />
                                 ) : detailTV?.created_by.length < 1 ? (

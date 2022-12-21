@@ -58,7 +58,7 @@ export default function List({ title, className, id, urlAPI }) {
                                     key={index}
                                     to={`/genre/${item.id}/movie`}
                                 >
-                                    <li className='border-b-[1px] border-gray-300/50 px-2 pt-2 pb-1 hover:bg-gray-50'>
+                                    <li className={`${renderTheme(theme, 'hover:bg-gray-800', "hover:bg-gray-50")} border-b-[1px] border-gray-300/50 px-2 pt-2 pb-1`}>
                                         <div className='montserrat flex flex-wrap justify-between gap-3'>
                                             <h2 className={`${renderTheme(theme, 'text-white', "text-gray-800")} 'text-md line-clamp-1 font-medium`}>
                                                 {item.name || <Skeleton />}
