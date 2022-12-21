@@ -4,5 +4,10 @@ header {
         @media only screen and (max-width: 639px) {
             padding: 0 1.5rem;
         }
+
     }
+}
+.overlay-bg-modal {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }

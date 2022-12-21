@@ -267,7 +267,7 @@ export default function Navbar() {
                     </div>
                 </button>
                 <Transition appear show={isOpen} as={Fragment}>
-                    <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                    <Dialog as="div" className="container-dialog relative z-10" onClose={closeModal}>
                         <Transition.Child
                             as={Fragment}
                             enter="ease-out duration-300"
@@ -277,7 +277,7 @@ export default function Navbar() {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                         >
-                            <div className="fixed inset-0 bg-black bg-opacity-10 backdrop-blur-sm" />
+                            <div className="overlay-bg-modal fixed inset-0 bg-black bg-opacity-10" />
                         </Transition.Child>
 
                         <div className="fixed inset-0 overflow-y-auto">
@@ -309,7 +309,7 @@ export default function Navbar() {
                                                     {
                                                         <>
                                                             <kbd
-                                                                onClick={deleteText}
+                                                                onClick={closeModal}
                                                                 className='montserrat absolute right-0 top-[-0.2rem] hidden cursor-pointer rounded-lg border border-gray-200 px-2 py-1.5 text-xs font-semibold text-gray-800 sm:block'
                                                             >
                                                                 Esc
@@ -324,72 +324,74 @@ export default function Navbar() {
                                                     }
                                                 </div>
                                             </form>
-                                            <div className="box-result-search overflow-y-auto h-[28vw] space-y-10">
+                                            <div className="box-result-search overflow-y-auto 2xs:h-[100vw] h-[28vw] space-y-10">
                                                 {  
-                                                    /* searchMovie === '' ? 
-                                                    <div className="movies-result my-5 montserrat space-y-3 h-[14vw] pr-4 overflow-y-auto">
-                                                        <h1 className='font-semibold text-[1.25rem]'>Recent</h1>
-                                                        <div className="search-value-temp">
-                                                            {
-                                                                searchTempValue?.map((e, idx) => {
-                                                                    return (
-                                                                        <div key={idx} className="box-item-result flex items-center justify-between cursor-pointer p-4 border-t border-gray-300/30 hover:bg-blue-50/50 hover:text-gray-900">
-                                                                            <div className="highlight-info-result flex items-center gap-3 font-medium text-md">
-                                                                                <h2>{e}</h2>
+                                                    searchResult.length < 1 ? 
+                                                        <div className="movies-result my-5 montserrat space-y-3 h-[14vw] pr-4 overflow-y-auto">
+                                                            <h1 className='font-semibold text-[1.25rem]'>Tidak ada pencarian</h1>
+                                                            {/* <div className="search-value-temp">
+                                                                {
+                                                                    searchTempValue?.map((e, idx) => {
+                                                                        return (
+                                                                            <div key={idx} className="box-item-result flex items-center justify-between cursor-pointer p-4 border-t border-gray-300/30 hover:bg-blue-50/50 hover:text-gray-900">
+                                                                                <div className="highlight-info-result flex items-center gap-3 font-medium text-md">
+                                                                                    <h2>{e}</h2>
+                                                                                </div>
+                                                                                <ChevronRightIcon className='w-3 h-3' />
                                                                             </div>
-                                                                            <ChevronRightIcon className='w-3 h-3' />
-                                                                        </div>
-                                                                    )
-                                                                })
-                                                            }
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div> */}
                                                         </div>
-                                                    </div>
-                                                : */
+                                                    :  
+                                                    <>
+                                                        <div className="movies-result my-5 montserrat space-y-3 2xs:h-[50vw] h-[14vw] pr-4 overflow-y-auto">
+                                                            <h1 className='font-semibold text-[1.25rem]'>Movies</h1>
+                                                            <div className="results flex flex-col gap-2">
+                                                                {
+                                                                    searchResult.map((e, idx) => {
+                                                                        return (
+                                                                            e.media_type === 'movie' &&  (
+                                                                                <a key={idx} href={`/movie/${e.id}`}>
+                                                                                    <div className="box-item-result flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-md hover:bg-blue-500 hover:text-white">
+                                                                                        <div className="highlight-info-result flex items-center gap-3">
+                                                                                            <img src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} alt={e.title} className='w-6 aspect-square rounded-full object-cover' />
+                                                                                            <h2>{e.title}</h2>
+                                                                                        </div>
+                                                                                        <ChevronRightIcon className='w-3 h-3' />
+                                                                                    </div>
+                                                                                </a>
+                                                                            )
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div className="series-result my-5 montserrat space-y-3 2xs:h-[50vw] h-[14vw] pr-4 overflow-y-auto">
+                                                            <h1 className='font-semibold text-[1.25rem]'>Series / TV Show</h1>
+                                                            <div className="results flex flex-col gap-2">
+                                                                {
+                                                                    searchResult.map((e, idx) => {
+                                                                        return (
+                                                                            e.media_type === 'tv' &&  (
+                                                                                <a key={idx} href={e.id}>
+                                                                                    <div className="box-item-result flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-md hover:bg-blue-500 hover:text-white">
+                                                                                        <div className="highlight-info-result flex items-center gap-3">
+                                                                                            <img src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} alt={e.name} className='w-6 aspect-square rounded-full object-cover' />
+                                                                                            <h2>{e.name}</h2>
+                                                                                        </div>
+                                                                                        <ChevronRightIcon className='w-3 h-3' />
+                                                                                    </div>
+                                                                                </a>
+                                                                            )
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </>
                                                 }
-                                                <div className="movies-result my-5 montserrat space-y-3 h-[14vw] pr-4 overflow-y-auto">
-                                                    <h1 className='font-semibold text-[1.25rem]'>Movies</h1>
-                                                    <div className="results flex flex-col gap-2">
-                                                        {
-                                                            searchResult.map((e, idx) => {
-                                                                return (
-                                                                    e.media_type === 'movie' &&  (
-                                                                        <a href={`/movie/${e.id}`}>
-                                                                            <div key={idx} className="box-item-result flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-md hover:bg-blue-500 hover:text-white">
-                                                                                <div className="highlight-info-result flex items-center gap-3">
-                                                                                    <img src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} alt={e.title} className='w-6 aspect-square rounded-full object-cover' />
-                                                                                    <h2>{e.title}</h2>
-                                                                                </div>
-                                                                                <ChevronRightIcon className='w-3 h-3' />
-                                                                            </div>
-                                                                        </a>
-                                                                    )
-                                                                )
-                                                            })
-                                                        }
-                                                    </div>
-                                                </div>
-                                                <div className="series-result my-5 montserrat space-y-3 h-[14vw] pr-4 overflow-y-auto">
-                                                    <h1 className='font-semibold text-[1.25rem]'>Series / TV Show</h1>
-                                                    <div className="results flex flex-col gap-2">
-                                                        {
-                                                            searchResult.map((e, idx) => {
-                                                                return (
-                                                                    e.media_type === 'tv' &&  (
-                                                                        <a href={e.id}>
-                                                                            <div key={idx} className="box-item-result flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-md hover:bg-blue-500 hover:text-white">
-                                                                                <div className="highlight-info-result flex items-center gap-3">
-                                                                                    <img src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} alt={e.name} className='w-6 aspect-square rounded-full object-cover' />
-                                                                                    <h2>{e.name}</h2>
-                                                                                </div>
-                                                                                <ChevronRightIcon className='w-3 h-3' />
-                                                                            </div>
-                                                                        </a>
-                                                                    )
-                                                                )
-                                                            })
-                                                        }
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </Dialog.Panel>
