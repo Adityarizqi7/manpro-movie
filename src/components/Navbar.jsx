@@ -1,14 +1,15 @@
 // import React from 'react'
 import tmdb from '@/api/tmbd'
 import { useLocation } from 'react-router-dom'
-import React, { useState, Fragment } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import React, { useState, Fragment } from 'react'
+import { ChevronRightIcon } from '@heroicons/react/24/solid'
 import { Menu, Transition, Dialog } from '@headlessui/react'
+import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 import '@/styles/component/_navbar.scss'
 import netray from '@/assets/images/netray.png'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import { ChevronRightIcon } from '@heroicons/react/24/solid'
+import DarkBtn from '@/components/button/DarkBtn'
 
 export default function Navbar() {
 
@@ -86,7 +87,7 @@ export default function Navbar() {
     }, [handleFocusInput])
 
     return (
-        <header className='sticky top-0 z-10 w-full bg-gray-800 shadow'>
+        <header className='sticky top-0 z-50 w-full bg-gray-800 shadow'>
             <div className='montserrat flex h-[4.5rem] items-center justify-between'>
                 <div className='flex items-center gap-6'>
                     <div>
@@ -250,24 +251,27 @@ export default function Navbar() {
                         </div>
                     </div>
                 </div>
-                <button className={
-                        `cursor-pointer bg-gray-700/70 p-3 rounded-lg xl:w-[20vw] border border-gray-600/80`
-                    } 
-                    type="button"
-                    onClick={openModal}
-                >   
-                    <div className="flex items-center gap-3">
-                        <MagnifyingGlassIcon className='w-5 text-gray-500' />
-                        <h1 className='text-gray-400 5xs:hidden text-sm'>Quick Search....</h1>
-                        <h1
-                            className={`text-[14px] 2xs:hidden font-semibold text-gray-400 ml-auto`}
-                        >
-                            Ctrl M
-                        </h1>
-                    </div>
-                </button>
+                <div className='flex items-center gap-3'>
+                    <button className={
+                            `cursor-pointer bg-gray-700/70 p-3 rounded-lg xl:w-[20vw] border border-gray-600/80`
+                        } 
+                        type="button"
+                        onClick={openModal}
+                    >   
+                        <div className="flex items-center gap-3">
+                            <MagnifyingGlassIcon className='w-5 text-gray-500' />
+                            <h1 className='text-gray-400 5xs:hidden text-sm'>Quick Search....</h1>
+                            <h1
+                                className={`text-[14px] 2xs:hidden font-semibold text-gray-400 ml-auto`}
+                            >
+                                Ctrl M
+                            </h1>
+                        </div>
+                    </button>
+                    <DarkBtn className='2xs:hidden' />
+                </div>
                 <Transition appear show={isOpen} as={Fragment}>
-                    <Dialog as="div" className="container-dialog relative z-10" onClose={closeModal}>
+                    <Dialog as="div" className="container-dialog relative z-50" onClose={closeModal}>
                         <Transition.Child
                             as={Fragment}
                             enter="ease-out duration-300"
@@ -401,11 +405,12 @@ export default function Navbar() {
                     </Dialog>
                 </Transition>
 
-                <div className='-mr-2 flex md:hidden'>
+                <div className='-mr-2 flex 2xs:gap-2 md:hidden'>
+                    <DarkBtn className='hidden 2xs:block' />
                     <button
                         onClick={() => setIsOpenNavbar(!isOpenNavbar)}
                         type='button'
-                        className='inline-flex items-center justify-center rounded-md text-gray-400 focus:outline-none'
+                        className='inline-flex items-center justify-center rounded-md text-gray-100 focus:outline-none'
                         aria-controls='mobile-menu'
                         aria-expanded='false'
                     >

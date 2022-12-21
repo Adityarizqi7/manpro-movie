@@ -1,6 +1,7 @@
 import React from 'react'
 import tmdb from '@/api/tmbd'
 import Skeleton from 'react-loading-skeleton'
+import { GlobalContext } from '@/routes/Router'
 
 import '@/styles/movie/_nowplaying.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -17,6 +18,14 @@ export default function NowPlayingMovie() {
     const [focusInput, setFocusInput] = React.useState(false)
 
     const [nowPlayingMVAll, setNowPlayingMVAll] = React.useState([])
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
 
     const [index, setIndex] = React.useState(8)
     const [loading, setLoading] = React.useState(false)
@@ -78,10 +87,10 @@ export default function NowPlayingMovie() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className='nowplaying-movies-component'>
+            <main className={`${renderTheme(theme, "bg-dark-theme")} nowplaying-movies-component`}>
                 <section id='nowplaying_container_movies'>
                     <div className='heading-nowplaying-movies montserrat mb-8'>
-                        <h1 className='text-[2rem] font-semibold text-black'>
+                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
                             Now Playing Movies
                         </h1>
                     </div>
@@ -95,7 +104,7 @@ export default function NowPlayingMovie() {
                                     focusInput
                                         ? 'border-b-[rgb(72, 96, 228)]'
                                         : false
-                                } w-full pr-[3rem] md:w-[35%]`}
+                                } w-full pr-[3rem] md:w-[35%] bg-transparent`}
                                 placeholder='Cari movie yang sedang tayang ...'
                                 onChange={handleChange}
                                 ref={inputRef}

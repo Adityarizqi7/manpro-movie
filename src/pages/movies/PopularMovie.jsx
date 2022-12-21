@@ -1,6 +1,7 @@
 import React from 'react'
 import tmdb from '@/api/tmbd'
 import Skeleton from 'react-loading-skeleton'
+import { GlobalContext } from '@/routes/Router'
 
 import '@/styles/movie/_popular.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -21,6 +22,14 @@ export default function NowPlayingMovie() {
     const [index, setIndex] = React.useState(8)
     const [loading, setLoading] = React.useState(false)
     const initialPosts = slice(popularMVAll, 0, index)
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
 
     const handleChange = (e) => setSearchMovie(e.target.value)
     const deleteText = () => setSearchMovie('')
@@ -69,19 +78,19 @@ export default function NowPlayingMovie() {
 
     return (
         <Netray
-            title='Now Playing Movies - Netray'
-            kw='now playing movies, now playing movies, now playing movies, now playing movies'
-            desc='Now Playing Movies - Netray. Lihat film-film apa saja yang sedang tayang di platform film kesayangan anda.'
+            title='Popular Movies - Netray'
+            kw='popular movies, popular movies, popular movies, popular movies'
+            desc='Popular Movies - Netray. Lihat film-film apa saja yang sedang popular di platform film kesayangan anda.'
             ogUrl={''}
             ogType={''}
             ogTitle={''}
             ogDesc={''}
             twitTitle={''}
         >
-            <main className='popular-movies-component'>
+            <main className={`${renderTheme(theme, "bg-dark-theme")} popular-movies-component`}>
                 <section id='popular_container_movies'>
                     <div className='heading-popular-movies montserrat mb-8'>
-                        <h1 className='text-[2rem] font-semibold text-black'>
+                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
                             Popular Movies
                         </h1>
                     </div>
@@ -95,7 +104,7 @@ export default function NowPlayingMovie() {
                                     focusInput
                                         ? 'border-b-[rgb(72, 96, 228)]'
                                         : false
-                                } w-full pr-[3rem] md:w-[35%]`}
+                                } w-full pr-[3rem] md:w-[35%] bg-transparent`}
                                 placeholder='Cari movie yang sedang popular ...'
                                 onChange={handleChange}
                                 ref={inputRef}

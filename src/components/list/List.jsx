@@ -1,15 +1,25 @@
 import React from 'react'
 import tmdb from '../../api/tmbd'
+import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
+import { GlobalContext } from '@/routes/Router'
 import { ForwardIcon } from '@heroicons/react/24/outline'
 
 import '@/styles/component/list/_list.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { Link } from 'react-router-dom'
 
 export default function List({ title, className, id, urlAPI }) {
+
     const [genre, setGenre] = React.useState([])
     const [loading, setLoading] = React.useState(false)
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
 
     const getGenreMovie = React.useCallback(async () => {
         try {
@@ -33,10 +43,10 @@ export default function List({ title, className, id, urlAPI }) {
     return (
         <aside id={id} className={className}>
             <div className='heading-card montserrat flex w-full flex-wrap items-center justify-between gap-4'>
-                <h1 className='poppins text-[1.5rem] font-bold text-gray-900'>
+                <h1 className={`${renderTheme(theme, 'text-white', "text-gray-900")} poppins text-[1.5rem] font-bold`}>
                     {title}
                 </h1>
-                <ForwardIcon className='h-6 w-6 text-gray-700' />
+                <ForwardIcon className={`${renderTheme(theme, 'text-white', "text-gray-700")} 'h-6 w-6`} />
             </div>
             <nav className='list-wrapper'>
                 <ul className='h-[11rem] list-none overflow-y-scroll sm:h-[21rem]'>
@@ -50,7 +60,7 @@ export default function List({ title, className, id, urlAPI }) {
                                 >
                                     <li className='border-b-[1px] border-gray-300/50 px-2 pt-2 pb-1 hover:bg-gray-50'>
                                         <div className='montserrat flex flex-wrap justify-between gap-3'>
-                                            <h2 className='text-md line-clamp-1 font-medium text-gray-800'>
+                                            <h2 className={`${renderTheme(theme, 'text-white', "text-gray-800")} 'text-md line-clamp-1 font-medium`}>
                                                 {item.name || <Skeleton />}
                                             </h2>
                                             <h2 className='text-md font-medium text-blue-600'>

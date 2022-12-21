@@ -1,6 +1,7 @@
 import React from 'react'
 import tmdb from '@/api/tmbd'
 import Skeleton from 'react-loading-skeleton'
+import { GlobalContext } from '@/routes/Router'
 
 import '@/styles/series/_ontv.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -12,6 +13,7 @@ import { Spin } from '@/components/loading/Spin'
 import { SeriesCard } from '@/components/movie/MovieCard'
 
 export default function OnTVSeries() {
+    
     const inputRef = React.useRef()
     const [searchMovie, setSearchMovie] = React.useState('')
     const [focusInput, setFocusInput] = React.useState(false)
@@ -21,6 +23,14 @@ export default function OnTVSeries() {
     const [index, setIndex] = React.useState(8)
     const [loading, setLoading] = React.useState(false)
     const initialPosts = slice(onTVAll, 0, index)
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
 
     const handleChange = (e) => setSearchMovie(e.target.value)
     const deleteText = () => setSearchMovie('')
@@ -74,10 +84,10 @@ export default function OnTVSeries() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className='ontv-series-component'>
+            <main className={`${renderTheme(theme, "bg-dark-theme")} ontv-series-component`}>
                 <section id='ontv_container_series'>
                     <div className='heading-ontv-series montserrat mb-8'>
-                        <h1 className='text-[2rem] font-semibold text-black'>
+                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
                             Currently Airing Series
                         </h1>
                     </div>
@@ -91,7 +101,7 @@ export default function OnTVSeries() {
                                     focusInput
                                         ? 'border-b-[rgb(72, 96, 228)]'
                                         : false
-                                } w-full pr-[3rem] md:w-[35%]`}
+                                } w-full pr-[3rem] md:w-[35%] bg-transparent`}
                                 placeholder='Cari series, TV Show yang akan datang ...'
                                 onChange={handleChange}
                                 ref={inputRef}

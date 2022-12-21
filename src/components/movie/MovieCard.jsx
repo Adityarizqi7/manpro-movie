@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Popover } from '@headlessui/react'
+import { GlobalContext } from '@/routes/Router'
 import { PlayIcon } from '@heroicons/react/24/solid'
 
 import '@/styles/component/movie/_moviecard.scss'
@@ -19,6 +20,15 @@ function MovieCard({
     original_name,
     first_air_date,
 }) {
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
+    
     return (
         <Link to={`/movie/${id}`}>
             <div className='wrapper-card group cursor-pointer'>
@@ -47,7 +57,7 @@ function MovieCard({
                         </div>
                     </div>
                 }
-                <h1 className='montserrat mt-3 text-[15px] font-semibold text-slate-800 group-hover:text-blue-600'>
+                <h1 className={`${renderTheme(theme, "text-white", 'text-slate-800')} montserrat mt-3 text-[15px] font-semibold group-hover:text-blue-600`}>
                     {title || original_name}
                 </h1>
             </div>
@@ -56,6 +66,7 @@ function MovieCard({
 }
 
 function MovieCard2({ id, title, poster_path, classOverlay, classWrapper }) {
+
     return (
         <Link to={`movie/${id}`}>
             <div className={`${classWrapper} wrapper-card group`}>
@@ -85,6 +96,15 @@ function SeriesCard({
     original_name,
     first_air_date,
 }) {
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
+
     return (
         <Link to={`/series/${id}`}>
             <div className='wrapper-card group cursor-pointer'>
@@ -112,7 +132,7 @@ function SeriesCard({
                         </div>
                     </div>
                 }
-                <h1 className='montserrat mt-3 text-[15px] font-semibold text-slate-800 group-hover:text-blue-600'>
+                <h1 className={`${renderTheme(theme, "text-white", 'text-slate-800')} montserrat mt-3 text-[15px] font-semibold group-hover:text-blue-600`}>
                     {original_name}
                 </h1>
             </div>
