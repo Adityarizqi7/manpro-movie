@@ -1,6 +1,7 @@
 import React from 'react'
 import tmdb from '@/api/tmbd'
 import Skeleton from 'react-loading-skeleton'
+import { GlobalContext } from '@/routes/Router'
 
 import '@/styles/series/_toprated.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -21,6 +22,14 @@ export default function TopRatedSeries() {
     const [index, setIndex] = React.useState(8)
     const [loading, setLoading] = React.useState(false)
     const initialPosts = slice(topratedTVAll, 0, index)
+
+    const theme = React.useContext(GlobalContext).theme;
+
+    const renderTheme = (theme, dark = "", light = "") =>{
+        if(theme === "dark") {
+            return dark;
+        }
+    }
 
     const handleChange = (e) => setSearchMovie(e.target.value)
     const deleteText = () => setSearchMovie('')
@@ -78,10 +87,10 @@ export default function TopRatedSeries() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className='toprated-series-component'>
+            <main className={`${renderTheme(theme, "bg-dark-theme")} toprated-series-component`}>
                 <section id='toprated_container_series'>
                     <div className='heading-toprated-series montserrat mb-8'>
-                        <h1 className='text-[2rem] font-semibold text-black'>
+                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
                             Top Rated Series
                         </h1>
                     </div>
@@ -95,7 +104,7 @@ export default function TopRatedSeries() {
                                     focusInput
                                         ? 'border-b-[rgb(72, 96, 228)]'
                                         : false
-                                } w-full pr-[3rem] md:w-[35%]`}
+                                } w-full pr-[3rem] md:w-[35%] bg-transparent`}
                                 placeholder='Cari series, TV Show yang akan datang ...'
                                 onChange={handleChange}
                                 ref={inputRef}

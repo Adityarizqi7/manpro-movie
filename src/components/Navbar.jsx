@@ -1,17 +1,15 @@
 // import React from 'react'
 import tmdb from '@/api/tmbd'
 import { useLocation } from 'react-router-dom'
-import React, { useState, Fragment } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import React, { useState, Fragment } from 'react'
+import { ChevronRightIcon } from '@heroicons/react/24/solid'
 import { Menu, Transition, Dialog } from '@headlessui/react'
+import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 import '@/styles/component/_navbar.scss'
 import netray from '@/assets/images/netray.png'
-import {
-    ChevronDownIcon,
-    MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronRightIcon } from '@heroicons/react/24/solid'
+import DarkBtn from '@/components/button/DarkBtn'
 
 export default function Navbar() {
     const inputRef = React.useRef()
@@ -93,7 +91,7 @@ export default function Navbar() {
     }, [handleFocusInput])
 
     return (
-        <header className='sticky top-0 z-10 w-full bg-gray-800 shadow'>
+        <header className='sticky top-0 z-50 w-full bg-gray-800 shadow'>
             <div className='montserrat flex h-[4.5rem] items-center justify-between'>
                 <div className='flex items-center gap-6'>
                     <div>
@@ -257,29 +255,27 @@ export default function Navbar() {
                         </div>
                     </div>
                 </div>
-                <button
-                    className={`cursor-pointer rounded-lg border border-gray-600/80 bg-gray-700/70 p-3 xl:w-[20vw]`}
-                    type='button'
-                    onClick={openModal}
-                >
-                    <div className='flex items-center gap-3'>
-                        <MagnifyingGlassIcon className='w-5 text-gray-500' />
-                        <h1 className='text-sm text-gray-400 5xs:hidden'>
-                            Quick Search....
-                        </h1>
-                        <h1
-                            className={`ml-auto text-[14px] font-semibold text-gray-400 2xs:hidden`}
-                        >
-                            Ctrl M
-                        </h1>
-                    </div>
-                </button>
+                <div className='flex items-center gap-3'>
+                    <button className={
+                            `cursor-pointer bg-gray-700/70 p-3 rounded-lg xl:w-[20vw] border border-gray-600/80`
+                        } 
+                        type="button"
+                        onClick={openModal}
+                    >   
+                        <div className="flex items-center gap-3">
+                            <MagnifyingGlassIcon className='w-5 text-gray-500' />
+                            <h1 className='text-gray-400 5xs:hidden text-sm'>Quick Search....</h1>
+                            <h1
+                                className={`text-[14px] 2xs:hidden font-semibold text-gray-400 ml-auto`}
+                            >
+                                Ctrl M
+                            </h1>
+                        </div>
+                    </button>
+                    <DarkBtn className='2xs:hidden' />
+                </div>
                 <Transition appear show={isOpen} as={Fragment}>
-                    <Dialog
-                        as='div'
-                        className='relative z-10'
-                        onClose={closeModal}
-                    >
+                    <Dialog as="div" className="container-dialog relative z-50" onClose={closeModal}>
                         <Transition.Child
                             as={Fragment}
                             enter='ease-out duration-300'
@@ -289,7 +285,7 @@ export default function Navbar() {
                             leaveFrom='opacity-100'
                             leaveTo='opacity-0'
                         >
-                            <div className='fixed inset-0 bg-black bg-opacity-10 backdrop-blur-sm' />
+                            <div className="overlay-bg-modal fixed inset-0 bg-black bg-opacity-10" />
                         </Transition.Child>
 
                         <div className='fixed inset-0 overflow-y-auto'>
@@ -324,9 +320,7 @@ export default function Navbar() {
                                                     {
                                                         <>
                                                             <kbd
-                                                                onClick={
-                                                                    deleteText
-                                                                }
+                                                                onClick={closeModal}
                                                                 className='montserrat absolute right-0 top-[-0.2rem] hidden cursor-pointer rounded-lg border border-gray-200 px-2 py-1.5 text-xs font-semibold text-gray-800 sm:block'
                                                             >
                                                                 Esc
@@ -343,112 +337,74 @@ export default function Navbar() {
                                                     }
                                                 </div>
                                             </form>
-                                            <div className='box-result-search h-[28vw] space-y-10 overflow-y-auto'>
-                                                {/* searchMovie === '' ? 
-                                                    <div className="movies-result my-5 montserrat space-y-3 h-[14vw] pr-4 overflow-y-auto">
-                                                        <h1 className='font-semibold text-[1.25rem]'>Recent</h1>
-                                                        <div className="search-value-temp">
-                                                            {
-                                                                searchTempValue?.map((e, idx) => {
-                                                                    return (
-                                                                        <div key={idx} className="box-item-result flex items-center justify-between cursor-pointer p-4 border-t border-gray-300/30 hover:bg-blue-50/50 hover:text-gray-900">
-                                                                            <div className="highlight-info-result flex items-center gap-3 font-medium text-md">
-                                                                                <h2>{e}</h2>
+                                            <div className="box-result-search overflow-y-auto 2xs:h-[100vw] h-[28vw] space-y-10">
+                                                {  
+                                                    searchResult.length < 1 ? 
+                                                        <div className="movies-result my-5 montserrat space-y-3 h-[14vw] pr-4 overflow-y-auto">
+                                                            <h1 className='font-semibold text-[1.25rem]'>Tidak ada pencarian</h1>
+                                                            {/* <div className="search-value-temp">
+                                                                {
+                                                                    searchTempValue?.map((e, idx) => {
+                                                                        return (
+                                                                            <div key={idx} className="box-item-result flex items-center justify-between cursor-pointer p-4 border-t border-gray-300/30 hover:bg-blue-50/50 hover:text-gray-900">
+                                                                                <div className="highlight-info-result flex items-center gap-3 font-medium text-md">
+                                                                                    <h2>{e}</h2>
+                                                                                </div>
+                                                                                <ChevronRightIcon className='w-3 h-3' />
                                                                             </div>
-                                                                            <ChevronRightIcon className='w-3 h-3' />
-                                                                        </div>
-                                                                    )
-                                                                })
-                                                            }
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div> */}
                                                         </div>
-                                                    </div>
-                                                : */}
-                                                <div className='movies-result montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4'>
-                                                    <h1 className='text-[1.25rem] font-semibold'>
-                                                        Movies
-                                                    </h1>
-                                                    <div className='results flex flex-col gap-2'>
-                                                        {searchResult.map(
-                                                            (e, idx) => {
-                                                                return (
-                                                                    e.media_type ===
-                                                                        'movie' && (
-                                                                        <a
-                                                                            href={`/movie/${e.id}`}
-                                                                        >
-                                                                            <div
-                                                                                key={
-                                                                                    idx
-                                                                                }
-                                                                                className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'
-                                                                            >
-                                                                                <div className='highlight-info-result flex items-center gap-3'>
-                                                                                    <img
-                                                                                        src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`}
-                                                                                        alt={
-                                                                                            e.title
-                                                                                        }
-                                                                                        className='aspect-square w-6 rounded-full object-cover'
-                                                                                    />
-                                                                                    <h2>
-                                                                                        {
-                                                                                            e.title
-                                                                                        }
-                                                                                    </h2>
-                                                                                </div>
-                                                                                <ChevronRightIcon className='h-3 w-3' />
-                                                                            </div>
-                                                                        </a>
-                                                                    )
-                                                                )
-                                                            }
-                                                        )}
-                                                    </div>
-                                                </div>
-                                                <div className='series-result montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4'>
-                                                    <h1 className='text-[1.25rem] font-semibold'>
-                                                        Series / TV Show
-                                                    </h1>
-                                                    <div className='results flex flex-col gap-2'>
-                                                        {searchResult.map(
-                                                            (e, idx) => {
-                                                                return (
-                                                                    e.media_type ===
-                                                                        'tv' && (
-                                                                        <a
-                                                                            href={
-                                                                                e.id
-                                                                            }
-                                                                        >
-                                                                            <div
-                                                                                key={
-                                                                                    idx
-                                                                                }
-                                                                                className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'
-                                                                            >
-                                                                                <div className='highlight-info-result flex items-center gap-3'>
-                                                                                    <img
-                                                                                        src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`}
-                                                                                        alt={
-                                                                                            e.name
-                                                                                        }
-                                                                                        className='aspect-square w-6 rounded-full object-cover'
-                                                                                    />
-                                                                                    <h2>
-                                                                                        {
-                                                                                            e.name
-                                                                                        }
-                                                                                    </h2>
-                                                                                </div>
-                                                                                <ChevronRightIcon className='h-3 w-3' />
-                                                                            </div>
-                                                                        </a>
-                                                                    )
-                                                                )
-                                                            }
-                                                        )}
-                                                    </div>
-                                                </div>
+                                                    :  
+                                                    <>
+                                                        <div className="movies-result my-5 montserrat space-y-3 2xs:h-[50vw] h-[14vw] pr-4 overflow-y-auto">
+                                                            <h1 className='font-semibold text-[1.25rem]'>Movies</h1>
+                                                            <div className="results flex flex-col gap-2">
+                                                                {
+                                                                    searchResult.map((e, idx) => {
+                                                                        return (
+                                                                            e.media_type === 'movie' &&  (
+                                                                                <a key={idx} href={`/movie/${e.id}`}>
+                                                                                    <div className="box-item-result flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-md hover:bg-blue-500 hover:text-white">
+                                                                                        <div className="highlight-info-result flex items-center gap-3">
+                                                                                            <img src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} alt={e.title} className='w-6 aspect-square rounded-full object-cover' />
+                                                                                            <h2>{e.title}</h2>
+                                                                                        </div>
+                                                                                        <ChevronRightIcon className='w-3 h-3' />
+                                                                                    </div>
+                                                                                </a>
+                                                                            )
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div className="series-result my-5 montserrat space-y-3 2xs:h-[50vw] h-[14vw] pr-4 overflow-y-auto">
+                                                            <h1 className='font-semibold text-[1.25rem]'>Series / TV Show</h1>
+                                                            <div className="results flex flex-col gap-2">
+                                                                {
+                                                                    searchResult.map((e, idx) => {
+                                                                        return (
+                                                                            e.media_type === 'tv' &&  (
+                                                                                <a key={idx} href={e.id}>
+                                                                                    <div className="box-item-result flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-md hover:bg-blue-500 hover:text-white">
+                                                                                        <div className="highlight-info-result flex items-center gap-3">
+                                                                                            <img src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} alt={e.name} className='w-6 aspect-square rounded-full object-cover' />
+                                                                                            <h2>{e.name}</h2>
+                                                                                        </div>
+                                                                                        <ChevronRightIcon className='w-3 h-3' />
+                                                                                    </div>
+                                                                                </a>
+                                                                            )
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                }
                                             </div>
                                         </div>
                                     </Dialog.Panel>
@@ -458,11 +414,12 @@ export default function Navbar() {
                     </Dialog>
                 </Transition>
 
-                <div className='-mr-2 flex md:hidden'>
+                <div className='-mr-2 flex 2xs:gap-2 md:hidden'>
+                    <DarkBtn className='hidden 2xs:block' />
                     <button
                         onClick={() => setIsOpenNavbar(!isOpenNavbar)}
                         type='button'
-                        className='inline-flex items-center justify-center rounded-md text-gray-400 focus:outline-none'
+                        className='inline-flex items-center justify-center rounded-md text-gray-100 focus:outline-none'
                         aria-controls='mobile-menu'
                         aria-expanded='false'
                     >

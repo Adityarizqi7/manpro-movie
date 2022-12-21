@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Home from '@/pages/Home'
@@ -20,33 +20,42 @@ import AiringSeries from '@/pages/series/AiringSeries'
 import DetailSeries from '@/pages/series/DetailSeries'
 import TopRatedSeries from '@/pages/series/TopRatedSeries'
 
+export const GlobalContext = createContext()
+
 export default function Router() {
+
+    const [theme, setTheme] = React.useState('light')
+
     return (
-        <ScrollPage>
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/terms-of-use' element={<Terms />} />
-                <Route path='/privacy-policy' element={<Privacy />} />
+        <GlobalContext.Provider value={
+            {theme: theme, setTheme: setTheme}
+        }>
+            <ScrollPage>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/terms-of-use' element={<Terms />} />
+                    <Route path='/privacy-policy' element={<Privacy />} />
 
-                {/* Movies Page */}
-                <Route path='/movie/:movieId' element={<DetailMovie />} />
-                <Route path='/series/:seriesId' element={<DetailSeries />} />
+                    {/* Movies Page */}
+                    <Route path='/movie/:movieId' element={<DetailMovie />} />
+                    <Route path='/series/:seriesId' element={<DetailSeries />} />
 
-                <Route path='/movies/popular' element={<PopularMovie />} />
-                <Route path='/movies/upcoming' element={<UpcomingMovie />} />
-                <Route
-                    path='/movies/now-playing'
-                    element={<NowPlayingMovie />}
-                />
-                <Route path='/genre/:genreId/movie' element={<MVByGenre />} />
+                    <Route path='/movies/popular' element={<PopularMovie />} />
+                    <Route path='/movies/upcoming' element={<UpcomingMovie />} />
+                    <Route
+                        path='/movies/now-playing'
+                        element={<NowPlayingMovie />}
+                    />
+                    <Route path='/genre/:genreId/movie' element={<MVByGenre />} />
 
-                <Route path='/series/on-the-air' element={<OnTVSeries />} />
-                <Route path='/series/airing-today' element={<AiringSeries />} />
-                <Route path='/series/top-rated' element={<TopRatedSeries />} />
-                {/* <Route path='/genre/:genreId/series' element={<MVByGenre />} /> */}
+                    <Route path='/series/on-the-air' element={<OnTVSeries />} />
+                    <Route path='/series/airing-today' element={<AiringSeries />} />
+                    <Route path='/series/top-rated' element={<TopRatedSeries />} />
+                    {/* <Route path='/genre/:genreId/series' element={<MVByGenre />} /> */}
 
-                <Route path='*' element={<NotFound />} />
-            </Routes>
-        </ScrollPage>
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+            </ScrollPage>
+        </GlobalContext.Provider>
     )
 }
