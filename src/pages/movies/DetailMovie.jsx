@@ -1,6 +1,6 @@
 import React from 'react'
 import tmbd from '@/api/tmbd'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import LightGallery from 'lightgallery/react'
 import lgZoom from 'lightgallery/plugins/zoom'
@@ -156,12 +156,17 @@ const DetailMovie = () => {
                                         <div className='poppins flex flex-wrap gap-4'>
                                             {detailMV?.genres.map(
                                                 (genre, idx) => (
-                                                    <h3
-                                                        className='font-medium text-blue-800'
-                                                        key={`detail-genre-${idx}`}
+                                                    <Link
+                                                        key={idx}
+                                                        to={`/genre/${genre.id}/movie`}
                                                     >
-                                                        #{genre.name}
-                                                    </h3>
+                                                        <h3
+                                                            className='font-medium text-blue-800 hover:text-blue-500'
+                                                            key={`detail-genre-${idx}`}
+                                                        >
+                                                            #{genre.name}
+                                                        </h3>
+                                                    </Link>
                                                 )
                                             )}
                                         </div>

@@ -4,18 +4,17 @@ import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import { GlobalContext } from '@/routes/Router'
 
-import '@/styles/movie/_mvbygenre.scss'
+import '@/styles/series/_tvbygenre.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import Netray from '@/layouts/Netray'
-import { Spin } from '@/components/loading/Spin'
-import { MovieCard } from '@/components/movie/MovieCard'
+import { SeriesCard } from '@/components/movie/MovieCard'
 
-export default function MVByGenre() {
+export default function TVByGenre() {
     const { genreId } = useParams()
 
     const [genre, setGenre] = React.useState([])
-    const [MVGenre, setMVGenre] = React.useState([])
+    const [tVGenre, setTVGenre] = React.useState([])
 
     const [index, setIndex] = React.useState(1)
     const [loading, setLoading] = React.useState(false)
@@ -34,16 +33,16 @@ export default function MVByGenre() {
         setLoading(false)
     }
 
-    const getDataMVGenre = React.useCallback(async () => {
+    const getDataTVGenre = React.useCallback(async () => {
         try {
             setLoading(true)
-            const { data, status } = await tmdb.get(`/discover/movie`, {
+            const { data, status } = await tmdb.get(`/discover/tv`, {
                 params: {
                     with_genres: genreId,
                     page: Math.floor(Math.random() * 4) + 1,
                 },
             })
-            status === 200 && setMVGenre(data.results)
+            status === 200 && setTVGenre(data.results)
             setLoading(false)
         } catch {
             setLoading(false)
@@ -53,10 +52,10 @@ export default function MVByGenre() {
     const getGenre = React.useCallback(async () => {
         try {
             setLoading(true)
-            const { data, status } = await tmdb.get(`/genre/movie/list`)
+            const { data, status } = await tmdb.get(`/genre/tv/list`)
             status === 200 &&
                 setGenre(
-                    data.filter(
+                    data.genres.filter(
                         (value) => parseInt(value.id) === parseInt(genreId)
                     )
                 )
@@ -68,13 +67,13 @@ export default function MVByGenre() {
 
     React.useEffect(() => {
         getGenre()
-        getDataMVGenre()
-    }, [getDataMVGenre, getGenre])
+        getDataTVGenre()
+    }, [getDataTVGenre, getGenre])
 
     return (
         <Netray
-            title={`${genre.map((e) => e.name)} Movies - Netray`}
-            kw={`${genre.map((e) => e.name)} Movies`}
+            title={`${genre.map((e) => e.name)} Series - Netray`}
+            kw={`${genre.map((e) => e.name)} Series`}
             desc={`${genre.map(
                 (e) => e.name
             )} Genre - Netray. Lihat film-film apa saja sesuai genre kesukaan kalian.`}
@@ -84,11 +83,11 @@ export default function MVByGenre() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className={`${renderTheme(theme, "bg-dark-theme")} mvby-genre-movies-component`}>
-                <section id='mvby_genre_container_movies'>
-                    <div className='heading-mvby-genre-movies montserrat mb-8'>
+            <main className={`${renderTheme(theme, "bg-dark-theme")} tvby-genre-movies-component`}>
+                <section id='tvby_genre_container_movies'>
+                    <div className='heading-tvby-genre-movies montserrat mb-8'>
                         <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
-                            {genre.map((e) => e.name + ' Movie')}
+                            {genre.map((e) => e.name + ' Series')}
                         </h1>
                     </div>
                     <section>
@@ -112,9 +111,9 @@ export default function MVByGenre() {
                                     </>
                                 ) : (
                                     <div className='container-list-card grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4'>
-                                        {MVGenre.map((item, index) => {
+                                        {tVGenre.map((item, index) => {
                                             return (
-                                                <MovieCard
+                                                <SeriesCard
                                                     key={index}
                                                     {...item}
                                                 />

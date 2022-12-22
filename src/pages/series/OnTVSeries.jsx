@@ -140,7 +140,8 @@ export default function OnTVSeries() {
                             title='Genres'
                             id='left-section'
                             className='list-container order-1 hidden space-y-2 sm:order-2 md:block md:w-[30%]'
-                            urlAPI='/genre/movie/list'
+                            urlAPI='/genre/tv/list'
+                            type='tv'
                         />
                         <div
                             id='right_section'
