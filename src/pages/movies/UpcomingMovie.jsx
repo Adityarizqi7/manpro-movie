@@ -91,7 +91,7 @@ export default function UpcomingMovie() {
                         </h1>
                     </div>
                     <div className='search-movies montserrat mb-10'>
-                        <div className='box-search inter relative w-full md:w-[35%]'>
+                        <div className='box-search relative w-full md:w-[35%]'>
                             <input
                                 type='text'
                                 name='search-movie'

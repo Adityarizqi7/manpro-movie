@@ -248,6 +248,15 @@ export default function Navbar() {
                                     </Menu.Items>
                                 </Transition>
                             </Menu>
+                            <NavLink
+                                to='/blogs'
+                                style={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }
+                                className='rounded-md px-3 py-2 text-[1rem] font-medium text-gray-300 hover:bg-gray-700'
+                            >
+                                Blogs
+                            </NavLink>
                         </div>
                     </div>
                 </div>

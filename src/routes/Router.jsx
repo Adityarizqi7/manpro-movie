@@ -21,6 +21,11 @@ import AiringSeries from '@/pages/series/AiringSeries'
 import DetailSeries from '@/pages/series/DetailSeries'
 import TopRatedSeries from '@/pages/series/TopRatedSeries'
 
+/* Blog Route */
+import Blogs from "@/pages/blog/Blogs";
+import ReadBlog from "@/pages/blog/ReadBlog";
+import BlogByCategory from "@/pages/blog/BlogByCategory";
+
 export const GlobalContext = createContext()
 
 export default function Router() {
@@ -54,6 +59,11 @@ export default function Router() {
                     <Route path='/series/top-rated' element={<TopRatedSeries />} />
                     <Route path='/genre/:genreId/series' element={<TVByGenre />} />
                     <Route path='/series/airing-today' element={<AiringSeries />} />
+
+                    {/* Blog Page */}
+                    <Route path="/blogs" element={<Blogs />} />
+                    <Route path="/blogs/:slugCategory" element={<BlogByCategory />} />
+                    <Route path="/blogs/:slugCategory/:slug" element={<ReadBlog />} />
 
                     <Route path='*' element={<NotFound />} />
                 </Routes>
