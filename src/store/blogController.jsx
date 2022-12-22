@@ -1,9 +1,9 @@
-import create from "zustand";
-import { blogState } from "@/store/blogState";
+import create from 'zustand'
+import { blogState } from '@/store/blogState'
 
-export const useBlogState = create(set => ({
+export const useBlogState = create((set) => ({
     blog: [],
-    searchKey: "",
+    searchKey: '',
     currentBlog: [],
     blogs: blogState,
     blogByCategory: [],
@@ -12,66 +12,75 @@ export const useBlogState = create(set => ({
     resultSearchCategory: [],
 
     handleSearchResults: () => {
-        const allBlog = blogState;
-        set(state => ({
+        const allBlog = blogState
+        set((state) => ({
             blogs: allBlog.filter((e) =>
-                e.title.toLowerCase().includes(state.searchKey.toLowerCase().trim())
-            )
-        }));
+                e.title
+                    .toLowerCase()
+                    .includes(state.searchKey.toLowerCase().trim())
+            ),
+        }))
     },
     handleChange: (e) => {
-        set(state => ({
-            searchKey: e.target.value
-        }));
+        set((state) => ({
+            searchKey: e.target.value,
+        }))
     },
 
     // Clear keyword search bar
     clearKeySearch: () => {
-        set(state => ({
-            searchKey: ""
-        }));
-        set(state => ({
-            blogs: blogState
-        }));
+        set((state) => ({
+            searchKey: '',
+        }))
+        set((state) => ({
+            blogs: blogState,
+        }))
     },
 
     // Blog
     findBlog: (slug) => {
-        set(state => ({
-            blog: state.blogs.find((blog) => blog.slug === slug)
-        }));
+        set((state) => ({
+            blog: state.blogs.find((blog) => blog.slug === slug),
+        }))
     },
     getCurrentBlog: () => {
-        set(state => ({
-            currentBlog: 1
+        set((state) => ({
+            currentBlog: 1,
         }))
     },
 
-
     // Category
     findBlogByCategory: (slugCategory) => {
-        set(state => ({
-            blogByCategory: state.blogs.filter((e) => e.slugCategory === slugCategory)
-        }));
+        set((state) => ({
+            blogByCategory: state.blogs.filter(
+                (e) => e.slugCategory === slugCategory
+            ),
+        }))
     },
     getBlogsByCategory: (slugCategory) => {
-        set(state => ({
-            blogsByCategoryState: state.blogs.filter((blog) => blog.slugCategory === slugCategory)
-        }));
+        set((state) => ({
+            blogsByCategoryState: state.blogs.filter(
+                (blog) => blog.slugCategory === slugCategory
+            ),
+        }))
     },
     handleSearchResultsCategory: () => {
-        set(state => ({
+        set((state) => ({
             blogsByCategoryState: state.blogsByCategoryState.filter((e) =>
-                e.title.toLowerCase().includes(state.searchKey.toLowerCase().trim())
-            )
-        }));
+                e.title
+                    .toLowerCase()
+                    .includes(state.searchKey.toLowerCase().trim())
+            ),
+        }))
     },
     clearKeySearchCategory: (slugCategory) => {
-        set(state => ({
-            searchKey: ""
-        }));
-        set(state => ({
-            blogsByCategoryState: state.blogs.filter((blog) => blog.slugCategory === slugCategory)
-        }));
+        set((state) => ({
+            searchKey: '',
+        }))
+        set((state) => ({
+            blogsByCategoryState: state.blogs.filter(
+                (blog) => blog.slugCategory === slugCategory
+            ),
+        }))
     },
-}));
+}))

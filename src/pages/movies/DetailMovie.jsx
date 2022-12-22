@@ -19,7 +19,6 @@ import '@/styles/component/movie/_detailmovies.scss'
 import Netray from '@/layouts/Netray'
 
 const DetailMovie = () => {
-
     const [toggler, setToggler] = useState(false)
     const [loading, setLoading] = useState(false)
     const [togglerTrailer, setTogglerTrailer] = useState(false)
@@ -28,11 +27,11 @@ const DetailMovie = () => {
     const [trailerMV, setTrailerMV] = useState([])
     const { movieId } = useParams()
 
-    const theme = React.useContext(GlobalContext).theme;
+    const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = "", light = "") =>{
-        if(theme === "dark") {
-            return dark;
+    const renderTheme = (theme, dark = '', light = '') => {
+        if (theme === 'dark') {
+            return dark
         }
     }
 
@@ -94,7 +93,12 @@ const DetailMovie = () => {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className={`${renderTheme(theme, "bg-dark-theme")} detail-movie-component`}>
+            <main
+                className={`${renderTheme(
+                    theme,
+                    'bg-dark-theme'
+                )} detail-movie-component`}
+            >
                 {/* banner */}
                 <div className='jumbotron-image'>
                     {loading && <Skeleton height={500} />}
@@ -123,13 +127,25 @@ const DetailMovie = () => {
                     <div className='wrapper-content w-full space-y-8 lg:w-[70%]'>
                         {/* head title  */}
                         <div className='head-title-content'>
-                            <h2 className={`${renderTheme(theme, "text-white", 'text-neutral-800')} montserrat text-[1.875rem] font-medium`}>
+                            <h2
+                                className={`${renderTheme(
+                                    theme,
+                                    'text-white',
+                                    'text-neutral-800'
+                                )} montserrat text-[1.875rem] font-medium`}
+                            >
                                 {loading ? (
                                     <Skeleton width={300} height={50} />
                                 ) : (
                                     <>
                                         <span>{`${detailMV?.original_title}`}</span>
-                                        <span className={`${renderTheme(theme, "text-gray-400", 'text-gray-600')} ml-2 font-light`}>
+                                        <span
+                                            className={`${renderTheme(
+                                                theme,
+                                                'text-gray-400',
+                                                'text-gray-600'
+                                            )} ml-2 font-light`}
+                                        >
                                             (
                                             {`${
                                                 detailMV?.release_date.split(
@@ -172,8 +188,22 @@ const DetailMovie = () => {
                                         </div>
                                     </div>
                                 )}
-                                <span className={`${renderTheme(theme, "text-white", 'text-black')}`}>·</span>
-                                <h3 className={`${renderTheme(theme, "text-white", 'text-black')} montserrat`}>
+                                <span
+                                    className={`${renderTheme(
+                                        theme,
+                                        'text-white',
+                                        'text-black'
+                                    )}`}
+                                >
+                                    ·
+                                </span>
+                                <h3
+                                    className={`${renderTheme(
+                                        theme,
+                                        'text-white',
+                                        'text-black'
+                                    )} montserrat`}
+                                >
                                     {loading ? (
                                         <Skeleton
                                             height={30}
@@ -233,7 +263,11 @@ const DetailMovie = () => {
                                 className={`${
                                     detailMV?.tagline === ''
                                         ? 'hidden'
-                                        : `${renderTheme(theme, "text-gray-300", 'text-gray-700')} block`
+                                        : `${renderTheme(
+                                              theme,
+                                              'text-gray-300',
+                                              'text-gray-700'
+                                          )} block`
                                 } text-[6vw] font-light italic sm:text-[1.5rem]`}
                             >
                                 '{detailMV?.tagline}'
@@ -260,7 +294,13 @@ const DetailMovie = () => {
                                     data-download={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
                                     data-download-url={true}
                                 >
-                                    <button className={`${renderTheme(theme, "text-white", 'text-black')} button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden`}>
+                                    <button
+                                        className={`${renderTheme(
+                                            theme,
+                                            'text-white',
+                                            'text-black'
+                                        )} button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden`}
+                                    >
                                         <PhotoIcon className='h-5 w-5' />
                                         <span>Lihat Poster</span>
                                     </button>
@@ -268,10 +308,22 @@ const DetailMovie = () => {
                             </LightGallery>
                             {/* description  */}
                             <div className='space-y-1'>
-                                <h6 className={`${renderTheme(theme, "text-gray-100", 'text-black')} poppins text-[1.125rem] font-medium`}>
+                                <h6
+                                    className={`${renderTheme(
+                                        theme,
+                                        'text-gray-100',
+                                        'text-black'
+                                    )} poppins text-[1.125rem] font-medium`}
+                                >
                                     Deskripsi Singkat
                                 </h6>
-                                <p className={`${renderTheme(theme, "text-gray-400", 'text-neutral-700')} inter`}>
+                                <p
+                                    className={`${renderTheme(
+                                        theme,
+                                        'text-gray-400',
+                                        'text-neutral-700'
+                                    )} inter`}
+                                >
                                     {loading ? (
                                         <Skeleton height={60} />
                                     ) : (
@@ -280,7 +332,13 @@ const DetailMovie = () => {
                                 </p>
                             </div>
                             {/* advanced information lists  */}
-                            <div className={`${renderTheme(theme, "text-gray-300", 'text-neutral-700')} mt-6 flex flex-col gap-5`}>
+                            <div
+                                className={`${renderTheme(
+                                    theme,
+                                    'text-gray-300',
+                                    'text-neutral-700'
+                                )} mt-6 flex flex-col gap-5`}
+                            >
                                 <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
                                     <h6 className='poppins min-w-[200px] text-[1rem] font-medium'>
                                         Tanggal Rilis

@@ -1,11 +1,11 @@
-@import "../base/";
+@import '../base/';
 
 .blog-component {
     #container_blog {
         padding: 3.5rem 2.5rem;
         @media only screen and (max-width: 639px) {
             padding: 3.5rem 1.5rem;
-        }          
+        }
         .heading-blog {
             > h1 {
                 @include text-head($gray-800, 3rem, 700);

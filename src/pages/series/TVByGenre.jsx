@@ -19,11 +19,11 @@ export default function TVByGenre() {
     const [index, setIndex] = React.useState(1)
     const [loading, setLoading] = React.useState(false)
 
-    const theme = React.useContext(GlobalContext).theme;
+    const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = "", light = "") =>{
-        if(theme === "dark") {
-            return dark;
+    const renderTheme = (theme, dark = '', light = '') => {
+        if (theme === 'dark') {
+            return dark
         }
     }
 
@@ -83,10 +83,21 @@ export default function TVByGenre() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className={`${renderTheme(theme, "bg-dark-theme")} tvby-genre-movies-component`}>
+            <main
+                className={`${renderTheme(
+                    theme,
+                    'bg-dark-theme'
+                )} tvby-genre-movies-component`}
+            >
                 <section id='tvby_genre_container_movies'>
                     <div className='heading-tvby-genre-movies montserrat mb-8'>
-                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
+                        <h1
+                            className={`${renderTheme(
+                                theme,
+                                'text-white',
+                                'text-black'
+                            )} text-[2rem] font-semibold`}
+                        >
                             {genre.map((e) => e.name + ' Series')}
                         </h1>
                     </div>

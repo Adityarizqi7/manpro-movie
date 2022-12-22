@@ -19,11 +19,11 @@ export default function NowPlayingMovie() {
 
     const [nowPlayingMVAll, setNowPlayingMVAll] = React.useState([])
 
-    const theme = React.useContext(GlobalContext).theme;
+    const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = "", light = "") =>{
-        if(theme === "dark") {
-            return dark;
+    const renderTheme = (theme, dark = '', light = '') => {
+        if (theme === 'dark') {
+            return dark
         }
     }
 
@@ -87,10 +87,21 @@ export default function NowPlayingMovie() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className={`${renderTheme(theme, "bg-dark-theme")} nowplaying-movies-component`}>
+            <main
+                className={`${renderTheme(
+                    theme,
+                    'bg-dark-theme'
+                )} nowplaying-movies-component`}
+            >
                 <section id='nowplaying_container_movies'>
                     <div className='heading-nowplaying-movies montserrat mb-8'>
-                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
+                        <h1
+                            className={`${renderTheme(
+                                theme,
+                                'text-white',
+                                'text-black'
+                            )} text-[2rem] font-semibold`}
+                        >
                             Now Playing Movies
                         </h1>
                     </div>
@@ -104,7 +115,7 @@ export default function NowPlayingMovie() {
                                     focusInput
                                         ? 'border-b-[rgb(72, 96, 228)]'
                                         : false
-                                } w-full pr-[3rem] md:w-[35%] bg-transparent`}
+                                } w-full bg-transparent pr-[3rem] md:w-[35%]`}
                                 placeholder='Cari movie yang sedang tayang ...'
                                 onChange={handleChange}
                                 ref={inputRef}

@@ -1,41 +1,61 @@
 @use '../styles/base/' as *;
 
 .priv {
-    a {text-decoration: none;}
-    a:hover {text-decoration: underline;}
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
     ol {
         counter-reset: item;
         padding-left: 1em;
         li {
-            a {margin-left: 0.2em;}
-            ol {margin-left: 0.2em;}
+            a {
+                margin-left: 0.2em;
+            }
+            ol {
+                margin-left: 0.2em;
+            }
         }
     }
-    li {display: block;}
+    li {
+        display: block;
+    }
     li:before {
-        content: counters(item, ".") ". ";
+        content: counters(item, '.') '. ';
         counter-increment: item;
     }
 }
 
 .privacy {
-  a {text-decoration: none;}
-  a:hover {text-decoration: underline;}
-  ol {
-      counter-reset: item;
-      padding-left: 1em;
-      li {
-          a {margin-left: 0.2em;}
-          ol {margin-left: 0.2em;}
-          h4 {
-            font-weight: 600;
-            font-size: 13pt;
-          }
-      }
-  }
-  li {display: block;}
-  li:before {
-      content: counters(item, ".") ". ";
-      counter-increment: item;
-  }
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    ol {
+        counter-reset: item;
+        padding-left: 1em;
+        li {
+            a {
+                margin-left: 0.2em;
+            }
+            ol {
+                margin-left: 0.2em;
+            }
+            h4 {
+                font-weight: 600;
+                font-size: 13pt;
+            }
+        }
+    }
+    li {
+        display: block;
+    }
+    li:before {
+        content: counters(item, '.') '. ';
+        counter-increment: item;
+    }
 }

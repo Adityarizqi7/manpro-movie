@@ -15,12 +15,11 @@ import {
 import { Link } from 'react-router-dom'
 
 export default function Home() {
+    const theme = React.useContext(GlobalContext).theme
 
-    const theme = React.useContext(GlobalContext).theme;
-
-    const renderTheme = (theme, dark = "", light = "") =>{
-        if(theme === "dark") {
-            return dark;
+    const renderTheme = (theme, dark = '', light = '') => {
+        if (theme === 'dark') {
+            return dark
         }
     }
 
@@ -35,14 +34,24 @@ export default function Home() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className={`${renderTheme(theme, "bg-dark-theme")} home-component`}>
+            <main
+                className={`${renderTheme(
+                    theme,
+                    'bg-dark-theme'
+                )} home-component`}
+            >
                 <section id='container_home'>
                     <article
                         id='trending_movie'
                         className='movie-container mb-6 space-y-8'
                     >
                         <div className='heading-card w-full'>
-                            <h1 className={`${renderTheme(theme, "text-white")} montserrat border-l-4 border-blue-600 pl-3 font-semibold`}>
+                            <h1
+                                className={`${renderTheme(
+                                    theme,
+                                    'text-white'
+                                )} montserrat border-l-4 border-blue-600 pl-3 font-semibold`}
+                            >
                                 Trending Movies
                             </h1>
                         </div>
@@ -55,7 +64,12 @@ export default function Home() {
                         className='movie-container mb-14 space-y-8'
                     >
                         <div className='heading-card w-full'>
-                            <h1 className={`${renderTheme(theme, "text-white")} montserrat border-l-4 border-blue-600 pl-3 font-semibold`}>
+                            <h1
+                                className={`${renderTheme(
+                                    theme,
+                                    'text-white'
+                                )} montserrat border-l-4 border-blue-600 pl-3 font-semibold`}
+                            >
                                 Trending Series
                             </h1>
                         </div>
@@ -68,7 +82,13 @@ export default function Home() {
                         className='movie-container mb-14 space-y-8'
                     >
                         <div className='heading-card montserrat'>
-                            <h1 className={`${renderTheme(theme, "text-white", 'text-gray-800')} text-center text-[2.5rem] font-bold`}>
+                            <h1
+                                className={`${renderTheme(
+                                    theme,
+                                    'text-white',
+                                    'text-gray-800'
+                                )} text-center text-[2.5rem] font-bold`}
+                            >
                                 ● Popular Lately ●
                             </h1>
                         </div>
@@ -92,11 +112,23 @@ export default function Home() {
                                 className='movie-container mb-14 space-y-8'
                             >
                                 <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
-                                    <h1 className={`${renderTheme(theme, "text-white", 'text-black')} font-semibold`}>
+                                    <h1
+                                        className={`${renderTheme(
+                                            theme,
+                                            'text-white',
+                                            'text-black'
+                                        )} font-semibold`}
+                                    >
                                         Upcoming Movie
                                     </h1>
                                     <Link to={'/movies/upcoming'}>
-                                        <h2 className={`${renderTheme(theme, "text-gray-200", 'text-gray-600')} text-sm font-normal hover:text-blue-600`}>
+                                        <h2
+                                            className={`${renderTheme(
+                                                theme,
+                                                'text-gray-200',
+                                                'text-gray-600'
+                                            )} text-sm font-normal hover:text-blue-600`}
+                                        >
                                             See more
                                         </h2>
                                     </Link>
@@ -110,11 +142,23 @@ export default function Home() {
                                 className='movie-container mb-14 space-y-8'
                             >
                                 <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
-                                    <h1 className={`${renderTheme(theme, "text-white", 'text-black')} font-semibold`}>
+                                    <h1
+                                        className={`${renderTheme(
+                                            theme,
+                                            'text-white',
+                                            'text-black'
+                                        )} font-semibold`}
+                                    >
                                         Now Playing Movie
                                     </h1>
                                     <Link to={'/movies/now-playing'}>
-                                        <h2 className={`${renderTheme(theme, "text-gray-200", 'text-gray-600')} text-sm font-normal hover:text-blue-600`}>
+                                        <h2
+                                            className={`${renderTheme(
+                                                theme,
+                                                'text-gray-200',
+                                                'text-gray-600'
+                                            )} text-sm font-normal hover:text-blue-600`}
+                                        >
                                             See more
                                         </h2>
                                     </Link>
@@ -128,11 +172,23 @@ export default function Home() {
                                 className='movie-container space-y-8'
                             >
                                 <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
-                                    <h1 className={`${renderTheme(theme, "text-white", 'text-black')} font-semibold`}>
+                                    <h1
+                                        className={`${renderTheme(
+                                            theme,
+                                            'text-white',
+                                            'text-black'
+                                        )} font-semibold`}
+                                    >
                                         Popular Movie
                                     </h1>
                                     <Link to={'/movies/popular'}>
-                                        <h2 className={`${renderTheme(theme, "text-gray-200", 'text-gray-600')} text-sm font-normal hover:text-blue-600`}>
+                                        <h2
+                                            className={`${renderTheme(
+                                                theme,
+                                                'text-gray-200',
+                                                'text-gray-600'
+                                            )} text-sm font-normal hover:text-blue-600`}
+                                        >
                                             See more
                                         </h2>
                                     </Link>

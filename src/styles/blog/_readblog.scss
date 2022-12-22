@@ -1,4 +1,4 @@
-@import "../base/";
+@import '../base/';
 
 .readblog-component {
     display: flex;
@@ -23,7 +23,6 @@
                     @media only screen and (max-width: 1100px) {
                         justify-content: flex-start;
                     }
-
                 }
             }
         }
