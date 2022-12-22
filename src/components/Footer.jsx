@@ -44,24 +44,11 @@ export default function Footer() {
                             Legal
                         </h3>
                         <ul>
-                            <li className='mb-4'>
-                                <a
-                                    href='/'
-                                    target='_blank'
-                                    className='text-gray-200 hover:underline'
-                                >
-                                    Privacy Policy
-                                </a>
+                            <li className="mb-4">
+                                <a href="/privacy-policy" target="_blank" className="text-gray-200 hover:underline">Privacy Policy</a>
                             </li>
                             <li>
-                                <a
-                                    href='/'
-                                    target='_blank'
-                                    rel='nofollow'
-                                    className='text-gray-200 hover:underline'
-                                >
-                                    Terms & Condition
-                                </a>
+                                <a href="/terms-of-use" target="_blank" rel="nofollow" className="text-gray-200 hover:underline">Terms of Use</a>
                             </li>
                         </ul>
                     </div>
