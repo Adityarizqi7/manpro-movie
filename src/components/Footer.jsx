@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import netray from '@/assets/images/netray.png'
 import ftlogo from '@/assets/images/footer-bg.jpg'
@@ -11,7 +12,7 @@ export default function Footer() {
         >
             <div className='md:flex md:justify-between'>
                 <div className='mb-6 md:mb-0'>
-                    <a href='/' target='_blank' className='flex items-center'>
+                    <Link to='/' className='flex items-center'>
                         <img
                             className='h-12 w-12'
                             src={netray}
@@ -20,7 +21,7 @@ export default function Footer() {
                         <span className='self-center whitespace-nowrap text-[1.75rem] font-semibold'>
                             Netray
                         </span>
-                    </a>
+                    </Link>
                 </div>
                 <div className='grid grid-cols-2 gap-8 sm:grid-cols-2 sm:gap-20 5xs:grid-cols-1'>
                     <div>
@@ -45,10 +46,10 @@ export default function Footer() {
                         </h3>
                         <ul>
                             <li className="mb-4">
-                                <a href="/privacy-policy" target="_blank" className="text-gray-200 hover:underline">Privacy Policy</a>
+                                <Link to="/privacy-policy" target="_blank" className="text-gray-200 hover:underline">Privacy Policy</Link>
                             </li>
                             <li>
-                                <a href="/terms-of-use" target="_blank" rel="nofollow" className="text-gray-200 hover:underline">Terms of Use</a>
+                                <Link to="/terms-of-use" target="_blank" rel="nofollow" className="text-gray-200 hover:underline">Terms of Use</Link>
                             </li>
                         </ul>
                     </div>
@@ -58,9 +59,9 @@ export default function Footer() {
             <div className='flex items-center'>
                 <span className='text-sm text-gray-200 sm:text-center'>
                     © 2022{' '}
-                    <a href='/' target='_blank' className='hover:underline'>
+                    <Link to='/' className='hover:underline'>
                         Netray
-                    </a>
+                    </Link>
                     . All Rights Reserved.
                 </span>
             </div>
