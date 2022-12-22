@@ -23,11 +23,11 @@ export default function UpcomingMovie() {
     const [loading, setLoading] = React.useState(false)
     const initialPosts = slice(upcomingMVAll, 0, index)
 
-    const theme = React.useContext(GlobalContext).theme;
+    const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = "", light = "") =>{
-        if(theme === "dark") {
-            return dark;
+    const renderTheme = (theme, dark = '', light = '') => {
+        if (theme === 'dark') {
+            return dark
         }
     }
 
@@ -83,15 +83,26 @@ export default function UpcomingMovie() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className={`${renderTheme(theme, "bg-dark-theme")} upcoming-movies-component`}>
+            <main
+                className={`${renderTheme(
+                    theme,
+                    'bg-dark-theme'
+                )} upcoming-movies-component`}
+            >
                 <section id='upcoming_container_movies'>
                     <div className='heading-upcoming-movies montserrat mb-8'>
-                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
+                        <h1
+                            className={`${renderTheme(
+                                theme,
+                                'text-white',
+                                'text-black'
+                            )} text-[2rem] font-semibold`}
+                        >
                             Upcoming Movies
                         </h1>
                     </div>
                     <div className='search-movies montserrat mb-10'>
-                        <div className='box-search inter relative w-full md:w-[35%]'>
+                        <div className='box-search relative w-full md:w-[35%]'>
                             <input
                                 type='text'
                                 name='search-movie'
@@ -100,7 +111,7 @@ export default function UpcomingMovie() {
                                     focusInput
                                         ? 'border-b-[rgb(72, 96, 228)]'
                                         : false
-                                } w-full pr-[3rem] md:w-[35%] bg-transparent`}
+                                } w-full bg-transparent pr-[3rem] md:w-[35%]`}
                                 placeholder='Cari movie yang akan datang ...'
                                 onChange={handleChange}
                                 ref={inputRef}

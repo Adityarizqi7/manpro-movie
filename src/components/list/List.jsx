@@ -8,16 +8,15 @@ import { ForwardIcon } from '@heroicons/react/24/outline'
 import '@/styles/component/list/_list.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-export default function List({ title, className, id, urlAPI }) {
-
+export default function List({ title, className, id, urlAPI, type = 'movie' }) {
     const [genre, setGenre] = React.useState([])
     const [loading, setLoading] = React.useState(false)
 
-    const theme = React.useContext(GlobalContext).theme;
+    const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = "", light = "") =>{
-        if(theme === "dark") {
-            return dark;
+    const renderTheme = (theme, dark = '', light = '') => {
+        if (theme === 'dark') {
+            return dark
         }
     }
 
@@ -43,10 +42,22 @@ export default function List({ title, className, id, urlAPI }) {
     return (
         <aside id={id} className={className}>
             <div className='heading-card montserrat flex w-full flex-wrap items-center justify-between gap-4'>
-                <h1 className={`${renderTheme(theme, 'text-white', "text-gray-900")} poppins text-[1.5rem] font-bold`}>
+                <h1
+                    className={`${renderTheme(
+                        theme,
+                        'text-white',
+                        'text-gray-900'
+                    )} poppins text-[1.5rem] font-bold`}
+                >
                     {title}
                 </h1>
-                <ForwardIcon className={`${renderTheme(theme, 'text-white', "text-gray-700")} 'h-6 w-6`} />
+                <ForwardIcon
+                    className={`${renderTheme(
+                        theme,
+                        'text-white',
+                        'text-gray-700'
+                    )} 'h-6 w-6`}
+                />
             </div>
             <nav className='list-wrapper'>
                 <ul className='h-[11rem] list-none overflow-y-scroll sm:h-[21rem]'>
@@ -56,11 +67,23 @@ export default function List({ title, className, id, urlAPI }) {
                             return (
                                 <Link
                                     key={index}
-                                    to={`/genre/${item.id}/movie`}
+                                    to={`/genre/${item.id}/${type}`}
                                 >
-                                    <li className={`${renderTheme(theme, 'hover:bg-gray-800', "hover:bg-gray-50")} border-b-[1px] border-gray-300/50 px-2 pt-2 pb-1`}>
+                                    <li
+                                        className={`${renderTheme(
+                                            theme,
+                                            'hover:bg-gray-800',
+                                            'hover:bg-gray-50'
+                                        )} border-b-[1px] border-gray-300/50 px-2 pt-2 pb-1`}
+                                    >
                                         <div className='montserrat flex flex-wrap justify-between gap-3'>
-                                            <h2 className={`${renderTheme(theme, 'text-white', "text-gray-800")} 'text-md line-clamp-1 font-medium`}>
+                                            <h2
+                                                className={`${renderTheme(
+                                                    theme,
+                                                    'text-white',
+                                                    'text-gray-800'
+                                                )} 'text-md line-clamp-1 font-medium`}
+                                            >
                                                 {item.name || <Skeleton />}
                                             </h2>
                                             <h2 className='text-md font-medium text-blue-600'>

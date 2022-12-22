@@ -1,6 +1,6 @@
 import React from 'react'
 import tmbd from '@/api/tmbd'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import LightGallery from 'lightgallery/react'
 import lgZoom from 'lightgallery/plugins/zoom'
@@ -25,11 +25,11 @@ const DetailSeries = () => {
     const [trailerTV, setTrailerTV] = useState([])
     const { seriesId } = useParams()
 
-    const theme = React.useContext(GlobalContext).theme;
+    const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = "", light = "") =>{
-        if(theme === "dark") {
-            return dark;
+    const renderTheme = (theme, dark = '', light = '') => {
+        if (theme === 'dark') {
+            return dark
         }
     }
 
@@ -83,7 +83,12 @@ const DetailSeries = () => {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className={`${renderTheme(theme, "bg-dark-theme")} detail-series-component`}>
+            <main
+                className={`${renderTheme(
+                    theme,
+                    'bg-dark-theme'
+                )} detail-series-component`}
+            >
                 {/* banner */}
                 <div className='jumbotron-image'>
                     {loading && <Skeleton height={500} />}
@@ -111,13 +116,25 @@ const DetailSeries = () => {
                     <div className='wrapper-content w-full space-y-6 lg:w-[70%]'>
                         {/* head title  */}
                         <div className='head-title-content'>
-                            <h2 className={`${renderTheme(theme, "text-white", 'text-neutral-800')} montserrat text-[1.875rem] font-medium`}>
+                            <h2
+                                className={`${renderTheme(
+                                    theme,
+                                    'text-white',
+                                    'text-neutral-800'
+                                )} montserrat text-[1.875rem] font-medium`}
+                            >
                                 {loading ? (
                                     <Skeleton width={300} height={50} />
                                 ) : (
                                     <>
                                         <span>{`${detailTV?.original_name}`}</span>
-                                        <span className={`${renderTheme(theme, "text-gray-400", 'text-gray-600')} ml-2 font-light`}>
+                                        <span
+                                            className={`${renderTheme(
+                                                theme,
+                                                'text-gray-400',
+                                                'text-gray-600'
+                                            )} ml-2 font-light`}
+                                        >
                                             (
                                             {`${
                                                 detailTV?.first_air_date.split(
@@ -144,19 +161,38 @@ const DetailSeries = () => {
                                         <div className='poppins flex flex-wrap gap-4'>
                                             {detailTV?.genres.map(
                                                 (genre, idx) => (
-                                                    <h3
-                                                        className='font-medium text-blue-800'
-                                                        key={`detail-genre-${idx}`}
+                                                    <Link
+                                                        key={idx}
+                                                        to={`/genre/${genre.id}/series`}
                                                     >
-                                                        #{genre.name}
-                                                    </h3>
+                                                        <h3
+                                                            className='font-medium text-blue-800'
+                                                            key={`detail-genre-${idx}`}
+                                                        >
+                                                            #{genre.name}
+                                                        </h3>
+                                                    </Link>
                                                 )
                                             )}
                                         </div>
                                     </div>
                                 )}
-                                <span className={`${renderTheme(theme, "text-white", 'text-black')}`}>·</span>
-                                <h3 className={`${renderTheme(theme, "text-white", 'text-black')} montserrat`}>
+                                <span
+                                    className={`${renderTheme(
+                                        theme,
+                                        'text-white',
+                                        'text-black'
+                                    )}`}
+                                >
+                                    ·
+                                </span>
+                                <h3
+                                    className={`${renderTheme(
+                                        theme,
+                                        'text-white',
+                                        'text-black'
+                                    )} montserrat`}
+                                >
                                     {loading ? (
                                         <Skeleton
                                             height={30}
@@ -217,7 +253,11 @@ const DetailSeries = () => {
                                 className={`${
                                     detailTV?.tagline === ''
                                         ? 'hidden'
-                                        : `${renderTheme(theme, "text-gray-300", 'text-gray-700')} block`
+                                        : `${renderTheme(
+                                              theme,
+                                              'text-gray-300',
+                                              'text-gray-700'
+                                          )} block`
                                 } text-[6vw] font-light italic sm:text-[1.5rem]`}
                             >
                                 '{detailTV?.tagline}'
@@ -244,7 +284,13 @@ const DetailSeries = () => {
                                     data-download={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`}
                                     data-download-url={true}
                                 >
-                                    <button className={`${renderTheme(theme, "text-white", 'text-black')} button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden`}>
+                                    <button
+                                        className={`${renderTheme(
+                                            theme,
+                                            'text-white',
+                                            'text-black'
+                                        )} button-poster-mobile montserrat mb-3 flex items-center gap-2 rounded-md border border-blue-600/60 py-1 px-3 focus:outline-none lg:hidden`}
+                                    >
                                         <PhotoIcon className='h-5 w-5' />
                                         <span>Lihat Poster</span>
                                     </button>
@@ -253,10 +299,22 @@ const DetailSeries = () => {
 
                             {/* description  */}
                             <div className='space-y-1 text-neutral-700'>
-                                <h6 className={`${renderTheme(theme, "text-gray-100", 'text-black')} poppins text-[1.125rem] font-medium`}>
+                                <h6
+                                    className={`${renderTheme(
+                                        theme,
+                                        'text-gray-100',
+                                        'text-black'
+                                    )} poppins text-[1.125rem] font-medium`}
+                                >
                                     Deskripsi Singkat
                                 </h6>
-                                <p className={`${renderTheme(theme, "text-gray-400", 'text-neutral-700')} inter`}>
+                                <p
+                                    className={`${renderTheme(
+                                        theme,
+                                        'text-gray-400',
+                                        'text-neutral-700'
+                                    )} inter`}
+                                >
                                     {loading ? (
                                         <Skeleton height={60} />
                                     ) : (
@@ -265,7 +323,13 @@ const DetailSeries = () => {
                                 </p>
                             </div>
                             {/* advanced information lists  */}
-                            <div className={`${renderTheme(theme, "text-gray-300", 'text-neutral-700')} mt-6 flex flex-col gap-5`}>
+                            <div
+                                className={`${renderTheme(
+                                    theme,
+                                    'text-gray-300',
+                                    'text-neutral-700'
+                                )} mt-6 flex flex-col gap-5`}
+                            >
                                 <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
                                     <h6 className='poppins min-w-[200px] text-[1rem] font-medium'>
                                         Tanggal Rilis
@@ -317,7 +381,13 @@ const DetailSeries = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className={`${renderTheme(theme, "text-gray-300", 'text-neutral-700')} creator-detail mt-8`}>
+                            <div
+                                className={`${renderTheme(
+                                    theme,
+                                    'text-gray-300',
+                                    'text-neutral-700'
+                                )} creator-detail mt-8`}
+                            >
                                 {loading ? (
                                     <Skeleton height={30} width={300} />
                                 ) : detailTV?.created_by.length < 1 ? (

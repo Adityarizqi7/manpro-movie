@@ -1,0 +1,16 @@
+.box-icon-share {
+    > a {
+        > svg {
+            &:hover {
+                fill: rgb(116, 116, 116);
+            }
+        }
+    }
+    > .icon-copy-link {
+        > svg {
+            &:hover {
+                stroke: rgb(116, 116, 116);
+            }
+        }
+    }
+}

@@ -13,7 +13,6 @@ import { Spin } from '@/components/loading/Spin'
 import { SeriesCard } from '@/components/movie/MovieCard'
 
 export default function OnTVSeries() {
-    
     const inputRef = React.useRef()
     const [searchMovie, setSearchMovie] = React.useState('')
     const [focusInput, setFocusInput] = React.useState(false)
@@ -24,11 +23,11 @@ export default function OnTVSeries() {
     const [loading, setLoading] = React.useState(false)
     const initialPosts = slice(onTVAll, 0, index)
 
-    const theme = React.useContext(GlobalContext).theme;
+    const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = "", light = "") =>{
-        if(theme === "dark") {
-            return dark;
+    const renderTheme = (theme, dark = '', light = '') => {
+        if (theme === 'dark') {
+            return dark
         }
     }
 
@@ -84,10 +83,21 @@ export default function OnTVSeries() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className={`${renderTheme(theme, "bg-dark-theme")} ontv-series-component`}>
+            <main
+                className={`${renderTheme(
+                    theme,
+                    'bg-dark-theme'
+                )} ontv-series-component`}
+            >
                 <section id='ontv_container_series'>
                     <div className='heading-ontv-series montserrat mb-8'>
-                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
+                        <h1
+                            className={`${renderTheme(
+                                theme,
+                                'text-white',
+                                'text-black'
+                            )} text-[2rem] font-semibold`}
+                        >
                             Currently Airing Series
                         </h1>
                     </div>
@@ -101,7 +111,7 @@ export default function OnTVSeries() {
                                     focusInput
                                         ? 'border-b-[rgb(72, 96, 228)]'
                                         : false
-                                } w-full pr-[3rem] md:w-[35%] bg-transparent`}
+                                } w-full bg-transparent pr-[3rem] md:w-[35%]`}
                                 placeholder='Cari series, TV Show yang akan datang ...'
                                 onChange={handleChange}
                                 ref={inputRef}
@@ -140,7 +150,8 @@ export default function OnTVSeries() {
                             title='Genres'
                             id='left-section'
                             className='list-container order-1 hidden space-y-2 sm:order-2 md:block md:w-[30%]'
-                            urlAPI='/genre/movie/list'
+                            urlAPI='/genre/tv/list'
+                            type='tv'
                         />
                         <div
                             id='right_section'

@@ -1,9 +1,15 @@
+import image1 from '@/assets/images/article/pray-for-devil.webp'
+import image2 from '@/assets/images/article/black-adam.webp'
+import image3 from '@/assets/images/article/lyle-lyle-crocodile.webp'
+import image4 from '@/assets/images/article/fantastic-beast-secrets-of-dumbledore.webp'
+import image5 from '@/assets/images/article/strange-world.webp'
+
 export const blogState = [
     {
         id: 1,
         title: 'PRAY FOR THE DEVIL | REVIEW',
         slug: 'pray-for-the-devil-review',
-        image: '/assets/image/article/pray-for-devil.webp',
+        image: `${image1}`,
         category: 'Horror',
         slugCategory: 'horror',
         readTime: 5,
@@ -33,8 +39,8 @@ export const blogState = [
         id: 2,
         title: 'BLACK ADAM | REVIEW',
         slug: 'black-adam-review',
-        image: '/assets/image/article/black-adam.webp',
-        category: 'Action, Fantasy, Science Fiction',
+        image: `${image2}`,
+        category: 'Action',
         slugCategory: 'action',
         readTime: 8,
         description: `Johnson is Teth-Adam. He’s a Kahndaqi slave in the opening and later rediscovered beholden of the powers of Shazam. 
@@ -63,8 +69,8 @@ export const blogState = [
         id: 3,
         title: 'LYLE LYLE CROCODILE | REVIEW',
         slug: 'lyle-lyle-crocodile-review',
-        image: '/assets/image/article/lyle-lyle-crocodile.webp',
-        category: 'animation, adventure, comedy',
+        image: `${image3}`,
+        category: 'Animation',
         slugCategory: 'animation',
         readTime: 4,
         description: `The hunt for the new Paddington is rife in Hollywood. Ever since the Paul King helmed franchise hit the big time, studio chiefs have had marmalade-sticky fingers all over the classics of kids lit. 
@@ -87,9 +93,9 @@ export const blogState = [
         id: 4,
         title: 'FANTASTIC BEASTS: THE SECRETS OF DUMBLEDORE | REVIEW',
         slug: 'fantastic-beast-secrets-of-dumbledore-review',
-        image: '/assets/image/article/fantastic-beast-secrets-of-dumbledore.webp',
-        category: 'adventure, family, fantasy',
-        slugCategory: 'fantasy',
+        image: `${image4}`,
+        category: 'Adventure',
+        slugCategory: 'adventure',
         readTime: 4,
         description: `There was always something pleasingly predictable about the Harry Potter films. Not least because fans came pre-versed in all that was to come, courtesy of J. K. Rowling’s phenomenally successful books. 
         
@@ -113,8 +119,8 @@ export const blogState = [
         id: 5,
         title: 'STRANGE WORLD | REVIEW',
         slug: 'strange-world-review',
-        image: '/assets/image/article/strange-world.webp',
-        category: 'animation, action, adventure',
+        image: `${image5}`,
+        category: 'Animation',
         slugCategory: 'animation',
         readTime: 3,
         description: `Disney seems oddly disinterested in promoting their latest toon. This being the studio’s first big budget animation since 2021’s wildly successful Encanto. Trailers have been sparse, merchandise limited and buzz low. 

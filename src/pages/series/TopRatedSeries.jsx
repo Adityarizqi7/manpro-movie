@@ -23,11 +23,11 @@ export default function TopRatedSeries() {
     const [loading, setLoading] = React.useState(false)
     const initialPosts = slice(topratedTVAll, 0, index)
 
-    const theme = React.useContext(GlobalContext).theme;
+    const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = "", light = "") =>{
-        if(theme === "dark") {
-            return dark;
+    const renderTheme = (theme, dark = '', light = '') => {
+        if (theme === 'dark') {
+            return dark
         }
     }
 
@@ -87,10 +87,21 @@ export default function TopRatedSeries() {
             ogDesc={''}
             twitTitle={''}
         >
-            <main className={`${renderTheme(theme, "bg-dark-theme")} toprated-series-component`}>
+            <main
+                className={`${renderTheme(
+                    theme,
+                    'bg-dark-theme'
+                )} toprated-series-component`}
+            >
                 <section id='toprated_container_series'>
                     <div className='heading-toprated-series montserrat mb-8'>
-                        <h1 className={`${renderTheme(theme, "text-white", 'text-black')} text-[2rem] font-semibold`}>
+                        <h1
+                            className={`${renderTheme(
+                                theme,
+                                'text-white',
+                                'text-black'
+                            )} text-[2rem] font-semibold`}
+                        >
                             Top Rated Series
                         </h1>
                     </div>
@@ -104,7 +115,7 @@ export default function TopRatedSeries() {
                                     focusInput
                                         ? 'border-b-[rgb(72, 96, 228)]'
                                         : false
-                                } w-full pr-[3rem] md:w-[35%] bg-transparent`}
+                                } w-full bg-transparent pr-[3rem] md:w-[35%]`}
                                 placeholder='Cari series, TV Show yang akan datang ...'
                                 onChange={handleChange}
                                 ref={inputRef}
@@ -143,7 +154,8 @@ export default function TopRatedSeries() {
                             title='Genres'
                             id='left-section'
                             className='list-container order-1 hidden space-y-2 sm:order-2 md:block md:w-[30%]'
-                            urlAPI='/genre/movie/list'
+                            urlAPI='/genre/tv/list'
+                            type='tv'
                         />
                         <div
                             id='right_section'

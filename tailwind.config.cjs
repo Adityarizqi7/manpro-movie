@@ -26,10 +26,10 @@ module.exports = {
             addVariant('select-all-child', '&:>*')
         }),
         require('@headlessui/tailwindcss')({ prefix: 'ui' }),
-        plugin(function({ matchUtilities, theme }) {
+        plugin(function ({ matchUtilities, theme }) {
             matchUtilities(
                 {
-                    'backdrop-blur': value => {
+                    'backdrop-blur': (value) => {
                         const cssBackdropFilterValue = [
                             'var(--tw-backdrop-blur,)',
                             'var(--tw-backdrop-brightness,)',
@@ -40,17 +40,17 @@ module.exports = {
                             'var(--tw-backdrop-opacity,)',
                             'var(--tw-backdrop-saturate,)',
                             'var(--tw-backdrop-sepia,)',
-                        ].join(' ');
+                        ].join(' ')
 
                         return {
                             '--tw-backdrop-blur': `blur(${value})`,
                             '@defaults backdrop-filter': {},
                             'backdrop-filter': cssBackdropFilterValue,
-                        };
+                        }
                     },
                 },
                 { values: theme('backdropBlur') }
-            );
+            )
         }),
     ],
 }

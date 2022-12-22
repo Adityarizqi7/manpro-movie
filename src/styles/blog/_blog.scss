@@ -1,0 +1,17 @@
+@import '../base/';
+
+.card-wrapper {
+    @include transition(transform, 0.3s);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+    .card-content {
+        > h2 {
+            @include text-head($gray-900, 16px, 600);
+        }
+        > h3 {
+            &:first-child {
+                @include text-head($gray-600, 16px, 400);
+            }
+        }
+    }
+}
