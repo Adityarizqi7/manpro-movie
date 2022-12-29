@@ -1,35 +1,40 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline'
 
 import { GlobalContext } from '@/routes/Router'
 
-export default function DarkBtn({ className }) {
+export default React.memo(function DarkBtn({ className }) {
     const theme = useContext(GlobalContext).theme
     const setTheme = useContext(GlobalContext).setTheme
 
-    const changeTheme = (theme) => {
+    const changeTheme = React.useCallback((theme) => {
         if (theme === 'light') {
             setTheme('dark')
         } else {
             setTheme('light')
         }
-    }
+    }, [])
 
     return (
         <div className={`${className} toggle-button__container`}>
             <div>
                 <div className='relative flex items-center'>
                     <SunIcon
+                        id='sun'
+                        aria-labelledby='sun'
                         className={`${
                             theme === 'light' ? 'w-8' : 'w-0'
                         } sunicon text-blue-500 transition-all`}
                     />
                     <MoonIcon
+                        id='moon'
+                        aria-labelledby='moon'
                         className={`${
                             theme === 'light' ? 'w-0' : 'w-8'
                         } moonicon text-blue-500 transition-all`}
                     />
                     <input
+                        aria-labelledby='toggle-button'
                         data-testid='toggle-button'
                         className='absolute right-0 h-8 w-8 cursor-pointer opacity-0'
                         type='checkbox'
@@ -41,4 +46,4 @@ export default function DarkBtn({ className }) {
             </div>
         </div>
     )
-}
+})

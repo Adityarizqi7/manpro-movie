@@ -1,13 +1,13 @@
 import React from 'react'
 import '@/styles/_terms.scss'
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 
 export default function Terms() {
     return (
-        <Netray
-            title='Terms of use - Netray'
-            kw='netray terms'
-            desc='Syarat Penggunaan (Terms of use). Selamat datang di Netray. Disarankan sebelum mengakses Situs lebih jauh, anda terlebih dahulu membaca dan memahami syarat dan ketentuan yang berlaku'
+        <Nevrays
+            title='Terms of use - Nevrays'
+            kw='nevrays terms'
+            desc='Syarat Penggunaan (Terms of use). Selamat datang di Nevrays. Disarankan sebelum mengakses Situs lebih jauh, anda terlebih dahulu membaca dan memahami syarat dan ketentuan yang berlaku'
             ogUrl={''}
             ogType={''}
             ogTitle={''}
@@ -2407,6 +2407,6 @@ export default function Terms() {
                     </div>
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

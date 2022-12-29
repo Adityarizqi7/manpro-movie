@@ -1,14 +1,14 @@
 import React from 'react'
 import '@/styles/_privacy.scss'
-import Netray from '../layouts/Netray'
+import Nevrays from '../layouts/Nevrays'
 
 export default function Privacy() {
     const status = null
 
     return (
-        <Netray
+        <Nevrays
             title='Privacy Policy'
-            kw='netray not found, netray halaman tidak ditemukan, netray id home, netray halaman tidak ditemukan indonesia'
+            kw='nevrays not found, nevrays halaman tidak ditemukan, nevrays id home, nevrays halaman tidak ditemukan indonesia'
             desc='Halaman 404'
             ogUrl={status}
             ogType={status}
@@ -164,27 +164,27 @@ export default function Privacy() {
                         <li class='decimal-li'>
                             <h4 id='_bookmark0'>CONTACT INFORMATION</h4>
                             <p>
-                                The Netray Company (Southeast Asia) Pte.
+                                The Nevrays Company (Southeast Asia) Pte.
                                 Limited, a company registered under the laws of
                                 Indonesia, with its principal office at
                                 Indonesia ("<strong>we</strong>", "
                                 <strong>us</strong>", "<strong>our</strong>", "
-                                <strong>Netray</strong>") provides, directly or
+                                <strong>Nevrays</strong>") provides, directly or
                                 through its distributors or service providers, a
                                 subscription service in Indonesia, which may be
                                 available through an online website
-                                <a href='https://www.netray.com/'>
-                                    https://www.netray.com{' '}
+                                <a href='https://www.nevrays.com/'>
+                                    https://www.nevrays.com{' '}
                                 </a>
                                 and/or applications (“<strong>Platform</strong>”
                                 or the
-                                <strong>“Netray Service</strong>”, which
+                                <strong>“Nevrays Service</strong>”, which
                                 includes all the features available on such
                                 Platform).
                             </p>
                             <p>
-                                Netray values the trust placed by users of
-                                Netray Service ("<strong>you</strong>", "
+                                Nevrays values the trust placed by users of
+                                Nevrays Service ("<strong>you</strong>", "
                                 <strong>your</strong>", "<strong>user</strong>",
                                 "<strong>subscriber</strong>") and therefore, we
                                 follow appropriate standards to protect your
@@ -197,8 +197,8 @@ export default function Privacy() {
                                 Privacy Policy or if you require any general
                                 information or clarification or inquiry
                                 regarding the Platform please email us at
-                                <a href='mailto:netray.id@netray.com'>
-                                    netray.id@netray.com
+                                <a href='mailto:nevrays.id@nevrays.com'>
+                                    nevrays.id@nevrays.com
                                 </a>
                                 <a id='.'></a>.
                             </p>
@@ -209,7 +209,7 @@ export default function Privacy() {
                                 This Privacy Policy ("
                                 <strong>Privacy Policy</strong>") explains how
                                 we use, process and protect Personal Information
-                                of the users or subscribers of the Netray
+                                of the users or subscribers of the Nevrays
                                 Service in Indonesia.
                             </p>
                             <p>
@@ -242,7 +242,7 @@ export default function Privacy() {
                             <p>
                                 We encourage you to read the applicable Terms of
                                 Use to understand the terms related to the use
-                                of the Netray Service in general.
+                                of the Nevrays Service in general.
                             </p>
                         </li>
                         <li class='decimal-li'>
@@ -282,7 +282,7 @@ export default function Privacy() {
                                         provide the below information, which may
                                         include Personal Information,{' '}
                                         <em>inter alia </em>when you use or
-                                        register for the Netray Service and
+                                        register for the Nevrays Service and
                                         create a subscription account, update
                                         your account, upload content to or via
                                         the Platform, use any of the features or
@@ -305,7 +305,7 @@ export default function Privacy() {
                                         <li>
                                             Payment and other information
                                             pertaining to your transactions on
-                                            the Netray Service
+                                            the Nevrays Service
                                         </li>
                                         <li>Any service requests</li>
                                         <li>Search terms</li>
@@ -402,7 +402,7 @@ export default function Privacy() {
                                         or any marketing communication we send
                                         you, as well as information regarding
                                         your computer or other Streaming Devices
-                                        used to access Netray Service. The
+                                        used to access Nevrays Service. The
                                         information may be collected using
                                         tracking technologies such as cookies,
                                         flash cookies, pixels, tags, software
@@ -412,7 +412,7 @@ export default function Privacy() {
                                     </p>
                                     <ol>
                                         <li>
-                                            Your activity on the Netray Service
+                                            Your activity on the Nevrays Service
                                             such as pages/titles viewed, load
                                             times, watch times, content
                                             selection and watch history,
@@ -421,7 +421,7 @@ export default function Privacy() {
                                             platform features used. This
                                             information may include the platform
                                             or website that you just visited
-                                            (whether this platform is on Netray
+                                            (whether this platform is on Nevrays
                                             Service or not), which platform or
                                             website you next visit;
                                         </li>
@@ -476,8 +476,8 @@ export default function Privacy() {
                                             Google Advertising ID (GAID), etc.
                                             and data related to your interaction
                                             with the advertisement that are
-                                            served on the Netray Service or any
-                                            advertising of the Netray Service;
+                                            served on the Nevrays Service or any
+                                            advertising of the Nevrays Service;
                                         </li>
                                         <li>
                                             We capture information related to
@@ -492,7 +492,7 @@ export default function Privacy() {
                                             service providers, partners or
                                             advertising networks via the use of
                                             cookies and other technologies on
-                                            the Netray Service website (You can
+                                            the Nevrays Service website (You can
                                             read more about how we use cookies
                                             in the Cookies section set out
                                             below).
@@ -510,7 +510,7 @@ export default function Privacy() {
                                         Platform and your interaction with the
                                         Platform. This information may include
                                         the platform that you just visited
-                                        (whether this platform is on Netray
+                                        (whether this platform is on Nevrays
                                         Services or not), which platform you
                                         next visit, your computer browser
                                         information, your mobile phone operating
@@ -673,17 +673,17 @@ export default function Privacy() {
                                 lawful basis may also change). Our primary
                                 purpose in collecting your information,
                                 including Personal Information from you is to
-                                deliver the personalized Netray Service and its
+                                deliver the personalized Nevrays Service and its
                                 various features. Please note that should you
                                 choose to not provide us consent to collect your
                                 information, including Personal Information, we
                                 may not be able to perform the contract with
                                 you. Where we refer to ‘perform the contract’ we
                                 mean the Terms of Use applicable to your use of
-                                the Netray Service, which means that you may
+                                the Nevrays Service, which means that you may
                                 either not be able to access certain features of
-                                the Netray Service or we may not be able to
-                                provide you the Netray Service in entirety.
+                                the Nevrays Service or we may not be able to
+                                provide you the Nevrays Service in entirety.
                             </p>
                             <p>
                                 For example, we use your Personal Information
@@ -719,7 +719,7 @@ export default function Privacy() {
                                     marketing, online and offline advertising
                                     and other materials regarding products,
                                     services and other offers from time to time
-                                    in connection with the Netray Service or its
+                                    in connection with the Nevrays Service or its
                                     parent, subsidiary, group and/or affiliated
                                     companies (“
                                     <strong>Platform Entities</strong>”) and its
@@ -743,7 +743,7 @@ export default function Privacy() {
                                     countries around the world and avail the
                                     Platform's services, then we will determine
                                     your location using your IP address to
-                                    determine the relevant Netray Services which
+                                    determine the relevant Nevrays Services which
                                     may be offered to you or may not be able to
                                     offer any service outside your home country,
                                 </li>
@@ -869,7 +869,7 @@ export default function Privacy() {
                                     When you agree to share your precise
                                     location based on GPS data, we will combine
                                     this information with other information that
-                                    you provide to us on the Netray Service to
+                                    you provide to us on the Nevrays Service to
                                     provide personalised content and
                                     advertisements with better accuracy basis
                                     your geographic location e.g. you may see
@@ -883,7 +883,7 @@ export default function Privacy() {
                                     pertaining to the applications frequently
                                     used by you on your device, we will combine
                                     this information with other information that
-                                    you provide to us on the Netray Service, to
+                                    you provide to us on the Nevrays Service, to
                                     display advertisements that are more
                                     relevant to your interest areas e.g. if you
                                     frequently use applications related to
@@ -923,7 +923,7 @@ export default function Privacy() {
                                         application(s). Personal Information
                                         will only be shared with our service
                                         providers to provide, support or improve
-                                        the Netray Service and to enable us to
+                                        the Nevrays Service and to enable us to
                                         analyse our services and marketing
                                         efforts. We do not authorize our service
                                         providers to use or disclose your
@@ -1050,7 +1050,7 @@ export default function Privacy() {
                                     </h4>
                                     <p>
                                         To opt out of interest-based
-                                        advertisements from Netray Service in
+                                        advertisements from Nevrays Service in
                                         connection with a resettable device
                                         identifier on a mobile device, tablet,
                                         or streaming media devices, please
@@ -1084,8 +1084,8 @@ export default function Privacy() {
                                         incomplete Personal Information
                                         concerning you by sending us an email to
                                         our customer support email address
-                                        <a href='mailto:netray.id@netray.com'>
-                                            netray.id@netray.com
+                                        <a href='mailto:nevrays.id@nevrays.com'>
+                                            nevrays.id@nevrays.com
                                         </a>
                                         . In case you have made your
                                         subscription via Apple iTunes or such
@@ -1321,7 +1321,7 @@ export default function Privacy() {
                                 which when activated, provides access
                                 exclusively to children-friendly content. While
                                 persons under the age of 18 may utilize the
-                                Netray Service, they may do so only with the
+                                Nevrays Service, they may do so only with the
                                 involvement, supervision, and approval of a
                                 parent or legal guardian.
                             </p>
@@ -1371,7 +1371,7 @@ export default function Privacy() {
                                 below).
                             </p>
                             <p>
-                                The Netray Service uses commercially reasonable
+                                The Nevrays Service uses commercially reasonable
                                 industry standard security practices and
                                 procedures designed to help keep your Personal
                                 Information safe and secure. Unfortunately, the
@@ -1381,7 +1381,7 @@ export default function Privacy() {
                                 impenetrable. Although we strive to protect your
                                 Personal Information, we cannot guarantee the
                                 security of your data while it is being
-                                transmitted to our Netray Service; any
+                                transmitted to our Nevrays Service; any
                                 transmission is at your own risk. We will also
                                 ensure, on a reasonable efforts basis, that any
                                 agent or third party that we employ complies
@@ -1458,7 +1458,7 @@ export default function Privacy() {
                                 circumstances, where you voluntarily provide
                                 Personal Information (e.g. by completing an
                                 online form) or where you register/sign up or
-                                subscribe to Netray Service and you hereby agree
+                                subscribe to Nevrays Service and you hereby agree
                                 to this.
                             </p>
                         </li>
@@ -1479,9 +1479,9 @@ export default function Privacy() {
                                 will obtain your consent if the changes
                                 significantly affect your rights or as may be
                                 required by law. Your continued use of the
-                                Netray Service after any updates will mean you
+                                Nevrays Service after any updates will mean you
                                 have accepted those changes. If you do not agree
-                                to the updates you should stop using the Netray
+                                to the updates you should stop using the Nevrays
                                 Service and cancel your subscription.
                             </p>
                         </li>
@@ -1493,18 +1493,18 @@ export default function Privacy() {
                             <p>
                                 If you have any questions about these Terms of
                                 Use, the Privacy Policy, or your dealings with
-                                Netray, or a question or a complaint about the
-                                Netray Platform and/or the Content, you can
+                                Nevrays, or a question or a complaint about the
+                                Nevrays Platform and/or the Content, you can
                                 contact customer support services at
-                                <a href='mailto:netray.id@netray.com'>
-                                    netray.id@netray.com,{' '}
+                                <a href='mailto:nevrays.id@nevrays.com'>
+                                    nevrays.id@nevrays.com,{' '}
                                 </a>
                                 by also providing us with your phone number used
-                                for accessing your Netray Platform. Please do
+                                for accessing your Nevrays Platform. Please do
                                 not share any personal information in your
                                 emails to{' '}
-                                <a href='mailto:netray.id@netray.com'>
-                                    netray.id@netray.com
+                                <a href='mailto:nevrays.id@nevrays.com'>
+                                    nevrays.id@nevrays.com
                                 </a>
                                 .
                             </p>
@@ -1513,8 +1513,8 @@ export default function Privacy() {
                                 complaint or believe our processing of your
                                 information does not comply with applicable data
                                 protection law, you can write to
-                                <a href='mailto:netray.id@netray.com'>
-                                    netray.id@netray.com.{' '}
+                                <a href='mailto:nevrays.id@nevrays.com'>
+                                    nevrays.id@nevrays.com.{' '}
                                 </a>
                                 Data related issue will be responded as soon as
                                 practicable.
@@ -1523,6 +1523,6 @@ export default function Privacy() {
                     </ol>
                 </div>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

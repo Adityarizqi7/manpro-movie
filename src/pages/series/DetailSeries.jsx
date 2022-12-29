@@ -16,7 +16,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import 'lightgallery/scss/lightgallery-bundle.scss'
 import '@/styles/component/series/_detailseries.scss'
 
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 
 const DetailSeries = () => {
     const [loading, setLoading] = useState(false)
@@ -27,11 +27,12 @@ const DetailSeries = () => {
 
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
     const getDetailSeries = useCallback(async () => {
         try {
@@ -73,10 +74,10 @@ const DetailSeries = () => {
     }, [getDetailSeries])
 
     return (
-        <Netray
-            title={`${loading ? 'Loading' : detailTV?.original_name} - Netray`}
-            kw={detailTV?.original_title + ' netray'}
-            desc='Netray Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan'
+        <Nevrays
+            title={`${loading ? 'Loading' : detailTV?.original_name} - Nevrays`}
+            kw={detailTV?.original_title + ' nevrays'}
+            desc='Nevrays Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan'
             ogUrl={''}
             ogType={''}
             ogTitle={''}
@@ -415,7 +416,7 @@ const DetailSeries = () => {
                     </div>
                 </div>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }
 

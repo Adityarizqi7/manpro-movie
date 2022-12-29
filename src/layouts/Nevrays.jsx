@@ -1,14 +1,14 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import BtnToTop from '../components/button/BtnToTop'
 
-export default function Netray({
-    title,
-    key,
-    desc,
+export default React.memo( function Nevrays({
+    title='Nevrays Official — Tonton Movie dan TV Show Online Sambil Nyemil',
+    key='nevrays, nevrays id, nevrays indonesia',
+    desc='Nevrays Official. Tempat terbaik dan menyenangkan untuk mencari dan menonton film atau tv series favorit anda. Ribuan film sudah siap untuk memanjakan hari-hari anda.',
     ogUrl,
     ogType,
     ogTitle,
@@ -17,7 +17,7 @@ export default function Netray({
     children,
 }) {
     return (
-        <>
+        <HelmetProvider>
             <Helmet>
                 <title>{title}</title>
 
@@ -54,17 +54,6 @@ export default function Netray({
             <Footer />
 
             <BtnToTop />
-        </>
+        </HelmetProvider>
     )
-}
-
-Netray.defaultProps = {
-    title: 'Netray Official — Tonton Movie dan TV Show Online Sambil Nyemil',
-    key: 'netray, netray id, netray indonesia',
-    desc: 'Netray Official. Tempat terbaik dan menyenangkan untuk mencari dan menonton film atau tv series favorit anda. Ribuan film sudah siap untuk memanjakan hari-hari anda.',
-    ogUrl: null,
-    ogType: null,
-    ogTitle: null,
-    ogDesc: null,
-    twitTitle: null,
-}
+})

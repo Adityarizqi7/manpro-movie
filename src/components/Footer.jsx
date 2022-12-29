@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import netray from '@/assets/images/netray.png'
+import nevrays from '@/assets/images/nevrays.png'
 import ftlogo from '@/assets/images/footer-bg.jpg'
 
 export default function Footer() {
@@ -15,11 +15,11 @@ export default function Footer() {
                     <Link to='/' className='flex items-center'>
                         <img
                             className='h-12 w-12'
-                            src={netray}
-                            alt='Netray Logo'
+                            src={nevrays}
+                            alt='Nevrays Logo'
                         />
                         <span className='self-center whitespace-nowrap text-[1.75rem] font-semibold'>
-                            Netray
+                            Nevrays
                         </span>
                     </Link>
                 </div>

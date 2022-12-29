@@ -7,8 +7,8 @@ import { GlobalContext } from '@/routes/Router'
 import '@/styles/series/_tvbygenre.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import Netray from '@/layouts/Netray'
-import { SeriesCard } from '@/components/movie/MovieCard'
+import Nevrays from '@/layouts/Nevrays'
+import { SeriesCard } from '@/components/content/ContentCard'
 
 export default function TVByGenre() {
     const { genreId } = useParams()
@@ -16,22 +16,23 @@ export default function TVByGenre() {
     const [genre, setGenre] = React.useState([])
     const [tVGenre, setTVGenre] = React.useState([])
 
-    const [index, setIndex] = React.useState(1)
+    // const [index, setIndex] = React.useState(1)
     const [loading, setLoading] = React.useState(false)
 
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
-    const loadMore = () => {
-        setLoading(true)
-        setIndex(index + 1)
-        setLoading(false)
-    }
+    // const loadMore = React.useCallback(() => {
+    //     setLoading(true)
+    //     setIndex(index + 1)
+    //     setLoading(false)
+    // }, [])
 
     const getDataTVGenre = React.useCallback(async () => {
         try {
@@ -71,12 +72,12 @@ export default function TVByGenre() {
     }, [getDataTVGenre, getGenre])
 
     return (
-        <Netray
-            title={`${genre.map((e) => e.name)} Series - Netray`}
+        <Nevrays
+            title={`${genre.map((e) => e.name)} Series - Nevrays`}
             kw={`${genre.map((e) => e.name)} Series`}
             desc={`${genre.map(
                 (e) => e.name
-            )} Genre - Netray. Lihat film-film apa saja sesuai genre kesukaan kalian.`}
+            )} Genre - Nevrays. Lihat film-film apa saja sesuai genre kesukaan kalian.`}
             ogUrl={''}
             ogType={''}
             ogTitle={''}
@@ -137,6 +138,6 @@ export default function TVByGenre() {
                     </section>
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

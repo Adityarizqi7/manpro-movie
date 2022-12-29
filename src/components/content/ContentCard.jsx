@@ -11,7 +11,7 @@ const getPoster = (size, path) => {
     return `https://www.themoviedb.org/t/p/${size}/${path}`
 }
 
-function MovieCard({
+export const MovieCard = React.memo(({
     id,
     title,
     poster_path,
@@ -19,14 +19,14 @@ function MovieCard({
     vote_average,
     original_name,
     first_air_date,
-}) {
+}) => {
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+    }, [])
 
     return (
         <Link to={`/movie/${id}`}>
@@ -68,9 +68,9 @@ function MovieCard({
             </div>
         </Link>
     )
-}
+})
 
-function MovieCard2({ id, title, poster_path, classOverlay, classWrapper }) {
+export const MovieCard2 = React.memo(({ id, title, poster_path, classOverlay, classWrapper }) => {
     return (
         <Link to={`movie/${id}`}>
             <div className={`${classWrapper} wrapper-card group`}>
@@ -81,7 +81,7 @@ function MovieCard2({ id, title, poster_path, classOverlay, classWrapper }) {
                         className='w-full object-cover'
                     />
                     <div
-                        className={`${classOverlay} overlay absolute top-0 h-full w-full rounded-[0.5rem] transition-colors group-hover:bg-black/60`}
+                        className={`${classOverlay} overlay absolute top-0 h-full w-full transition-colors group-hover:bg-black/60`}
                     >
                         <div className='flex h-full flex-col items-center'>
                             <PlayIcon className='icon-play my-auto mx-auto w-[2.5rem] scale-0 rounded-full bg-blue-600 p-2 text-white transition-transform group-hover:scale-100' />
@@ -91,22 +91,22 @@ function MovieCard2({ id, title, poster_path, classOverlay, classWrapper }) {
             </div>
         </Link>
     )
-}
+})
 
-function SeriesCard({
+export const SeriesCard = React.memo(({
     id,
     poster_path,
     vote_average,
     original_name,
     first_air_date,
-}) {
+}) => {
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+    }, [])
 
     return (
         <Link to={`/series/${id}`}>
@@ -147,9 +147,9 @@ function SeriesCard({
             </div>
         </Link>
     )
-}
+})
 
-function SeriesCard2({
+export const SeriesCard2 = React.memo(({
     id,
     backdrop_path,
     original_name,
@@ -157,7 +157,7 @@ function SeriesCard2({
     overview,
     key_trailer,
     name,
-}) {
+}) => {
     return (
         <div className='wrapper-card group'>
             <Popover>
@@ -170,7 +170,7 @@ function SeriesCard2({
                     <div className='overlay-card-two absolute top-0 z-10 flex h-full w-full flex-col justify-center'>
                         <div className='flex flex-col items-start px-6 sm:hidden'>
                             <Link to={`series/${id}`}>
-                                <PlayIcon className='icon-play w-[2.5rem] rounded-full bg-white p-2 text-blue-600' />
+                                <PlayIcon aria-label='Detail Series' title='Detail Series' className='icon-play w-[2.5rem] rounded-full bg-white p-2 text-blue-600' />
                             </Link>
                         </div>
                         <div className='montserrat hidden flex-col items-start px-6 sm:flex'>
@@ -212,6 +212,4 @@ function SeriesCard2({
             </Popover>
         </div>
     )
-}
-
-export { MovieCard, SeriesCard, SeriesCard2, MovieCard2 }
+})

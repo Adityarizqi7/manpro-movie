@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GlobalContext } from '@/routes/Router'
 
-import Netray from '../layouts/Netray'
+import Nevrays from '../layouts/Nevrays'
 
 export default function NotFound() {
     const status = null
@@ -10,16 +10,17 @@ export default function NotFound() {
 
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
     return (
-        <Netray
+        <Nevrays
             title='404 | Halaman tidak ditemukan'
-            kw='netray not found, netray halaman tidak ditemukan, netray, netray halaman tidak ditemukan'
+            kw='nevrays not found, nevrays halaman tidak ditemukan, nevrays, nevrays halaman tidak ditemukan'
             desc='Halaman 404'
             ogUrl={status}
             ogType={status}
@@ -61,6 +62,6 @@ export default function NotFound() {
                     </div>
                 </div>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

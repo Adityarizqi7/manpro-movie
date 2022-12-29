@@ -1,6 +1,8 @@
+import React from 'react'
+
 import Blog from '@/pages/blog/Blog'
 
-export default function ListBlogs({ blogs, searchQuestion }) {
+export default React.memo(function ListBlogs({ blogs, searchQuestion }) {
     return blogs
         .filter((value) => {
             // eslint-disable-line array-callback-return
@@ -15,4 +17,4 @@ export default function ListBlogs({ blogs, searchQuestion }) {
             }
         })
         .map((blog, index) => <Blog key={index} blog={blog} />)
-}
+})

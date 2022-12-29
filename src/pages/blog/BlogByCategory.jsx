@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { GlobalContext } from '@/routes/Router'
 
 import '@/styles/blog/_blogs.scss'
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 import ListBlogs from '@/pages/blog/ListBlogs'
 import { useBlogState } from '@/store/blogController'
 import SearchNotFound from '@/components/error/SearchNotFound'
@@ -28,16 +28,17 @@ export default function BlogByCategory() {
         (state) => state.handleSearchResultsCategory
     )
 
-    const handleSearchBar = (e) => {
+    const handleSearchBar = React.useCallback((e) => {
         e.preventDefault()
         handleSearchResultsCategory()
-    }
+    }, [handleSearchResultsCategory])
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
     const handleFocusInput = React.useCallback((event) => {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
@@ -45,8 +46,8 @@ export default function BlogByCategory() {
             event.preventDefault()
             inputRef.current.focus()
         }
-        if (event.code === 'Escape') inputRef.current.blur() || clearKeySearch()
-    }, [])
+        if (event.code === 'Escape') inputRef.current.blur() || clearKeySearchCategory()
+    }, [inputRef, clearKeySearchCategory])
 
     React.useEffect(() => {
         getBlogsByCategory(slugCategory)
@@ -61,10 +62,10 @@ export default function BlogByCategory() {
     }, [handleFocusInput])
 
     return blogsByCategoryState ? (
-        <Netray
-            title={`${slugCategory.toUpperCase()} - Netray`}
-            kw={`netray blogs ${slugCategory}, netray artikel ${slugCategory}, netray blogs ${slugCategory}, netray id blogs ${slugCategory}, netray blogs indonesia ${slugCategory}`}
-            desc='Kumpulan daftar blogs dan artikel berdasarkan category yang berkaitan dengan movie and series dari Netray.'
+        <Nevrays
+            title={`${slugCategory.toUpperCase()} - Nevrays`}
+            kw={`nevrays blogs ${slugCategory}, nevrays artikel ${slugCategory}, nevrays blogs ${slugCategory}, nevrays id blogs ${slugCategory}, nevrays blogs indonesia ${slugCategory}`}
+            desc='Kumpulan daftar blogs dan artikel berdasarkan category yang berkaitan dengan movie and series dari Nevrays.'
             ogUrl={status}
             ogType={status}
             ogTitle={status}
@@ -95,7 +96,7 @@ export default function BlogByCategory() {
                             )}`}
                         >
                             ini adalah sebuah halaman membaca. Baca semua
-                            artikel dari Netray.
+                            artikel dari Nevrays.
                         </h3>
                     </div>
                     <form
@@ -159,7 +160,7 @@ export default function BlogByCategory() {
                     )}
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     ) : (
         <div className='flex w-full justify-center'>
             <SearchNotFound classGif='max-w-[30rem] w-full' />

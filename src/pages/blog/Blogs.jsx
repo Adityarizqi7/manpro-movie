@@ -3,7 +3,7 @@ import { GlobalContext } from '@/routes/Router'
 
 import '@/styles/blog/_blogs.scss'
 
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 import ListBlogs from '@/pages/blog/ListBlogs'
 import { useBlogState } from '@/store/blogController'
 import SearchNotFound from '@/components/error/SearchNotFound'
@@ -22,10 +22,10 @@ export default function Blogs() {
         (state) => state.handleSearchResults
     )
 
-    const handleSearchBar = (e) => {
+    const handleSearchBar = React.useCallback((e) => {
         e.preventDefault()
         handleSearchResults()
-    }
+    }, [handleSearchResults])
 
     const handleFocusInput = React.useCallback((event) => {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
@@ -34,13 +34,14 @@ export default function Blogs() {
             inputRef.current.focus()
         }
         if (event.code === 'Escape') inputRef.current.blur() || clearKeySearch()
-    }, [])
+    }, [inputRef, clearKeySearch])
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
     React.useEffect(() => {
         document.addEventListener('keydown', handleFocusInput)
@@ -51,10 +52,10 @@ export default function Blogs() {
     }, [handleFocusInput])
 
     return (
-        <Netray
-            title='Blogs | Netray'
-            kw='Netray blogs, Netray artikel, Netray blogs, Netray id blogs, Netray blogs indonesia'
-            desc='Kumpulan daftar blogs dan artikel yang berkaitan dengan Kesehatan dari Netray.'
+        <Nevrays
+            title='Blogs | Nevrays'
+            kw='nevrays blogs, nevrays artikel, nevrays blogs, nevrays id blogs, nevrays blogs indonesia'
+            desc='Kumpulan daftar blogs dan artikel yang berkaitan dengan Kesehatan dari Nevrays.'
             ogUrl={status}
             ogType={status}
             ogTitle={status}
@@ -75,7 +76,7 @@ export default function Blogs() {
                                 '!text-neutral-100'
                             )}`}
                         >
-                            Netray Insight
+                            Nevrays Insight
                         </h1>
                         <h3
                             className={`${renderTheme(
@@ -84,7 +85,7 @@ export default function Blogs() {
                             )}`}
                         >
                             ini adalah sebuah halaman membaca. Baca semua
-                            artikel dari Netray.
+                            artikel dari Nevrays.
                         </h3>
                     </div>
                     <form
@@ -148,6 +149,6 @@ export default function Blogs() {
                     )}
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

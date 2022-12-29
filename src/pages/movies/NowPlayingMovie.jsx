@@ -7,10 +7,10 @@ import '@/styles/movie/_nowplaying.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { slice } from '@/utils/Slice'
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 import List from '@/components/list/List'
 import { Spin } from '@/components/loading/Spin'
-import { MovieCard } from '@/components/movie/MovieCard'
+import { MovieCard } from '@/components/content/ContentCard'
 
 export default function NowPlayingMovie() {
     const inputRef = React.useRef()
@@ -21,18 +21,19 @@ export default function NowPlayingMovie() {
 
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
     const [index, setIndex] = React.useState(8)
     const [loading, setLoading] = React.useState(false)
     const initialPosts = slice(nowPlayingMVAll, 0, index)
 
-    const handleChange = (e) => setSearchMovie(e.target.value)
-    const deleteText = () => setSearchMovie('')
+    const handleChange = React.useCallback((e) => setSearchMovie(e.target.value), [])
+    const deleteText = React.useCallback(() => setSearchMovie(''), [])
 
     const handleFocusInput = React.useCallback((event) => {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
@@ -41,13 +42,13 @@ export default function NowPlayingMovie() {
             inputRef.current.focus()
         }
         if (event.code === 'Escape') inputRef.current.blur() || deleteText()
-    }, [])
+    }, [inputRef, deleteText])
 
-    const loadMore = () => {
+    const loadMore = React.useCallback(() => {
         setLoading(true)
-        setIndex(index + 4)
+        setIndex(idx => idx + 4)
         setLoading(false)
-    }
+    }, [])
 
     const getDataNowPlayingMVAll = React.useCallback(async () => {
         try {
@@ -77,10 +78,10 @@ export default function NowPlayingMovie() {
     }, [getDataNowPlayingMVAll])
 
     return (
-        <Netray
-            title='Now Playing Movies - Netray'
+        <Nevrays
+            title='Now Playing Movies - Nevrays'
             kw='now playing movies, now playing movies, now playing movies, now playing movies'
-            desc='Now Playing Movies - Netray. Lihat film-film apa saja yang sedang tayang di platform film kesayangan anda.'
+            desc='Now Playing Movies - Nevrays. Lihat film-film apa saja yang sedang tayang di platform film kesayangan anda.'
             ogUrl={''}
             ogType={''}
             ogTitle={''}
@@ -228,6 +229,6 @@ export default function NowPlayingMovie() {
                     </section>
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

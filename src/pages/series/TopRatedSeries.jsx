@@ -7,10 +7,10 @@ import '@/styles/series/_toprated.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { slice } from '@/utils/Slice'
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 import List from '@/components/list/List'
 import { Spin } from '@/components/loading/Spin'
-import { SeriesCard } from '@/components/movie/MovieCard'
+import { SeriesCard } from '@/components/content/ContentCard'
 
 export default function TopRatedSeries() {
     const inputRef = React.useRef()
@@ -25,14 +25,15 @@ export default function TopRatedSeries() {
 
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
-    const handleChange = (e) => setSearchMovie(e.target.value)
-    const deleteText = () => setSearchMovie('')
+    const handleChange = React.useCallback((e) => setSearchMovie(e.target.value), [])
+    const deleteText = React.useCallback(() => setSearchMovie(''), [])
 
     const handleFocusInput = React.useCallback((event) => {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
@@ -41,13 +42,13 @@ export default function TopRatedSeries() {
             inputRef.current.focus()
         }
         if (event.code === 'Escape') inputRef.current.blur() || deleteText()
-    }, [])
+    }, [inputRef, deleteText])
 
-    const loadMore = () => {
+    const loadMore = React.useCallback(() => {
         setLoading(true)
-        setIndex(index + 4)
+        setIndex(idx => idx + 4)
         setLoading(false)
-    }
+    }, [])
 
     const TopratedTVAll = React.useCallback(async () => {
         try {
@@ -77,10 +78,10 @@ export default function TopRatedSeries() {
     }, [TopratedTVAll])
 
     return (
-        <Netray
-            title='Top Rated Series - Netray'
+        <Nevrays
+            title='Top Rated Series - Nevrays'
             kw='top rated series, top rated series, top rated series, top rated series'
-            desc='Top Rated Series - Netray. Lihat series dan TV Show yang banyak disukai.'
+            desc='Top Rated Series - Nevrays. Lihat series dan TV Show yang banyak disukai.'
             ogUrl={''}
             ogType={''}
             ogTitle={''}
@@ -229,6 +230,6 @@ export default function TopRatedSeries() {
                     </section>
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

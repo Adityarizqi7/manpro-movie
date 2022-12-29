@@ -7,9 +7,8 @@ import { GlobalContext } from '@/routes/Router'
 import '@/styles/movie/_mvbygenre.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import Netray from '@/layouts/Netray'
-import { Spin } from '@/components/loading/Spin'
-import { MovieCard } from '@/components/movie/MovieCard'
+import Nevrays from '@/layouts/Nevrays'
+import { MovieCard } from '@/components/content/ContentCard'
 
 export default function MVByGenre() {
     const { genreId } = useParams()
@@ -17,22 +16,16 @@ export default function MVByGenre() {
     const [genre, setGenre] = React.useState([])
     const [MVGenre, setMVGenre] = React.useState([])
 
-    const [index, setIndex] = React.useState(1)
     const [loading, setLoading] = React.useState(false)
 
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
-
-    const loadMore = () => {
-        setLoading(true)
-        setIndex(index + 1)
-        setLoading(false)
-    }
+        return light
+    }, [])
 
     const getDataMVGenre = React.useCallback(async () => {
         try {
@@ -48,7 +41,7 @@ export default function MVByGenre() {
         } catch {
             setLoading(false)
         }
-    }, [])
+    }, [genreId])
 
     const getGenre = React.useCallback(async () => {
         try {
@@ -64,7 +57,7 @@ export default function MVByGenre() {
         } catch {
             setLoading(false)
         }
-    }, [])
+    }, [genreId])
 
     React.useEffect(() => {
         getGenre()
@@ -72,12 +65,12 @@ export default function MVByGenre() {
     }, [getDataMVGenre, getGenre])
 
     return (
-        <Netray
-            title={`${genre.map((e) => e.name)} Movies - Netray`}
+        <Nevrays
+            title={`${genre.map((e) => e.name)} Movies - Nevrays`}
             kw={`${genre.map((e) => e.name)} Movies`}
             desc={`${genre.map(
                 (e) => e.name
-            )} Genre - Netray. Lihat film-film apa saja sesuai genre kesukaan kalian.`}
+            )} Genre - Nevrays. Lihat film-film apa saja sesuai genre kesukaan kalian.`}
             ogUrl={''}
             ogType={''}
             ogTitle={''}
@@ -138,6 +131,6 @@ export default function MVByGenre() {
                     </section>
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

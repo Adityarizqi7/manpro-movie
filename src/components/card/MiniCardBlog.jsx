@@ -1,11 +1,13 @@
-export default function MiniCardBlog({
+import React from 'react'
+
+export default React.memo(function MiniCardBlog({
     children,
     text1,
     text2,
     classname,
     classname2,
     classname3,
-    classImage,
+    classImage='w-[2.5rem]',
     path,
 }) {
     return (
@@ -24,8 +26,4 @@ export default function MiniCardBlog({
             </div>
         </div>
     )
-}
-
-MiniCardBlog.defaultProps = {
-    classImage: 'w-[2.5rem]',
-}
+})

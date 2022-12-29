@@ -5,7 +5,7 @@ import { GlobalContext } from '@/routes/Router'
 import { useBlogState } from '@/store/blogController'
 
 import '@/styles/blog/_readblog.scss'
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 import MiniCardBlog from '@/components/card/MiniCardBlog'
 import SearchNotFound from '@/components/error/SearchNotFound'
 import BtnSosmedShare from '@/components/button/BtnSosmedShare'
@@ -20,11 +20,12 @@ export default function ReadBlog() {
     const status = null
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
     React.useEffect(() => {
         findBlog(slug)
@@ -32,8 +33,8 @@ export default function ReadBlog() {
     }, [findBlog, findBlogByCategory, slug, slugCategory])
 
     return blog ? (
-        <Netray
-            title={blog?.title + ' - Netray'}
+        <Nevrays
+            title={blog?.title + ' - Nevrays'}
             kw={`${blog?.title} blogs, ${blog?.title} artikel, ${blog?.title} blogs, ${blog?.title} id blogs, ${blog?.title} blogs indonesia`}
             desc={`Blog yang membahas mengenai ${blog?.title}`}
             ogUrl={status}
@@ -155,7 +156,7 @@ export default function ReadBlog() {
                                                 className='wrapper-post group flex flex-col'
                                             >
                                                 <Link
-                                                    to={`/blogs   /${e.slugCategory}/${e.slug}`}
+                                                    to={`/blogs/${e.slugCategory}/${e.slug}`}
                                                 >
                                                     <MiniCardBlog
                                                         path={e.image}
@@ -181,7 +182,7 @@ export default function ReadBlog() {
                     </div>
                 </aside>
             </main>
-        </Netray>
+        </Nevrays>
     ) : (
         <main className='flex w-full justify-center'>
             <SearchNotFound classGif='max-w-[30rem] w-full' />

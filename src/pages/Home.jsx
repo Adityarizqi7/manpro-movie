@@ -2,7 +2,7 @@ import React from 'react'
 import { GlobalContext } from '@/routes/Router'
 
 import '@/styles/_home.scss'
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 import List from '@/components/list/List'
 import {
     PopularMV,
@@ -11,23 +11,25 @@ import {
     TrendMV,
     TrendTV,
     UpcomingMV,
-} from '@/components/movie/MovieService'
+} from '@/components/content/ContentService'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
+
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
     return (
-        <Netray
-            title='Netray — Tonton Movie dan TV Show Online Sambil Nyemil'
-            kw='netray home, netray beranda, netray id home, netray beranda indonesia'
-            desc='Netray Official. Tempat terbaik dan menyenangkan untuk mencari dan menonton film atau tv series favorit anda. Ribuan film sudah siap untuk memanjakan hari-hari anda.'
+        <Nevrays
+            title='Nevrays — Tonton Movie dan TV Show Online Sambil Nyemil'
+            kw='nevrays home, nevrays beranda, nevrays id home, nevrays beranda indonesia'
+            desc='Nevrays Official. Tempat terbaik dan menyenangkan untuk mencari dan menonton film atau tv series favorit anda. Ribuan film sudah siap untuk memanjakan hari-hari anda.'
             ogUrl={''}
             ogType={''}
             ogTitle={''}
@@ -121,17 +123,17 @@ export default function Home() {
                                     >
                                         Upcoming Movie
                                     </h1>
-                                    <Link to={'/movies/upcoming'}>
-                                        <h2
+                                    <h2
                                             className={`${renderTheme(
                                                 theme,
                                                 'text-gray-200',
                                                 'text-gray-600'
                                             )} text-sm font-normal hover:text-blue-600`}
                                         >
-                                            See more
-                                        </h2>
-                                    </Link>
+                                        <Link to={'/movies/upcoming'}>
+                                            See Movies
+                                        </Link>
+                                    </h2>
                                 </div>
                                 <div className='container-list-card cursor-grab'>
                                     <UpcomingMV />
@@ -151,56 +153,26 @@ export default function Home() {
                                     >
                                         Now Playing Movie
                                     </h1>
-                                    <Link to={'/movies/now-playing'}>
-                                        <h2
-                                            className={`${renderTheme(
-                                                theme,
-                                                'text-gray-200',
-                                                'text-gray-600'
-                                            )} text-sm font-normal hover:text-blue-600`}
-                                        >
-                                            See more
-                                        </h2>
-                                    </Link>
+                                    <h2
+                                        className={`${renderTheme(
+                                            theme,
+                                            'text-gray-200',
+                                            'text-gray-600'
+                                        )} text-sm font-normal hover:text-blue-600`}
+                                    >
+                                        <Link to={'/movies/now-playing'}>
+                                            See Movies
+                                        </Link>
+                                    </h2>
                                 </div>
                                 <div className='container-list-card'>
                                     <NowPlayMV />
-                                </div>
-                            </article>
-                            <article
-                                id='popular_movie'
-                                className='movie-container space-y-8'
-                            >
-                                <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
-                                    <h1
-                                        className={`${renderTheme(
-                                            theme,
-                                            'text-white',
-                                            'text-black'
-                                        )} font-semibold`}
-                                    >
-                                        Popular Movie
-                                    </h1>
-                                    <Link to={'/movies/popular'}>
-                                        <h2
-                                            className={`${renderTheme(
-                                                theme,
-                                                'text-gray-200',
-                                                'text-gray-600'
-                                            )} text-sm font-normal hover:text-blue-600`}
-                                        >
-                                            See more
-                                        </h2>
-                                    </Link>
-                                </div>
-                                <div className='container-list-card'>
-                                    <PopularMV />
                                 </div>
                             </article>
                         </div>
                     </section>
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

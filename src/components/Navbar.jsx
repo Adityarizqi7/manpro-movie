@@ -1,4 +1,3 @@
-// import React from 'react'
 import tmdb from '@/api/tmbd'
 import { useLocation } from 'react-router-dom'
 import { Link, NavLink } from 'react-router-dom'
@@ -11,7 +10,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 import '@/styles/component/_navbar.scss'
-import netray from '@/assets/images/netray.png'
+import nevrays from '@/assets/images/nevrays.png'
 import DarkBtn from '@/components/button/DarkBtn'
 
 export default function Navbar() {
@@ -25,17 +24,17 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenNavbar, setIsOpenNavbar] = useState(false)
 
-    function closeModal() {
+    const closeModal = React.useCallback( () => {
         setIsOpen(false)
-    }
-    function openModal() {
+    }, [isOpen])
+    const openModal = React.useCallback( () => {
         setIsOpen(true)
-    }
+    }, [isOpen])
 
     const activeStyle = { color: 'white' }
 
     const location = useLocation()
-    function checkPathMovies() {
+    const checkPathMovies = React.useCallback( () => {
         if (
             location.pathname === '/movies/now-playing' ||
             location.pathname === '/movies/upcoming' ||
@@ -43,8 +42,8 @@ export default function Navbar() {
         )
             return 'text-white'
         return 'text-gray-300'
-    }
-    function checkPathSeries() {
+    }, [])
+    const checkPathSeries = React.useCallback(() => {
         if (
             location.pathname === '/series/airing-today' ||
             location.pathname === '/series/on-the-air' ||
@@ -52,10 +51,10 @@ export default function Navbar() {
         )
             return 'text-white'
         return 'text-gray-300'
-    }
+    }, [location])
 
-    const handleChange = (e) => setSearchMovie(e.target.value)
-    const handleSubmitSearch = async (e) => {
+    const handleChange = React.useCallback((e) => setSearchMovie(e.target.value), [])
+    const handleSubmitSearch = React.useCallback( async (e) => {
         e.preventDefault()
         setLoading(true)
 
@@ -72,9 +71,9 @@ export default function Navbar() {
         } catch {
             setLoading(false)
         }
-    }
+    }, [inputRef])
 
-    const deleteText = () => setSearchMovie('')
+    const deleteText = React.useCallback(() => setSearchMovie(''), [])
     const handleFocusInput = React.useCallback((event) => {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyM') {
             event.preventDefault()
@@ -101,8 +100,8 @@ export default function Navbar() {
                         <Link to={'/'}>
                             <img
                                 className='h-12 w-12'
-                                src={netray}
-                                alt='Netray Logo'
+                                src={nevrays}
+                                alt='Nevrays Logo'
                             />
                         </Link>
                     </div>
@@ -542,7 +541,7 @@ export default function Navbar() {
                             style={({ isActive }) =>
                                 isActive ? activeStyle : undefined
                             }
-                            className='text-ba[1rem] block py-4 font-medium text-gray-300'
+                            className='text-[1rem] block py-4 font-medium text-gray-300'
                         >
                             Home
                         </NavLink>
@@ -680,6 +679,16 @@ export default function Navbar() {
                                 </Menu.Items>
                             </Transition>
                         </Menu>
+                        <NavLink
+                                to='/blogs'
+                                style={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }
+                                className='text-[1rem] block py-4 font-medium text-gray-300'
+                            >
+                                Blogs
+                            </NavLink>
+
                     </div>
                 </div>
             </Transition>

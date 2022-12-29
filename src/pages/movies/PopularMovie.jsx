@@ -7,10 +7,10 @@ import '@/styles/movie/_popular.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { slice } from '@/utils/Slice'
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 import List from '@/components/list/List'
 import { Spin } from '@/components/loading/Spin'
-import { MovieCard } from '@/components/movie/MovieCard'
+import { MovieCard } from '@/components/content/ContentCard'
 
 export default function NowPlayingMovie() {
     const inputRef = React.useRef()
@@ -25,14 +25,15 @@ export default function NowPlayingMovie() {
 
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
-    const handleChange = (e) => setSearchMovie(e.target.value)
-    const deleteText = () => setSearchMovie('')
+    const handleChange = React.useCallback((e) => setSearchMovie(e.target.value), [])
+    const deleteText = React.useCallback(() => setSearchMovie(''), [])
 
     const handleFocusInput = React.useCallback((event) => {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
@@ -41,15 +42,15 @@ export default function NowPlayingMovie() {
             inputRef.current.focus()
         }
         if (event.code === 'Escape') inputRef.current.blur() || deleteText()
+    }, [inputRef, deleteText])
+
+    const loadMore = React.useCallback(() => {
+        setLoading(true)
+        setIndex(idx => idx + 4)
+        setLoading(false)
     }, [])
 
-    const loadMore = () => {
-        setLoading(true)
-        setIndex(index + 4)
-        setLoading(false)
-    }
-
-    const PopularMVAll = React.useCallback(async () => {
+    const PopularMVAll = React.useCallback( async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/movie/popular', {
@@ -77,14 +78,11 @@ export default function NowPlayingMovie() {
     }, [PopularMVAll])
 
     return (
-        <Netray
-            title='Popular Movies - Netray'
+        <Nevrays
+            title='Popular Movies - Nevrays'
             kw='popular movies, popular movies, popular movies, popular movies'
-            desc='Popular Movies - Netray. Lihat film-film apa saja yang sedang popular di platform film kesayangan anda.'
-            ogUrl={''}
-            ogType={''}
+            desc='Popular Movies - Nevrays. Lihat film-film apa saja yang sedang popular di platform film kesayangan anda.'
             ogTitle={''}
-            ogDesc={''}
             twitTitle={''}
         >
             <main
@@ -228,6 +226,6 @@ export default function NowPlayingMovie() {
                     </section>
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

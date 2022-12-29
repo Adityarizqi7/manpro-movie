@@ -7,10 +7,10 @@ import '@/styles/series/_ontv.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { slice } from '@/utils/Slice'
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 import List from '@/components/list/List'
 import { Spin } from '@/components/loading/Spin'
-import { SeriesCard } from '@/components/movie/MovieCard'
+import { SeriesCard } from '@/components/content/ContentCard'
 
 export default function OnTVSeries() {
     const inputRef = React.useRef()
@@ -25,14 +25,15 @@ export default function OnTVSeries() {
 
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
-    const handleChange = (e) => setSearchMovie(e.target.value)
-    const deleteText = () => setSearchMovie('')
+    const handleChange = React.useCallback((e) => setSearchMovie(e.target.value), [])
+    const deleteText = React.useCallback(() => setSearchMovie(''), [])
 
     const handleFocusInput = React.useCallback((event) => {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
@@ -41,13 +42,13 @@ export default function OnTVSeries() {
             inputRef.current.focus()
         }
         if (event.code === 'Escape') inputRef.current.blur() || deleteText()
-    }, [])
+    }, [inputRef, deleteText])
 
-    const loadMore = () => {
+    const loadMore = React.useCallback(() => {
         setLoading(true)
-        setIndex(index + 4)
+        setIndex(idx => idx + 4)
         setLoading(false)
-    }
+    }, [])
 
     const OnTVAll = React.useCallback(async () => {
         try {
@@ -73,10 +74,10 @@ export default function OnTVSeries() {
     }, [OnTVAll])
 
     return (
-        <Netray
-            title='Currently Airing Series - Netray'
+        <Nevrays
+            title='Currently Airing Series - Nevrays'
             kw='currently airing series, currently airing series, currently airing series, currently airing series'
-            desc='Currently Airing Series - Netray. Lihat series dan TV Show apa saja yang sedang ditayangkan.'
+            desc='Currently Airing Series - Nevrays. Lihat series dan TV Show apa saja yang sedang ditayangkan.'
             ogUrl={''}
             ogType={''}
             ogTitle={''}
@@ -225,6 +226,6 @@ export default function OnTVSeries() {
                     </section>
                 </section>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }

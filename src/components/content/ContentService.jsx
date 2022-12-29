@@ -10,7 +10,7 @@ import 'swiper/scss/navigation'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { SkeletonCard } from '../loading/skeleton/SkeletonCard'
-import { MovieCard, SeriesCard2, MovieCard2, SeriesCard } from './MovieCard'
+import { MovieCard, SeriesCard2, MovieCard2, SeriesCard } from './ContentCard'
 
 function TrendMV() {
     const [trendMV, setTrendMV] = useState([])
@@ -345,7 +345,7 @@ function PopularTV() {
     const [trailerSeries, setTrailerSeries] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getDataTrend = useCallback(async () => {
+    const getDataTrend = useCallback( async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/tv/popular', {
@@ -360,23 +360,23 @@ function PopularTV() {
         }
     }, [])
 
+    const getDataTrailerSeries = useCallback( async () => {
+        const { data } = await tmdb.get(`/tv/${119051}/videos`, {
+            params: {
+                append_to_response: 'videos',
+            },
+        })
+
+        setTrailerSeries(data.results[Math.floor(Math.random() * 9) + 0])
+    }, [])
+
     useEffect(() => {
         getDataTrend()
     }, [getDataTrend])
-
+    
     useEffect(() => {
-        const getDataTrailerSeries = async () => {
-            const { data } = await tmdb.get(`/tv/${119051}/videos`, {
-                params: {
-                    append_to_response: 'videos',
-                },
-            })
-
-            setTrailerSeries(data.results[Math.floor(Math.random() * 9) + 0])
-        }
-
         getDataTrailerSeries()
-    }, [])
+    }, [getDataTrailerSeries])
 
     return loading ? (
         <>

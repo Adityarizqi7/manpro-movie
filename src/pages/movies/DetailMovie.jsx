@@ -1,6 +1,5 @@
 import React from 'react'
 import tmbd from '@/api/tmbd'
-import { useParams, Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import LightGallery from 'lightgallery/react'
 import lgZoom from 'lightgallery/plugins/zoom'
@@ -8,6 +7,7 @@ import { GlobalContext } from '@/routes/Router'
 import lgVideo from 'lightgallery/plugins/video'
 import lgShare from 'lightgallery/plugins/share'
 import lgRotate from 'lightgallery/plugins/rotate'
+import { useParams, Link } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
 import lgFullscreen from 'lightgallery/plugins/fullscreen'
 import { PhotoIcon, PlayIcon } from '@heroicons/react/24/outline'
@@ -16,12 +16,10 @@ import 'lightgallery/scss/lightgallery-bundle.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 import '@/styles/component/movie/_detailmovies.scss'
 
-import Netray from '@/layouts/Netray'
+import Nevrays from '@/layouts/Nevrays'
 
 const DetailMovie = () => {
-    const [toggler, setToggler] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [togglerTrailer, setTogglerTrailer] = useState(false)
 
     const [detailMV, setDetailMV] = useState(null)
     const [trailerMV, setTrailerMV] = useState([])
@@ -29,11 +27,12 @@ const DetailMovie = () => {
 
     const theme = React.useContext(GlobalContext).theme
 
-    const renderTheme = (theme, dark = '', light = '') => {
+    const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
             return dark
         }
-    }
+        return light
+    }, [])
 
     const getDetailMovie = useCallback(async () => {
         try {
@@ -70,23 +69,23 @@ const DetailMovie = () => {
         } catch {
             setLoading(false)
         }
-    }, [])
+    }, [movieId])
 
     useEffect(() => {
         getDetailMovie()
     }, [getDetailMovie])
 
     return (
-        <Netray
+        <Nevrays
             title={
                 loading
                     ? 'Loading'
                     : `${detailMV?.original_title} (${
                           detailMV?.release_date.split('-')[0]
-                      })` + ' - Netray'
+                      })` + ' - Nevrays'
             }
-            kw={detailMV?.original_title + ' netray'}
-            desc='Netray Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan'
+            kw={detailMV?.original_title + ' nevrays'}
+            desc='Nevrays Official adalah website yang menyediakan kumpulan film-film baik yang yang terbaru maupun yang sudah lama dengan pilihan resolusi yang bisa disesuaikan'
             ogUrl={''}
             ogType={''}
             ogTitle={''}
@@ -394,7 +393,7 @@ const DetailMovie = () => {
                     </div>
                 </div>
             </main>
-        </Netray>
+        </Nevrays>
     )
 }
 

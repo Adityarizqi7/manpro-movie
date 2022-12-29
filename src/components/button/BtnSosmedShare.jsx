@@ -3,7 +3,7 @@ import Swal from 'sweetalert2'
 
 import '@/styles/component/button/_btnsosmedshare.scss'
 
-export default function BtnSosmedShare({ classBtnShare, title, fill, size }) {
+export default React.memo(function BtnSosmedShare({ classBtnShare, title, fill, size='24' }) {
     const [isCopied, setIsCopied] = React.useState(false)
 
     const SwalCopyText = Swal.mixin({
@@ -137,8 +137,4 @@ export default function BtnSosmedShare({ classBtnShare, title, fill, size }) {
             </div>
         </>
     )
-}
-
-BtnSosmedShare.defaultProps = {
-    size: '24',
-}
+})

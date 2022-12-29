@@ -1,8 +1,9 @@
+import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const SkeletonCard = ({
+export const SkeletonCard = React.memo(({
     classSkeletonTitle,
     classSkeletonContainer,
     length = 6,
@@ -22,6 +23,4 @@ const SkeletonCard = ({
                 ))}
         </div>
     )
-}
-
-export { SkeletonCard }
+})
