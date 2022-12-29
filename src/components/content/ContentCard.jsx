@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Popover } from '@headlessui/react'
 import { GlobalContext } from '@/routes/Router'
 import { PlayIcon } from '@heroicons/react/24/solid'
+import ProgressiveImage from 'react-progressive-image'
 
 import '@/styles/component/movie/_moviecard.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -33,11 +34,16 @@ export const MovieCard = React.memo(({
             <div className='wrapper-card group cursor-pointer'>
                 {
                     <div className='image-card rouned-[0.5rem] relative h-[25%]'>
-                        <img
-                            src={`${getPoster('w500', poster_path)}`}
-                            alt={`${title || original_name}`}
-                            className='h-[25%] w-full rounded-[0.5rem] object-cover object-top'
-                        />
+                        <ProgressiveImage src={`${getPoster('w500', poster_path)}`} placeholder={`${getPoster('w500', poster_path)}`}>
+                            {(src, loading) => (
+                                <img
+                                    style={{ opacity: loading ? 0.5 : 1 }}
+                                    src={src}
+                                    alt={`${title || original_name}`}
+                                    className='h-[25%] w-full rounded-[0.5rem] object-cover object-top'
+                                />
+                            )}
+                        </ProgressiveImage>
                         <div className='overlay absolute top-0 h-full w-full rounded-[0.5rem] transition-colors group-hover:bg-black/60'>
                             <div className='flex h-full flex-col items-center'>
                                 <PlayIcon className='icon-play my-auto mx-auto w-[18vw] scale-0 rounded-full bg-blue-600 p-2 text-white transition-transform group-hover:scale-100 sm:w-[3.5rem]' />
@@ -75,11 +81,16 @@ export const MovieCard2 = React.memo(({ id, title, poster_path, classOverlay, cl
         <Link to={`movie/${id}`}>
             <div className={`${classWrapper} wrapper-card group`}>
                 <div className='image-card relative'>
-                    <img
-                        src={`${getPoster('w500', poster_path)}`}
-                        alt={`${title}`}
-                        className='w-full object-cover'
-                    />
+                    <ProgressiveImage src={`${getPoster('w500', poster_path)}`} placeholder={`${getPoster('w500', poster_path)}`}>
+                        {(src, loading) => (
+                            <img
+                                style={{ opacity: loading ? 0.5 : 1 }}
+                                src={src}
+                                alt={`${title}`}
+                                className='w-full object-cover'
+                            />
+                        )}
+                    </ProgressiveImage>
                     <div
                         className={`${classOverlay} overlay absolute top-0 h-full w-full transition-colors group-hover:bg-black/60`}
                     >
@@ -113,11 +124,16 @@ export const SeriesCard = React.memo(({
             <div className='wrapper-card group cursor-pointer'>
                 {
                     <div className='image-card relative h-[25%]'>
-                        <img
-                            src={`${getPoster('w500', poster_path)}`}
-                            alt={`${original_name}`}
-                            className='h-[25%] w-full rounded-[0.5rem] object-cover object-top'
-                        />
+                        <ProgressiveImage src={`${getPoster('w500', poster_path)}`} placeholder={`${getPoster('w500', poster_path)}`}>
+                            {(src, loading) => (
+                                <img
+                                    style={{ opacity: loading ? 0.5 : 1 }}
+                                    src={src}
+                                    alt={`${original_name}`}
+                                    className='h-[25%] w-full rounded-[0.5rem] object-cover object-top'
+                                />
+                            )}
+                        </ProgressiveImage>
                         <div className='overlay absolute top-0 h-full w-full rounded-[0.5rem] transition-colors group-hover:bg-black/60'>
                             <div className='flex h-full flex-col items-center'>
                                 <PlayIcon className='icon-play my-auto mx-auto w-[18vw] scale-0 rounded-full bg-blue-600 p-2 text-white transition-transform group-hover:scale-100 sm:w-[3.5rem]' />
@@ -162,11 +178,16 @@ export const SeriesCard2 = React.memo(({
         <div className='wrapper-card group'>
             <Popover>
                 <div className='image-card relative'>
-                    <img
-                        src={`${getPoster('w1280', backdrop_path)}`}
-                        alt={`${original_name}`}
-                        className='h-[43vw] w-full object-cover'
-                    />
+                    <ProgressiveImage src={`${getPoster('w1280', backdrop_path)}`} placeholder={`${getPoster('w1280', backdrop_path)}`}>
+                        {(src, loading) => (
+                            <img
+                                src={src}
+                                alt={`${original_name}`}
+                                style={{ opacity: loading ? 0.5 : 1 }}
+                                className='h-[43vw] w-full object-cover'
+                            />
+                        )}
+                    </ProgressiveImage>
                     <div className='overlay-card-two absolute top-0 z-10 flex h-full w-full flex-col justify-center'>
                         <div className='flex flex-col items-start px-6 sm:hidden'>
                             <Link to={`series/${id}`}>

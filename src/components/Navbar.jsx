@@ -384,39 +384,39 @@ export default function Navbar() {
                                                             </h1>
                                                             <div className='results flex flex-col gap-2'>
                                                                 {searchResult.map(
-                                                                    (
-                                                                        e,
-                                                                        idx
-                                                                    ) => {
-                                                                        return (
-                                                                            e.media_type ===
-                                                                                'movie' && (
-                                                                                <a
-                                                                                    key={
-                                                                                        idx
-                                                                                    }
-                                                                                    href={`/movie/${e.id}`}
-                                                                                >
-                                                                                    <div className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'>
-                                                                                        <div className='highlight-info-result flex items-center gap-3'>
-                                                                                            <img
-                                                                                                src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`}
-                                                                                                alt={
-                                                                                                    e.title
-                                                                                                }
-                                                                                                className='aspect-square w-6 rounded-full object-cover'
-                                                                                            />
-                                                                                            <h2>
-                                                                                                {
-                                                                                                    e.title
-                                                                                                }
-                                                                                            </h2>
-                                                                                        </div>
-                                                                                        <ChevronRightIcon className='h-3 w-3' />
+                                                                    ( e, idx ) => { return (
+                                                                        e.media_type === 'movie' && (
+                                                                            <a
+                                                                                key={
+                                                                                    idx
+                                                                                }
+                                                                                href={`/movie/${e.id}`}
+                                                                            >
+                                                                                <div className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'>
+                                                                                    <div className='highlight-info-result flex items-center gap-3'>
+                                                                                        <ProgressiveImage src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} placeholder={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`}>
+                                                                                            {(src, loading) => (
+                                                                                                <img
+                                                                                                    src={src}
+                                                                                                    alt={
+                                                                                                        e.title
+                                                                                                    }
+                                                                                                    style={{ opacity: loading ? 0.5 : 1 }}
+                                                                                                    className='aspect-square w-6 rounded-full object-cover'
+                                                                                                />
+                                                                                            )}
+                                                                                        </ProgressiveImage>
+                                                                                        <h2>
+                                                                                            {
+                                                                                                e.title
+                                                                                            }
+                                                                                        </h2>
                                                                                     </div>
-                                                                                </a>
-                                                                            )
+                                                                                    <ChevronRightIcon className='h-3 w-3' />
+                                                                                </div>
+                                                                            </a>
                                                                         )
+                                                                    )
                                                                     }
                                                                 )}
                                                             </div>

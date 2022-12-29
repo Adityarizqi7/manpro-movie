@@ -8,6 +8,7 @@ import lgVideo from 'lightgallery/plugins/video'
 import lgShare from 'lightgallery/plugins/share'
 import lgRotate from 'lightgallery/plugins/rotate'
 import { useParams, Link } from 'react-router-dom'
+import ProgressiveImage from 'react-progressive-image'
 import { useCallback, useEffect, useState } from 'react'
 import lgFullscreen from 'lightgallery/plugins/fullscreen'
 import { PhotoIcon, PlayIcon } from '@heroicons/react/24/outline'
@@ -100,14 +101,19 @@ const DetailMovie = () => {
             >
                 {/* banner */}
                 <div className='jumbotron-image'>
-                    {loading && <Skeleton height={500} />}
-                    {!loading && (
-                        <img
-                            className='h-[200px] w-full overflow-hidden object-cover object-top shadow-lg sm:h-[500px]'
-                            src={`https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`}
-                            alt={`${detailMV?.original_title}`}
-                        />
-                    )}
+                    {loading ? <Skeleton height={500} />
+                        :
+                        <ProgressiveImage src={`https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`} placeholder={`https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`}>
+                            {(src, loading) => (
+                                <img
+                                    src={src}
+                                    alt={`${detailMV?.original_title}`}
+                                    style={{ opacity: loading ? 0.5 : 1 }}
+                                    className='h-[200px] w-full overflow-hidden object-cover object-top shadow-lg sm:h-[500px]'
+                                />
+                            )}
+                        </ProgressiveImage>
+                    }
                 </div>
                 {/* contents */}
                 <div className='content-detail-movie lg:flex lg:gap-7'>
@@ -116,11 +122,16 @@ const DetailMovie = () => {
                         {loading ? (
                             <Skeleton height={500} />
                         ) : (
-                            <img
-                                className='object-cover'
-                                src={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}
-                                alt={`${detailMV?.original_title}`}
-                            />
+                            <ProgressiveImage src={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`} placeholder={`https://image.tmdb.org/t/p/w500/${detailMV?.poster_path}`}>
+                                {(src, loading) => (
+                                    <img
+                                        src={src}
+                                        className='object-cover'
+                                        alt={`${detailMV?.original_title}`}
+                                        style={{ opacity: loading ? 0.5 : 1 }}
+                                    />
+                                )}
+                            </ProgressiveImage>
                         )}
                     </div>
                     <div className='wrapper-content w-full space-y-8 lg:w-[70%]'>

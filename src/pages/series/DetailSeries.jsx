@@ -1,6 +1,5 @@
 import React from 'react'
 import tmbd from '@/api/tmbd'
-import { useParams, Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import LightGallery from 'lightgallery/react'
 import lgZoom from 'lightgallery/plugins/zoom'
@@ -8,6 +7,8 @@ import { GlobalContext } from '@/routes/Router'
 import lgVideo from 'lightgallery/plugins/video'
 import lgShare from 'lightgallery/plugins/share'
 import lgRotate from 'lightgallery/plugins/rotate'
+import { useParams, Link } from 'react-router-dom'
+import ProgressiveImage from 'react-progressive-image'
 import { useCallback, useEffect, useState } from 'react'
 import lgFullscreen from 'lightgallery/plugins/fullscreen'
 import { PhotoIcon, PlayIcon } from '@heroicons/react/24/outline'
@@ -92,26 +93,37 @@ const DetailSeries = () => {
             >
                 {/* banner */}
                 <div className='jumbotron-image'>
-                    {loading && <Skeleton height={500} />}
-                    {!loading && (
-                        <img
-                            className='h-[200px] w-full overflow-hidden object-cover object-top shadow-lg sm:h-[500px]'
-                            src={`https://image.tmdb.org/t/p/original_filter(grayscale,032541,01b4e4)/${detailTV?.backdrop_path}`}
-                            alt={`${detailTV?.original_name}`}
-                        />
-                    )}
+                    {loading ? <Skeleton height={500} />
+                        :
+                        <ProgressiveImage src={`https://image.tmdb.org/t/p/original_filter(grayscale,032541,01b4e4)/${detailTV?.backdrop_path}`} placeholder={`https://image.tmdb.org/t/p/original_filter(grayscale,032541,01b4e4)/${detailTV?.backdrop_path}`}>
+                            {(src, loading) => (
+                                <img
+                                    src={src}
+                                    alt={`${detailTV?.original_name}`}
+                                    style={{ opacity: loading ? 0.5 : 1 }}
+                                    className='h-[200px] w-full overflow-hidden object-cover object-top shadow-lg sm:h-[500px]'
+                                />
+                            )}
+                        </ProgressiveImage>
+                    }
                 </div>
                 {/* contents */}
                 <div className='content-detail-series lg:flex lg:gap-7'>
                     {/* poster  */}
                     <div className='poster-content hidden w-[30%] rounded-md lg:block'>
-                        {loading && <Skeleton height={500} />}
-                        {!loading && (
-                            <img
-                                className='object-cover'
-                                src={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`}
-                                alt={`${detailTV?.original_name}`}
-                            />
+                        {loading ? (
+                            <Skeleton height={500} />
+                        ) : (
+                            <ProgressiveImage src={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`} placeholder={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`}>
+                                {(src, loading) => (
+                                    <img
+                                        src={src}
+                                        className='object-cover'
+                                        alt={`${detailTV?.original_name}`}
+                                        style={{ opacity: loading ? 0.5 : 1 }}
+                                    />
+                                )}
+                            </ProgressiveImage>
                         )}
                     </div>
                     <div className='wrapper-content w-full space-y-6 lg:w-[70%]'>
