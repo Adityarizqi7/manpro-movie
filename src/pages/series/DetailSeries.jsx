@@ -70,6 +70,10 @@ const DetailSeries = () => {
         }
     }, [])
 
+    const getPoster = ((size, path) => {
+        return `https://www.themoviedb.org/t/p/${size}/${path}`
+    })    
+
     useEffect(() => {
         getDetailSeries()
     }, [getDetailSeries])
@@ -99,6 +103,8 @@ const DetailSeries = () => {
                             {(src, loading) => (
                                 <img
                                     src={src}
+                                    width='auto'
+                                    height='auto'
                                     alt={`${detailTV?.original_name}`}
                                     style={{ opacity: loading ? 0.5 : 1 }}
                                     className='h-[200px] w-full overflow-hidden object-cover object-top shadow-lg sm:h-[500px]'
@@ -114,10 +120,12 @@ const DetailSeries = () => {
                         {loading ? (
                             <Skeleton height={500} />
                         ) : (
-                            <ProgressiveImage src={ detailTV.backdrop_path === null ? BgNull : getPoster('original', detailTV?.backdrop_path) } placeholder={ detailTV.backdrop_path === null ? BgNull : getPoster('original', detailTV?.backdrop_path)} >
+                            <ProgressiveImage src={ detailTV?.poster_path === null ? BgNull : getPoster('original', detailTV?.poster_path) } placeholder={ detailTV?.poster_path === null ? BgNull : getPoster('original', detailTV?.poster_path)} >
                                 {(src, loading) => (
                                     <img
                                         src={src}
+                                        width='auto'
+                                        height='auto'
                                         className='object-cover'
                                         alt={`${detailTV?.original_name}`}
                                         style={{ opacity: loading ? 0.5 : 1 }}

@@ -72,6 +72,10 @@ const DetailMovie = () => {
         }
     }, [movieId])
 
+    const getPoster = ((size, path) => {
+        return `https://www.themoviedb.org/t/p/${size}/${path}`
+    })    
+
     useEffect(() => {
         getDetailMovie()
     }, [getDetailMovie])
@@ -103,10 +107,12 @@ const DetailMovie = () => {
                 <div className='jumbotron-image'>
                     {loading ? <Skeleton height={500} />
                         :
-                        <ProgressiveImage src={ detailMV.backdrop_path === null ? BgNull : getPoster('original', detailMV?.backdrop_path) } placeholder={ detailMV.backdrop_path === null ? BgNull : getPoster('original', detailMV?.backdrop_path)}>
+                        <ProgressiveImage src={ detailMV?.backdrop_path === null ? BgNull : getPoster('original', detailMV?.backdrop_path) } placeholder={ detailMV?.backdrop_path === null ? BgNull : getPoster('original', detailMV?.backdrop_path)}>
                             {(src, loading) => (
                                 <img
                                     src={src}
+                                    width='auto'
+                                    height='auto'
                                     alt={`${detailMV?.original_title}`}
                                     style={{ opacity: loading ? 0.5 : 1 }}
                                     className='h-[200px] w-full overflow-hidden object-cover object-top shadow-lg sm:h-[500px]'
@@ -126,6 +132,8 @@ const DetailMovie = () => {
                                 {(src, loading) => (
                                     <img
                                         src={src}
+                                        width='auto'
+                                        height='auto'
                                         className='object-cover'
                                         alt={`${detailMV?.original_title}`}
                                         style={{ opacity: loading ? 0.5 : 1 }}

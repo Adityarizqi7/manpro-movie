@@ -107,9 +107,12 @@ export default function Navbar() {
                     <div className='brand-image'>
                         <Link to={'/'}>
                             <img
-                                className='h-12 w-12'
                                 src={nevrays}
+                                width='auto'
+                                height='auto'
                                 alt='Nevrays Logo'
+                                className='h-12 w-12'
+
                             />
                         </Link>
                     </div>

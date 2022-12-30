@@ -39,9 +39,11 @@ export const MovieCard = React.memo(({
                         <ProgressiveImage src={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`} placeholder={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`}>
                             {(src, loading) => (
                                 <img
-                                    style={{ opacity: loading ? 0.5 : 1 }}
                                     src={src}
+                                    width='25%'
+                                    height='25%'
                                     alt={`${title || original_name}`}
+                                    style={{ opacity: loading ? 0.5 : 1 }}
                                     className='h-[25%] w-full rounded-[0.5rem] object-cover object-top'
                                 />
                             )}
@@ -86,10 +88,12 @@ export const MovieCard2 = React.memo(({ id, title, poster_path, classOverlay, cl
                     <ProgressiveImage src={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`} placeholder={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`}>
                         {(src, loading) => (
                             <img
-                                style={{ opacity: loading ? 0.5 : 1 }}
                                 src={src}
+                                width='25%'
+                                height='25%'
                                 alt={`${title}`}
                                 className='w-full object-cover'
+                                style={{ opacity: loading ? 0.5 : 1 }}
                             />
                         )}
                     </ProgressiveImage>
@@ -129,9 +133,11 @@ export const SeriesCard = React.memo(({
                         <ProgressiveImage src={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`} placeholder={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`}>
                             {(src, loading) => (
                                 <img
-                                    style={{ opacity: loading ? 0.5 : 1 }}
                                     src={src}
+                                    width='25%'
+                                    height='25%'
                                     alt={`${original_name}`}
+                                    style={{ opacity: loading ? 0.5 : 1 }}
                                     className='h-[25%] w-full rounded-[0.5rem] object-cover object-top'
                                 />
                             )}
@@ -184,6 +190,8 @@ export const SeriesCard2 = React.memo(({
                         {(src, loading) => (
                             <img
                                 src={src}
+                                width='25%'
+                                height='25%'
                                 alt={`${original_name}`}
                                 style={{ opacity: loading ? 0.5 : 1 }}
                                 className='h-[43vw] w-full object-cover'
@@ -192,7 +200,7 @@ export const SeriesCard2 = React.memo(({
                     </ProgressiveImage>
                     <div className='overlay-card-two absolute top-0 z-10 flex h-full w-full flex-col justify-center'>
                         <div className='flex flex-col items-start px-6 sm:hidden'>
-                            <Link to={`series/${id}`}>
+                            <Link aria-label='Detail Series' to={`series/${id}`}>
                                 <PlayIcon aria-label='Detail Series' title='Detail Series' className='icon-play w-[2.5rem] rounded-full bg-white p-2 text-blue-600' />
                             </Link>
                         </div>
