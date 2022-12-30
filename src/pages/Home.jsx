@@ -131,7 +131,7 @@ export default function Home() {
                                             )} text-sm font-normal hover:text-blue-600`}
                                         >
                                         <Link to={'/movies/upcoming'}>
-                                            See Movies
+                                            See all
                                         </Link>
                                     </h2>
                                 </div>
@@ -161,7 +161,7 @@ export default function Home() {
                                         )} text-sm font-normal hover:text-blue-600`}
                                     >
                                         <Link to={'/movies/now-playing'}>
-                                            See Movies
+                                            See all
                                         </Link>
                                     </h2>
                                 </div>

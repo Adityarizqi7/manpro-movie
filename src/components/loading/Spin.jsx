@@ -1,6 +1,6 @@
-export const Spin = () => {
+export const Spin = ({className}) => {
     return (
-        <div role='status' className='spinner-loading'>
+        <div role='status' className={`spinner-loading ${className}`}>
             <svg
                 aria-hidden='true'
                 className='mx-auto h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600'

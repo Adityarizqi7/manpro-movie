@@ -2,6 +2,7 @@ import tmdb from '@/api/tmbd'
 import { useLocation } from 'react-router-dom'
 import { Link, NavLink } from 'react-router-dom'
 import React, { useState, Fragment } from 'react'
+import ProgressiveImage from 'react-progressive-image'
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
 import { Menu, Transition, Dialog } from '@headlessui/react'
 import {
@@ -10,7 +11,9 @@ import {
 } from '@heroicons/react/24/outline'
 
 import '@/styles/component/_navbar.scss'
+import { Spin } from './loading/Spin'
 import nevrays from '@/assets/images/nevrays.png'
+import BgNull from '@/assets/images/bg-null.webp'
 import DarkBtn from '@/components/button/DarkBtn'
 
 export default function Navbar() {
@@ -53,25 +56,20 @@ export default function Navbar() {
         return 'text-gray-300'
     }, [location])
 
-    const handleChange = React.useCallback((e) => setSearchMovie(e.target.value), [])
-    const handleSubmitSearch = React.useCallback( async (e) => {
+    const handleGetSearching = async (e) => {
         e.preventDefault()
         setLoading(true)
 
-        setSearchTempValue((current) => [inputRef.current.value, ...current])
-
-        try {
-            const { data, status } = await tmdb.get('/search/multi', {
-                params: {
-                    query: inputRef.current.value,
-                },
-            })
-            status === 200 && setSearchResult(data.results)
+        setSearchMovie(e.target.value)
+        await tmdb.get('/search/multi', {
+            params: {
+                query: e.target.value,
+            },
+        }).then(res => {
+            setSearchResult(res.data.results)
             setLoading(false)
-        } catch {
-            setLoading(false)
-        }
-    }, [inputRef])
+        })
+    }
 
     const deleteText = React.useCallback(() => setSearchMovie(''), [])
     const handleFocusInput = React.useCallback((event) => {
@@ -317,8 +315,7 @@ export default function Navbar() {
                                 >
                                     <Dialog.Panel className='shadow-own w-full max-w-2xl transform rounded-2xl bg-white p-6 text-left align-middle transition-all 4xs:px-3'>
                                         <div className='search-movies montserrat relative'>
-                                            <form
-                                                onSubmit={handleSubmitSearch}
+                                            <div
                                                 className='box-search flex items-center border-b border-gray-300 pb-4'
                                             >
                                                 <MagnifyingGlassIcon className='h-6 w-6 text-gray-500' />
@@ -329,9 +326,8 @@ export default function Navbar() {
                                                         autoComplete='off'
                                                         className={`w-full pr-[3rem] pl-[0.75rem] focus:outline-none`}
                                                         placeholder='Cari movie dan series ...'
-                                                        onChange={handleChange}
+                                                        onChange={handleGetSearching}
                                                         ref={inputRef}
-                                                        value={searchMovie}
                                                     />
                                                     {
                                                         <>
@@ -354,9 +350,9 @@ export default function Navbar() {
                                                         </>
                                                     }
                                                 </div>
-                                            </form>
+                                            </div>
                                             <div className='box-result-search h-[28vw] space-y-10 overflow-y-auto 2xs:h-[100vw]'>
-                                                {searchResult.length < 1 ? (
+                                                { searchMovie === '' ? (
                                                     <div className='movies-result montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4'>
                                                         <h1 className='text-[1.25rem] font-semibold'>
                                                             Tidak ada pencarian
@@ -377,95 +373,22 @@ export default function Navbar() {
                                                             </div> */}
                                                     </div>
                                                 ) : (
+                                                    loading ?
+                                                        <Spin className='mt-10' />
+                                                    :
                                                     <>
-                                                        <div className='movies-result montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4 2xs:h-[50vw]'>
-                                                            <h1 className='text-[1.25rem] font-semibold'>
-                                                                Movies
-                                                            </h1>
-                                                            <div className='results flex flex-col gap-2'>
-                                                                {searchResult.map(
-                                                                    ( e, idx ) => { return (
-                                                                        e.media_type === 'movie' && (
-                                                                            <a
-                                                                                key={
-                                                                                    idx
-                                                                                }
-                                                                                href={`/movie/${e.id}`}
-                                                                            >
-                                                                                <div className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'>
-                                                                                    <div className='highlight-info-result flex items-center gap-3'>
-                                                                                        <ProgressiveImage src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`} placeholder={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`}>
-                                                                                            {(src, loading) => (
-                                                                                                <img
-                                                                                                    src={src}
-                                                                                                    alt={
-                                                                                                        e.title
-                                                                                                    }
-                                                                                                    style={{ opacity: loading ? 0.5 : 1 }}
-                                                                                                    className='aspect-square w-6 rounded-full object-cover'
-                                                                                                />
-                                                                                            )}
-                                                                                        </ProgressiveImage>
-                                                                                        <h2>
-                                                                                            {
-                                                                                                e.title
-                                                                                            }
-                                                                                        </h2>
-                                                                                    </div>
-                                                                                    <ChevronRightIcon className='h-3 w-3' />
-                                                                                </div>
-                                                                            </a>
-                                                                        )
-                                                                    )
-                                                                    }
-                                                                )}
-                                                            </div>
-                                                        </div>
-                                                        <div className='series-result montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4 2xs:h-[50vw]'>
-                                                            <h1 className='text-[1.25rem] font-semibold'>
-                                                                Series / TV Show
-                                                            </h1>
-                                                            <div className='results flex flex-col gap-2'>
-                                                                {searchResult.map(
-                                                                    (
-                                                                        e,
-                                                                        idx
-                                                                    ) => {
-                                                                        return (
-                                                                            e.media_type ===
-                                                                                'tv' && (
-                                                                                <a
-                                                                                    key={
-                                                                                        idx
-                                                                                    }
-                                                                                    href={
-                                                                                        e.id
-                                                                                    }
-                                                                                >
-                                                                                    <div className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'>
-                                                                                        <div className='highlight-info-result flex items-center gap-3'>
-                                                                                            <img
-                                                                                                src={`https://www.themoviedb.org/t/p/w500/${e.poster_path}`}
-                                                                                                alt={
-                                                                                                    e.name
-                                                                                                }
-                                                                                                className='aspect-square w-6 rounded-full object-cover'
-                                                                                            />
-                                                                                            <h2>
-                                                                                                {
-                                                                                                    e.name
-                                                                                                }
-                                                                                            </h2>
-                                                                                        </div>
-                                                                                        <ChevronRightIcon className='h-3 w-3' />
-                                                                                    </div>
-                                                                                </a>
-                                                                            )
-                                                                        )
-                                                                    }
-                                                                )}
-                                                            </div>
-                                                        </div>
+                                                        <ResultSearch
+                                                            id={'movies'}
+                                                            title={'Movies'}
+                                                            searchResult={searchResult}
+                                                            type={'movie'}
+                                                        />
+                                                        <ResultSearch
+                                                            id={'series'}
+                                                            title={'Series / TV Shows'}
+                                                            searchResult={searchResult}
+                                                            type={'tv'}
+                                                        />
                                                     </>
                                                 )}
                                             </div>
@@ -693,5 +616,53 @@ export default function Navbar() {
                 </div>
             </Transition>
         </header>
+    )
+}
+
+const ResultSearch = ({ id, title, searchResult, type }) => {
+    return (
+        <div id={id} className='result-search montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4 2xs:h-[50vw]'>
+            <h1 className='text-[1.25rem] font-semibold'>
+                { title }
+            </h1>
+            <div className='results flex flex-col gap-2'>
+                {searchResult.map(
+                    ( e, idx ) => { return (
+                        e.media_type === type && (
+                            <Link
+                                key={
+                                    idx
+                                }
+                                to={`/${type}/${e.id}`}
+                            >
+                                <div className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'>
+                                    <div className='highlight-info-result flex items-center gap-3'>
+                                        <ProgressiveImage src={`${e.poster_path === null ? BgNull : `https://www.themoviedb.org/t/p/w500/${e?.poster_path}`}`} placeholder={`${e.poster_path === null ? BgNull : `https://www.themoviedb.org/t/p/w500/${e?.poster_path}`}`}>
+                                            {(src, loading) => (
+                                                <img
+                                                    src={src}
+                                                    alt={
+                                                        e.title | e.name
+                                                    }
+                                                    style={{ opacity: loading ? 0.5 : 1 }}
+                                                    className={`aspect-square w-6 rounded-full object-cover`}
+                                                />
+                                            )}
+                                        </ProgressiveImage>
+                                        <h2>
+                                            {
+                                                e.title || e.name
+                                            }
+                                        </h2>
+                                    </div>
+                                    <ChevronRightIcon className='h-3 w-3' />
+                                </div>
+                            </Link>
+                        )
+                    )
+                    }
+                )}
+            </div>
+        </div>
     )
 }
