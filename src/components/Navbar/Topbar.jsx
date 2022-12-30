@@ -11,7 +11,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 import '@/styles/component/_navbar.scss'
-import { Spin } from './loading/Spin'
+import { Spin } from '../loading/Spin'
 import nevrays from '@/assets/images/nevrays.png'
 import BgNull from '@/assets/images/bg-null.webp'
 import DarkBtn from '@/components/button/DarkBtn'
@@ -27,6 +27,7 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenNavbar, setIsOpenNavbar] = useState(false)
 
+    /* Modal */
     const closeModal = React.useCallback( () => {
         setIsOpen(false)
     }, [isOpen])
@@ -36,6 +37,7 @@ export default function Navbar() {
 
     const activeStyle = { color: 'white' }
 
+    /* Path Checking */
     const location = useLocation()
     const checkPathMovies = React.useCallback( () => {
         if (
@@ -56,6 +58,7 @@ export default function Navbar() {
         return 'text-gray-300'
     }, [location])
 
+    /* Get Data Search */
     const handleGetSearching = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -71,6 +74,7 @@ export default function Navbar() {
         })
     }
 
+    /* Handle Focus and Delete Input Value  */
     const deleteText = React.useCallback(() => setSearchMovie(''), [])
     const handleFocusInput = React.useCallback((event) => {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyM') {
@@ -81,6 +85,10 @@ export default function Navbar() {
             setSearchMovie('')
         }
     }, [])
+
+    const getPoster = ((size, path) => {
+        return `https://www.themoviedb.org/t/p/${size}/${path}`
+    })
 
     React.useEffect(() => {
         document.addEventListener('keydown', handleFocusInput)
@@ -219,6 +227,7 @@ export default function Navbar() {
                                                         placeholder='Cari movie dan series ...'
                                                         onChange={handleGetSearching}
                                                         ref={inputRef}
+                                                        value={searchMovie}
                                                     />
                                                     {
                                                         <>
@@ -376,10 +385,12 @@ export default function Navbar() {
 
                         {/* Series Menu Item */}
                         <WrapperItemsDropdownNav
-                                head_title={'TV Series'}
-                            checkPath={checkPathSeries()}
-                            classDropDownTransition='left-[18.30rem] top-[4rem]'
-                            classDropDownButton='rounded-md px-3 py-2 hover:bg-gray-700 hover:text-white'
+                            head_title={'TV Series'}
+                            classDropDownWrapItem='mt-2'
+                            checkPath={checkPathMovies()}
+                            classChildDropDownButton='justify-between'
+                            classDropDownTransition='left-[10.15rem] top-[4rem]'
+                            classDropDownButton='ui-open:rounded-md ui-open:px-2 block w-full py-4 text-gray-300'
                         >
                             <ItemDropdownNav
                                 title={'Airing Today'}
@@ -404,7 +415,7 @@ export default function Navbar() {
 }
 
 /* Child Component Navbar  */
-const WrapperItemsDropdownNav = ({ head_title, checkPath, children, classDropDownButton, classChildDropDownButton, classDropDownTransition, classDropDownWrapItem }) => {
+const WrapperItemsDropdownNav = React.memo(({ head_title, checkPath, children, classDropDownButton, classChildDropDownButton, classDropDownTransition, classDropDownWrapItem }) => {
     return (
         <Menu>
             <Menu.Button
@@ -434,8 +445,8 @@ const WrapperItemsDropdownNav = ({ head_title, checkPath, children, classDropDow
             </Transition>
         </Menu>
     )
-}
-const ItemDropdownNav = ({ title, path }) => {
+})
+const ItemDropdownNav = React.memo(({ title, path }) => {
     return (
         <Menu.Item>
             {({ active }) => (
@@ -452,8 +463,8 @@ const ItemDropdownNav = ({ title, path }) => {
             )}
         </Menu.Item>
     )
-}
-const ItemNav = ({ title, path, activeStyle, classItemNav }) => {
+})
+const ItemNav = React.memo(({ title, path, activeStyle, classItemNav }) => {
     return (
         <NavLink
             to={path}
@@ -465,10 +476,10 @@ const ItemNav = ({ title, path, activeStyle, classItemNav }) => {
             {title}
         </NavLink>
     )
-}
+})
 
 /* Child Component Result Search Movies & TV Series */
-const ResultSearch = ({ id, title, searchResult, type }) => {
+const ResultSearch = React.memo(({ id, title, searchResult, type }) => {
     return (
         <div id={id} className='result-search montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4 2xs:h-[50vw]'>
             <h1 className='text-[1.25rem] font-semibold'>
@@ -486,7 +497,7 @@ const ResultSearch = ({ id, title, searchResult, type }) => {
                             >
                                 <div className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'>
                                     <div className='highlight-info-result flex items-center gap-3'>
-                                        <ProgressiveImage src={`${e.poster_path === null ? BgNull : `https://www.themoviedb.org/t/p/w500/${e?.poster_path}`}`} placeholder={`${e.poster_path === null ? BgNull : `https://www.themoviedb.org/t/p/w500/${e?.poster_path}`}`}>
+                                        <ProgressiveImage src={`${e.poster_path === null ? BgNull : getPoster('w500', poster_path)}`} placeholder={`${e.poster_path === null ? BgNull : getPoster('w500', poster_path)}`}>
                                             {(src, loading) => (
                                                 <img
                                                     src={src}
@@ -514,4 +525,4 @@ const ResultSearch = ({ id, title, searchResult, type }) => {
             </div>
         </div>
     )
-}
+})

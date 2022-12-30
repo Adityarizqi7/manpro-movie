@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 
-import Navbar from '../components/Navbar'
+import TopBar from '../components/Navbar/Topbar'
 import Footer from '../components/Footer'
 import BtnToTop from '../components/button/BtnToTop'
 
@@ -49,7 +49,7 @@ export default React.memo( function Nevrays({
                 ></link>
             </Helmet>
 
-            <Navbar />
+            <TopBar />
             {children}
             <Footer />
 

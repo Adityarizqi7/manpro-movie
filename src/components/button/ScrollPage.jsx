@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-export default function Scrollpage(props) {
+export default React.memo( function Scrollpage(props) {
     const path = useLocation()
 
     useEffect(() => {
@@ -13,4 +13,4 @@ export default function Scrollpage(props) {
     }, [path])
 
     return <>{props.children}</>
-}
+})

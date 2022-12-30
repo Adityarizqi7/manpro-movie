@@ -114,7 +114,7 @@ const DetailSeries = () => {
                         {loading ? (
                             <Skeleton height={500} />
                         ) : (
-                            <ProgressiveImage src={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`} placeholder={`https://image.tmdb.org/t/p/w500/${detailTV?.poster_path}`}>
+                            <ProgressiveImage src={ detailTV.backdrop_path === null ? BgNull : getPoster('original', detailTV?.backdrop_path) } placeholder={ detailTV.backdrop_path === null ? BgNull : getPoster('original', detailTV?.backdrop_path)} >
                                 {(src, loading) => (
                                     <img
                                         src={src}

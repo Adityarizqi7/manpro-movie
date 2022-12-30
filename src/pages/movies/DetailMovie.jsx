@@ -103,7 +103,7 @@ const DetailMovie = () => {
                 <div className='jumbotron-image'>
                     {loading ? <Skeleton height={500} />
                         :
-                        <ProgressiveImage src={`https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`} placeholder={`https://image.tmdb.org/t/p/original/${detailMV?.backdrop_path}`}>
+                        <ProgressiveImage src={ detailMV.backdrop_path === null ? BgNull : getPoster('original', detailMV?.backdrop_path) } placeholder={ detailMV.backdrop_path === null ? BgNull : getPoster('original', detailMV?.backdrop_path)}>
                             {(src, loading) => (
                                 <img
                                     src={src}

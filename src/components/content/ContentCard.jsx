@@ -8,9 +8,11 @@ import ProgressiveImage from 'react-progressive-image'
 import '@/styles/component/movie/_moviecard.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const getPoster = (size, path) => {
+import BgNull from '@/assets/images/bg-null.webp'
+
+const getPoster = ((size, path) => {
     return `https://www.themoviedb.org/t/p/${size}/${path}`
-}
+})
 
 export const MovieCard = React.memo(({
     id,
@@ -34,7 +36,7 @@ export const MovieCard = React.memo(({
             <div className='wrapper-card group cursor-pointer'>
                 {
                     <div className='image-card rouned-[0.5rem] relative h-[25%]'>
-                        <ProgressiveImage src={`${getPoster('w500', poster_path)}`} placeholder={`${getPoster('w500', poster_path)}`}>
+                        <ProgressiveImage src={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`} placeholder={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`}>
                             {(src, loading) => (
                                 <img
                                     style={{ opacity: loading ? 0.5 : 1 }}
@@ -81,7 +83,7 @@ export const MovieCard2 = React.memo(({ id, title, poster_path, classOverlay, cl
         <Link to={`movie/${id}`}>
             <div className={`${classWrapper} wrapper-card group`}>
                 <div className='image-card relative'>
-                    <ProgressiveImage src={`${getPoster('w500', poster_path)}`} placeholder={`${getPoster('w500', poster_path)}`}>
+                    <ProgressiveImage src={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`} placeholder={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`}>
                         {(src, loading) => (
                             <img
                                 style={{ opacity: loading ? 0.5 : 1 }}
@@ -124,7 +126,7 @@ export const SeriesCard = React.memo(({
             <div className='wrapper-card group cursor-pointer'>
                 {
                     <div className='image-card relative h-[25%]'>
-                        <ProgressiveImage src={`${getPoster('w500', poster_path)}`} placeholder={`${getPoster('w500', poster_path)}`}>
+                        <ProgressiveImage src={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`} placeholder={`${ poster_path === null ? BgNull : getPoster('w500', poster_path)}`}>
                             {(src, loading) => (
                                 <img
                                     style={{ opacity: loading ? 0.5 : 1 }}
@@ -178,7 +180,7 @@ export const SeriesCard2 = React.memo(({
         <div className='wrapper-card group'>
             <Popover>
                 <div className='image-card relative'>
-                    <ProgressiveImage src={`${getPoster('w1280', backdrop_path)}`} placeholder={`${getPoster('w1280', backdrop_path)}`}>
+                    <ProgressiveImage src={`${ backdrop_path === null ? BgNull : getPoster('w1280', backdrop_path)}`} placeholder={`${ backdrop_path === null ? BgNull : getPoster('w1280', backdrop_path)}`}>
                         {(src, loading) => (
                             <img
                                 src={src}
