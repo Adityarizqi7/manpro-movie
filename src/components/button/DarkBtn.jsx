@@ -20,21 +20,21 @@ export default React.memo(function DarkBtn({ className }) {
             <div>
                 <div className='relative flex items-center'>
                     <SunIcon
-                        id='sun'
-                        aria-labelledby='sun'
+                        id='sun-icon'
+                        aria-label='sun-icon'
                         className={`${
                             theme === 'light' ? 'w-8' : 'w-0'
                         } sunicon text-blue-500 transition-all`}
                     />
                     <MoonIcon
-                        id='moon'
-                        aria-labelledby='moon'
+                        id='moon-icon'
+                        aria-label='moon-icon'
                         className={`${
                             theme === 'light' ? 'w-0' : 'w-8'
                         } moonicon text-blue-500 transition-all`}
                     />
                     <input
-                        aria-labelledby='toggle-button'
+                        aria-label='toggle-button'
                         data-testid='toggle-button'
                         className='absolute right-0 h-8 w-8 cursor-pointer opacity-0'
                         type='checkbox'

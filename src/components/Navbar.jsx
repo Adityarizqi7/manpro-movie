@@ -92,9 +92,11 @@ export default function Navbar() {
 
     return (
         <header className='sticky top-0 z-50 w-full bg-gray-800 shadow'>
+
+            {/* Dekstop Menu Navbar */}
             <div className='montserrat flex h-[4.5rem] items-center justify-between'>
                 <div className='flex items-center gap-6'>
-                    <div>
+                    <div className='brand-image'>
                         <Link to={'/'}>
                             <img
                                 className='h-12 w-12'
@@ -105,162 +107,51 @@ export default function Navbar() {
                     </div>
                     <div className='hidden items-center md:block'>
                         <div className='ml-0 space-x-4'>
-                            <NavLink
-                                to='/'
-                                style={({ isActive }) =>
-                                    isActive ? activeStyle : undefined
-                                }
-                                className='rounded-md px-3 py-2 text-[1rem] font-medium text-gray-300 hover:bg-gray-700'
-                            >
-                                Home
-                            </NavLink>
+                            <ItemNav title={'Home'} path={'/'} activeStyle={activeStyle} classItemNav='rounded-md px-3 py-2 hover:bg-gray-700' />
 
                             {/* Movies Menu Item */}
-                            <Menu>
-                                <Menu.Button
-                                    className={`ui-open:bg-gray-700 ui-open:text-white ${checkPathMovies()} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}
-                                >
-                                    <div className='flex items-center gap-2'>
-                                        <span>Movies</span>
-                                        <ChevronDownIcon className='h-4 w-4' />
-                                    </div>
-                                </Menu.Button>
-                                <Transition
-                                    enter='transition-transform duration-100 ease-out'
-                                    enterFrom='transform scale-95 opacity-0'
-                                    enterTo='transform scale-100 opacity-100'
-                                    leave='transition duration-100 ease-out'
-                                    leaveFrom='transform scale-100 opacity-100'
-                                    leaveTo='transform scale-95 opacity-0'
-                                    className='absolute left-[10.15rem] top-[4rem]'
-                                >
-                                    <Menu.Items
-                                        className={
-                                            'shadow-own flex flex-col rounded-[5px] bg-white py-1'
-                                        }
-                                    >
-                                        <Menu.Item>
-                                            {({ active }) => (
-                                                <NavLink
-                                                    className={`${
-                                                        active
-                                                            ? 'bg-blue-600/50 text-white'
-                                                            : 'bg-white text-black'
-                                                    } py-2 px-6`}
-                                                    to='/movies/upcoming'
-                                                >
-                                                    Upcoming
-                                                </NavLink>
-                                            )}
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            {({ active }) => (
-                                                <NavLink
-                                                    className={`${
-                                                        active
-                                                            ? 'bg-blue-600/50 text-white'
-                                                            : 'bg-white text-black'
-                                                    } py-2 px-6`}
-                                                    to='/movies/now-playing'
-                                                >
-                                                    Now Playing
-                                                </NavLink>
-                                            )}
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            {({ active }) => (
-                                                <NavLink
-                                                    className={`${
-                                                        active
-                                                            ? 'bg-blue-600/50 text-white'
-                                                            : 'bg-white text-black'
-                                                    } py-2 px-6`}
-                                                    to='/movies/popular'
-                                                >
-                                                    Popular
-                                                </NavLink>
-                                            )}
-                                        </Menu.Item>
-                                    </Menu.Items>
-                                </Transition>
-                            </Menu>
-                            <Menu>
-                                <Menu.Button
-                                    className={`ui-open:bg-gray-700 ui-open:text-white ${checkPathSeries()} rounded-md px-3 py-2 text-[1rem] font-medium hover:bg-gray-700 hover:text-white`}
-                                >
-                                    <div className='flex items-center gap-2'>
-                                        <span>TV Series</span>
-                                        <ChevronDownIcon className='h-4 w-4' />
-                                    </div>
-                                </Menu.Button>
-                                <Transition
-                                    enter='transition-transform duration-100 ease-out'
-                                    enterFrom='transform scale-95 opacity-0'
-                                    enterTo='transform scale-100 opacity-100'
-                                    leave='transition duration-100 ease-out'
-                                    leaveFrom='transform scale-100 opacity-100'
-                                    leaveTo='transform scale-95 opacity-0'
-                                    className='absolute left-[18.30rem] top-[4rem]'
-                                >
-                                    <Menu.Items
-                                        className={
-                                            'shadow-own flex flex-col rounded-[5px] bg-white py-1'
-                                        }
-                                    >
-                                        <Menu.Item>
-                                            {({ active }) => (
-                                                <NavLink
-                                                    className={`${
-                                                        active
-                                                            ? 'bg-blue-600/50 text-white'
-                                                            : 'bg-white text-black'
-                                                    } py-2 px-6`}
-                                                    to='/series/airing-today'
-                                                >
-                                                    Airing Today
-                                                </NavLink>
-                                            )}
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            {({ active }) => (
-                                                <NavLink
-                                                    className={`${
-                                                        active
-                                                            ? 'bg-blue-600/50 text-white'
-                                                            : 'bg-white text-black'
-                                                    } py-2 px-6`}
-                                                    to='/series/on-the-air'
-                                                >
-                                                    On TV
-                                                </NavLink>
-                                            )}
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            {({ active }) => (
-                                                <NavLink
-                                                    className={`${
-                                                        active
-                                                            ? 'bg-blue-600/50 text-white'
-                                                            : 'bg-white text-black'
-                                                    } py-2 px-6`}
-                                                    to='/series/top-rated'
-                                                >
-                                                    Top Rated
-                                                </NavLink>
-                                            )}
-                                        </Menu.Item>
-                                    </Menu.Items>
-                                </Transition>
-                            </Menu>
-                            <NavLink
-                                to='/blogs'
-                                style={({ isActive }) =>
-                                    isActive ? activeStyle : undefined
-                                }
-                                className='rounded-md px-3 py-2 text-[1rem] font-medium text-gray-300 hover:bg-gray-700'
+                            <WrapperItemsDropdownNav
+                                head_title={'Movies'}
+                                checkPath={checkPathMovies()}
+                                classDropDownTransition='absolute left-[10.15rem] top-[4rem]'
+                                classDropDownButton='rounded-md px-3 py-2 hover:bg-gray-700 hover:text-white'
                             >
-                                Blogs
-                            </NavLink>
+                                <ItemDropdownNav
+                                    title={'Upcoming'}
+                                    path={'/movies/upcoming'}
+                                />
+                                <ItemDropdownNav
+                                    title={'Now Playing'}
+                                    path={'/movies/now-playing'}
+                                />
+                                <ItemDropdownNav
+                                    title={'Popular'}
+                                    path={'/movies/popular'}
+                                />
+                            </WrapperItemsDropdownNav>
+
+                            {/* Series Menu Item */}
+                            <WrapperItemsDropdownNav
+                                head_title={'TV Series'}
+                                checkPath={checkPathSeries()}
+                                classDropDownTransition='absolute left-[18.30rem] top-[4rem]'
+                                classDropDownButton='rounded-md px-3 py-2 hover:bg-gray-700 hover:text-white'
+                            >
+                                <ItemDropdownNav
+                                    title={'Airing Today'}
+                                    path={'/movies/airing-today'}
+                                />
+                                <ItemDropdownNav
+                                    title={'OnTV'}
+                                    path={'/movies/on-the-air'}
+                                />
+                                <ItemDropdownNav
+                                    title={'Top Rated'}
+                                    path={'/movies/top-rated'}
+                                />
+                            </WrapperItemsDropdownNav>
+                            
+                            <ItemNav title={'Blogs'} path={'/blogs'} activeStyle={activeStyle} classItemNav='rounded-md px-3 py-2 hover:bg-gray-700' />
                         </div>
                     </div>
                 </div>
@@ -399,7 +290,6 @@ export default function Navbar() {
                         </div>
                     </Dialog>
                 </Transition>
-
                 <div className='-mr-2 flex md:hidden 2xs:gap-2'>
                     <DarkBtn className='hidden 2xs:block' />
                     <button
@@ -459,159 +349,53 @@ export default function Navbar() {
             >
                 <div className='montserrat md:hidden' id='mobile-menu'>
                     <div className='space-y-1 pt-2 pb-3'>
-                        <NavLink
-                            to='/'
-                            style={({ isActive }) =>
-                                isActive ? activeStyle : undefined
-                            }
-                            className='text-[1rem] block py-4 font-medium text-gray-300'
-                        >
-                            Home
-                        </NavLink>
-                        <Menu>
-                            <Menu.Button
-                                className={`ui-open:rounded-md ui-open:bg-gray-700 ui-open:px-2 ui-open:text-white ${checkPathMovies()} block w-full py-4 text-[1rem] font-medium text-gray-300`}
-                            >
-                                <div className='flex items-center justify-between gap-2'>
-                                    <span>Movies</span>
-                                    <ChevronDownIcon className='h-4 w-4' />
-                                </div>
-                            </Menu.Button>
-                            <Transition
-                                enter='transition-transform duration-100 ease-out'
-                                enterFrom='transform scale-95 opacity-0'
-                                enterTo='transform scale-100 opacity-100'
-                                leave='transition duration-100 ease-out'
-                                leaveFrom='transform scale-100 opacity-100'
-                                leaveTo='transform scale-95 opacity-0'
-                            >
-                                <Menu.Items
-                                    className={
-                                        'shadow-own mt-2 flex flex-col rounded-[5px] bg-white py-1'
-                                    }
-                                >
-                                    <Menu.Item>
-                                        {({ active }) => (
-                                            <NavLink
-                                                className={`${
-                                                    active
-                                                        ? 'bg-blue-600/50 text-white'
-                                                        : 'bg-white text-black'
-                                                } py-2 px-6`}
-                                                to='/movies/upcoming'
-                                            >
-                                                Upcoming
-                                            </NavLink>
-                                        )}
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        {({ active }) => (
-                                            <NavLink
-                                                className={`${
-                                                    active
-                                                        ? 'bg-blue-600/50 text-white'
-                                                        : 'bg-white text-black'
-                                                } py-2 px-6`}
-                                                to='/movies/now-playing'
-                                            >
-                                                Now Playing
-                                            </NavLink>
-                                        )}
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        {({ active }) => (
-                                            <NavLink
-                                                className={`${
-                                                    active
-                                                        ? 'bg-blue-600/50 text-white'
-                                                        : 'bg-white text-black'
-                                                } py-2 px-6`}
-                                                to='/movies/popular'
-                                            >
-                                                Popular
-                                            </NavLink>
-                                        )}
-                                    </Menu.Item>
-                                </Menu.Items>
-                            </Transition>
-                        </Menu>
-                        <Menu>
-                            <Menu.Button
-                                className={`ui-open:rounded-md ui-open:bg-gray-700 ui-open:px-2 ui-open:text-white ${checkPathSeries()}  block w-full py-4 text-[1rem] font-medium text-gray-300`}
-                            >
-                                <div className='flex items-center justify-between gap-2'>
-                                    <span>TV Series</span>
-                                    <ChevronDownIcon className='h-4 w-4' />
-                                </div>
-                            </Menu.Button>
-                            <Transition
-                                enter='transition-transform duration-100 ease-out'
-                                enterFrom='transform scale-95 opacity-0'
-                                enterTo='transform scale-100 opacity-100'
-                                leave='transition duration-100 ease-out'
-                                leaveFrom='transform scale-100 opacity-100'
-                                leaveTo='transform scale-95 opacity-0'
-                            >
-                                <Menu.Items
-                                    className={
-                                        'shadow-own mt-2 flex flex-col rounded-[5px] bg-white py-1'
-                                    }
-                                >
-                                    <Menu.Item>
-                                        {({ active }) => (
-                                            <NavLink
-                                                className={`${
-                                                    active
-                                                        ? 'bg-blue-600/50 text-white'
-                                                        : 'bg-white text-black'
-                                                } py-2 px-6`}
-                                                to='/series/airing-today'
-                                            >
-                                                Airing Today
-                                            </NavLink>
-                                        )}
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        {({ active }) => (
-                                            <NavLink
-                                                className={`${
-                                                    active
-                                                        ? 'bg-blue-600/50 text-white'
-                                                        : 'bg-white text-black'
-                                                } py-2 px-6`}
-                                                to='/series/on-the-air'
-                                            >
-                                                On TV
-                                            </NavLink>
-                                        )}
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        {({ active }) => (
-                                            <NavLink
-                                                className={`${
-                                                    active
-                                                        ? 'bg-blue-600/50 text-white'
-                                                        : 'bg-white text-black'
-                                                } py-2 px-6`}
-                                                to='/series/top-rated'
-                                            >
-                                                Top Rated
-                                            </NavLink>
-                                        )}
-                                    </Menu.Item>
-                                </Menu.Items>
-                            </Transition>
-                        </Menu>
-                        <NavLink
-                                to='/blogs'
-                                style={({ isActive }) =>
-                                    isActive ? activeStyle : undefined
-                                }
-                                className='text-[1rem] block py-4 font-medium text-gray-300'
-                            >
-                                Blogs
-                            </NavLink>
+                        <ItemNav title={'Home'} path={'/'} activeStyle={activeStyle} classItemNav='block py-4' />
 
+                        {/* Movies Menu Item */}
+                        <WrapperItemsDropdownNav
+                            head_title={'Movies'}
+                            classDropDownWrapItem='mt-2'
+                            checkPath={checkPathMovies()}
+                            classChildDropDownButton='justify-between'
+                            classDropDownTransition='left-[10.15rem] top-[4rem]'
+                            classDropDownButton='ui-open:rounded-md ui-open:px-2 block w-full py-4 text-gray-300'
+                        >
+                            <ItemDropdownNav
+                                title={'Upcoming'}
+                                path={'/movies/upcoming'}
+                            />
+                            <ItemDropdownNav
+                                title={'Now Playing'}
+                                path={'/movies/now-playing'}
+                            />
+                            <ItemDropdownNav
+                                title={'Popular'}
+                                path={'/movies/popular'}
+                            />
+                        </WrapperItemsDropdownNav>
+
+                        {/* Series Menu Item */}
+                        <WrapperItemsDropdownNav
+                                head_title={'TV Series'}
+                            checkPath={checkPathSeries()}
+                            classDropDownTransition='left-[18.30rem] top-[4rem]'
+                            classDropDownButton='rounded-md px-3 py-2 hover:bg-gray-700 hover:text-white'
+                        >
+                            <ItemDropdownNav
+                                title={'Airing Today'}
+                                path={'/movies/airing-today'}
+                            />
+                            <ItemDropdownNav
+                                title={'OnTV'}
+                                path={'/movies/on-the-air'}
+                            />
+                            <ItemDropdownNav
+                                title={'Top Rated'}
+                                path={'/movies/top-rated'}
+                            />
+                        </WrapperItemsDropdownNav>
+                        
+                        <ItemNav title={'Blogs'} path={'/blogs'} activeStyle={activeStyle} classItemNav='block py-4' />
                     </div>
                 </div>
             </Transition>
@@ -619,6 +403,71 @@ export default function Navbar() {
     )
 }
 
+/* Child Component Navbar  */
+const WrapperItemsDropdownNav = ({ head_title, checkPath, children, classDropDownButton, classChildDropDownButton, classDropDownTransition, classDropDownWrapItem }) => {
+    return (
+        <Menu>
+            <Menu.Button
+                className={`${classDropDownButton} ${checkPath} ui-open:bg-gray-700 ui-open:text-white text-[1rem] font-medium`}
+            >
+                <div className={`${classChildDropDownButton} flex items-center gap-2`}>
+                    <span>{head_title}</span>
+                    <ChevronDownIcon className='h-4 w-4' />
+                </div>
+            </Menu.Button>
+            <Transition
+                enter='transition-transform duration-100 ease-out'
+                enterFrom='transform scale-95 opacity-0'
+                enterTo='transform scale-100 opacity-100'
+                leave='transition duration-100 ease-out'
+                leaveFrom='transform scale-100 opacity-100'
+                leaveTo='transform scale-95 opacity-0'
+                className={`${classDropDownTransition}`}
+            >
+                <Menu.Items
+                    className={
+                        `${classDropDownWrapItem} shadow-own flex flex-col rounded-[5px] bg-white py-1`
+                    }
+                >
+                    {children}
+                </Menu.Items>
+            </Transition>
+        </Menu>
+    )
+}
+const ItemDropdownNav = ({ title, path }) => {
+    return (
+        <Menu.Item>
+            {({ active }) => (
+                <NavLink
+                    className={`${
+                        active
+                            ? 'bg-blue-600/50 text-white'
+                            : 'bg-white text-black'
+                    } py-2 px-6`}
+                    to={path}
+                >
+                    {title}
+                </NavLink>
+            )}
+        </Menu.Item>
+    )
+}
+const ItemNav = ({ title, path, activeStyle, classItemNav }) => {
+    return (
+        <NavLink
+            to={path}
+            style={({ isActive }) =>
+                isActive ? activeStyle : undefined
+            }
+            className={`${classItemNav} text-[1rem] font-medium text-gray-300`}
+        >
+            {title}
+        </NavLink>
+    )
+}
+
+/* Child Component Result Search Movies & TV Series */
 const ResultSearch = ({ id, title, searchResult, type }) => {
     return (
         <div id={id} className='result-search montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4 2xs:h-[50vw]'>
