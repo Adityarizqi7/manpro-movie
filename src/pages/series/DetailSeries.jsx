@@ -71,7 +71,7 @@ const DetailSeries = () => {
     }, [])
 
     const getPoster = ((size, path) => {
-        return `https://www.themoviedb.org/t/p/${size}/${path}`
+        return `https://image.tmdb.org/t/p/${size}/${path}`
     })    
 
     useEffect(() => {
@@ -99,12 +99,13 @@ const DetailSeries = () => {
                 <div className='jumbotron-image'>
                     {loading ? <Skeleton height={500} />
                         :
-                        <ProgressiveImage src={`https://image.tmdb.org/t/p/original_filter(grayscale,032541,01b4e4)/${detailTV?.backdrop_path}`} placeholder={`https://image.tmdb.org/t/p/original_filter(grayscale,032541,01b4e4)/${detailTV?.backdrop_path}`}>
+                        <ProgressiveImage src={ detailTV?.backdrop_path === null ? BgNull : getPoster('original', detailTV?.backdrop_path) } placeholder={ detailTV?.backdrop_path === null ? BgNull : getPoster('original', detailTV?.backdrop_path)}>
                             {(src, loading) => (
                                 <img
                                     src={src}
                                     width='auto'
                                     height='auto'
+                                    loading='lazy'
                                     alt={`${detailTV?.original_name}`}
                                     style={{ opacity: loading ? 0.5 : 1 }}
                                     className='h-[200px] w-full overflow-hidden object-cover object-top shadow-lg sm:h-[500px]'
@@ -126,6 +127,7 @@ const DetailSeries = () => {
                                         src={src}
                                         width='auto'
                                         height='auto'
+                                        loading='lazy'
                                         className='object-cover'
                                         alt={`${detailTV?.original_name}`}
                                         style={{ opacity: loading ? 0.5 : 1 }}

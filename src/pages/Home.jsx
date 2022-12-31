@@ -89,7 +89,7 @@ export default function Home() {
                                     theme,
                                     'text-white',
                                     'text-gray-800'
-                                )} text-center text-[2.5rem] font-bold`}
+                                )} text-center sm:text-[2.5rem] text-[6vw] font-bold`}
                             >
                                 ● Popular Lately ●
                             </h1>

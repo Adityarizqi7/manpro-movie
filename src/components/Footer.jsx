@@ -14,9 +14,10 @@ export default function Footer() {
                 <div className='mb-6 md:mb-0'>
                     <Link to='/' className='flex items-center'>
                         <img
-                            src={nevrays}
                             width='auto'
                             height='auto'
+                            src={nevrays}
+                            loading='lazy'
                             alt='Nevrays Logo'
                             className='h-12 w-12'
                         />

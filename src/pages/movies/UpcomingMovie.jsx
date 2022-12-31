@@ -19,7 +19,7 @@ export default function UpcomingMovie() {
 
     const [upcomingMVAll, setUpcomingMVAll] = React.useState([])
 
-    const [index, setIndex] = React.useState(8)
+    const [index, setIndex] = React.useState(1)
     const [loading, setLoading] = React.useState(false)
     const initialPosts = slice(upcomingMVAll, 0, index)
 
@@ -46,7 +46,7 @@ export default function UpcomingMovie() {
 
     const loadMore = React.useCallback(() => {
         setLoading(true)
-        setIndex(idx => idx + 4)
+        setIndex(idx => idx + 1)
         setLoading(false)
     }, [])
 
@@ -176,7 +176,7 @@ export default function UpcomingMovie() {
                                     </>
                                 ) : (
                                     <div className='container-list-card grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4'>
-                                        {initialPosts
+                                        {upcomingMVAll
                                             .filter((value) => {
                                                 // eslint-disable-line array-callback-return
                                                 if (searchMovie === '')

@@ -60,7 +60,7 @@ function TrendMV() {
                 <SkeletonCard classSkeletonContainer={'lg:grid-cols-6'} />
             ) : (
                 trendMV &&
-                trendMV.map((item, index) => {
+                trendMV?.map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
                             <MovieCard {...item} />
@@ -122,7 +122,7 @@ function UpcomingMV() {
                 />
             ) : (
                 upcomingMV &&
-                upcomingMV.map((item, index) => {
+                upcomingMV?.map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
                             <MovieCard2
@@ -194,7 +194,7 @@ function NowPlayMV() {
                 />
             ) : (
                 nowPlayMV &&
-                nowPlayMV.slice(0, 10).map((item, index) => {
+                nowPlayMV?.slice(0, 10).map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
                             <MovieCard2
@@ -265,7 +265,7 @@ function PopularMV() {
                 />
             ) : (
                 popularMV &&
-                popularMV.slice(0, 10).map((item, index) => {
+                popularMV?.slice(0, 10).map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
                             <MovieCard2
@@ -328,7 +328,7 @@ function TrendTV() {
                 <SkeletonCard classSkeletonContainer={'lg:grid-cols-6'} />
             ) : (
                 trendTV &&
-                trendTV.map((item, index) => {
+                trendTV?.map((item, index) => {
                     return (
                         <SwiperSlide key={index}>
                             <SeriesCard {...item} />
@@ -384,7 +384,7 @@ function PopularTV() {
         </>
     ) : (
         PopularTV && (
-            <SeriesCard2 {...PopularTV} key_trailer={trailerSeries.key} />
+            <SeriesCard2 {...PopularTV} key_trailer={trailerSeries?.key} />
         )
     )
 }

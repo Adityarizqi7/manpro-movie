@@ -110,6 +110,7 @@ export default function Navbar() {
                                 src={nevrays}
                                 width='auto'
                                 height='auto'
+                                loading='lazy'
                                 alt='Nevrays Logo'
                                 className='h-12 w-12'
 
