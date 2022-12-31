@@ -23,7 +23,7 @@ export default function BtnTopTop() {
             id='button_scroll_top'
             className={`
                 ${buttontotop ? 'right-4' : '-right-20'}
-                ' fixed bottom-4 z-20 w-[2rem] cursor-pointer text-blue-600 hover:rounded-full hover:bg-blue-600 hover:p-1 hover:text-neutral-200 sm:w-10'
+                ' sm:w-10' fixed bottom-4 z-20 w-[2rem] cursor-pointer text-blue-600 hover:rounded-full hover:bg-blue-600 hover:p-1 hover:text-neutral-200
             `}
             onClick={() => {
                 window.scroll({

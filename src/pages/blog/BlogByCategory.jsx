@@ -15,23 +15,26 @@ export default function BlogByCategory() {
     const [focusInput, setFocusInput] = React.useState(false)
 
     const { slugCategory } = useParams()
-    const searchKey = useBlogState((state) => state.searchKey)
-    const handleChange = useBlogState((state) => state.handleChange)
-    const getBlogsByCategory = useBlogState((state) => state.getBlogsByCategory)
+    const searchKey = useBlogState(state => state.searchKey)
+    const handleChange = useBlogState(state => state.handleChange)
+    const getBlogsByCategory = useBlogState(state => state.getBlogsByCategory)
     const blogsByCategoryState = useBlogState(
-        (state) => state.blogsByCategoryState
+        state => state.blogsByCategoryState
     )
     const clearKeySearchCategory = useBlogState(
-        (state) => state.clearKeySearchCategory
+        state => state.clearKeySearchCategory
     )
     const handleSearchResultsCategory = useBlogState(
-        (state) => state.handleSearchResultsCategory
+        state => state.handleSearchResultsCategory
     )
 
-    const handleSearchBar = React.useCallback((e) => {
-        e.preventDefault()
-        handleSearchResultsCategory()
-    }, [handleSearchResultsCategory])
+    const handleSearchBar = React.useCallback(
+        e => {
+            e.preventDefault()
+            handleSearchResultsCategory()
+        },
+        [handleSearchResultsCategory]
+    )
 
     const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {
@@ -40,14 +43,18 @@ export default function BlogByCategory() {
         return light
     }, [])
 
-    const handleFocusInput = React.useCallback((event) => {
-        if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
-            setFocusInput(true)
-            event.preventDefault()
-            inputRef.current.focus()
-        }
-        if (event.code === 'Escape') inputRef.current.blur() || clearKeySearchCategory()
-    }, [inputRef, clearKeySearchCategory])
+    const handleFocusInput = React.useCallback(
+        event => {
+            if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
+                setFocusInput(true)
+                event.preventDefault()
+                inputRef.current.focus()
+            }
+            if (event.code === 'Escape')
+                inputRef.current.blur() || clearKeySearchCategory()
+        },
+        [inputRef, clearKeySearchCategory]
+    )
 
     React.useEffect(() => {
         getBlogsByCategory(slugCategory)

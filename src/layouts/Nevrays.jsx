@@ -5,10 +5,10 @@ import TopBar from '../components/Navbar/Topbar'
 import Footer from '../components/Footer'
 import BtnToTop from '../components/button/BtnToTop'
 
-export default React.memo( function Nevrays({
-    title='Nevrays Official — Tonton Movie dan TV Show Online Sambil Nyemil',
-    key='nevrays, nevrays id, nevrays indonesia',
-    desc='Nevrays Official. Tempat terbaik dan menyenangkan untuk mencari dan menonton film atau tv series favorit anda. Ribuan film sudah siap untuk memanjakan hari-hari anda.',
+export default React.memo(function Nevrays({
+    title = 'Nevrays Official — Tonton Movie dan TV Show Online Sambil Nyemil',
+    key = 'nevrays, nevrays id, nevrays indonesia',
+    desc = 'Nevrays Official. Tempat terbaik dan menyenangkan untuk mencari dan menonton film atau tv series favorit anda. Ribuan film sudah siap untuk memanjakan hari-hari anda.',
     ogUrl,
     ogType,
     ogTitle,

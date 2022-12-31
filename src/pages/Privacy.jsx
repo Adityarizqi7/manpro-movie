@@ -719,9 +719,9 @@ export default function Privacy() {
                                     marketing, online and offline advertising
                                     and other materials regarding products,
                                     services and other offers from time to time
-                                    in connection with the Nevrays Service or its
-                                    parent, subsidiary, group and/or affiliated
-                                    companies (“
+                                    in connection with the Nevrays Service or
+                                    its parent, subsidiary, group and/or
+                                    affiliated companies (“
                                     <strong>Platform Entities</strong>”) and its
                                     joint ventures,
                                 </li>
@@ -743,9 +743,10 @@ export default function Privacy() {
                                     countries around the world and avail the
                                     Platform's services, then we will determine
                                     your location using your IP address to
-                                    determine the relevant Nevrays Services which
-                                    may be offered to you or may not be able to
-                                    offer any service outside your home country,
+                                    determine the relevant Nevrays Services
+                                    which may be offered to you or may not be
+                                    able to offer any service outside your home
+                                    country,
                                 </li>
                                 <li>
                                     <a id='h._To_provide_you_with_a_personalised_ex'></a>
@@ -1458,8 +1459,8 @@ export default function Privacy() {
                                 circumstances, where you voluntarily provide
                                 Personal Information (e.g. by completing an
                                 online form) or where you register/sign up or
-                                subscribe to Nevrays Service and you hereby agree
-                                to this.
+                                subscribe to Nevrays Service and you hereby
+                                agree to this.
                             </p>
                         </li>
                         <li class='decimal-li'>

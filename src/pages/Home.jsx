@@ -15,7 +15,6 @@ import {
 import { Link } from 'react-router-dom'
 
 export default function Home() {
-
     const theme = React.useContext(GlobalContext).theme
 
     const renderTheme = React.useCallback((theme, dark = '', light = '') => {
@@ -89,7 +88,7 @@ export default function Home() {
                                     theme,
                                     'text-white',
                                     'text-gray-800'
-                                )} text-center sm:text-[2.5rem] text-[6vw] font-bold`}
+                                )} text-center text-[6vw] font-bold sm:text-[2.5rem]`}
                             >
                                 ● Popular Lately ●
                             </h1>
@@ -124,12 +123,12 @@ export default function Home() {
                                         Upcoming Movie
                                     </h1>
                                     <h2
-                                            className={`${renderTheme(
-                                                theme,
-                                                'text-gray-200',
-                                                'text-gray-600'
-                                            )} text-sm font-normal hover:text-blue-600`}
-                                        >
+                                        className={`${renderTheme(
+                                            theme,
+                                            'text-gray-200',
+                                            'text-gray-600'
+                                        )} text-sm font-normal hover:text-blue-600`}
+                                    >
                                         <Link to={'/movies/upcoming'}>
                                             See all
                                         </Link>

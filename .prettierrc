@@ -2,9 +2,9 @@
     "semi": false,
     "tabWidth": 4,
     "singleQuote": true,
-    "arrowParens": "avoid", 
+    "arrowParens": "avoid",
     "jsxSingleQuote": true,
-    "bracketSpacing": "true",
+    "bracketSpacing": true,
     "pluginSearchDirs": false,
     "plugins": ["prettier-plugin-tailwindcss"]
 }

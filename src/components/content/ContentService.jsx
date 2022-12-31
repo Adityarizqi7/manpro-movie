@@ -39,7 +39,7 @@ function TrendMV() {
             }}
             spaceBetween={15}
             slidesPerView={2}
-            onSwiper={(swiper) => {
+            onSwiper={swiper => {
                 swiper.allowTouchMove = true
             }}
             centeredSlides
@@ -99,7 +99,7 @@ function UpcomingMV() {
             }}
             spaceBetween={15}
             slidesPerView={2}
-            onSwiper={(swiper) => {
+            onSwiper={swiper => {
                 swiper.allowTouchMove = true
             }}
             breakpoints={{
@@ -171,7 +171,7 @@ function NowPlayMV() {
             spaceBetween={15}
             slidesPerView={2}
             navigation
-            onSwiper={(swiper) => {
+            onSwiper={swiper => {
                 swiper.allowTouchMove = true
             }}
             breakpoints={{
@@ -242,7 +242,7 @@ function PopularMV() {
             spaceBetween={15}
             slidesPerView={2}
             navigation
-            onSwiper={(swiper) => {
+            onSwiper={swiper => {
                 swiper.allowTouchMove = false
             }}
             breakpoints={{
@@ -309,7 +309,7 @@ function TrendTV() {
             centeredSlidesBounds
             spaceBetween={15}
             slidesPerView={2}
-            onSwiper={(swiper) => {
+            onSwiper={swiper => {
                 swiper.allowTouchMove = true
             }}
             breakpoints={{
@@ -345,7 +345,7 @@ function PopularTV() {
     const [trailerSeries, setTrailerSeries] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getDataTrend = useCallback( async () => {
+    const getDataTrend = useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/tv/popular', {
@@ -360,7 +360,7 @@ function PopularTV() {
         }
     }, [])
 
-    const getDataTrailerSeries = useCallback( async () => {
+    const getDataTrailerSeries = useCallback(async () => {
         const { data } = await tmdb.get(`/tv/${119051}/videos`, {
             params: {
                 append_to_response: 'videos',
@@ -373,7 +373,7 @@ function PopularTV() {
     useEffect(() => {
         getDataTrend()
     }, [getDataTrend])
-    
+
     useEffect(() => {
         getDataTrailerSeries()
     }, [getDataTrailerSeries])

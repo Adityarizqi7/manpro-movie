@@ -7,7 +7,7 @@ export default React.memo(function DarkBtn({ className }) {
     const theme = useContext(GlobalContext).theme
     const setTheme = useContext(GlobalContext).setTheme
 
-    const changeTheme = React.useCallback((theme) => {
+    const changeTheme = React.useCallback(theme => {
         if (theme === 'light') {
             setTheme('dark')
         } else {

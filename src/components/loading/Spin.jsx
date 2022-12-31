@@ -1,4 +1,4 @@
-export const Spin = ({className}) => {
+export const Spin = ({ className }) => {
     return (
         <div role='status' className={`spinner-loading ${className}`}>
             <svg

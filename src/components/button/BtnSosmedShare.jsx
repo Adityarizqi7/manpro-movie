@@ -3,7 +3,12 @@ import Swal from 'sweetalert2'
 
 import '@/styles/component/button/_btnsosmedshare.scss'
 
-export default React.memo(function BtnSosmedShare({ classBtnShare, title, fill, size='24' }) {
+export default React.memo(function BtnSosmedShare({
+    classBtnShare,
+    title,
+    fill,
+    size = '24',
+}) {
     const [isCopied, setIsCopied] = React.useState(false)
 
     const SwalCopyText = Swal.mixin({
@@ -36,7 +41,7 @@ export default React.memo(function BtnSosmedShare({ classBtnShare, title, fill, 
                     setIsCopied(false)
                 }, 1500)
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(err)
             })
     }

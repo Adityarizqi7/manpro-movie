@@ -14,27 +14,32 @@ export default function Blogs() {
     const theme = React.useContext(GlobalContext).theme
     const [focusInput, setFocusInput] = React.useState(false)
 
-    const blogs = useBlogState((state) => state.blogs)
-    const searchKey = useBlogState((state) => state.searchKey)
-    const handleChange = useBlogState((state) => state.handleChange)
-    const clearKeySearch = useBlogState((state) => state.clearKeySearch)
-    const handleSearchResults = useBlogState(
-        (state) => state.handleSearchResults
+    const blogs = useBlogState(state => state.blogs)
+    const searchKey = useBlogState(state => state.searchKey)
+    const handleChange = useBlogState(state => state.handleChange)
+    const clearKeySearch = useBlogState(state => state.clearKeySearch)
+    const handleSearchResults = useBlogState(state => state.handleSearchResults)
+
+    const handleSearchBar = React.useCallback(
+        e => {
+            e.preventDefault()
+            handleSearchResults()
+        },
+        [handleSearchResults]
     )
 
-    const handleSearchBar = React.useCallback((e) => {
-        e.preventDefault()
-        handleSearchResults()
-    }, [handleSearchResults])
-
-    const handleFocusInput = React.useCallback((event) => {
-        if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
-            setFocusInput(true)
-            event.preventDefault()
-            inputRef.current.focus()
-        }
-        if (event.code === 'Escape') inputRef.current.blur() || clearKeySearch()
-    }, [inputRef, clearKeySearch])
+    const handleFocusInput = React.useCallback(
+        event => {
+            if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
+                setFocusInput(true)
+                event.preventDefault()
+                inputRef.current.focus()
+            }
+            if (event.code === 'Escape')
+                inputRef.current.blur() || clearKeySearch()
+        },
+        [inputRef, clearKeySearch]
+    )
 
     const renderTheme = React.useCallback((theme, dark = '', light = '') => {
         if (theme === 'dark') {

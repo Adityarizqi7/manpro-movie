@@ -28,10 +28,10 @@ export default function Navbar() {
     const [isOpenNavbar, setIsOpenNavbar] = useState(false)
 
     /* Modal */
-    const closeModal = React.useCallback( () => {
+    const closeModal = React.useCallback(() => {
         setIsOpen(false)
     }, [isOpen])
-    const openModal = React.useCallback( () => {
+    const openModal = React.useCallback(() => {
         setIsOpen(true)
     }, [isOpen])
 
@@ -39,7 +39,7 @@ export default function Navbar() {
 
     /* Path Checking */
     const location = useLocation()
-    const checkPathMovies = React.useCallback( () => {
+    const checkPathMovies = React.useCallback(() => {
         if (
             location.pathname === '/movies/now-playing' ||
             location.pathname === '/movies/upcoming' ||
@@ -59,24 +59,26 @@ export default function Navbar() {
     }, [location])
 
     /* Get Data Search */
-    const handleGetSearching = async (e) => {
+    const handleGetSearching = async e => {
         e.preventDefault()
         setLoading(true)
 
         setSearchMovie(e.target.value)
-        await tmdb.get('/search/multi', {
-            params: {
-                query: e.target.value,
-            },
-        }).then(res => {
-            setSearchResult(res.data.results)
-            setLoading(false)
-        })
+        await tmdb
+            .get('/search/multi', {
+                params: {
+                    query: e.target.value,
+                },
+            })
+            .then(res => {
+                setSearchResult(res.data.results)
+                setLoading(false)
+            })
     }
 
     /* Handle Focus and Delete Input Value  */
     const deleteText = React.useCallback(() => setSearchMovie(''), [])
-    const handleFocusInput = React.useCallback((event) => {
+    const handleFocusInput = React.useCallback(event => {
         if ((event.ctrlKey || event.metaKey) && event.code === 'KeyM') {
             event.preventDefault()
             setIsOpen(true)
@@ -86,9 +88,9 @@ export default function Navbar() {
         }
     }, [])
 
-    const getPoster = ((size, path) => {
+    const getPoster = (size, path) => {
         return `https://www.themoviedb.org/t/p/${size}/${path}`
-    })
+    }
 
     React.useEffect(() => {
         document.addEventListener('keydown', handleFocusInput)
@@ -100,7 +102,6 @@ export default function Navbar() {
 
     return (
         <header className='sticky top-0 z-50 w-full bg-gray-800 shadow'>
-
             {/* Dekstop Menu Navbar */}
             <div className='montserrat flex h-[4.5rem] items-center justify-between'>
                 <div className='flex items-center gap-6'>
@@ -113,13 +114,17 @@ export default function Navbar() {
                                 loading='lazy'
                                 alt='Nevrays Logo'
                                 className='h-12 w-12'
-
                             />
                         </Link>
                     </div>
                     <div className='hidden items-center md:block'>
                         <div className='ml-0 space-x-4'>
-                            <ItemNav title={'Home'} path={'/'} activeStyle={activeStyle} classItemNav='rounded-md px-3 py-2 hover:bg-gray-700' />
+                            <ItemNav
+                                title={'Home'}
+                                path={'/'}
+                                activeStyle={activeStyle}
+                                classItemNav='rounded-md px-3 py-2 hover:bg-gray-700'
+                            />
 
                             {/* Movies Menu Item */}
                             <WrapperItemsDropdownNav
@@ -162,8 +167,13 @@ export default function Navbar() {
                                     path={'/movies/top-rated'}
                                 />
                             </WrapperItemsDropdownNav>
-                            
-                            <ItemNav title={'Blogs'} path={'/blogs'} activeStyle={activeStyle} classItemNav='rounded-md px-3 py-2 hover:bg-gray-700' />
+
+                            <ItemNav
+                                title={'Blogs'}
+                                path={'/blogs'}
+                                activeStyle={activeStyle}
+                                classItemNav='rounded-md px-3 py-2 hover:bg-gray-700'
+                            />
                         </div>
                     </div>
                 </div>
@@ -218,9 +228,7 @@ export default function Navbar() {
                                 >
                                     <Dialog.Panel className='shadow-own w-full max-w-2xl transform rounded-2xl bg-white p-6 text-left align-middle transition-all 4xs:px-3'>
                                         <div className='search-movies montserrat relative'>
-                                            <div
-                                                className='box-search flex items-center border-b border-gray-300 pb-4'
-                                            >
+                                            <div className='box-search flex items-center border-b border-gray-300 pb-4'>
                                                 <MagnifyingGlassIcon className='h-6 w-6 text-gray-500' />
                                                 <div className='form-control w-full'>
                                                     <input
@@ -229,7 +237,9 @@ export default function Navbar() {
                                                         autoComplete='off'
                                                         className={`w-full pr-[3rem] pl-[0.75rem] focus:outline-none`}
                                                         placeholder='Cari movie dan series ...'
-                                                        onChange={handleGetSearching}
+                                                        onChange={
+                                                            handleGetSearching
+                                                        }
                                                         ref={inputRef}
                                                         value={searchMovie}
                                                     />
@@ -256,7 +266,7 @@ export default function Navbar() {
                                                 </div>
                                             </div>
                                             <div className='box-result-search h-[28vw] space-y-10 overflow-y-auto 2xs:h-[100vw]'>
-                                                { searchMovie === '' ? (
+                                                {searchMovie === '' ? (
                                                     <div className='movies-result montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4'>
                                                         <h1 className='text-[1.25rem] font-semibold'>
                                                             Tidak ada pencarian
@@ -276,21 +286,26 @@ export default function Navbar() {
                                                                 }
                                                             </div> */}
                                                     </div>
+                                                ) : loading ? (
+                                                    <Spin className='mt-10' />
                                                 ) : (
-                                                    loading ?
-                                                        <Spin className='mt-10' />
-                                                    :
                                                     <>
                                                         <ResultSearch
                                                             id={'movies'}
                                                             title={'Movies'}
-                                                            searchResult={searchResult}
+                                                            searchResult={
+                                                                searchResult
+                                                            }
                                                             type={'movie'}
                                                         />
                                                         <ResultSearch
                                                             id={'series'}
-                                                            title={'Series / TV Shows'}
-                                                            searchResult={searchResult}
+                                                            title={
+                                                                'Series / TV Shows'
+                                                            }
+                                                            searchResult={
+                                                                searchResult
+                                                            }
                                                             type={'tv'}
                                                         />
                                                     </>
@@ -362,7 +377,12 @@ export default function Navbar() {
             >
                 <div className='montserrat md:hidden' id='mobile-menu'>
                     <div className='space-y-1 pt-2 pb-3'>
-                        <ItemNav title={'Home'} path={'/'} activeStyle={activeStyle} classItemNav='block py-4' />
+                        <ItemNav
+                            title={'Home'}
+                            path={'/'}
+                            activeStyle={activeStyle}
+                            classItemNav='block py-4'
+                        />
 
                         {/* Movies Menu Item */}
                         <WrapperItemsDropdownNav
@@ -409,8 +429,13 @@ export default function Navbar() {
                                 path={'/movies/top-rated'}
                             />
                         </WrapperItemsDropdownNav>
-                        
-                        <ItemNav title={'Blogs'} path={'/blogs'} activeStyle={activeStyle} classItemNav='block py-4' />
+
+                        <ItemNav
+                            title={'Blogs'}
+                            path={'/blogs'}
+                            activeStyle={activeStyle}
+                            classItemNav='block py-4'
+                        />
                     </div>
                 </div>
             </Transition>
@@ -419,37 +444,47 @@ export default function Navbar() {
 }
 
 /* Child Component Navbar  */
-const WrapperItemsDropdownNav = React.memo(({ head_title, checkPath, children, classDropDownButton, classChildDropDownButton, classDropDownTransition, classDropDownWrapItem }) => {
-    return (
-        <Menu>
-            <Menu.Button
-                className={`${classDropDownButton} ${checkPath} ui-open:bg-gray-700 ui-open:text-white text-[1rem] font-medium`}
-            >
-                <div className={`${classChildDropDownButton} flex items-center gap-2`}>
-                    <span>{head_title}</span>
-                    <ChevronDownIcon className='h-4 w-4' />
-                </div>
-            </Menu.Button>
-            <Transition
-                enter='transition-transform duration-100 ease-out'
-                enterFrom='transform scale-95 opacity-0'
-                enterTo='transform scale-100 opacity-100'
-                leave='transition duration-100 ease-out'
-                leaveFrom='transform scale-100 opacity-100'
-                leaveTo='transform scale-95 opacity-0'
-                className={`${classDropDownTransition}`}
-            >
-                <Menu.Items
-                    className={
-                        `${classDropDownWrapItem} shadow-own flex flex-col rounded-[5px] bg-white py-1`
-                    }
+const WrapperItemsDropdownNav = React.memo(
+    ({
+        head_title,
+        checkPath,
+        children,
+        classDropDownButton,
+        classChildDropDownButton,
+        classDropDownTransition,
+        classDropDownWrapItem,
+    }) => {
+        return (
+            <Menu>
+                <Menu.Button
+                    className={`${classDropDownButton} ${checkPath} text-[1rem] font-medium ui-open:bg-gray-700 ui-open:text-white`}
                 >
-                    {children}
-                </Menu.Items>
-            </Transition>
-        </Menu>
-    )
-})
+                    <div
+                        className={`${classChildDropDownButton} flex items-center gap-2`}
+                    >
+                        <span>{head_title}</span>
+                        <ChevronDownIcon className='h-4 w-4' />
+                    </div>
+                </Menu.Button>
+                <Transition
+                    enter='transition-transform duration-100 ease-out'
+                    enterFrom='transform scale-95 opacity-0'
+                    enterTo='transform scale-100 opacity-100'
+                    leave='transition duration-100 ease-out'
+                    leaveFrom='transform scale-100 opacity-100'
+                    leaveTo='transform scale-95 opacity-0'
+                    className={`${classDropDownTransition}`}
+                >
+                    <Menu.Items
+                        className={`${classDropDownWrapItem} shadow-own flex flex-col rounded-[5px] bg-white py-1`}
+                    >
+                        {children}
+                    </Menu.Items>
+                </Transition>
+            </Menu>
+        )
+    }
+)
 const ItemDropdownNav = React.memo(({ title, path }) => {
     return (
         <Menu.Item>
@@ -472,9 +507,7 @@ const ItemNav = React.memo(({ title, path, activeStyle, classItemNav }) => {
     return (
         <NavLink
             to={path}
-            style={({ isActive }) =>
-                isActive ? activeStyle : undefined
-            }
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
             className={`${classItemNav} text-[1rem] font-medium text-gray-300`}
         >
             {title}
@@ -485,47 +518,57 @@ const ItemNav = React.memo(({ title, path, activeStyle, classItemNav }) => {
 /* Child Component Result Search Movies & TV Series */
 const ResultSearch = React.memo(({ id, title, searchResult, type }) => {
     return (
-        <div id={id} className='result-search montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4 2xs:h-[50vw]'>
-            <h1 className='text-[1.25rem] font-semibold'>
-                { title }
-            </h1>
+        <div
+            id={id}
+            className='result-search montserrat my-5 h-[14vw] space-y-3 overflow-y-auto pr-4 2xs:h-[50vw]'
+        >
+            <h1 className='text-[1.25rem] font-semibold'>{title}</h1>
             <div className='results flex flex-col gap-2'>
-                {searchResult.map(
-                    ( e, idx ) => { return (
+                {searchResult.map((e, idx) => {
+                    return (
                         e.media_type === type && (
-                            <Link
-                                key={
-                                    idx
-                                }
-                                to={`/${type}/${e.id}`}
-                            >
+                            <Link key={idx} to={`/${type}/${e.id}`}>
                                 <div className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'>
                                     <div className='highlight-info-result flex items-center gap-3'>
-                                        <ProgressiveImage src={`${e.poster_path === null ? BgNull : getPoster('w500', poster_path)}`} placeholder={`${e.poster_path === null ? BgNull : getPoster('w500', poster_path)}`}>
+                                        <ProgressiveImage
+                                            src={`${
+                                                e.poster_path === null
+                                                    ? BgNull
+                                                    : getPoster(
+                                                          'w500',
+                                                          poster_path
+                                                      )
+                                            }`}
+                                            placeholder={`${
+                                                e.poster_path === null
+                                                    ? BgNull
+                                                    : getPoster(
+                                                          'w500',
+                                                          poster_path
+                                                      )
+                                            }`}
+                                        >
                                             {(src, loading) => (
                                                 <img
                                                     src={src}
-                                                    alt={
-                                                        e.title | e.name
-                                                    }
-                                                    style={{ opacity: loading ? 0.5 : 1 }}
+                                                    alt={e.title | e.name}
+                                                    style={{
+                                                        opacity: loading
+                                                            ? 0.5
+                                                            : 1,
+                                                    }}
                                                     className={`aspect-square w-6 rounded-full object-cover`}
                                                 />
                                             )}
                                         </ProgressiveImage>
-                                        <h2>
-                                            {
-                                                e.title || e.name
-                                            }
-                                        </h2>
+                                        <h2>{e.title || e.name}</h2>
                                     </div>
                                     <ChevronRightIcon className='h-3 w-3' />
                                 </div>
                             </Link>
                         )
                     )
-                    }
-                )}
+                })}
             </div>
         </div>
     )

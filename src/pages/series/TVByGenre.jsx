@@ -57,7 +57,7 @@ export default function TVByGenre() {
             status === 200 &&
                 setGenre(
                     data.genres.filter(
-                        (value) => parseInt(value.id) === parseInt(genreId)
+                        value => parseInt(value.id) === parseInt(genreId)
                     )
                 )
             setLoading(false)
@@ -73,10 +73,10 @@ export default function TVByGenre() {
 
     return (
         <Nevrays
-            title={`${genre.map((e) => e.name)} Series - Nevrays`}
-            kw={`${genre.map((e) => e.name)} Series`}
+            title={`${genre.map(e => e.name)} Series - Nevrays`}
+            kw={`${genre.map(e => e.name)} Series`}
             desc={`${genre.map(
-                (e) => e.name
+                e => e.name
             )} Genre - Nevrays. Lihat film-film apa saja sesuai genre kesukaan kalian.`}
             ogUrl={''}
             ogType={''}
@@ -99,7 +99,7 @@ export default function TVByGenre() {
                                 'text-black'
                             )} text-[2rem] font-semibold`}
                         >
-                            {genre.map((e) => e.name + ' Series')}
+                            {genre.map(e => e.name + ' Series')}
                         </h1>
                     </div>
                     <section>

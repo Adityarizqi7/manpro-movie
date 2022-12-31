@@ -4,7 +4,7 @@ import Blog from '@/pages/blog/Blog'
 
 export default React.memo(function ListBlogs({ blogs, searchQuestion }) {
     return blogs
-        .filter((value) => {
+        .filter(value => {
             // eslint-disable-line array-callback-return
             if (searchQuestion === '') {
                 return value

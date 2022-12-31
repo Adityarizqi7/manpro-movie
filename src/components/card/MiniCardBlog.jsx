@@ -7,7 +7,7 @@ export default React.memo(function MiniCardBlog({
     classname,
     classname2,
     classname3,
-    classImage='w-[2.5rem]',
+    classImage = 'w-[2.5rem]',
     path,
 }) {
     return (

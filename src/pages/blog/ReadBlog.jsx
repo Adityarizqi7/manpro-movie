@@ -12,10 +12,10 @@ import BtnSosmedShare from '@/components/button/BtnSosmedShare'
 
 export default function ReadBlog() {
     const { slug, slugCategory } = useParams()
-    const blog = useBlogState((state) => state.blog)
-    const findBlog = useBlogState((state) => state.findBlog)
-    const blogByCategory = useBlogState((state) => state.blogByCategory)
-    const findBlogByCategory = useBlogState((state) => state.findBlogByCategory)
+    const blog = useBlogState(state => state.blog)
+    const findBlog = useBlogState(state => state.findBlog)
+    const blogByCategory = useBlogState(state => state.blogByCategory)
+    const findBlogByCategory = useBlogState(state => state.findBlogByCategory)
 
     const status = null
     const theme = React.useContext(GlobalContext).theme

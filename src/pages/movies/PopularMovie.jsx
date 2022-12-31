@@ -32,17 +32,23 @@ export default function NowPlayingMovie() {
         return light
     }, [])
 
-    const handleChange = React.useCallback((e) => setSearchMovie(e.target.value), [])
+    const handleChange = React.useCallback(
+        e => setSearchMovie(e.target.value),
+        []
+    )
     const deleteText = React.useCallback(() => setSearchMovie(''), [])
 
-    const handleFocusInput = React.useCallback((event) => {
-        if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
-            setFocusInput(true)
-            event.preventDefault()
-            inputRef.current.focus()
-        }
-        if (event.code === 'Escape') inputRef.current.blur() || deleteText()
-    }, [inputRef, deleteText])
+    const handleFocusInput = React.useCallback(
+        event => {
+            if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
+                setFocusInput(true)
+                event.preventDefault()
+                inputRef.current.focus()
+            }
+            if (event.code === 'Escape') inputRef.current.blur() || deleteText()
+        },
+        [inputRef, deleteText]
+    )
 
     const loadMore = React.useCallback(() => {
         setLoading(true)
@@ -50,7 +56,7 @@ export default function NowPlayingMovie() {
         setLoading(false)
     }, [])
 
-    const PopularMVAll = React.useCallback( async () => {
+    const PopularMVAll = React.useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get('/movie/popular', {
@@ -178,7 +184,7 @@ export default function NowPlayingMovie() {
                                 ) : (
                                     <div className='container-list-card grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4'>
                                         {initialPosts
-                                            .filter((value) => {
+                                            .filter(value => {
                                                 // eslint-disable-line array-callback-return
                                                 if (searchMovie === '')
                                                     return value

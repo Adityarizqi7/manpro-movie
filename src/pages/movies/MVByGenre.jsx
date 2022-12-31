@@ -50,7 +50,7 @@ export default function MVByGenre() {
             status === 200 &&
                 setGenre(
                     data.filter(
-                        (value) => parseInt(value.id) === parseInt(genreId)
+                        value => parseInt(value.id) === parseInt(genreId)
                     )
                 )
             setLoading(false)
@@ -66,10 +66,10 @@ export default function MVByGenre() {
 
     return (
         <Nevrays
-            title={`${genre.map((e) => e.name)} Movies - Nevrays`}
-            kw={`${genre.map((e) => e.name)} Movies`}
+            title={`${genre.map(e => e.name)} Movies - Nevrays`}
+            kw={`${genre.map(e => e.name)} Movies`}
             desc={`${genre.map(
-                (e) => e.name
+                e => e.name
             )} Genre - Nevrays. Lihat film-film apa saja sesuai genre kesukaan kalian.`}
             ogUrl={''}
             ogType={''}
@@ -92,7 +92,7 @@ export default function MVByGenre() {
                                 'text-black'
                             )} text-[2rem] font-semibold`}
                         >
-                            {genre.map((e) => e.name + ' Movie')}
+                            {genre.map(e => e.name + ' Movie')}
                         </h1>
                     </div>
                     <section>

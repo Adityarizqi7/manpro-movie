@@ -29,7 +29,7 @@ module.exports = {
         plugin(function ({ matchUtilities, theme }) {
             matchUtilities(
                 {
-                    'backdrop-blur': (value) => {
+                    'backdrop-blur': value => {
                         const cssBackdropFilterValue = [
                             'var(--tw-backdrop-blur,)',
                             'var(--tw-backdrop-brightness,)',

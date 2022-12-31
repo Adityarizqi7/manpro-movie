@@ -8,7 +8,13 @@ import { ForwardIcon } from '@heroicons/react/24/outline'
 import '@/styles/component/list/_list.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-export default React.memo(function List({ title, className, id, urlAPI, type = 'movie' }) {
+export default React.memo(function List({
+    title,
+    className,
+    id,
+    urlAPI,
+    type = 'movie',
+}) {
     const [genre, setGenre] = React.useState([])
     const [loading, setLoading] = React.useState(false)
 
@@ -74,9 +80,7 @@ export default React.memo(function List({ title, className, id, urlAPI, type = '
                                         'hover:bg-gray-50'
                                     )} border-b-[1px] border-gray-300/50 px-2`}
                                 >
-                                    <Link
-                                        to={`/genre/${item.id}/${type}`}
-                                    >
+                                    <Link to={`/genre/${item.id}/${type}`}>
                                         <div className='montserrat flex flex-wrap justify-between gap-3 pt-2 pb-1'>
                                             <h2
                                                 className={`${renderTheme(

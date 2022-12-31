@@ -61,8 +61,8 @@ const DetailMovie = () => {
                 setLoading(false)
                 setTrailerMV(
                     data.results
-                        .filter((value) => value.name === 'Official Trailer')
-                        .map((item) => {
+                        .filter(value => value.name === 'Official Trailer')
+                        .map(item => {
                             return item.key
                         })
                 )
@@ -72,9 +72,9 @@ const DetailMovie = () => {
         }
     }, [movieId])
 
-    const getPoster = ((size, path) => {
+    const getPoster = (size, path) => {
         return `https://image.tmdb.org/t/p/${size}/${path}`
-    })    
+    }
 
     useEffect(() => {
         getDetailMovie()
@@ -105,9 +105,27 @@ const DetailMovie = () => {
             >
                 {/* banner */}
                 <div className='jumbotron-image'>
-                    {loading ? <Skeleton height={500} />
-                        :
-                        <ProgressiveImage src={ detailMV?.backdrop_path === null ? BgNull : getPoster('w1280', detailMV?.backdrop_path) } placeholder={ detailMV?.backdrop_path === null ? BgNull : getPoster('w1280', detailMV?.backdrop_path)}>
+                    {loading ? (
+                        <Skeleton height={500} />
+                    ) : (
+                        <ProgressiveImage
+                            src={
+                                detailMV?.backdrop_path === null
+                                    ? BgNull
+                                    : getPoster(
+                                          'w1280',
+                                          detailMV?.backdrop_path
+                                      )
+                            }
+                            placeholder={
+                                detailMV?.backdrop_path === null
+                                    ? BgNull
+                                    : getPoster(
+                                          'w1280',
+                                          detailMV?.backdrop_path
+                                      )
+                            }
+                        >
                             {(src, loading) => (
                                 <img
                                     src={src}
@@ -120,7 +138,7 @@ const DetailMovie = () => {
                                 />
                             )}
                         </ProgressiveImage>
-                    }
+                    )}
                 </div>
                 {/* contents */}
                 <div className='content-detail-movie lg:flex lg:gap-7'>
@@ -129,7 +147,24 @@ const DetailMovie = () => {
                         {loading ? (
                             <Skeleton height={500} />
                         ) : (
-                            <ProgressiveImage src={ detailMV?.poster_path === null ? BgNull : getPoster('original', detailMV?.poster_path) } placeholder={ detailMV?.poster_path === null ? BgNull : getPoster('original', detailMV?.poster_path)}>
+                            <ProgressiveImage
+                                src={
+                                    detailMV?.poster_path === null
+                                        ? BgNull
+                                        : getPoster(
+                                              'original',
+                                              detailMV?.poster_path
+                                          )
+                                }
+                                placeholder={
+                                    detailMV?.poster_path === null
+                                        ? BgNull
+                                        : getPoster(
+                                              'original',
+                                              detailMV?.poster_path
+                                          )
+                                }
+                            >
                                 {(src, loading) => (
                                     <img
                                         src={src}
