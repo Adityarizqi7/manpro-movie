@@ -51,7 +51,7 @@ export default function Home() {
                         <div className='heading-card w-full'>
                             <HeadPrimary
                                 title='Trending Movies'
-                                classFunc={renderTheme(theme,'text-white')}
+                                classFunc={renderTheme(theme, 'text-white')}
                                 classHeading='montserrat border-l-4 border-blue-600 pl-3 font-semibold'
                             />
                         </div>
@@ -66,7 +66,7 @@ export default function Home() {
                         <div className='heading-card w-full'>
                             <HeadPrimary
                                 title='Trending Series'
-                                classFunc={renderTheme(theme,'text-white')}
+                                classFunc={renderTheme(theme, 'text-white')}
                                 classHeading='montserrat border-l-4 border-blue-600 pl-3 font-semibold'
                             />
                         </div>
@@ -84,7 +84,8 @@ export default function Home() {
                                 classFunc={renderTheme(
                                     theme,
                                     'text-white',
-                                    'text-gray-800')}
+                                    'text-gray-800'
+                                )}
                                 classHeading='text-center sm:text-[2.5rem] text-[6vw] font-bold'
                             />
                         </div>
@@ -110,14 +111,21 @@ export default function Home() {
                                 <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
                                     <HeadPrimary
                                         title='Upcoming Movie'
-                                        classFunc={renderTheme(theme,'text-white', 'text-black')}
+                                        classFunc={renderTheme(
+                                            theme,
+                                            'text-white',
+                                            'text-black'
+                                        )}
                                         classHeading='font-semibold'
                                     />
                                     <Link to={'/movies/upcoming'}>
                                         <HeadPrimary
                                             title='See all'
-                                            classFunc={renderTheme(theme,'text-gray-200',
-                                                    'text-gray-600')}
+                                            classFunc={renderTheme(
+                                                theme,
+                                                'text-gray-200',
+                                                'text-gray-600'
+                                            )}
                                             classHeading='text-sm font-normal hover:text-blue-600'
                                         />
                                     </Link>
@@ -133,14 +141,21 @@ export default function Home() {
                                 <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
                                     <HeadPrimary
                                         title='Now Playing Movie Movie'
-                                        classFunc={renderTheme(theme,'text-white', 'text-black')}
+                                        classFunc={renderTheme(
+                                            theme,
+                                            'text-white',
+                                            'text-black'
+                                        )}
                                         classHeading='font-semibold'
                                     />
                                     <Link to={'/movies/upcoming'}>
                                         <HeadPrimary
                                             title='See all'
-                                            classFunc={renderTheme(theme,'text-gray-200',
-                                                    'text-gray-600')}
+                                            classFunc={renderTheme(
+                                                theme,
+                                                'text-gray-200',
+                                                'text-gray-600'
+                                            )}
                                             classHeading='text-sm font-normal hover:text-blue-600'
                                         />
                                     </Link>

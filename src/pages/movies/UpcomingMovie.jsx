@@ -101,7 +101,11 @@ export default function UpcomingMovie() {
                     <div className='heading-upcoming-movies montserrat mb-8'>
                         <HeadPrimary
                             title='Upcoming Movies'
-                            classFunc={renderTheme(theme,'text-white', 'text-black')}
+                            classFunc={renderTheme(
+                                theme,
+                                'text-white',
+                                'text-black'
+                            )}
                             classHeading='text-[2rem] font-semibold'
                         />
                     </div>
@@ -180,7 +184,7 @@ export default function UpcomingMovie() {
                                 ) : (
                                     <div className='container-list-card grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4'>
                                         {initialPosts
-                                            .filter((value) => {
+                                            .filter(value => {
                                                 // eslint-disable-line array-callback-return
                                                 if (searchMovie === '')
                                                     return value

@@ -105,7 +105,11 @@ export default function NowPlayingMovie() {
                     <div className='heading-nowplaying-movies montserrat mb-8'>
                         <HeadPrimary
                             title='Now Playing Movies'
-                            classFunc={renderTheme(theme,'text-white', 'text-black')}
+                            classFunc={renderTheme(
+                                theme,
+                                'text-white',
+                                'text-black'
+                            )}
                             classHeading='text-[2rem] font-semibold'
                         />
                     </div>

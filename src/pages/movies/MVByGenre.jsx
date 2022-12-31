@@ -28,7 +28,7 @@ export default function MVByGenre() {
         return light
     }, [])
 
-    const getDataMVGenre = React.useCallback( async () => {
+    const getDataMVGenre = React.useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get(`/discover/movie`, {
@@ -44,14 +44,14 @@ export default function MVByGenre() {
         }
     }, [genreId])
 
-    const getGenre = React.useCallback( async () => {
+    const getGenre = React.useCallback(async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get(`/genre/movie/list`)
             status === 200 &&
                 setGenre(
                     data.genres.filter(
-                        (value) => parseInt(value.id) === parseInt(genreId)
+                        value => parseInt(value.id) === parseInt(genreId)
                     )
                 )
             setLoading(false)
@@ -87,10 +87,14 @@ export default function MVByGenre() {
                 <section id='mvby_genre_container_movies'>
                     <div className='heading-mvby-genre-movies montserrat mb-8'>
                         <HeadPrimary
-                            classFunc={renderTheme(theme,'text-white', 'text-black')}
+                            classFunc={renderTheme(
+                                theme,
+                                'text-white',
+                                'text-black'
+                            )}
                             classHeading='text-[2rem] font-semibold'
                         >
-                            {genre.map((e) => e.name)} Movies
+                            {genre.map(e => e.name)} Movies
                         </HeadPrimary>
                     </div>
                     <section>
