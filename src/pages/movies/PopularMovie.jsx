@@ -11,6 +11,7 @@ import Nevrays from '@/layouts/Nevrays'
 import List from '@/components/list/List'
 import { Spin } from '@/components/loading/Spin'
 import { MovieCard } from '@/components/content/ContentCard'
+import { HeadPrimary } from '@/components/heading/HeadPrimary'
 
 export default function NowPlayingMovie() {
     const inputRef = React.useRef()
@@ -99,15 +100,11 @@ export default function NowPlayingMovie() {
             >
                 <section id='popular_container_movies'>
                     <div className='heading-popular-movies montserrat mb-8'>
-                        <h1
-                            className={`${renderTheme(
-                                theme,
-                                'text-white',
-                                'text-black'
-                            )} text-[2rem] font-semibold`}
-                        >
-                            Popular Movies
-                        </h1>
+                        <HeadPrimary
+                            title='Popular Movies'
+                            classFunc={renderTheme(theme,'text-white', 'text-black')}
+                            classHeading='text-[2rem] font-semibold'
+                        />
                     </div>
                     <div className='search-movies montserrat mb-10'>
                         <div className='box-search inter relative w-full md:w-[35%]'>

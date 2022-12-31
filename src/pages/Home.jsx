@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { GlobalContext } from '@/routes/Router'
 
 import '@/styles/_home.scss'
+
 import Nevrays from '@/layouts/Nevrays'
 import List from '@/components/list/List'
 import {
@@ -12,7 +14,7 @@ import {
     TrendTV,
     UpcomingMV,
 } from '@/components/content/ContentService'
-import { Link } from 'react-router-dom'
+import { HeadPrimary } from '@/components/heading/HeadPrimary'
 
 export default function Home() {
     const theme = React.useContext(GlobalContext).theme
@@ -47,14 +49,11 @@ export default function Home() {
                         className='movie-container mb-6 space-y-8'
                     >
                         <div className='heading-card w-full'>
-                            <h1
-                                className={`${renderTheme(
-                                    theme,
-                                    'text-white'
-                                )} montserrat border-l-4 border-blue-600 pl-3 font-semibold`}
-                            >
-                                Trending Movies
-                            </h1>
+                            <HeadPrimary
+                                title='Trending Movies'
+                                classFunc={renderTheme(theme,'text-white')}
+                                classHeading='montserrat border-l-4 border-blue-600 pl-3 font-semibold'
+                            />
                         </div>
                         <div className='container-list-card'>
                             <TrendMV />
@@ -65,14 +64,11 @@ export default function Home() {
                         className='movie-container mb-14 space-y-8'
                     >
                         <div className='heading-card w-full'>
-                            <h1
-                                className={`${renderTheme(
-                                    theme,
-                                    'text-white'
-                                )} montserrat border-l-4 border-blue-600 pl-3 font-semibold`}
-                            >
-                                Trending Series
-                            </h1>
+                            <HeadPrimary
+                                title='Trending Series'
+                                classFunc={renderTheme(theme,'text-white')}
+                                classHeading='montserrat border-l-4 border-blue-600 pl-3 font-semibold'
+                            />
                         </div>
                         <div className='container-list-card'>
                             <TrendTV />
@@ -83,15 +79,14 @@ export default function Home() {
                         className='movie-container mb-14 space-y-8'
                     >
                         <div className='heading-card montserrat'>
-                            <h1
-                                className={`${renderTheme(
+                            <HeadPrimary
+                                title='● Popular Lately ●'
+                                classFunc={renderTheme(
                                     theme,
                                     'text-white',
-                                    'text-gray-800'
-                                )} text-center text-[6vw] font-bold sm:text-[2.5rem]`}
-                            >
-                                ● Popular Lately ●
-                            </h1>
+                                    'text-gray-800')}
+                                classHeading='text-center sm:text-[2.5rem] text-[6vw] font-bold'
+                            />
                         </div>
                         <div className='container-list-card'>
                             <PopularTV />
@@ -113,26 +108,19 @@ export default function Home() {
                                 className='movie-container mb-14 space-y-8'
                             >
                                 <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
-                                    <h1
-                                        className={`${renderTheme(
-                                            theme,
-                                            'text-white',
-                                            'text-black'
-                                        )} font-semibold`}
-                                    >
-                                        Upcoming Movie
-                                    </h1>
-                                    <h2
-                                        className={`${renderTheme(
-                                            theme,
-                                            'text-gray-200',
-                                            'text-gray-600'
-                                        )} text-sm font-normal hover:text-blue-600`}
-                                    >
-                                        <Link to={'/movies/upcoming'}>
-                                            See all
-                                        </Link>
-                                    </h2>
+                                    <HeadPrimary
+                                        title='Upcoming Movie'
+                                        classFunc={renderTheme(theme,'text-white', 'text-black')}
+                                        classHeading='font-semibold'
+                                    />
+                                    <Link to={'/movies/upcoming'}>
+                                        <HeadPrimary
+                                            title='See all'
+                                            classFunc={renderTheme(theme,'text-gray-200',
+                                                    'text-gray-600')}
+                                            classHeading='text-sm font-normal hover:text-blue-600'
+                                        />
+                                    </Link>
                                 </div>
                                 <div className='container-list-card cursor-grab'>
                                     <UpcomingMV />
@@ -143,26 +131,19 @@ export default function Home() {
                                 className='movie-container mb-14 space-y-8'
                             >
                                 <div className='heading-card montserrat flex flex-wrap items-center justify-between gap-4'>
-                                    <h1
-                                        className={`${renderTheme(
-                                            theme,
-                                            'text-white',
-                                            'text-black'
-                                        )} font-semibold`}
-                                    >
-                                        Now Playing Movie
-                                    </h1>
-                                    <h2
-                                        className={`${renderTheme(
-                                            theme,
-                                            'text-gray-200',
-                                            'text-gray-600'
-                                        )} text-sm font-normal hover:text-blue-600`}
-                                    >
-                                        <Link to={'/movies/now-playing'}>
-                                            See all
-                                        </Link>
-                                    </h2>
+                                    <HeadPrimary
+                                        title='Now Playing Movie Movie'
+                                        classFunc={renderTheme(theme,'text-white', 'text-black')}
+                                        classHeading='font-semibold'
+                                    />
+                                    <Link to={'/movies/upcoming'}>
+                                        <HeadPrimary
+                                            title='See all'
+                                            classFunc={renderTheme(theme,'text-gray-200',
+                                                    'text-gray-600')}
+                                            classHeading='text-sm font-normal hover:text-blue-600'
+                                        />
+                                    </Link>
                                 </div>
                                 <div className='container-list-card'>
                                     <NowPlayMV />

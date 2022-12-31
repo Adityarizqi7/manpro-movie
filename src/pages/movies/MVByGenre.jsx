@@ -9,6 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 import Nevrays from '@/layouts/Nevrays'
 import { MovieCard } from '@/components/content/ContentCard'
+import { HeadPrimary } from '@/components/heading/HeadPrimary'
 
 export default function MVByGenre() {
     const { genreId } = useParams()
@@ -27,7 +28,7 @@ export default function MVByGenre() {
         return light
     }, [])
 
-    const getDataMVGenre = React.useCallback(async () => {
+    const getDataMVGenre = React.useCallback( async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get(`/discover/movie`, {
@@ -43,14 +44,14 @@ export default function MVByGenre() {
         }
     }, [genreId])
 
-    const getGenre = React.useCallback(async () => {
+    const getGenre = React.useCallback( async () => {
         try {
             setLoading(true)
             const { data, status } = await tmdb.get(`/genre/movie/list`)
             status === 200 &&
                 setGenre(
-                    data.filter(
-                        value => parseInt(value.id) === parseInt(genreId)
+                    data.genres.filter(
+                        (value) => parseInt(value.id) === parseInt(genreId)
                     )
                 )
             setLoading(false)
@@ -85,15 +86,12 @@ export default function MVByGenre() {
             >
                 <section id='mvby_genre_container_movies'>
                     <div className='heading-mvby-genre-movies montserrat mb-8'>
-                        <h1
-                            className={`${renderTheme(
-                                theme,
-                                'text-white',
-                                'text-black'
-                            )} text-[2rem] font-semibold`}
+                        <HeadPrimary
+                            classFunc={renderTheme(theme,'text-white', 'text-black')}
+                            classHeading='text-[2rem] font-semibold'
                         >
-                            {genre.map(e => e.name + ' Movie')}
-                        </h1>
+                            {genre.map((e) => e.name)} Movies
+                        </HeadPrimary>
                     </div>
                     <section>
                         <div className='section-container w-full'>
@@ -106,12 +104,12 @@ export default function MVByGenre() {
                                         <Skeleton
                                             height={300}
                                             count={4}
-                                            containerClassName='flex gap-[10px]'
+                                            containerClassName='flex flex-wrap gap-[10px]'
                                         />
                                         <Skeleton
                                             height={25}
                                             count={4}
-                                            containerClassName='flex gap-[10px] mt-3'
+                                            containerClassName='flex flex-wrap gap-[10px] mt-3'
                                         />
                                     </>
                                 ) : (

@@ -16,6 +16,10 @@ import nevrays from '@/assets/images/nevrays.png'
 import BgNull from '@/assets/images/bg-null.webp'
 import DarkBtn from '@/components/button/DarkBtn'
 
+const getPoster = ((size, path) => {
+    return `https://image.tmdb.org/t/p/${size}/${path}`
+})
+
 export default function Navbar() {
     const inputRef = React.useRef()
     const [loading, setLoading] = React.useState(false)
@@ -87,10 +91,6 @@ export default function Navbar() {
             setSearchMovie('')
         }
     }, [])
-
-    const getPoster = (size, path) => {
-        return `https://www.themoviedb.org/t/p/${size}/${path}`
-    }
 
     React.useEffect(() => {
         document.addEventListener('keydown', handleFocusInput)
@@ -524,39 +524,26 @@ const ResultSearch = React.memo(({ id, title, searchResult, type }) => {
         >
             <h1 className='text-[1.25rem] font-semibold'>{title}</h1>
             <div className='results flex flex-col gap-2'>
-                {searchResult.map((e, idx) => {
-                    return (
+                {
+                    searchResult?.map(
+                    ( e, idx ) => { return (
                         e.media_type === type && (
-                            <Link key={idx} to={`/${type}/${e.id}`}>
+                            <Link
+                                key={
+                                    idx
+                                }
+                                to={`/${type}/${e?.id}`}
+                            >
                                 <div className='box-item-result flex cursor-pointer items-center justify-between rounded-md bg-gray-50 p-4 hover:bg-blue-500 hover:text-white'>
                                     <div className='highlight-info-result flex items-center gap-3'>
-                                        <ProgressiveImage
-                                            src={`${
-                                                e.poster_path === null
-                                                    ? BgNull
-                                                    : getPoster(
-                                                          'w500',
-                                                          poster_path
-                                                      )
-                                            }`}
-                                            placeholder={`${
-                                                e.poster_path === null
-                                                    ? BgNull
-                                                    : getPoster(
-                                                          'w500',
-                                                          poster_path
-                                                      )
-                                            }`}
-                                        >
+                                        <ProgressiveImage src={`${e?.poster_path === null ? BgNull : getPoster('w500', e?.poster_path)}`} placeholder={`${e?.poster_path === null ? BgNull : getPoster('w500', e?.poster_path)}`}>
                                             {(src, loading) => (
                                                 <img
                                                     src={src}
-                                                    alt={e.title | e.name}
-                                                    style={{
-                                                        opacity: loading
-                                                            ? 0.5
-                                                            : 1,
-                                                    }}
+                                                    alt={
+                                                        e?.title | e?.name
+                                                    }
+                                                    style={{ opacity: loading ? 0.5 : 1 }}
                                                     className={`aspect-square w-6 rounded-full object-cover`}
                                                 />
                                             )}
@@ -568,7 +555,9 @@ const ResultSearch = React.memo(({ id, title, searchResult, type }) => {
                             </Link>
                         )
                     )
-                })}
+                    }
+                    )
+                }
             </div>
         </div>
     )
