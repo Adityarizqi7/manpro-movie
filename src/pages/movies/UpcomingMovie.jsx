@@ -11,6 +11,7 @@ import Nevrays from '@/layouts/Nevrays'
 import List from '@/components/list/List'
 import { Spin } from '@/components/loading/Spin'
 import { MovieCard } from '@/components/content/ContentCard'
+import { HeadPrimary } from '@/components/heading/HeadPrimary'
 
 export default function UpcomingMovie() {
     const inputRef = React.useRef()
@@ -19,7 +20,7 @@ export default function UpcomingMovie() {
 
     const [upcomingMVAll, setUpcomingMVAll] = React.useState([])
 
-    const [index, setIndex] = React.useState(1)
+    const [index, setIndex] = React.useState(4)
     const [loading, setLoading] = React.useState(false)
     const initialPosts = slice(upcomingMVAll, 0, index)
 
@@ -46,9 +47,9 @@ export default function UpcomingMovie() {
 
     const loadMore = React.useCallback(() => {
         setLoading(true)
-        setIndex(idx => idx + 1)
+        setIndex(idx => idx + 4)
         setLoading(false)
-    }, [])
+    }, [index])
 
     const getDataUpcomingMVAll = React.useCallback(async () => {
         try {
@@ -59,7 +60,7 @@ export default function UpcomingMovie() {
         } catch {
             setLoading(false)
         }
-    }, [])
+    }, [index])
 
     React.useEffect(() => {
         document.addEventListener('keydown', handleFocusInput)
@@ -92,15 +93,11 @@ export default function UpcomingMovie() {
             >
                 <section id='upcoming_container_movies'>
                     <div className='heading-upcoming-movies montserrat mb-8'>
-                        <h1
-                            className={`${renderTheme(
-                                theme,
-                                'text-white',
-                                'text-black'
-                            )} text-[2rem] font-semibold`}
-                        >
-                            Upcoming Movies
-                        </h1>
+                        <HeadPrimary
+                            title='Upcoming Movies'
+                            classFunc={renderTheme(theme,'text-white', 'text-black')}
+                            classHeading='text-[2rem] font-semibold'
+                        />
                     </div>
                     <div className='search-movies montserrat mb-10'>
                         <div className='box-search relative w-full md:w-[35%]'>
@@ -176,7 +173,7 @@ export default function UpcomingMovie() {
                                     </>
                                 ) : (
                                     <div className='container-list-card grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4'>
-                                        {upcomingMVAll
+                                        {initialPosts
                                             .filter((value) => {
                                                 // eslint-disable-line array-callback-return
                                                 if (searchMovie === '')
