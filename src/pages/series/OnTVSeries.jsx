@@ -60,10 +60,11 @@ export default function OnTVSeries() {
             setLoading(0)
             const { data, status } = await tmdb.get('/tv/on_the_air', {
                 params: {
-                    page: index
-                }
+                    page: index,
+                },
             })
-            status === 200 && setOnTVAll((oldData) => [...oldData, ...data.results])
+            status === 200 &&
+                setOnTVAll(oldData => [...oldData, ...data.results])
             setLoading(1)
         } catch {
             setLoading(1)
@@ -161,7 +162,7 @@ export default function OnTVSeries() {
                             title='Genres'
                             id='left-section'
                             urlAPI='/genre/tv/list'
-                            className='list-container sticky top-[6rem] self-start order-1 hidden space-y-2 md:order-2 md:block md:w-[30%]'
+                            className='list-container sticky top-[6rem] order-1 hidden space-y-2 self-start md:order-2 md:block md:w-[30%]'
                         />
                         <div
                             id='right_section'
@@ -214,7 +215,10 @@ export default function OnTVSeries() {
                                     </div>
                                 )}
                                 {index <= 30 && (
-                                    <LoadMore onClick={loadMore} state={loading} />
+                                    <LoadMore
+                                        onClick={loadMore}
+                                        state={loading}
+                                    />
                                 )}
                             </article>
                         </div>

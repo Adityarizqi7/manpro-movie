@@ -36,7 +36,6 @@ export default function MVByGenre() {
         setLoading(1)
     }, [])
 
-
     const getDataMVGenre = React.useCallback(async () => {
         try {
             setLoading(0)
@@ -46,7 +45,8 @@ export default function MVByGenre() {
                     with_genres: genreId,
                 },
             })
-            status === 200 && setMVGenre((oldData) => [...oldData, ...data.results])
+            status === 200 &&
+                setMVGenre(oldData => [...oldData, ...data.results])
             setLoading(1)
         } catch {
             setLoading(1)
@@ -138,7 +138,10 @@ export default function MVByGenre() {
                                     </div>
                                 )}
                                 {index <= 30 && (
-                                    <LoadMore onClick={loadMore} state={loading} />
+                                    <LoadMore
+                                        onClick={loadMore}
+                                        state={loading}
+                                    />
                                 )}
                             </article>
                         </div>

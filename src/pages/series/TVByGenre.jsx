@@ -135,7 +135,10 @@ export default function TVByGenre() {
                                     </div>
                                 )}
                                 {index <= 30 && (
-                                    <LoadMore onClick={loadMore} state={loading} />
+                                    <LoadMore
+                                        onClick={loadMore}
+                                        state={loading}
+                                    />
                                 )}
                             </article>
                         </div>

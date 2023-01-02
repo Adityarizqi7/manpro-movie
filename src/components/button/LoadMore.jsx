@@ -1,6 +1,6 @@
-import { Spin } from "../loading/Spin"
+import { Spin } from '../loading/Spin'
 
-export const LoadMore = ({onClick, state}) => {
+export const LoadMore = ({ onClick, state }) => {
     return (
         <button
             onClick={onClick}

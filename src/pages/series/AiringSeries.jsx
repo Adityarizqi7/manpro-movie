@@ -61,10 +61,11 @@ export default function AiringSeries() {
             setLoading(0)
             const { data, status } = await tmdb.get('/tv/airing_today', {
                 params: {
-                    page: index
-                }
+                    page: index,
+                },
             })
-            status === 200 && setAiringTVAll((oldData) => [...oldData, ...data.results])
+            status === 200 &&
+                setAiringTVAll(oldData => [...oldData, ...data.results])
             setLoading(1)
         } catch {
             setLoading(1)
@@ -162,7 +163,7 @@ export default function AiringSeries() {
                             title='Genres'
                             id='left-section'
                             urlAPI='/genre/tv/list'
-                            className='list-container sticky top-[6rem] self-start order-1 hidden space-y-2 md:order-2 md:block md:w-[30%]'
+                            className='list-container sticky top-[6rem] order-1 hidden space-y-2 self-start md:order-2 md:block md:w-[30%]'
                         />
                         <div
                             id='right_section'
@@ -215,7 +216,10 @@ export default function AiringSeries() {
                                     </div>
                                 )}
                                 {index <= 30 && (
-                                    <LoadMore onClick={loadMore} state={loading} />
+                                    <LoadMore
+                                        onClick={loadMore}
+                                        state={loading}
+                                    />
                                 )}
                             </article>
                         </div>
