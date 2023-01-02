@@ -156,15 +156,15 @@ export default function Navbar() {
                             >
                                 <ItemDropdownNav
                                     title={'Airing Today'}
-                                    path={'/movies/airing-today'}
+                                    path={'/series/airing-today'}
                                 />
                                 <ItemDropdownNav
                                     title={'OnTV'}
-                                    path={'/movies/on-the-air'}
+                                    path={'/series/on-the-air'}
                                 />
                                 <ItemDropdownNav
                                     title={'Top Rated'}
-                                    path={'/movies/top-rated'}
+                                    path={'/series/top-rated'}
                                 />
                             </WrapperItemsDropdownNav>
 
@@ -411,22 +411,22 @@ export default function Navbar() {
                         <WrapperItemsDropdownNav
                             head_title={'TV Series'}
                             classDropDownWrapItem='mt-2'
-                            checkPath={checkPathMovies()}
+                            checkPath={checkPathSeries()}
                             classChildDropDownButton='justify-between'
                             classDropDownTransition='left-[10.15rem] top-[4rem]'
                             classDropDownButton='ui-open:rounded-md ui-open:px-2 block w-full py-4 text-gray-300'
                         >
                             <ItemDropdownNav
                                 title={'Airing Today'}
-                                path={'/movies/airing-today'}
+                                path={'/series/airing-today'}
                             />
                             <ItemDropdownNav
                                 title={'OnTV'}
-                                path={'/movies/on-the-air'}
+                                path={'/series/on-the-air'}
                             />
                             <ItemDropdownNav
                                 title={'Top Rated'}
-                                path={'/movies/top-rated'}
+                                path={'/series/top-rated'}
                             />
                         </WrapperItemsDropdownNav>
 

@@ -9,6 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 import Nevrays from '@/layouts/Nevrays'
 import { SeriesCard } from '@/components/content/ContentCard'
+import { LoadMore } from '@/components/button/LoadMore'
 
 export default function TVByGenre() {
     const { genreId } = useParams()
@@ -16,8 +17,8 @@ export default function TVByGenre() {
     const [genre, setGenre] = React.useState([])
     const [tVGenre, setTVGenre] = React.useState([])
 
-    // const [index, setIndex] = React.useState(1)
-    const [loading, setLoading] = React.useState(false)
+    const [index, setIndex] = React.useState(1)
+    const [loading, setLoading] = React.useState(1)
 
     const theme = React.useContext(GlobalContext).theme
 
@@ -28,31 +29,31 @@ export default function TVByGenre() {
         return light
     }, [])
 
-    // const loadMore = React.useCallback(() => {
-    //     setLoading(true)
-    //     setIndex(index + 1)
-    //     setLoading(false)
-    // }, [])
+    const loadMore = React.useCallback(() => {
+        setLoading(0)
+        setIndex(idx => idx + 1)
+        setLoading(1)
+    }, [])
 
     const getDataTVGenre = React.useCallback(async () => {
         try {
-            setLoading(true)
+            setLoading(0)
             const { data, status } = await tmdb.get(`/discover/tv`, {
                 params: {
+                    page: index,
                     with_genres: genreId,
-                    page: Math.floor(Math.random() * 4) + 1,
                 },
             })
             status === 200 && setTVGenre(data.results)
-            setLoading(false)
+            setLoading(1)
         } catch {
-            setLoading(false)
+            setLoading(1)
         }
-    }, [])
+    }, [index])
 
     const getGenre = React.useCallback(async () => {
         try {
-            setLoading(true)
+            setLoading(0)
             const { data, status } = await tmdb.get(`/genre/tv/list`)
             status === 200 &&
                 setGenre(
@@ -60,9 +61,9 @@ export default function TVByGenre() {
                         value => parseInt(value.id) === parseInt(genreId)
                     )
                 )
-            setLoading(false)
+            setLoading(1)
         } catch {
-            setLoading(false)
+            setLoading(1)
         }
     }, [])
 
@@ -132,6 +133,9 @@ export default function TVByGenre() {
                                             )
                                         })}
                                     </div>
+                                )}
+                                {index <= 30 && (
+                                    <LoadMore onClick={loadMore} state={loading} />
                                 )}
                             </article>
                         </div>

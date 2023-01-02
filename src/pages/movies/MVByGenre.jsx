@@ -10,6 +10,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import Nevrays from '@/layouts/Nevrays'
 import { MovieCard } from '@/components/content/ContentCard'
 import { HeadPrimary } from '@/components/heading/HeadPrimary'
+import { LoadMore } from '@/components/button/LoadMore'
 
 export default function MVByGenre() {
     const { genreId } = useParams()
@@ -17,7 +18,8 @@ export default function MVByGenre() {
     const [genre, setGenre] = React.useState([])
     const [MVGenre, setMVGenre] = React.useState([])
 
-    const [loading, setLoading] = React.useState(false)
+    const [index, setIndex] = React.useState(1)
+    const [loading, setLoading] = React.useState(1)
 
     const theme = React.useContext(GlobalContext).theme
 
@@ -28,25 +30,32 @@ export default function MVByGenre() {
         return light
     }, [])
 
+    const loadMore = React.useCallback(() => {
+        setLoading(0)
+        setIndex(idx => idx + 1)
+        setLoading(1)
+    }, [])
+
+
     const getDataMVGenre = React.useCallback(async () => {
         try {
-            setLoading(true)
+            setLoading(0)
             const { data, status } = await tmdb.get(`/discover/movie`, {
                 params: {
+                    page: index,
                     with_genres: genreId,
-                    page: Math.floor(Math.random() * 4) + 1,
                 },
             })
-            status === 200 && setMVGenre(data.results)
-            setLoading(false)
+            status === 200 && setMVGenre((oldData) => [...oldData, ...data.results])
+            setLoading(1)
         } catch {
-            setLoading(false)
+            setLoading(1)
         }
-    }, [genreId])
+    }, [genreId, index])
 
     const getGenre = React.useCallback(async () => {
         try {
-            setLoading(true)
+            setLoading(0)
             const { data, status } = await tmdb.get(`/genre/movie/list`)
             status === 200 &&
                 setGenre(
@@ -54,9 +63,9 @@ export default function MVByGenre() {
                         value => parseInt(value.id) === parseInt(genreId)
                     )
                 )
-            setLoading(false)
+            setLoading(1)
         } catch {
-            setLoading(false)
+            setLoading(1)
         }
     }, [genreId])
 
@@ -103,17 +112,17 @@ export default function MVByGenre() {
                                 id='movie_all'
                                 className='movie-container mb-14 space-y-8'
                             >
-                                {loading ? (
+                                {loading === 0 ? (
                                     <>
                                         <Skeleton
                                             height={300}
                                             count={4}
-                                            containerClassName='flex flex-wrap gap-[10px]'
+                                            containerClassName='flex gap-[10px]'
                                         />
                                         <Skeleton
                                             height={25}
                                             count={4}
-                                            containerClassName='flex flex-wrap gap-[10px] mt-3'
+                                            containerClassName='flex gap-[10px] mt-3'
                                         />
                                     </>
                                 ) : (
@@ -127,6 +136,9 @@ export default function MVByGenre() {
                                             )
                                         })}
                                     </div>
+                                )}
+                                {index <= 30 && (
+                                    <LoadMore onClick={loadMore} state={loading} />
                                 )}
                             </article>
                         </div>

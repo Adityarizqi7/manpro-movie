@@ -6,11 +6,11 @@ import { GlobalContext } from '@/routes/Router'
 import '@/styles/series/_airing.scss'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import { slice } from '@/utils/Slice'
 import Nevrays from '@/layouts/Nevrays'
 import List from '@/components/list/List'
-import { Spin } from '@/components/loading/Spin'
+import { LoadMore } from '@/components/button/LoadMore'
 import { SeriesCard } from '@/components/content/ContentCard'
+import { HeadPrimary } from '@/components/heading/HeadPrimary'
 
 export default function AiringSeries() {
     const inputRef = React.useRef()
@@ -19,9 +19,8 @@ export default function AiringSeries() {
 
     const [airingTVAll, setAiringTVAll] = React.useState([])
 
-    const [index, setIndex] = React.useState(8)
-    const [loading, setLoading] = React.useState(false)
-    const initialPosts = slice(airingTVAll, 0, index)
+    const [index, setIndex] = React.useState(1)
+    const [loading, setLoading] = React.useState(1)
 
     const theme = React.useContext(GlobalContext).theme
 
@@ -52,21 +51,25 @@ export default function AiringSeries() {
     )
 
     const loadMore = React.useCallback(() => {
-        setLoading(true)
-        setIndex(idx => idx + 4)
-        setLoading(false)
+        setLoading(0)
+        setIndex(idx => idx + 1)
+        setLoading(1)
     }, [])
 
     const AiringTVAll = React.useCallback(async () => {
         try {
-            setLoading(true)
-            const { data, status } = await tmdb.get('/tv/airing_today')
-            status === 200 && setAiringTVAll(data.results)
-            setLoading(false)
+            setLoading(0)
+            const { data, status } = await tmdb.get('/tv/airing_today', {
+                params: {
+                    page: index
+                }
+            })
+            status === 200 && setAiringTVAll((oldData) => [...oldData, ...data.results])
+            setLoading(1)
         } catch {
-            setLoading(false)
+            setLoading(1)
         }
-    }, [])
+    }, [index])
 
     React.useEffect(() => {
         document.addEventListener('keydown', handleFocusInput)
@@ -99,15 +102,15 @@ export default function AiringSeries() {
             >
                 <section id='airing_container_series'>
                     <div className='heading-airing-series montserrat mb-8'>
-                        <h1
-                            className={`${renderTheme(
+                        <HeadPrimary
+                            title='Series Airing On Today'
+                            classFunc={renderTheme(
                                 theme,
                                 'text-white',
                                 'text-black'
-                            )} text-[2rem] font-semibold`}
-                        >
-                            Series Airing On Today
-                        </h1>
+                            )}
+                            classHeading='text-[2rem] font-semibold'
+                        />
                     </div>
                     <div className='search-series montserrat mb-10'>
                         <div className='box-search inter relative w-full md:w-[35%]'>
@@ -153,23 +156,23 @@ export default function AiringSeries() {
                             }
                         </div>
                     </div>
-                    <section className='flex flex-col gap-5 sm:flex-row'>
+                    <section className='flex flex-col gap-5 md:flex-row'>
                         <List
+                            type='tv'
                             title='Genres'
                             id='left-section'
-                            className='list-container order-1 hidden space-y-2 sm:order-2 md:block md:w-[30%]'
                             urlAPI='/genre/tv/list'
-                            type='tv'
+                            className='list-container sticky top-[6rem] self-start order-1 hidden space-y-2 md:order-2 md:block md:w-[30%]'
                         />
                         <div
                             id='right_section'
-                            className='section-container order-2 w-full sm:order-1 md:w-[70%]'
+                            className='section-container order-2 w-full md:order-1 md:w-[70%]'
                         >
                             <article
                                 id='movie_all'
                                 className='movie-container mb-14 space-y-8'
                             >
-                                {loading ? (
+                                {loading === 0 ? (
                                     <>
                                         <Skeleton
                                             height={300}
@@ -184,20 +187,13 @@ export default function AiringSeries() {
                                     </>
                                 ) : (
                                     <div className='container-list-card grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4'>
-                                        {initialPosts
+                                        {airingTVAll
                                             .filter(value => {
                                                 // eslint-disable-line array-callback-return
                                                 if (searchMovie === '')
                                                     return value
                                                 if (
-                                                    value.title
-                                                        ?.toLowerCase()
-                                                        .includes(
-                                                            searchMovie
-                                                                ?.toLowerCase()
-                                                                .trim()
-                                                        ) ||
-                                                    value.original_title
+                                                    value.original_name
                                                         ?.toLowerCase()
                                                         .includes(
                                                             searchMovie
@@ -218,15 +214,8 @@ export default function AiringSeries() {
                                             })}
                                     </div>
                                 )}
-                                {index !== 20 && (
-                                    <button
-                                        onClick={loadMore}
-                                        className={`${
-                                            loading && 'pointer-events-none'
-                                        } poppins shadow-sm' w-full bg-blue-500 py-3 text-[1.125rem] text-white transition-colors duration-300 hover:bg-opacity-80 focus:outline-none`}
-                                    >
-                                        {loading ? <Spin /> : 'load more'}
-                                    </button>
+                                {index <= 30 && (
+                                    <LoadMore onClick={loadMore} state={loading} />
                                 )}
                             </article>
                         </div>
